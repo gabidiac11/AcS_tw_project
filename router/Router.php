@@ -67,8 +67,6 @@ class Router
         $action = $state['action'];
         $arguments = $state['arguments'];
 
-        
-
         $controllerPath = __DIR__ . '/../../Controllers/' . ucfirst($controller) . ".php";
 
         if (file_exists($controllerPath)) {
