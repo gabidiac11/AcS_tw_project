@@ -1,5 +1,7 @@
 <?php
 
+
+
 class Router
 {
 
@@ -9,6 +11,7 @@ class Router
         'arguments' => []
     ];
 
+    
     /**
      * 
      * @var Singleton
@@ -17,7 +20,7 @@ class Router
 
     private function __construct()
     {
-        $this->autoRedirect();
+
     }
 
     public static function getInstance()
@@ -31,7 +34,7 @@ class Router
     /**
      * @return 
      */
-    private static function getRoutingFromUrl()
+    public static function getRoutingFromUrl()
     {
         /**
          * homepage - default
@@ -59,38 +62,14 @@ class Router
         return $state;
     }
 
-    private function autoRedirect()
-    {
-        $state = Router::getRoutingFromUrl();
-
-        $controller = $state['controller'];
-        $action = $state['action'];
-        $arguments = $state['arguments'];
-
-        $controllerPath = __DIR__ . '/../../Controllers/' . ucfirst($controller) . ".php";
-
-        if (file_exists($controllerPath)) {
-            $controllerObj = $this->getControllerInstance($controller);
-
-            // If there is a method - Second parameter
-            if ($action != '') {
-                // then we call the method via the view
-                // dynamic call of the view
-                print $controllerObj->$action($arguments);
-            } else {
-                print $controllerObj->index($arguments);
-            }
-        } else {
-            header('HTTP/1.1 404 Not Found');
-            die('404 - Not found.');
-        }
-    }
-
-    private function getControllerInstance($controller ) {
+    public static function getControllerInstance($controller ) {
         require_once __DIR__ . '/../../Controllers/' . $controller . '.php';
         $controllerName = ucfirst($controller);
         return new $controllerName();
     }
-}
 
-$router = Router::getInstance();
+    public function redirect($path)
+    {
+        header("Location: $path");
+    }
+}

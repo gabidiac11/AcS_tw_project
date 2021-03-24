@@ -1,5 +1,10 @@
 <?php
 
+
 echo "INDEX-VIEW";
 
-echo json_encode($PARAMS);
+echo json_encode($BLOCK);
+
+?>
+    <header></header>
+    <main></main>
