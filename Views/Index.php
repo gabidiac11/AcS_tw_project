@@ -1,7 +1,7 @@
 <?php
 
 
-echo "INDEX-VIEW";
+echo "INDEX-VIEW <br/><br/><br/>";
 
 echo json_encode($BLOCK);
 
