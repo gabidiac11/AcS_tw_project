@@ -67,7 +67,10 @@ class Database
     }
 
     public function insert($sql) {
-        
+        $conn = $this->conn;
+        $conn->query($sql);
+
+        return $conn->insert_id;
     }
 
     public static function getInstance()

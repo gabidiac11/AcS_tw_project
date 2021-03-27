@@ -10,8 +10,8 @@ class Controller extends App
 
     public function loadModel($model)
     {
-        require_once __DIR__ . '/../Model/' . ucfirst($model) . '.php';
-        $modelName = ucfirst($modulName);
+        require_once __DIR__ . '/../Models/' . ucfirst($model) . '.php';
+        $modelName = ucfirst($model);
         return new $modelName();
     }
 
