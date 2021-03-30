@@ -17,13 +17,18 @@ class Map extends Controller
     {
         $data = $this->db->select("SELECT * from test");
 
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("Index", ['name' => 'buna', 'data' => $data]);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Map", ['name' => 'buna', 'data' => $data]);
+    }
+
+    public function pin()
+    {
+        $data = $this->db->select("SELECT * from test");
+
+        $this->loadView("MapPin", ['name' => 'buna', 'data' => $data]);
     }
 
     public function printcsv()
     {
-        $this->loadModel("DatabaseUtl")->phpCsvToDb();
+        
     }
 }
