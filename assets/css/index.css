@@ -1,0 +1,168 @@
+/* FONTS */
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('./../fonts/Bahnschrift.woff2') format('woff2'),
+        url('./../fonts/Bahnschrift.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* UTILS */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    --primary-blue: #2B2E4A;
+    --primary-dark-red: #53354A;
+    --primary-red: #903749;
+
+    font-family: Bahnschrift;
+}
+
+.flex-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}

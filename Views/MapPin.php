@@ -18,7 +18,7 @@
     <div id="map" style="height: 600px;" class="map"></div>
     Legend:
     <div><img id="legend" /></div>
-    
+
     <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
@@ -26,14 +26,13 @@
   </body>
 
   <script>
-
     //  By default, the popup will open if you click on the marker. If you want the popup to open automatically when the map is loaded, you can add
 
     //  content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
     //  overlay.setPosition(ol.proj.fromLonLat([4.35247, 50.84673]));
   </script>
 
-<script type="module" src="../assets/js/map-pin.js"></script>
+  <script type="module" src="../assets/js/map-pin.js"></script>
 </body>
 
 </html>
