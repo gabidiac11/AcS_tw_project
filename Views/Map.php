@@ -9,16 +9,10 @@
   <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
   <script src="https://unpkg.com/elm-pep"></script>
 </head>
-
-<body>
-
   <body>
     <div id="map" style="height: 600px;" class="map"></div>
     Legend:
     <div><img id="legend" /></div>
     <script type="module" src="../assets/js/map.js"></script>
   </body>
-
-</body>
-
 </html>
