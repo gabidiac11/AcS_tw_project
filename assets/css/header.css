@@ -1,0 +1,61 @@
+.header {
+  width: 100vw;
+  height: 116px;
+  border-bottom: 5px solid var(--primary-red);
+  background-color: var(--primary-blue);
+  padding: 0 15px;
+
+  flex-wrap: wrap;
+}
+
+.header .header-meniu-links {
+  font-size: 30px;
+  list-style: none;
+}
+
+.header .header-meniu-links li {
+  padding: 10px;
+}
+
+.header .header-meniu-links li.selected a,
+.header .header-meniu-links li:hover a {
+  color: var(--primary-red);
+}
+
+.header .header-meniu-links a {
+  text-decoration: none;
+  color: white;
+  padding: 0 7px;
+}
+
+.header .logo-container img {
+  width: 74px;
+  margin-left: 27px;
+}
+
+.header .brand-title {
+  font-size: 100px;
+  padding-left: 14px;
+  color: white;
+}
+
+@media only screen and (max-width: 1600px) {
+    .header {
+        width: 100vw;
+        min-height: 70px;    
+      }
+
+      .header .brand-title {
+        font-size: 44px;
+      }
+      
+      .header .header-meniu-links {
+        font-size: 20px;
+      }
+      
+      
+      .header .logo-container img {
+        width: 43px;
+        margin-left: 17px;
+      }
+}
