@@ -1,6 +1,6 @@
 <?php
 
-class Map extends Controller
+class maps extends Controller
 {
 
     function __construct()
@@ -10,7 +10,9 @@ class Map extends Controller
 
     public function index()
     {
-        $this->router->redirect('/');
+        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
+        $this->loadView("Map", ['name' => 'buna']);
+        $this->loadView("Layout/Bottom", ['name' => 'salut']);
     }
 
     public function find()
