@@ -9,6 +9,7 @@
   <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
   <link href="../../assets/css/charts.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
