@@ -35,6 +35,10 @@
         </select>
       </div>
     </div>
+
+    <div class="flex-end width-100 link-to-pin-container">
+      <a href="/maps/pin"> Visualize each accident -> </a>
+    </div>
   </main>
   <script type="module" src="../assets/js/map.js"></script>
 </body>

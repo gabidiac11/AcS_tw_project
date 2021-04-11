@@ -41,3 +41,22 @@
 select {
   padding-left: 10px;
 }
+
+#map-page-pin .ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
+  padding-left: 20px;
+}
+#map-page-pin .ol-zoom.ol-unselectable.ol-control {
+  display: none;
+
+}
+
+#popup {
+  background: rgba(43, 46, 74, 0.8);
+  border: 1px solid var(--primary-dark-red);
+  padding: 10px;
+  color: white;
+}
+
+.link-to-pin-container {
+  padding-right: 20px;
+}

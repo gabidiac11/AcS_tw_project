@@ -17,12 +17,18 @@
   <?php
   require_once __DIR__ . '/Layout/Header.php';
   ?>
-  <main>
-    <div id="map" style="height: 600px;" class="map"></div>
-    Legend:
-    <div><img id="legend" /></div>
+  <main id="map-page-pin">
+    <div id="map" style="height: 600px;" class="map box-shadow-re-use"></div>
 
-    <div id="popup" class="ol-popup">
+    <div class="map-bottom">
+      <div class="legend-section">
+        <p>
+          Click any pin to see more.
+        </p>
+      </div>
+    </div>
+
+    <div id="popup" class="ol-popup box-shadow-re-use">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>

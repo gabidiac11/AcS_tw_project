@@ -36,40 +36,42 @@ var layer = new ol.layer.Vector({
       new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([4.35247, 50.84673])),
       }),
+      new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([5.35247, 50.84673])),
+      }),
+      new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([5.35247, 56.84673])),
+      }),
     ],
   }),
 });
 map.addLayer(layer);
 
-
-
-
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
+var container = document.getElementById("popup");
+var content = document.getElementById("popup-content");
+var closer = document.getElementById("popup-closer");
 
 var overlay = new ol.Overlay({
   element: container,
   autoPan: true,
   autoPanAnimation: {
-    duration: 250
-  }
+    duration: 250,
+  },
 });
 map.addOverlay(overlay);
 
-closer.onclick = function() {
+closer.onclick = function () {
   overlay.setPosition(undefined);
   closer.blur();
   return false;
 };
 
-
-map.on('singleclick', function(event) {
+map.on("singleclick", function (event) {
   console.log("click");
   if (map.hasFeatureAtPixel(event.pixel) === true) {
     var coordinate = event.coordinate;
 
-    content.innerHTML = '<b>Hello world!</b><br />I am a popup.';
+    content.innerHTML = "<b> Accident #1 </b><br /> 30 May 1987.";
     overlay.setPosition(coordinate);
   } else {
     overlay.setPosition(undefined);
