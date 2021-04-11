@@ -57,6 +57,10 @@ select {
   color: white;
 }
 
+#popup-content a {
+  color: white;
+}
+
 .link-to-pin-container {
   padding-right: 20px;
 }

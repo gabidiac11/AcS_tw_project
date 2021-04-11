@@ -71,7 +71,7 @@ map.on("singleclick", function (event) {
   if (map.hasFeatureAtPixel(event.pixel) === true) {
     var coordinate = event.coordinate;
 
-    content.innerHTML = "<b> Accident #1 </b><br /> 30 May 1987.";
+    content.innerHTML = "<b> Accident #1 </b><br /> 30 May 1987. <br/> <a href='/accidents/1'> Click to expand </a>";
     overlay.setPosition(coordinate);
   } else {
     overlay.setPosition(undefined);
