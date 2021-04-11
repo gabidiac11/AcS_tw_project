@@ -24,7 +24,7 @@
       <h1> Not found </h1>
       
       <p class="text-box-shadow-light-re-use">The page requested was not found (or is in progress). </p>
-      <p class="text-box-shadow-light-re-use">Navigate to <a href="/">Home</a>. </p>
+      <p class="text-box-shadow-light-re-use">Navigate to <a href="/home">Home</a>. </p>
    </div>
   </main>
 </body>
