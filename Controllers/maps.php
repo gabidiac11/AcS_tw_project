@@ -10,22 +10,17 @@ class Maps extends Controller
 
     public function index()
     {
-        $this->loadView("Map", ['name' => 'buna']);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Map", []);
     }
 
     public function find()
     {
-        $data = $this->db->select("SELECT * from test");
-
-        $this->loadView("Map", ['name' => 'buna', 'data' => $data]);
+        $this->loadView("Map", []);
     }
 
     public function pin()
     {
-        $data = $this->db->select("SELECT * from test");
-
-        $this->loadView("MapPin", ['name' => 'buna', 'data' => $data]);
+        $this->loadView("MapPin", []);
     }
 
     public function printcsv()

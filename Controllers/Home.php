@@ -11,6 +11,5 @@ class Home extends Controller
     public function index() {
         
         $this->loadView("Index", []);
-        $this->loadView("Layout/Bottom", []);
     }
 }
