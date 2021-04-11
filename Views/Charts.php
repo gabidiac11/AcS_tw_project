@@ -7,6 +7,7 @@
   <title> Chart 1 - USA Accidents Smart Visualizer</title>
   <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/charts.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
