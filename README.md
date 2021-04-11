@@ -97,3 +97,9 @@ For possible safety measure we recommend a host with daily backup of the databas
 Because this software use a real-time public API we don't have any recomandations than to secure maybe your database from where the datas are collected in case of a attack and to have certificate for more protection on the website.
 ### 4.4 Software Quality Attributes
 For our software quality is represented by flexibility on any device for usage, good looking website, usage of same color palletes on every page for a more attractive view. Every function used on our sql connections are optimised to achieve best results.
+
+What each of us did:
+Diac Gabriel: Controller class and routing, Home page, Header, Map pages(statistic per state + pin points), added new fonts
+Gradinariu Florin-Marian: Maps for pages, About page, Contact page, Chart pages
+Vasilica Alex: Search page, Design and theme(mokups available in documentation/design) using AdobeXD, Header
++ Small team coding reviews after individual work
