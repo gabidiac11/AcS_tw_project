@@ -12,8 +12,7 @@ class about extends Controller
     {
         $data = $this->db->select("SELECT * from test");
 
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("About", ['name' => 'salut']);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("About", []);
+        $this->loadView("Layout/Bottom", []);
     }
 }
