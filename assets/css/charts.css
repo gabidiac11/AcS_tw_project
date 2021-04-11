@@ -28,3 +28,17 @@ a:visited{
   color: white;
   text-decoration: none;
 }
+
+.chart-content {
+  width: 40%;
+  min-width: 600px;
+  padding-top: 15px;
+}
+
+@media only screen and (max-width: 700px) {
+  .chart-content {
+    width: 90%;
+    min-width: 90%;
+    padding-top: 15px;
+  }
+}

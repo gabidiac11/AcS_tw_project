@@ -5,6 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/png" href="./../assets/favicon/logo.ico" />
   <title> Chart 3 - USA Accidents Smart Visualizer</title>
   <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
@@ -17,7 +18,7 @@
     require_once __DIR__ . '/Layout/Header.php';
   ?>
   <main class="flex-all">
-  <div style="width: 40%; padding-top: 15px;">
+  <div class="chart-content" >
   <canvas id="myChart" width="50px" height="50px"></canvas>
   </div>
 <script>
