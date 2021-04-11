@@ -13,6 +13,7 @@
 
 <body>
   <?php
+  
   require_once __DIR__ . '/Layout/Header.php';
   ?>
   <main>
@@ -21,7 +22,9 @@
     </div>
     <div class="page-content">
       <h1> Not found </h1>
+      
       <p class="text-box-shadow-light-re-use">The page requested was not found. </p>
+      
    </div>
   </main>
 </body>

@@ -21,6 +21,7 @@ require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/App.php';
 require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/Model.php';
+require_once __DIR__ . '/custom_config.php';
 
 (function () {
     $state = Router::getRoutingFromUrl();
@@ -31,7 +32,7 @@ require_once __DIR__ . '/Model.php';
 
     $controllerPath = __DIR__ . '/../Controllers/' . ucfirst($controller) . ".php";
 
-    if (1 || file_exists($controllerPath)) {
+    if (SKIP_PATH_EXISTS_VALIDATION === "true" || file_exists($controllerPath)) {
         $controllerObj = Router::getControllerInstance($controller);
 
         // If there is a method - Second parameter
