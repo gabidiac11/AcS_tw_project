@@ -10,9 +10,6 @@ class contact extends Controller
 
     public function index()
     {
-        $data = $this->db->select("SELECT * from test");
-
-        $this->loadView("Contact", ['name' => 'salut', 'data' => $data]);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Contact", []);
     }
 }
