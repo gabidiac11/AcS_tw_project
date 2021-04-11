@@ -1,6 +1,6 @@
 <?php
 
-define("DELOPMENT", "TRUE");
+define("DELOPMENT", "FALSE");
 
 if (DELOPMENT === "TRUE") {
     ini_set('display_errors', 1);
