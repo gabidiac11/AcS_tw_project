@@ -6,6 +6,9 @@
   padding: 0 15px;
 
   flex-wrap: wrap;
+
+  width: 100%;
+  overflow: hidden;
 }
 
 .header .header-meniu-links {
@@ -26,7 +29,7 @@
   letter-spacing: normal;
 }
 
-.header .header-meniu-links li.selected a,
+.header .header-meniu-links li a.selected,
 .header .header-meniu-links li:hover a {
   color: var(--primary-red);
 }
