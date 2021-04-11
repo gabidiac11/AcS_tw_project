@@ -74,27 +74,28 @@ input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
 }
 
 body {
-  background: #e2dedb;
   color: #b3aca7;
 }
 
-header {
-  position: relative;
-  font-size: 2.3em;
-  text-align: center;
-  letter-spacing: 7px;
+.page-content {
+  min-height: 60vh;
+}
+
+input, textarea {
+  margin-bottom: 15px;
 }
 
 #form {
   position: relative;
-  width: 500px;
-  margin: 50px auto 100px auto;
+  width: 473px;
+
+  max-width: calc(100% - 40px);
 }
 
 input {
   font-family: 'Lato', sans-serif;
   font-size: 0.875em;
-  width: 470px;
+  width: 100%;
   height: 50px;
   padding: 0px 15px 0px 15px;
   
@@ -103,7 +104,6 @@ input {
   color: #726659;
   
   border: solid 1px #b3aca7;
-  border-bottom: none;
   
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -117,7 +117,7 @@ input:hover {
 }
 
 textarea {
-  width: 470px;
+  width: 100%;
   max-width: 470px;
   height: 110px;
   max-height: 110px;
@@ -162,4 +162,11 @@ textarea:hover {
 
 #submit:hover {
   color: #e2dedb;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  margin-top: 20px;
+  width: auto;
+  padding: 0 30px;
 }

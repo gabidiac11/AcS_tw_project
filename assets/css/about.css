@@ -1,5 +1,12 @@
-h1 {text-align: center;}
-h2 {margin-top: 25px;
-    text-align: center;}
+#about-page h1 {
+    padding-top: 30px;
+  text-align: center;
+}
+#about-page h2 {
+  margin-top: 25px;
+  text-align: center;
+}
 
-p {text-align: center;}
+#about-page p {
+  text-align: center;
+}

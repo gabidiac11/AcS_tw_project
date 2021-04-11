@@ -63,7 +63,14 @@ class Router
     }
 
     public static function getControllerInstance($controller ) {
-        require_once __DIR__ . '/../../Controllers/' . $controller . '.php';
+        $path = __DIR__ . '/../../Controllers/' . $controller . '.php';
+        if(file_exists($path)) {
+            require_once $path;
+        } else {
+            $controller = "NotFound";
+            require_once __DIR__ . '/../../Controllers/NotFound.php';
+        }
+        
         $controllerName = ucfirst($controller);
         return new $controllerName();
     }

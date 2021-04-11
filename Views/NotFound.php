@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="icon" type="image/png" href="./../assets/favicon/logo.ico" />
   
-  <title> Welcome - USA Accidents Smart Visualizer</title>
+  <title> Not found - USA Accidents Smart Visualizer</title>
   <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
 </head>
@@ -20,8 +20,8 @@
       <img class="box-shadow-re-use" src="./../assets/images/not-found.jpg" />
     </div>
     <div class="page-content">
-      <h1> Home </h1>
-      <p class="text-box-shadow-light-re-use">Welcome. </p>
+      <h1> Not found </h1>
+      <p class="text-box-shadow-light-re-use">The page requested was not found. </p>
    </div>
   </main>
 </body>

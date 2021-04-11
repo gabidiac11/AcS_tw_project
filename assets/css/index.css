@@ -149,7 +149,13 @@ body {
     --primary-dark-red: #53354A;
     --primary-red: #903749;
 
+    background-color: white;
+
     font-family: Bahnschrift;
+}
+
+main, head {
+    width: 100vw;
 }
 
 .flex-all {
@@ -159,10 +165,62 @@ body {
     align-items: center;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .flex-between {
     justify-content: space-between;
 }
 
 .flex-end {
+    display: flex;
     justify-content: flex-end;
+}
+
+.box-shadow-re-use {
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+}
+
+.inset-shadow-re-use {
+    -webkit-box-shadow: inset 0px 0px 38px -32px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px 0px 38px -32px rgba(0,0,0,0.25);
+    box-shadow: inset 0px 0px 38px -32px rgba(0,0,0,0.25);
+ }
+
+.text-box-shadow-re-use {
+    text-shadow: 0px 3px 6px rgba(0,0,0,0.26);
+}
+
+.text-box-shadow-light-re-use {
+    text-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+}
+
+.page-content {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.image-presentation {
+    width: 100vw;
+    height: 34vh;
+}
+
+.image-presentation img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.width-100 {
+    width: 100%;
 }

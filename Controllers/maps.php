@@ -1,6 +1,6 @@
 <?php
 
-class maps extends Controller
+class Maps extends Controller
 {
 
     function __construct()

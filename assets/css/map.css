@@ -1,0 +1,43 @@
+#map-per-state .ol-overlaycontainer-stopevent {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+[title="Attributions"],
+[title="Reset rotation"] {
+  display: none;
+}
+
+.ol-overlaycontainer-stopevent li {
+  list-style: none;
+}
+
+.ol-overlaycontainer-stopevent ul {
+  padding: 0;
+}
+
+.map-bottom {
+  width: 100vw;
+  padding: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.controls-section {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-left: 20px;
+
+  background-color: white;
+  font-family: Bahnschrift;
+}
+
+select {
+  padding-left: 10px;
+}
