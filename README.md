@@ -4,7 +4,7 @@ IEEE System Requirements Specification Template
 # Software Requirements Specification
 ## For  USA Accidents Smart Visualizer
 Version 1.0 approved
-Prepared by Gradinariu Florin-Marian, Vasilica Alex, Diac Gabrial
+Prepared by Gradinariu Florin-Marian, Vasilica Alex, Diac Gabriel
 
 Table of Contents
 =================
