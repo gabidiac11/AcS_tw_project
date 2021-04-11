@@ -9,14 +9,6 @@ class Index extends Controller
     }
 
     public function index() {
-        $this->router->redirect('/');
-    }
-
-    public function home()
-    {
-        $data = $this->db->select("SELECT * from test");
-        
-        $this->loadView("Index", ['name' => 'salut', 'data' => $data]);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->router->redirect('/home');
     }
 }
