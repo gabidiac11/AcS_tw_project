@@ -31,7 +31,7 @@ require_once __DIR__ . '/Model.php';
 
     $controllerPath = __DIR__ . '/../Controllers/' . ucfirst($controller) . ".php";
 
-    if (file_exists($controllerPath)) {
+    if (1 || file_exists($controllerPath)) {
         $controllerObj = Router::getControllerInstance($controller);
 
         // If there is a method - Second parameter
