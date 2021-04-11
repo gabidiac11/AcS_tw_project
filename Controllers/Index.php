@@ -15,8 +15,7 @@ class Index extends Controller
     public function home()
     {
         $data = $this->db->select("SELECT * from test");
-
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
+        
         $this->loadView("Index", ['name' => 'salut', 'data' => $data]);
         $this->loadView("Layout/Bottom", ['name' => 'salut']);
     }

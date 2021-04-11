@@ -10,7 +10,6 @@ class Maps extends Controller
 
     public function index()
     {
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
         $this->loadView("Map", ['name' => 'buna']);
         $this->loadView("Layout/Bottom", ['name' => 'salut']);
     }

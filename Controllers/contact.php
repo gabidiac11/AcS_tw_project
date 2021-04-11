@@ -12,7 +12,6 @@ class contact extends Controller
     {
         $data = $this->db->select("SELECT * from test");
 
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
         $this->loadView("Contact", ['name' => 'salut', 'data' => $data]);
         $this->loadView("Layout/Bottom", ['name' => 'salut']);
     }

@@ -12,26 +12,22 @@ class charts extends Controller
     {
         $data = $this->db->select("SELECT * from test");
 
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("Charts", ['name' => 'salut', 'data' => $data]);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Charts", ['data' => $data]);
+        $this->loadView("Layout/Bottom", []);
     }
     public function chart1()
     {
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("Chart1", ['name' => 'buna']);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Chart1", []);
+        $this->loadView("Layout/Bottom", []);
     }
     public function chart2()
     {
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("Chart2", ['name' => 'buna']);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Chart2", []);
+        $this->loadView("Layout/Bottom", []);
     }
     public function chart3()
     {
-        $this->loadView("Layout/Head", ['prependedTitle' => 'Home - ']);
-        $this->loadView("Chart3", ['name' => 'buna']);
-        $this->loadView("Layout/Bottom", ['name' => 'salut']);
+        $this->loadView("Chart3", []);
+        $this->loadView("Layout/Bottom", []);
     }
 }
