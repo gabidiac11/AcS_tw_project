@@ -226,21 +226,26 @@ head {
   width: 100%;
 }
 
-.overwrite-achor {
-  text-decoration: none;
+.overwrite-achor,
+.overwrite-achor * {
+  text-decoration: none!important;
 }
-.overwrite-achor:link {
-  text-decoration: none;
-}
-
-.overwrite-achor:visited {
-  text-decoration: none;
+.overwrite-achor:link,
+.overwrite-achor:link * {
+  text-decoration: none!important;
 }
 
-.overwrite-achor:hover {
-  text-decoration: underline;
+.overwrite-achor:visited,
+.overwrite-achor:visited * {
+  text-decoration: none!important;
 }
 
-.overwrite-achor:active {
-  text-decoration: underline;
+.overwrite-achor:hover,
+.overwrite-achor:hover * {
+  text-decoration: none!important;
+}
+
+.overwrite-achor:active,
+.overwrite-achor:active * {
+  text-decoration: none!important;
 }
