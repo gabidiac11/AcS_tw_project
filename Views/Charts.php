@@ -17,7 +17,10 @@
   <script src="https://unpkg.com/elm-pep"></script>
 </head>
   <body>
-Our projects charts based on:
+  <link href="../../assets/css/charts.css" media="all" rel="stylesheet" type="text/css" />
+<center><div class="rectangle"><a href="/Charts/Chart1">Chart based on age</a></div></center>
+<center><div class="rectangle"><a href="/Charts/Chart2">Chart based on time period</a></div></center>
+<center><div class="rectangle"><a href="/Charts/Chart3">Chart based on state</a></div></center>
 
   </body>
 </html>

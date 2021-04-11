@@ -1,5 +1,9 @@
 h1 {text-align: center;}
 h2 {margin-top: 25px;
     text-align: center;}
+body {
+    background:  #2B2E4A;
+    color: white;
+}
 
 p {text-align: center;}
