@@ -1,0 +1,70 @@
+.filters-c {
+    width: 100%;
+    padding-top: 7px;
+}
+#filter-edit-c {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow: hidden;
+    min-height: 0;
+
+    transition: min-height 0.15s ease, background-color 0.15s ease;
+
+    background-color: #ffffff;
+
+}
+#filter-edit-c[show="true"] {
+    min-height: 100px;
+}
+#filter-edit-c
+.filter-item {
+    max-width: 100%;
+    min-width: 200px;
+    min-height: 100px;
+    position: relative;
+    padding: 10px;
+    border: 10px;
+    margin: 0 5px;
+
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.filter-item .filter-name {
+    color: #70727e;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.filter-item .arrow-expand-c  {
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+    top: 0;
+    height: 37px;
+}
+.filter-item .arrow-expand-c path {
+    fill: var(--primary-light-blue);
+}
+
+.filter-item .arrow-expand-c:hover path {
+    fill: var(--primary-blue);
+}
+
+.filter-item [filter-sub-items] {
+    margin-top: 10px;
+    padding-right: 20px;
+    position: relative;
+}
+.filter-item [filter-sub-items] button {
+    font-size: 12px;
+    padding: 3px;
+
+}
+
+.filter-item [filter-sub-items] [filter-item-applied] {
+    margin-right: 3px;
+}
+

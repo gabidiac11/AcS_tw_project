@@ -144,6 +144,8 @@ body {
   padding: 0;
 
   --primary-blue: #2b2e4a;
+  --primary-light-blue: #545a8f;
+
   --primary-dark-red: #53354a;
   --primary-red: #903749;
 
@@ -152,6 +154,10 @@ body {
   font-family: Bahnschrift;
 
   overflow-x: hidden;
+}
+
+body * {
+  font-family: Bahnschrift;
 }
 
 main,
@@ -248,4 +254,66 @@ head {
 .overwrite-achor:active,
 .overwrite-achor:active * {
   text-decoration: none!important;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.icon-c svg:hover {
+  fill: var(--primary-red);
+}
+
+button {
+  border: 1px solid transparent;
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 0.42rem;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: var(--primary-light-blue);
+  border-color: var(--primary-light-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-secondary {
+  color: #ffffff;
+  background-color: rgba(0,0,0,0.8);
+  border-color: rgba(0,0,0,0.8);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0,0,0,1);
+  border-color: rgba(0,0,0,1);
+}
+button.-delete {
+  padding-right: 30px;
+  cursor: default;
+}
+button.-delete .btn-child-x {
+  cursor: pointer;
+  width: 30px;
+  line-height: 20px;
+  padding: 5px;
+  text-align: center;
 }

@@ -1,6 +1,5 @@
 .header {
   width: 100vw;
-  min-height: 72px;
   border-bottom: 5px solid var(--primary-red);
   background-color: var(--primary-blue);
   padding: 0 15px;

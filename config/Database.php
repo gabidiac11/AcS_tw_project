@@ -44,15 +44,14 @@ class Database
      */
     public function select($sql)
     {
-        //TODO: sanitize query !!!!!!!!!!!!!!!!!!!!! te rog frumos
-return [];
+        //TODO: sanitize query !!!!!!!!!!!!!!!!!!!!!
         $rows = [];
 
         $conn = $this->conn;
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $rows[] = $row;

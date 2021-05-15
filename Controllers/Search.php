@@ -12,4 +12,12 @@ class Search extends Controller
     {
         $this->loadView("Search", []);
     }
+
+    public function accidents() {
+        /**
+         * @var SearchModel
+         */
+        $searchModel = $this->loadModel("SearchModel");
+        echo json_encode($searchModel->getAccidents());
+    }
 }
