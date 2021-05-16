@@ -43,14 +43,14 @@ class Weather
     public static function instanceFromAssocArray($array): Weather
     {
         return new Weather(
-            floatval($array['Temperature(F)']),
-            floatval($array['Wind_Chill(F)']),
-            floatval($array['Humidity(%)']),
-            floatval($array['Pressure(in)']),
-            floatval($array['Visibility(mi)']),
+            floatval($array['Temperature']),
+            floatval($array['Wind_Chill']),
+            floatval($array['Humidity']),
+            floatval($array['Pressure']),
+            floatval($array['Visibility']),
             $array['Wind_Direction'],
-            floatval($array['Wind_Speed(mph)']),
-            floatval($array['Precipitation(in)']),
+            floatval($array['Wind_Speed']),
+            floatval($array['Precipitation']),
             $array['Weather_Condition']
         );
     }

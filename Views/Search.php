@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
@@ -11,6 +11,7 @@
   <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/ui/search-input.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/ui/filter.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/ui/modal.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/search.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
@@ -29,44 +30,24 @@
             <div class="flex-all icon-c cursor-pointer filter-ic-cont" filter-btn active="true" ><?= displaySvg("filter-line")?></div>
             <div class="flex-all icon-c cursor-pointer x-ic-cont" delete-btn ><?= displaySvg("close-line")?></div>
           </div>
+            <div class="flex-all sort-select">
+                <select id="sort-select">
+                    <option selected="">Sort By</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
             <button class="btn-primary" id="export-btn">
                 Export
             </button>
-            <div class="flex-all">
-                <label for="sort-select"> Sort by </label>
-            <select id="sort-select">
-                <option selected="">Sort By</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-            </div>
+
         </div>
+
 
         <div id="search-filters" class="filters-c">
           <div style="display: none;" class="filters-applied"></div>
           <div id="filter-edit-c" class="generic-box-shadow" show="true">
-              <div class="filter-item" filter-key="state" filter-type="pick-list">
-                  <div class="filter-name" filter-name>State</div>
-                  <div class="flex-start flex-wrap" filter-sub-items>
-                      <button class="btn-secondary -delete" filter-item-applied>
-                          Export
-                          <span class="btn-child-x" btn-remove>
-                              x
-                          </span>
-                      </button>
-
-                      <button class="btn-secondary -delete" filter-item-applied>
-                          Export
-                          <span class="btn-child-x" btn-remove>
-                              x
-                          </span>
-                      </button>
-                      <div expand-list-btn class="flex-all icon-c cursor-pointer position-absolute arrow-expand-c">
-                          <?= displaySvg("double-arrow")?>
-                      </div>
-                  </div>
-              </div>
           </div>
         </div>
 
@@ -75,6 +56,27 @@
         ?>
     </div>
   </main>
+    <div class="flex-all flex-wrap" id="modal">
+        <div class="box-shadow-re-use content-wrapper">
+            <p modal-title> Title </p>
+            <div modal-content>
+
+            </div>
+            <div class="modal-bottom">
+                <button modal-confirm class="btn-primary">Apply</button>
+                <button modal-cancel class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="./../assets/js/index.js"></script>
+    <script src="./../assets/js/ui/CheckBox.js"></script>
+    <script src="./../assets/js/ui/RangeInput.js"></script>
+    <script src="./../assets/js/ui/DateInput.js"></script>
+    <script src="./../assets/js/ui/modal.js"></script>
+      <script src="./../assets/packages/olmap/build/ol.js"></script>
+      <script src="./../assets/js/ui/MapPicker.js"></script>
+    <script src="./../assets/js/search.js"></script>
 </body>
 
 </html>

@@ -99,7 +99,7 @@ class Accident
             floatval($row['Start_Time']),
             floatval($row['Start_Lat']),
             floatval($row['Start_Lng']),
-            floatval($row['Distance(mi)']),
+            floatval($row['Distance']),
             $row['Description'],
             Address::instanceFromAssocArray($row),
             Weather::instanceFromAssocArray($row),
