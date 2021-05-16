@@ -25,6 +25,9 @@ class ConfirmationModal {
 
                 this.contentNode.innerHTML = "";
             }
+
+            document.body.style.overflow = "";
+            document.body.style.height = "";
         }
 
         this.showModal = () => {
@@ -34,6 +37,10 @@ class ConfirmationModal {
             }
 
             this.modalNode.setAttribute("show", "true");
+
+
+            document.body.style.overflow = "hidden";
+            document.body.style.height = "100vh";
         }
 
         /** functions for displaying and providing results for the checkbox list content */

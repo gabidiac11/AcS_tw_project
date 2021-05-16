@@ -71,7 +71,7 @@ class SearchModel extends Model
             return $filter;
         }, $this->getFilters());
 
-        $query = array_reduce($filters, function($prev, $filter) {
+        $conditionQuery = array_reduce($filters, function($prev, $filter) {
             $condition = $filter->queryBuild();
 
             if($prev != "" && $condition != "") {
@@ -86,10 +86,10 @@ class SearchModel extends Model
             return "";
         }, "");
 
-        $results = [];
+        $results = Accident::resultsToInstances($this->db->select("SELECT * FROM accidents $conditionQuery LIMIT 20"));
 
         return [
-            'query' => $query,
+            'query' => $conditionQuery,
             'filters_applied' => $filters,
             'results' => $results
         ];

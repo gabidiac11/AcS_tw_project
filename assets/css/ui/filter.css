@@ -7,21 +7,33 @@
 }
 #filter-edit-c {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-
     overflow: hidden;
-    min-height: 0;
+    max-height: 0px;
 
-    transition: min-height 0.15s ease, background-color 0.15s ease;
+    transition: max-height 0.15s ease, background-color 0.15s ease;
 
     background-color: #ffffff;
+}
 
+#filter-edit-c [filters-append] {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    min-height: 50px;
     padding: 0px 27px 27px 27px;
 }
-#filter-edit-c[show="true"] {
-    min-height: 100px;
+
+#filter-edit-c [btn-bottom-panel] {
+    width: 100%;
+    justify-content: flex-end;
+    padding: 10px 0px;
 }
+
+#filter-edit-c [btn-bottom-panel] [btn-confirm] {
+    margin: 0 10px;
+}
+
 #filter-edit-c
 .filter-item {
     max-width: 100%;
@@ -85,7 +97,9 @@
     width: auto;
     padding-left: 2px;
 }
-
+.filter-item .filter-group-line label {
+    cursor: pointer;
+}
 .filter-item [filter-sub-items] .range-group label{
     width: 100px;
 }
@@ -93,5 +107,9 @@
     position: absolute;
     right: 0;
     top: -40px;
+}
+
+.filter-item .filter-group-line.range-group {
+    display: block;
 }
 

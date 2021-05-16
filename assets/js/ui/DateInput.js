@@ -17,5 +17,18 @@ class DateInput extends CheckBoxItem {
             this.inputNode = document.getElementById(this.idInput);
             this.inputNode.nodeValue = props.value;
         }
+
+        this.getResult = () => {
+            const result = {
+                key: this.key,
+                label: this.label,
+                value: props.value
+            };
+
+            if(this.inputNode) {
+                result.value = this.inputNode.value;
+            }
+            return result;
+        }
     }
 }

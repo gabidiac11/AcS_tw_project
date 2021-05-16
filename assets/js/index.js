@@ -35,4 +35,21 @@ const stringToHTML = function (str) {
 
 };
 
+const isObj = (value) => {
+    return Boolean(value) && typeof value === "object";
+}
+
+const objPath = (obj, path) => {
+    const properties = path.split(".").filter(item => Boolean(item));
+
+    for(let i = 0; i < properties.length; i++) {
+        obj = obj?.[properties[i]];
+        if(obj === undefined) {
+            return undefined;
+        }
+    }
+
+    return obj;
+}
+
 window.BASE_URL = `http://localhost/`;

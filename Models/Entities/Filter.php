@@ -68,29 +68,14 @@ class Filter
     private static function getDefaultOptions() : array {
         if(Filter::$defaultFilters == null) {
             Filter::$defaultFilters = [
-                Filter::$filterSeverity => [
-                    "filterKey" => Filter::$filterSeverity,
-                    "title" => "Severity",
-                    "selectionType" => "star",
-                    "bind" => "Severity",
-                    "availableOptions" => [
-                        new FilterOptionBoolean("0", false, Filter::$filterTime),
-                        new FilterOptionBoolean("1", false, Filter::$filterTime),
-                        new FilterOptionBoolean("2", false, Filter::$filterTime),
-                        new FilterOptionBoolean("3", false, Filter::$filterTime),
-                        new FilterOptionBoolean("4", false, Filter::$filterTime)
-                    ]
+                Filter::$filterState => [
+                    "filterKey" => Filter::$filterState,
+                    "title" => "State",
+                    "selectionType" => "checkbox-button-list",
+                    "bind" => "State",
+                    "availableOptions" => []
                 ],
-                Filter::$filterTime => [
-                    "filterKey" => Filter::$filterTime,
-                    "title" => "Duration",
-                    "selectionType" => "date_range",
-                    "bind" => "Start_Time",
-                    "availableOptions" => [
-                        new FilterOption("Start", "", Filter::$filterTime),
-                        new FilterOption("End", "", Filter::$filterTime)
-                    ]
-                ],
+
                 Filter::$filterLocation => [
                     "filterKey" => Filter::$filterLocation,
                     "title" => "Location",
@@ -101,6 +86,32 @@ class Filter
                         new FilterOption("Long", "", Filter::$filterTime)
                     ]
                 ],
+
+                Filter::$filterSeverity => [
+                    "filterKey" => Filter::$filterSeverity,
+                    "title" => "Severity",
+                    "selectionType" => "checkbox-list",
+                    "bind" => "Severity",
+                    "availableOptions" => [
+                        new FilterOptionBoolean("0", false, Filter::$filterTime),
+                        new FilterOptionBoolean("1", false, Filter::$filterTime),
+                        new FilterOptionBoolean("2", false, Filter::$filterTime),
+                        new FilterOptionBoolean("3", false, Filter::$filterTime),
+                        new FilterOptionBoolean("4", false, Filter::$filterTime)
+                    ]
+                ],
+
+                Filter::$filterTime => [
+                    "filterKey" => Filter::$filterTime,
+                    "title" => "Duration",
+                    "selectionType" => "date_range",
+                    "bind" => "Start_Time",
+                    "availableOptions" => [
+                        new FilterOption("Start", "", Filter::$filterTime),
+                        new FilterOption("End", "", Filter::$filterTime)
+                    ]
+                ],
+
                 Filter::$filterDistance => [
                     "filterKey" => Filter::$filterDistance,
                     "title" => "Distance",
@@ -122,6 +133,7 @@ class Filter
                         new FilterOptionRange("Max", Filter::$filterTemperature, -80, 80,"<=")
                     ]
                 ],
+
                 Filter::$filterWindChill => [
                     "filterKey" => Filter::$filterWindChill,
                     "title" => "Wind Chill",
@@ -132,6 +144,7 @@ class Filter
                         new FilterOptionRange("Max", Filter::$filterWindChill, 0, 100, "<=")
                     ]
                 ],
+
                 Filter::$filterHumidity => [
                     "filterKey" => Filter::$filterHumidity,
                     "title" => "Humidity (%)",
@@ -142,6 +155,7 @@ class Filter
                         new FilterOptionRange("Max", Filter::$filterHumidity, 0, 100, "<=")
                     ]
                 ],
+
                 Filter::$filterPressure => [
                     "filterKey" => Filter::$filterPressure,
                     "title" => "Pressure(in)",
@@ -152,6 +166,7 @@ class Filter
                         new FilterOptionRange("Max", Filter::$filterHumidity, 0, 1000, "<=")
                     ]
                 ],
+
                 Filter::$filterVisibility => [
                     "filterKey" => Filter::$filterVisibility,
                     "title" => "Visibility(mi)",
@@ -173,6 +188,7 @@ class Filter
                         new FilterOptionRange("Max", Filter::$filterWindSpeed, 0, 30, "<=")
                     ]
                 ],
+
                 Filter::$filterPrecipitation => [
                     "filterKey" => Filter::$filterPrecipitation,
                     "title" => "Precipitation(in)",
@@ -191,13 +207,9 @@ class Filter
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
                 ],
-                Filter::$filterState => [
-                    "filterKey" => Filter::$filterState,
-                    "title" => "State",
-                    "selectionType" => "checkbox-button-list",
-                    "bind" => "State",
-                    "availableOptions" => []
-                ],
+
+
+
                 Filter::$filterWeatherCondition => [
                     "filterKey" => Filter::$filterWeatherCondition,
                     "title" => "Weather Condition",
@@ -205,6 +217,7 @@ class Filter
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
                 ],
+
                 Filter::$filterCircumstance => [
                     "filterKey" => Filter::$filterCircumstance,
                     "title" => "Circumstances",
@@ -212,6 +225,7 @@ class Filter
                     "bind" => "",
                     "availableOptions" => []
                 ],
+
                 Filter::$filterAstrologicalTwilight => [
                     "filterKey" => Filter::$filterAstrologicalTwilight,
                     "title" => "Astrological twilight",

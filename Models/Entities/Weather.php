@@ -5,7 +5,7 @@
 class Weather
 {
     public $temperature;
-    public $widthChill;
+    public $windChill;
     public $humidity;
     public $pressure;
     public $visibility;
@@ -18,7 +18,7 @@ class Weather
     /**
      * Weather constructor.
      * @param $temperature
-     * @param $widthChill
+     * @param $windChill
      * @param $humidity
      * @param $pressure
      * @param $visibility
@@ -27,10 +27,10 @@ class Weather
      * @param $precipitation
      * @param $generalCondition
      */
-    public function __construct($temperature, $widthChill, $humidity, $pressure, $visibility, $windDirection, $windSpeed, $precipitation, $generalCondition)
+    public function __construct($temperature, $windChill, $humidity, $pressure, $visibility, $windDirection, $windSpeed, $precipitation, $generalCondition)
     {
         $this->temperature = $temperature;
-        $this->widthChill = $widthChill;
+        $this->windChill = $windChill;
         $this->humidity = $humidity;
         $this->pressure = $pressure;
         $this->visibility = $visibility;

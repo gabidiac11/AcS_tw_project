@@ -337,3 +337,18 @@ select {
 .flex-wrap {
   flex-wrap: wrap;
 }
+
+button.icon-c {
+  background-color: transparent;
+}
+
+button.icon-c:disabled {
+  opacity: 0.4;
+  cursor: default!important;
+}
+
+.loader-img {
+  content: url("./../images/loader.gif");
+  margin: 30px;
+  width: 40px;
+}

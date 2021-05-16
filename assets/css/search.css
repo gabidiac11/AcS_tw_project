@@ -27,3 +27,11 @@ body{
 #modal .modal-content {
     flex: 1;
 }
+
+.result-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
