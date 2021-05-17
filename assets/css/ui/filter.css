@@ -1,32 +1,49 @@
 .filters-c {
-    width: 100%;
+    width: calc(100vw - 30px);
     padding-top: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #filter-edit-c {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-
     overflow: hidden;
-    min-height: 0;
+    max-height: 0px;
 
-    transition: min-height 0.15s ease, background-color 0.15s ease;
+    transition: max-height 0.15s ease, background-color 0.15s ease;
 
     background-color: #ffffff;
+}
 
+#filter-edit-c [filters-append] {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    min-height: 50px;
+    padding: 0px 27px 27px 27px;
 }
-#filter-edit-c[show="true"] {
-    min-height: 100px;
+
+#filter-edit-c [btn-bottom-panel] {
+    width: 100%;
+    justify-content: flex-end;
+    padding: 10px 0px;
 }
+
+#filter-edit-c [btn-bottom-panel] [btn-confirm] {
+    margin: 0 10px;
+}
+
 #filter-edit-c
 .filter-item {
     max-width: 100%;
     min-width: 200px;
+    flex: 1;
     min-height: 100px;
     position: relative;
     padding: 10px;
+    margin: 27px 5px 0px 5px;
     border: 10px;
-    margin: 0 5px;
 
     -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1);
@@ -66,5 +83,33 @@
 
 .filter-item [filter-sub-items] [filter-item-applied] {
     margin-right: 3px;
+}
+
+.filter-item [filter-sub-items] .filter-group-line {
+    display: flex;
+}
+
+.filter-item [filter-sub-items] .filter-group-line label{
+    width: 50px;
+}
+
+.filter-item [filter-sub-items] .filter-group-line.checkbox-line label{
+    width: auto;
+    padding-left: 2px;
+}
+.filter-item .filter-group-line label {
+    cursor: pointer;
+}
+.filter-item [filter-sub-items] .range-group label{
+    width: 100px;
+}
+.filter-item [filter-sub-items] [reset-filter-btn] {
+    position: absolute;
+    right: 0;
+    top: -40px;
+}
+
+.filter-item .filter-group-line.range-group {
+    display: block;
 }
 

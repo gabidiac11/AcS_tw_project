@@ -5,7 +5,7 @@
 class Weather
 {
     public $temperature;
-    public $widthChill;
+    public $windChill;
     public $humidity;
     public $pressure;
     public $visibility;
@@ -18,7 +18,7 @@ class Weather
     /**
      * Weather constructor.
      * @param $temperature
-     * @param $widthChill
+     * @param $windChill
      * @param $humidity
      * @param $pressure
      * @param $visibility
@@ -27,10 +27,10 @@ class Weather
      * @param $precipitation
      * @param $generalCondition
      */
-    public function __construct($temperature, $widthChill, $humidity, $pressure, $visibility, $windDirection, $windSpeed, $precipitation, $generalCondition)
+    public function __construct($temperature, $windChill, $humidity, $pressure, $visibility, $windDirection, $windSpeed, $precipitation, $generalCondition)
     {
         $this->temperature = $temperature;
-        $this->widthChill = $widthChill;
+        $this->windChill = $windChill;
         $this->humidity = $humidity;
         $this->pressure = $pressure;
         $this->visibility = $visibility;
@@ -43,14 +43,14 @@ class Weather
     public static function instanceFromAssocArray($array): Weather
     {
         return new Weather(
-            floatval($array['Temperature(F)']),
-            floatval($array['Wind_Chill(F)']),
-            floatval($array['Humidity(%)']),
-            floatval($array['Pressure(in)']),
-            floatval($array['Visibility(mi)']),
+            floatval($array['Temperature']),
+            floatval($array['Wind_Chill']),
+            floatval($array['Humidity']),
+            floatval($array['Pressure']),
+            floatval($array['Visibility']),
             $array['Wind_Direction'],
-            floatval($array['Wind_Speed(mph)']),
-            floatval($array['Precipitation(in)']),
+            floatval($array['Wind_Speed']),
+            floatval($array['Precipitation']),
             $array['Weather_Condition']
         );
     }

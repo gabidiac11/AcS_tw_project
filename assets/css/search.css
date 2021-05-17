@@ -2,16 +2,36 @@ body{
     background-color: #903749;
 }
 .top-search {
-    width: 100%;
+    width: calc(100vw - 30px);
     padding-top: 20px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .search-bar-container {
-    width: calc(100% - 100px);
+    width: auto;
+    flex: 1;
 }
 
 #export-btn {
     margin: 0 10px;
 }
+
+.sort-select select {
+    margin: 0 10px;
+
+}
+
+
+
+#modal .modal-content {
+    flex: 1;
+}
+
+.result-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

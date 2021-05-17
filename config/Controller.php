@@ -3,9 +3,16 @@
 class Controller extends App
 {
 
+    /**
+     * @var mixed
+     */
+    protected $postData;
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->postData = json_decode(file_get_contents("php://input"), true);
     }
 
     public function loadModel($model)

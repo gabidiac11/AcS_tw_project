@@ -1,0 +1,81 @@
+#modal {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0 10px;
+
+    display: none;
+}
+
+#modal p {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+#modal .modal-bottom {
+    padding: 10px;
+}
+
+#modal .content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    background-color: white;
+    padding: 20px;
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+
+}
+
+#modal[show="true"] {
+    display: flex;
+}
+#modal .content-wrapper [modal-content] {
+    flex: 1;
+    padding-top: 10px;
+    position: relative;
+}
+
+#modal #map {
+    width: 100%;
+    height: 1000px;
+    max-height: calc(100vh - 200px);
+}
+#modal .latitude-long-indicator {
+    padding: 10px;
+    right: 0;
+    bottom: 0;
+    font-size: 16px;
+    display: flex;
+    position: absolute;
+}
+
+#modal #map .ol-overlaycontainer-stopevent {
+    position: absolute;
+    z-index: 0;
+    height: auto!important;
+    pointer-events: none;
+    max-width: 147px!important;
+    flex-wrap: wrap!important;
+    display: flex!important;
+    padding: 10px!important;
+}
+#modal #map .ol-overlaycontainer-stopevent [title="Attributions"] {
+    display: none!important;
+}
+
+#modal #map button {
+    border: 1px solid black;
+}
+
+#modal #map .ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
+
+}

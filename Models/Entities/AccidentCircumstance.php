@@ -45,6 +45,14 @@ class AccidentCircumstance
      * @var boolean
      */
     public $trafficCalming;
+    /**
+     * @var boolean
+     */
+    public $trafficSignal;
+    /**
+     * @var boolean
+     */
+    public $trafficLoop;
 
     /**
      * AccidentCircumstance constructor.
@@ -59,8 +67,10 @@ class AccidentCircumstance
      * @param bool $station
      * @param bool $stop
      * @param bool $trafficCalming
+     * @param bool $trafficSignal
+     * @param bool $trafficLoop
      */
-    public function __construct(bool $amenity, bool $bump, bool $crossing, bool $giveAway, bool $junction, bool $noExit, bool $railWay, bool $roundAbout, bool $station, bool $stop, bool $trafficCalming)
+    public function __construct(bool $amenity, bool $bump, bool $crossing, bool $giveAway, bool $junction, bool $noExit, bool $railWay, bool $roundAbout, bool $station, bool $stop, bool $trafficCalming, bool $trafficSignal, bool $trafficLoop)
     {
         $this->amenity = $amenity;
         $this->bump = $bump;
@@ -73,7 +83,10 @@ class AccidentCircumstance
         $this->station = $station;
         $this->stop = $stop;
         $this->trafficCalming = $trafficCalming;
+        $this->trafficSignal = $trafficSignal;
+        $this->trafficLoop = $trafficLoop;
     }
+
 
     private static function parseBool($value): bool
     {
@@ -93,7 +106,9 @@ class AccidentCircumstance
             AccidentCircumstance::parseBool($array['Roundabout']),
             AccidentCircumstance::parseBool($array['Station']),
             AccidentCircumstance::parseBool($array['Stop']),
-            AccidentCircumstance::parseBool($array['Traffic_Calming'])
+            AccidentCircumstance::parseBool($array['Traffic_Calming']),
+            AccidentCircumstance::parseBool($array['Traffic_Signal']),
+            AccidentCircumstance::parseBool($array['Turning_Loop'])
         );
     }
 }
