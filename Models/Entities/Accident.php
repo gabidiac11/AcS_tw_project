@@ -18,6 +18,11 @@ class Accident
     public $time;
 
     /**
+     * @var string
+     */
+    public $date;
+
+    /**
      * @var float
      */
     public $lat;
@@ -53,7 +58,7 @@ class Accident
      * Accident constructor.
      * @param $id
      * @param int $severity
-     * @param float $time
+     * @param string $date
      * @param float $lat
      * @param float $long
      * @param float $distance
@@ -62,11 +67,11 @@ class Accident
      * @param Weather $weather
      * @param AccidentCircumstance $accidentCircumstance
      */
-    public function __construct($id, int $severity, float $time, float $lat, float $long, float $distance, $description, Address $address, Weather $weather, AccidentCircumstance $accidentCircumstance)
+    public function __construct($id, int $severity, string $date, float $lat, float $long, float $distance, $description, Address $address, Weather $weather, AccidentCircumstance $accidentCircumstance)
     {
         $this->id = $id;
         $this->severity = $severity;
-        $this->time = $time;
+        $this->time = strtotime($date);
         $this->lat = $lat;
         $this->long = $long;
         $this->distance = $distance;
@@ -74,6 +79,8 @@ class Accident
         $this->address = $address;
         $this->weather = $weather;
         $this->accidentCircumstance = $accidentCircumstance;
+
+        $this->date = date("F j, Y, g:i a", $this->time);
     }
 
     /**
@@ -96,7 +103,7 @@ class Accident
         return new Accident(
             $row['ID'],
             intval($row['Severity']),
-            floatval($row['Start_Time']),
+            $row['Start_Time'],
             floatval($row['Start_Lat']),
             floatval($row['Start_Lng']),
             floatval($row['Distance']),

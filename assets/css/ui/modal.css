@@ -1,14 +1,13 @@
 #modal {
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
     position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.5);
     padding: 0 10px;
 
-    display: none;
+    overflow: hidden;
+    width: 0;
+    height: 0;
 }
 
 #modal p {
@@ -22,6 +21,37 @@
 }
 
 #modal .content-wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+#modal[show="true"] {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+#modal [map-content] {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#modal [map-content] .latitude-long-indicator {
+    display: none;
+}
+
+
+#modal [map-content][show="true"] {
+    width: 100%;
+    height: 100%;
+}
+
+#modal [map-content][show="true"] .latitude-long-indicator {
+    display: flex;
+}
+
+#modal[show="true"] .content-wrapper {
     width: 100%;
     max-width: 1400px;
     background-color: white;
@@ -35,9 +65,7 @@
 
 }
 
-#modal[show="true"] {
-    display: flex;
-}
+
 #modal .content-wrapper [modal-content] {
     flex: 1;
     padding-top: 10px;
