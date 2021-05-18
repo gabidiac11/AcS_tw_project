@@ -1,4 +1,9 @@
 
+/**
+ * 
+ * renders a clickable map where mouse selection of a coordonates is indicated by a point drawn
+ * this must be open once in the background at page load and changed using MapPicker.setCoordonates to change it as is wanted
+ */
 class MapPicker {
     constructor(props) {
         this.parentNode = props.parentNode;
@@ -29,7 +34,7 @@ class MapPicker {
                 url: "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
             });
 
-            this.wait = false;
+            
             this.map = new ol.Map({
                 target: "map",
                 layers: [
@@ -41,6 +46,17 @@ class MapPicker {
                     center: ol.proj.fromLonLat([this.long, this.lat]),
                     zoom: mapDefaultZoom
                 })
+            });
+
+            /** execute actions just once, after the map has rendered
+             * this may trigger also after the map has been loaded, so this.wait manages that (and keep the user away from affecting the map while is loading)
+             */
+            this.wait = true;
+            source.on("tileloadend", (event) => {
+                if(this.wait) {
+                    this.wait = false;
+                    this.reset();
+                }
             });
 
             this.map.addEventListener("click",
@@ -101,16 +117,36 @@ class MapPicker {
 
         this.startMap();
 
+        /**
+         * sets the current coordonates
+         * removes the current pin if one of the params is an empty string
+         * @param {float|string} lat - float or empty string 
+         * @param {float|string} long - float or empty string 
+         */
         this.setCoordonates = (lat, long) => {
             
             if(lat === "" || long === "" || isNaN(lat) || isNaN(long)) {
-                this.long = -100;
-                this.lat = -100;
+                this.reset();
             } else {
-                this.long = lat;
-                this.lat = long;
-                this.setPoint(this.lat, this.long);
+                if(this.lat !== lat || this.long !== long) {
+                    this.long = lat;
+                    this.lat = long;
+                    this.setPoint(this.lat, this.long);
+                }
             }
+        }
+
+        this.reset = () => {
+            this.long = 0;
+            this.lat = 0;
+
+            /** remove point if there is one */
+            this.map.getLayers().getArray()
+                .filter(layer => layer.get('name') === this.layerName)
+                .forEach(layer => this.map.removeLayer(layer));
+
+            this.inputNodeLon.value = `Long: ${parseFloat(0).toFixed(4)}`;
+            this.inputNodeLat.value = `Lat: ${parseFloat(0).toFixed(4)}`;
         }
     }
 }
