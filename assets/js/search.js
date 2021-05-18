@@ -108,6 +108,7 @@ class FilterGenericExpandable extends Filter {
     };
 
     this.onConfirmModal = (modal) => {
+      console.log("h");
       /* update selected options and re-render */
       const results = modal.getCheckBoxResults();
       this.availableOptions = this.availableOptions.map((item) => ({
@@ -120,16 +121,16 @@ class FilterGenericExpandable extends Filter {
 
     this.onCancel = (modal) => {};
 
-    this.modal.title = "Select options";
-    this.modal.onConfirm = this.onConfirmModal;
-    this.modal.onCancel = this.onCancel;
+
 
     this.onModalOpen = () => {
-      const modal = this.modal;
+      this.modal.title = "Select options";
+      this.modal.onConfirm = this.onConfirmModal;
+      this.modal.onCancel = this.onCancel;
 
       /** pass the list of available options marked with one is selected */
-      modal.createCheckBoxGroups(this.availableOptions);
-      modal.showModal();
+      this.modal.createCheckBoxGroups(this.availableOptions);
+      this.modal.showModal();
     };
 
     this.render = () => {
@@ -247,7 +248,7 @@ class FilterCheckBox extends Filter {
         const indexMatch = this.availableOptions.findIndex(
           (item) => item.key === result.key
         );
-        console.log(indexMatch, this.availableOptions, result);
+        
         if (indexMatch > -1) {
           this.availableOptions[indexMatch].value = result.value;
         }
@@ -333,21 +334,22 @@ class LocationFilter extends FilterGenericExpandable {
 
     this.onCancel = (modal) => {};
 
-    this.modal.title = "Choose location";
-    this.modal.onConfirm = this.onConfirmModal;
-    this.modal.onCancel = this.onCancel;
+
 
     this.onModalOpen = () => {
-      const modal = this.modal;
+      this.modal.title = "Choose location";
+      this.modal.onConfirm = this.onConfirmModal;
+      this.modal.onCancel = this.onCancel;
+
       /** pass the list of available options marked with one is selected */
       let lat = this.availableOptions[0].value;
       let lon = this.availableOptions[1].value;
 
-      modal.createMapLocation(
+      this.modal.createMapLocation(
         lat,
         lon
       );
-      modal.showModal();
+      this.modal.showModal();
     };
 
     this.render = () => {
@@ -396,7 +398,10 @@ class SearchInput {
       filterToggleSelector: `[filter-btn]`,
       clearInputSelector: `[delete-btn]`,
       searchBtnSelector: `[search-btn]`,
+      exportBtnSelector: `#export-btn`
     };
+
+    this.lastSearchValue = "";
 
     this.filterContainerNode = props.filterContainerNode;
 
@@ -413,8 +418,13 @@ class SearchInput {
       this.selectors.clearInputSelector
     );
     this.searchBtnNode = this.containerNode.querySelector(
-      this.selectors.searchInputSelector
+      this.selectors.searchBtnSelector
     );
+
+    this.exportBtnNode = document.querySelector(
+      this.selectors.exportBtnSelector
+    );
+
 
     this.toggleOpen = false;
 
@@ -437,21 +447,48 @@ class SearchInput {
       this.setFilterActive(!this.toggleOpen);
     });
 
-    this.clearInputNode.addEventListener("click", (event) => {
-      this.searchInputNode.value = "";
-      this.searchInputNode.focus();
+    this.searchBtnNode.addEventListener("click", () => {
+      if(typeof this.fetchListCallback === "function") {
+        this.fetchListCallback();
+      }
     });
-
-    this.searchBtnNode.addEventListener("click", () => {});
 
     this.getValue = () => {
       return this.searchInputNode.value;
     };
 
-    this.setFiltersFetching = (value) => {
+    this.valuesAreFetching = (value) => {
       this.searchBtnNode.disabled = Boolean(value);
+      this.searchInputNode.disabled = Boolean(value);
       this.filterToggleNode.disabled = Boolean(value);
+      this.clearInputNode.disabled = Boolean(value);
+    }
+
+    this.setFiltersFetching = (value) => {
+      this.valuesAreFetching(value);
     };
+
+    this.listIsFetching = (value) => {
+      this.valuesAreFetching(value);
+    }
+
+    this.exportBtnNode.addEventListener("click", () => {
+      this.exportBtnNode.disabled = true;
+
+      fetch(`${window.BASE_URL}search/exportCsv`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw response;
+        })
+        .catch((response) => {
+          console.log("BAD REQUEST - export", response);
+        })
+        .finally(() => {
+          this.exportBtnNode.disabled = false;
+        });
+    })
   }
 }
 
@@ -542,6 +579,8 @@ class SearchResult {
 
 class SearchContent {
   constructor(props) {
+    this.searchInstance = props.searchInstance;
+
     this.resultItems = [];
 
     this.selectors = {
@@ -549,7 +588,10 @@ class SearchContent {
       listContainerItemsSelector: `[list-container]`,
       listItemSelector: "[list-item]",
       listLoaderSelector: "[list-loader]",
+      emptyIndicatorSelector: "[empty-indicator]",
+      sortSelector: "#sort-select"
     };
+
     this.containerNode = document.querySelector(
       this.selectors.listContainerSelector
     );
@@ -563,7 +605,17 @@ class SearchContent {
       this.selectors.listContainerItemsSelector
     );
 
+    this.emptyNode = this.containerNode.querySelector(this.selectors.emptyIndicatorSelector);
+    this.sortSelectorNode = document.querySelector(this.selectors.sortSelector);
+
+    this.setEmptyIndicatorVisible = (value) => {
+      
+      this.emptyNode.style.display = value ? "" : "none";
+    }
+
     this.setItems = (subjects) => {
+      this.setEmptyIndicatorVisible(subjects.length === 0);
+
       for (
         let i = 0;
         i < this.resultItems.length && i < this.nodes.length;
@@ -589,17 +641,29 @@ class SearchContent {
 
     this.setIsFetching = (value) => {
       if (value !== this.isFetching) {
+        this.searchInstance.listIsFetching(value);
+        
         if (value) {
           this.listLoaderNode.style.display = "";
           this.listContainerItemsNode.style.display = "none";
+          this.sortSelectorNode.disabled = true;
+          
         } else {
           this.listLoaderNode.style.display = "none";
           this.listContainerItemsNode.style.display = "";
+          this.sortSelectorNode.disabled = false;
         }
 
         this.isFetching = value;
       }
     };
+
+    this.getSortValue = () => {
+      if(this.sortSelectorNode.value === "default") {
+        return "";
+      }
+      return encodeURIComponent(this.sortSelectorNode.value);
+    }
 
     /**
      *
@@ -611,7 +675,8 @@ class SearchContent {
 
       this.setIsFetching(true);
 
-      fetch(`${window.BASE_URL}search/results`, {
+      this.lastSearchValue = this.searchInstance.getValue();
+      fetch(`${window.BASE_URL}search/results?search=${encodeURIComponent(this.lastSearchValue)}&sortBy=${this.getSortValue()}`, {
         headers: new Headers(),
         method: "POST",
         body: JSON.stringify({
@@ -648,6 +713,8 @@ class SearchContent {
           }
         });
     };
+
+
   }
 }
 
@@ -686,7 +753,13 @@ class SearchPage {
     });
 
     /** instance responsable with populating the list */
-    this.searchContentInstance = new SearchContent({});
+    this.searchContentInstance = new SearchContent({
+      searchInstance: this.searchInstance
+    });
+
+    this.searchInstance.fetchListCallback = () => {
+      this.searchContentInstance.fetchList(this.filters);
+    };
 
     /** fetch and initialize filter instances */
     this.filters = [];
@@ -791,6 +864,23 @@ class SearchPage {
 
     this.initFilters();
     this.initBottomPanel();
+    this.searchContentInstance.sortSelectorNode.addEventListener("change", () => {
+      this.searchContentInstance.fetchList(this.filters);
+    });
+
+
+    this.searchInstance.clearInputNode.addEventListener("click", (event) => {
+      if(this.searchInstance.searchInputNode.value) {
+        this.searchInstance.searchInputNode.value = "";
+        
+        if(this.searchContentInstance.lastSearchValue !== "") {
+          this.searchContentInstance.fetchList(this.filters)
+        } else {
+          this.searchInstance.searchInputNode.focus();
+        }
+      }
+    });
+
   }
 }
 

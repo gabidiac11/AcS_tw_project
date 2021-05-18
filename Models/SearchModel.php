@@ -86,10 +86,34 @@ class SearchModel extends Model
             return "";
         }, "");
 
-        $results = Accident::resultsToInstances($this->db->select("SELECT * FROM accidents $conditionQuery LIMIT 20"));
+
+        /** safely integrate the sort by value in the query (allow only known columns to slip by) */
+        $sortBy = "";
+        if(isset($_GET['sortBy']) && isset(Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']])) {
+            $column = Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']];
+            $sortBy = " ORDER BY $column";
+        }
+
+        /** safely integrate the sort by value in the query (allow only known columns to slip by) */
+        
+        if(isset($_GET['search']) && $_GET['search'] != "") {
+            if($conditionQuery == "") {
+                $conditionQuery = " AND ";
+            } 
+            $search = $this->db->escape(strtoupper($_GET['search']));
+            $conditionQuery .= " UPPER(Description) like '$search%' OR UPPER(ID) like '$search%' ";
+        }
+
+        if(trim($conditionQuery) == "") {
+            $conditionQuery  = 1;
+        }
+
+
+        $query = "SELECT * FROM accidents WHERE $conditionQuery $sortBy LIMIT 20 OFFSET 0";
+        $results = Accident::resultsToInstances($this->db->select($query));
 
         return [
-            'query' => $conditionQuery,
+            'query' => $query,
             'filters_applied' => $filters,
             'results' => $results
         ];

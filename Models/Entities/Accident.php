@@ -5,6 +5,24 @@ require_once __DIR__ . '/AccidentCircumstance.php';
 
 class Accident
 {
+
+    public static $SORT_COLUMN_MAPPING = [
+        "STATE" => "State",
+        "LOCATION" => "Start_Lat",
+        "SEVERITY" => "Severity",
+        "TIME" => "Start_Time",
+        "DISTANCE" => "Distance",
+        "TEMPERATURE" => "Temperature",
+        "WIND_CHILL" => "Wind_Chill",
+        "HUMIDITY" => "Humidity",
+        "PRESSURE" => "Pressure",
+        "VISIBILITY" => "Visibility",
+        "WIND_SPEED" => "Wind_Speed",
+        "PRECIPITATION" => "Precipitation",
+        "WIND_DIRECTION" => "Wind_Direction",
+        "WEATHER_CONDITION" => "Weather_Condition"
+    ];
+
     public $id;
 
     /**

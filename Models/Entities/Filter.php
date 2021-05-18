@@ -162,8 +162,8 @@ class Filter
                     "selectionType" => "numeric_range",
                     "bind" => "Pressure",
                     "availableOptions" => [
-                        new FilterOptionRange("Min", Filter::$filterHumidity, 0, 1000, ">="),
-                        new FilterOptionRange("Max", Filter::$filterHumidity, 0, 1000, "<=")
+                        new FilterOptionRange("Min", Filter::$filterPressure, 0, 1000, ">="),
+                        new FilterOptionRange("Max", Filter::$filterPressure, 0, 1000, "<=")
                     ]
                 ],
 
@@ -374,7 +374,7 @@ class Filter
                 $query = $option->queryBuild();
                 if($query) {
                     if($string != "") {
-                        $string .= " || ";
+                        $string .= " AND ";
                     }
                     $string .= "$query ";
                 }
@@ -387,15 +387,15 @@ class Filter
             $long = $this->availableOptions[1]->value;
 
             if($lat !== "") {
-                $latMin = floatval($lat) - 100;
-                $latMax = floatval($lat) + 100;
-                $latQ = "Start_Lat >= $latMin && Start_Lat <= $latMax";
+                $latMin = floatval($lat) - 1000;
+                $latMax = floatval($lat) + 1000;
+                $latQ = "Start_Lat >= $latMin AND Start_Lat <= $latMax";
             }
 
             if($long !== "") {
                 $longMin = floatval($long) - 100;
                 $longMax = floatval($long) + 100;
-                $lonQ = "Start_Lng >= $longMin && Start_Lng <= $longMax";
+                $lonQ = "Start_Lng >= $longMin AND Start_Lng <= $longMax";
             }
 
             if($latQ !== "" && $lonQ !== "") {

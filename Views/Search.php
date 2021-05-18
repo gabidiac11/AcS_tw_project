@@ -27,16 +27,28 @@
       <div class="flex-start top-search">
         <div id="search-results" class="search-bar-container">
           <button class="flex-all icon-c cursor-pointer search-icon-cont" search-btn><?= displaySvg("search-line") ?></button>
-          <input value="" placeholder="Search" />
+          <input disabled value="" placeholder="Search by description or id" />
           <button class="flex-all icon-c cursor-pointer filter-ic-cont" filter-btn active="true"><?= displaySvg("filter-line") ?></button>
           <button class="flex-all icon-c cursor-pointer x-ic-cont" delete-btn><?= displaySvg("close-line") ?></button>
         </div>
         <div class="flex-all sort-select">
-          <select id="sort-select">
-            <option selected="">Sort By</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select disabled id="sort-select">
+            <option selected value="default">Sort By</option>
+            <option value="STATE"> STATE </option>
+            <option value="LOCATION"> LOCATION </option>
+            <option value="SEVERITY"> SEVERITY </option>
+            <option value="TIME"> TIME </option>
+            <option value="DISTANCE"> DISTANCE </option>
+            <option value="TEMPERATURE"> TEMPERATURE </option>
+            <option value="WIND_CHILL"> WIND CHILL </option>
+            <option value="HUMIDITY"> HUMIDITY </option>
+            <option value="PRESSURE"> PRESSURE </option>
+            <option value="VISIBILITY"> VISIBILITY </option>
+            <option value="WIND_SPEED"> WIND SPEED </option>
+            <option value="PRECIPITATION"> PRECIPITATION </option>
+            <option value="WIND_DIRECTION"> WIND DIRECTION </option>
+            <option value="WEATHER_CONDITION"> WEATHER CONDITION </option>
+
           </select>
         </div>
         <button class="btn-primary" id="export-btn">
@@ -61,7 +73,7 @@
       <div id="list-results" class="list-wrapper">
         <div class="list-content" list-container style="display: none">
           <?php
-          for ($index = 0; $index < 100; $index++) {
+          for ($index = 0; $index < 50; $index++) {
           ?>
 
             <div list-item style="display: none" class="list-item">
@@ -86,27 +98,30 @@
               <div>item-pressure: <span item-pressure> - </span> </div>
 
               <!-- /** circumstances */ -->
-              <div>item-amenity: <span item-amenity>*****</span> </div>
-              <div>item-bump: <span item-bump>*****</span> </div>
-              <div>item-crossing: <span item-crossing>*****</span> </div>
-              <div>item-giveAway: <span item-giveAway>*****</span> </div>
-              <div>item-Junction: <span item-Junction>*****</span> </div>
-              <div>item-No_Exit: <span item-No_Exit>*****</span> </div>
-              <div>item-Railway: <span item-Railway>*****</span> </div>
-              <div>item-Roundabout: <span item-Roundabout>*****</span> </div>
-              <div>item-Station: <span item-Station>*****</span> </div>
-              <div>item-Stop: <span item-Stop>*****</span> </div>
-              <div>item-Traffic_Calming: <span item-Traffic_Calming>*****</span> </div>
-              <div>item-Traffic_Signal: <span item-Traffic_Signal>*****</span> </div>
-              <div>item-Turning_Loop: <span item-Turning_Loop>*****</span> </div>
+              <span style="color: red;" item-amenity> item-amenity</span>
+              <span style="color: red;" item-bump> item-bump</span>
+              <span style="color: red;" item-crossing> item-crossing</span>
+              <span style="color: red;" item-giveAway> item-giveAway</span>
+              <span style="color: red;" item-Junction> item-Junction</span>
+              <span style="color: red;" item-No_Exit> item-No_Exit</span>
+              <span style="color: red;" item-Railway> item-Railway</span>
+              <span style="color: red;" item-Roundabout> item-Roundabout</span>
+              <span style="color: red;" item-Station> item-Station</span>
+              <span style="color: red;" item-Stop> item-Stop</span>
+              <span style="color: red;" item-Traffic_Calming> item-Traffic_Calming</span>
+              <span style="color: red;" item-Traffic_Signal> item-Traffic_Signal</span>
+              <span style="color: red;" item-Turning_Loop> item-Turning_Loop</span>
             </div>
 
 
           <?php
           }
           ?>
-        </div>
 
+          <div empty-indicator>No items found.</div>
+        </div>
+        
+        
         <div list-loader class="flex-all loader" style="display: flex">
           <img class="loader-img" />
         </div>

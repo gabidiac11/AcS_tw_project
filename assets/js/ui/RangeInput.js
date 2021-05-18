@@ -7,6 +7,8 @@ class RangeInput extends CheckBoxItem {
         this.min = Number.isSafeInteger(props.min) ? props.min : -100;
         this.max = Number.isSafeInteger(props.max) ? props.max : 100;
 
+        this.wasChanged = false;
+
         this.unMount = () => {
             this.containerNode && this.containerNode.parentNode.removeChild(this.containerNode);
         }
@@ -28,13 +30,16 @@ class RangeInput extends CheckBoxItem {
 
             this.parentNode.append(this.containerNode);
             this.inputNode = document.getElementById(this.idInput);
-            this.inputNode.nodeValue = props.value;
+            this.inputNode.value = props.value;
+            
             this.inputNode.addEventListener("change", (event) => {
                 const spanNode = this.inputNode.parentNode.querySelector("label span");
+                
                 if(spanNode) {
                     spanNode.innerHTML = this.inputNode.value;
                 }
-            })
+                this.wasChanged = true;
+            });
         }
 
         this.getResult = () => {
@@ -44,7 +49,7 @@ class RangeInput extends CheckBoxItem {
                 value: props.value
             };
 
-            if(this.inputNode) {
+            if(this.wasChanged && this.inputNode) {
                 result.value = Number(this.inputNode.value) || 0;
             }
             return result;

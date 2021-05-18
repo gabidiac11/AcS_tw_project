@@ -37,6 +37,8 @@ class Database
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+
+        $this->conn->set_charset("utf8");
     }
 
     /**
@@ -78,5 +80,9 @@ class Database
             self::$instance = new self();
         }
         return self::$instance;
+    }
+
+    public function escape($string) {
+        return mysqli_real_escape_string($this->conn, $string);
     }
 }
