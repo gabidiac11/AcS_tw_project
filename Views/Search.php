@@ -121,7 +121,15 @@
     <div class="box-shadow-re-use content-wrapper">
       <p modal-title> Title </p>
       <div modal-content>
-
+          <div map-content style="width: 100%;" show="false">
+                <div id="map"></div>
+                <div class="latitude-long-indicator">
+                    <input id="long-input" disabled value="Lat: ${this.lat}">
+                    <input id="lat-input" disabled value="Long: ${this.long}">
+                </div>
+          </div>
+          <div general-content style="width:100%; flex: 1;" show="false">
+          </div>
       </div>
       <div class="modal-bottom">
         <button modal-confirm class="btn-primary">Apply</button>

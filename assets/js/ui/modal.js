@@ -7,6 +7,8 @@ class ConfirmationModal {
             CONTENT: "[modal-content]",
             CONFIRM_BTN: "[modal-confirm]",
             CANCEL_BTN: "[modal-cancel]",
+            simpleContentSelector: `[general-content]`,
+            mapContainerSelector: `[map-content]`,
         }
 
         this.onConfirm = onConfirm;
@@ -14,16 +16,19 @@ class ConfirmationModal {
 
         this.modalNode = document.querySelector(this.SELECTORS.MODAL_ROOT);
         this.contentNode = this.modalNode.querySelector(this.SELECTORS.CONTENT);
+        this.simpleContentNode = this.modalNode.querySelector(this.SELECTORS.simpleContentSelector);
+        this.mapContainerNode = this.modalNode.querySelector(this.SELECTORS.mapContainerSelector);
 
         this.hideModal = () => {
             if (this.modalNode) {
                 this.modalNode.setAttribute("show", "false");
 
-                if(this.mapPicker) {
-                    this.mapPicker.unMount();
-                }
-
-                this.contentNode.innerHTML = "";
+                /** hide the map, but keep it alive in background */
+                this.mapContainerNode.setAttribute("show", "false");
+            
+                /** hide the general content */
+                this.simpleContentNode.innerHTML = "";
+                this.simpleContentNode.setAttribute("show", "false");
             }
 
             document.body.style.overflow = "";
@@ -38,7 +43,6 @@ class ConfirmationModal {
 
             this.modalNode.setAttribute("show", "true");
 
-
             document.body.style.overflow = "hidden";
             document.body.style.height = "100vh";
         }
@@ -46,34 +50,49 @@ class ConfirmationModal {
         /** functions for displaying and providing results for the checkbox list content */
         this.checkBoxes = [];
         this.createCheckBoxGroups = (options) => {
-            this.contentNode.innerHTML = "";
+            /** hide the map, but keep it alive in background */
+            this.mapContainerNode.setAttribute("show", "false");
+        
+            /** left to be shown: the general content */
+            this.simpleContentNode.innerHTML = "";
+            this.simpleContentNode.setAttribute("show", "true");
+
             this.checkBoxes = options.map(item => {
                 return new CheckBoxItem({
                     label: item.label,
                     key: item.key,
                     value: item.value,
-                    parentNode: this.contentNode
+                    parentNode: this.simpleContentNode
                 });
             });
             this.checkBoxes.forEach(item => {
                 item.render();
-            })
+            });
         }
         this.getCheckBoxResults = () => {
             return this.checkBoxes.map(checkBox => {
                 return checkBox.getResult();
-            })
+            });
         }
 
+        console.log("picker")
         /** functions for displaying and providing results for the MAP content */
-        this.mapPicker = null;
+        this.mapPicker = new MapPicker({
+            parentNode: this.contentNode,
+            containerNode: this.mapContainerNode,
+            lat: 0,
+            long: 0
+        });
+        
         this.createMapLocation = (lat, long) => {
-            this.mapPicker = new MapPicker({
-                parentNode: this.contentNode,
-                lat,
-                long
-            });
-            this.mapPicker.render();
+            this.mapPicker.setCoordonates(lat, long);
+
+            /** left to be shown: the map content */
+            this.mapContainerNode.setAttribute("show", "true");
+
+            /** hide the general content */
+            this.simpleContentNode.innerHTML = "";
+            this.simpleContentNode.setAttribute("show", "false");
         }
 
         this.getMapResults = () => {
