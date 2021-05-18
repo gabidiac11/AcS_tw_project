@@ -2,7 +2,7 @@
 <style>
     .box-container{
         width: 500px;
-        height: 400px;
+        height: 800px;
         display: inline;
         margin: 30px;
         color: white;
@@ -17,10 +17,10 @@
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
-        max-width: 320px;           
+        max-width: 320px;       
     }
     .box-seven a {
-            background: #999;
+            background: green;
             padding: 1em 2.4em;
             font-size: .9em;
             margin: 1em;
@@ -28,35 +28,50 @@
             text-decoration: none;
             flex-grow: 1;
             text-align: ;
+            border-radius: 8px;
+    }
+    .box-eight {
+        display: flex;
+        justify-content: flex-end;
     }
 </style>
 <div class="box-container">
-    
-    <div class="box-one">8 February 2016, Night</div>
-    <div class="box-two">Severity: III</div>
-    <div class="box-three">A-1 | Dayton | OH</div>
-    <div class="box-four">Right lane blocked de to accident on l-70 Eastbound</div>
-    <div class="box-five">Location: l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</div>
-    <div class="box-six">
+    <div class="box-one"><span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
+    <div class="box-two">Severity: <span item-severity>III</span></div> <!-- Severity -->
+    <div class="box-three"><span item-id>A-1</span>| <span item-city>Dayton</span> | <span item-state>OH</span></div> <!-- ID, City, State -->
+    <div class="box-four"><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
+    <div class="box-five">Location: <span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
+    <div class="box-six"> 
+    <!-- weather stats -->
         <ul>
-            <li>Weather Condition: Ligh Rain;</li>
-            <li>Temperature(F): 36.9;</li>
-            <li>Humidity(%): <span>91</span>;</li>
-            <li>Visibility(mi): 10;</li>
-            <li>Wind Direction: Calm;</li>
-            <li>Wind Speed(mph): -</li>
-            <li>Precipitation(in): 0.02;</li>
+            <li>Weather Condition: <span item-weather-condition>Ligh Rain</span>'</li>
+            <li>Temperature(F): <span item-temperature>36.9</span>;</li>
+            <li>Humidity(%): <span item-humidity>91</span>;</li>
+            <li>Visibility(mi): <span item-visibility>10</span>;</li>
+            <li>Wind Direction: <span item-wind-direction>Calm</span>;</li>
+            <li>Wind Speed(mph): <span item-wind-speed> - </span></li>
+            <li>Wind Chill: <span item-wind-chill> - </span></li>
+            <li>Precipitation(in): <span item-precipitation>0.02</span>;</li>
+            <li>Pressure: <span item-pressure> - </span></li>
         </ul>
     </div>
+    <hr>
     <div class="box-seven">
-        <a >Amenity</a>
-        <a >Bump</a>
-        <a >Crossing</a>
-        <a >Give_Way</a>
-        <a >Junction</a>
-        <a >No_Exit</a>
-        <a >Railway</a>
-        <a >Stop</a>
+    <!-- Circumstances -->
+        <a><span item-amenity>Amenity</span></a>
+        <a><span item-bump>Bump</span></a>
+        <a><span item-crossing>Crossing</span></a>
+        <a><span item-giveAway>Give_Way</span></a>
+        <a><span item-Junction>Junction</span></a>
+        <a><span item-No_Exit>No_Exit</span></a>
+        <a><span item-Railway>Railway</span></a>
+        <a><span item-Roundabout>Roundabout</span></a>
+        <a><span item-Station>Station</span></a>
+        <a><span item-Stop>Stop</span></a>
+        <a><span itrm-Traffic_Calming>Traffic_Calming</span></a>
+        <a><span item-Traffic_Signal>Traffic_Signal</span></a>
+        <a><span item-Turning_Loop>Turning_Loop</span></a>
     </div>
+    <hr>
     <div class='box-eight'><?= displaySvg("angle-top")?></div>
 </div>
