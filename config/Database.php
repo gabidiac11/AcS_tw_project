@@ -8,7 +8,7 @@ class Database
     private static $db_config = [
         'servername' => "localhost",
         'username' => "root",
-        'password' => "test",
+        'password' => "",
         'dbname' => "acs_tw"
     ];
 
