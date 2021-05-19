@@ -9,13 +9,13 @@
     <title> AdminPanel - USA Accidents Smart Visualizer</title>
     <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="../../assets/css/admin.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/adminpanel.css" media="all" rel="stylesheet" type="text/css" />
     <script src="../../assets/js/loginpanel.js"></script>
 </head>
 
 <body onload="verificator()">
 <?php
-require_once __DIR__ . '/Layout/Header.php';
+require_once __DIR__ . '/Layout/Admin.php';
 ?>
 <main id="admin-panel">
 

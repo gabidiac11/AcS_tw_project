@@ -9,6 +9,6 @@ class Maintenance extends Controller
     }
 
     public function index() {
-        $this->loadView("Maintenance", []);
+        $this->loadView("maintenance", []);
     }
 }
