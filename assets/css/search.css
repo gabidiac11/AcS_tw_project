@@ -8,6 +8,10 @@ body{
     flex-wrap: wrap;
 }
 
+.top-search #sort-select {
+    width: 100px;
+}
+
 .search-bar-container {
     width: auto;
     flex: 1;
@@ -38,4 +42,21 @@ body{
  [empty-indicator] {
     padding: 30px;
     color: wheat;
+}
+
+.pagination-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-inner button {
+
+    margin: 5px;
+}
+
+.pagination-inner .pag-select-c {
+    margin: 0 20px;
 }
