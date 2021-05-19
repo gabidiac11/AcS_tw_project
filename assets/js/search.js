@@ -559,14 +559,6 @@ class SearchResult {
       { selector: "[item-Turning_Loop]", property: "accidentCircumstance.trafficLoop" },
     ];
 
-    this.mapping.forEach(({ selector, property }) => {
-      console.log({ selector, property }, this.containerNode.querySelector(selector));
-    });
-
-    this.boolMapping.forEach(({ selector, property }) => {
-      console.log("b", { selector, property }, this.containerNode.querySelector(selector));
-    });
-
     this.render = () => {
       this.containerNode.setAttribute("taken-by", this.subject.id);
       this.containerNode.style.display = "";

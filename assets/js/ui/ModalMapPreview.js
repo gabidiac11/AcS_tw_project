@@ -5,6 +5,10 @@ class ModalMapPreview {
       MODAL_CLOSE: "[modal-close]",
       exportWebpSelector: `[modal-export-webp]`,
       exportSvgSelector: `[modal-export-svg]`,
+
+      /** popup on pin click */
+      popupSelector: `[popup]`,
+      popupContentSelector: `[popup-content]`,
     };
 
     this.modalNode = document.querySelector(this.SELECTORS.MODAL_ROOT);
@@ -27,6 +31,34 @@ class ModalMapPreview {
 
     this.startMap = () => {
       /**
+       * https://openlayers.org/en/latest/examples/popup.html
+       */
+      const container = document.getElementById('popup');
+      const content = document.getElementById('popup-content');
+      const closer = document.getElementById('popup-closer');
+
+      /**
+       * Create an overlay to anchor the popup to the map.
+       */
+      const overlay = new ol.Overlay({
+        element: container,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250,
+        },
+      });
+  
+      /**
+       * Add a click handler to hide the popup.
+       * @return {boolean} Don't follow the href.
+       */
+      closer.onclick = function () {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
+
+      /**
        * https://gist.github.com/anthonyeden/69c6eee056d61fcaaad9159058952309
        *
        * OSM & OL example code provided by https://mediarealm.com.au/
@@ -44,6 +76,7 @@ class ModalMapPreview {
             source,
           }),
         ],
+        overlays: [overlay],
         view: new ol.View({
           center: ol.proj.fromLonLat([-103.373401, 25.347717]),
           zoom: mapDefaultZoom,
@@ -57,7 +90,26 @@ class ModalMapPreview {
         }
       });
 
-      
+            /**
+       * Add a click handler to the map to render the popup.
+       */
+      this.map.on('singleclick', (evt) => {
+
+        const layer = this.map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+          return layer;
+        });
+
+        const name = layer?.values_?.name;
+        if(name && this.layerObjectList[name]) {
+          const item = this.layerObjectList[name];
+
+          content.innerHTML = `<div> <div>${item.date}<div> <div>${item.description}<div> </div>`
+          overlay.setPosition(evt.coordinate);
+        }
+
+
+
+      });
     };
 
     this.startMap();
@@ -72,31 +124,33 @@ class ModalMapPreview {
         .forEach((layer) => this.map.removeLayer(layer));
 
       Object.entries(this.layerObjectList).forEach(([layerName, content]) => {
-        this.map.addLayer(
-          new ol.layer.Vector({
-            source: new ol.source.Vector({
-              features: [
-                new ol.Feature({
-                  geometry: new ol.geom.Point(
-                    ol.proj.transform(
-                      [parseFloat(content.long), parseFloat(content.lat)],
-                      "EPSG:4326",
-                      "EPSG:3857"
-                    )
-                  ),
-                }),
-              ],
-            }),
-            style: new ol.style.Style({
-              image: new ol.style.Icon({
-                anchor: [0.5, 0.5],
-                anchorXUnits: "fraction",
-                anchorYUnits: "fraction",
-                src: `${window.BASE_URL}assets/svg/${content.img}`,
+        const newLayer = new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [
+              new ol.Feature({
+                geometry: new ol.geom.Point(
+                  ol.proj.transform(
+                    [parseFloat(content.long), parseFloat(content.lat)],
+                    "EPSG:4326",
+                    "EPSG:3857"
+                  )
+                ),
               }),
+            ],
+          }),
+          style: new ol.style.Style({
+            image: new ol.style.Icon({
+              anchor: [0.5, 0.5],
+              anchorXUnits: "fraction",
+              anchorYUnits: "fraction",
+              src: `${window.BASE_URL}assets/svg/${content.img}`,
             }),
-            name: layerName,
-          })
+          }),
+          name: layerName,
+        });
+
+        this.map.addLayer(
+          newLayer
         );
       });
     };
@@ -181,7 +235,7 @@ class ModalMapPreview {
 
     /**
      * this function copies the map canvas context to a special "kind" of canvas where svg export is possible
-     * 
+     *
      * https://www.npmjs.com/package/canvas2svg
      */
     this.exportSvg = () => {
@@ -192,7 +246,7 @@ class ModalMapPreview {
         const mySerializedSVG = ctx.getSerializedSvg(); //true here, if you need to convert named to numbered entities.
 
         const a = document.createElement("a"); //Create <a>
-        a.href = 'data:image/svg+xml;utf8,' + mySerializedSVG; //Image Base64 Goes here
+        a.href = "data:image/svg+xml;utf8," + mySerializedSVG; //Image Base64 Goes here
         a.download = "Image.svg"; //File name Here
         a.click(); //Downloaded file
       });
@@ -223,5 +277,7 @@ class ModalMapPreview {
         },
         false
       );
+
+
   }
 }

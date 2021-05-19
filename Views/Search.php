@@ -86,9 +86,9 @@
               <div class="box-one"><span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
               <div class="box-two">Severity: <span item-severity> III</span></div> <!-- Severity -->
               <div class="box-three">ID: <span item-id>A-1 </span> | City: <span item-city> Dayton</span> | State: <span item-state>OH</span></div> <!-- ID, City, State -->
-              <div class="box-four">Description: <br/><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
-              <div class="box-five">Location: <br/><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
-         
+              <div class="box-four">Description: <br /><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
+              <div class="box-five">Location: <br /><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
+
               <!-- weather stats -->
               <ul>
                 <li>Weather Condition: <span item-weather-condition>Ligh Rain</span>'</li>
@@ -194,13 +194,17 @@
   <!-- MODAL with the all the locations pins from the filtered list -->
   <div class="flex-all flex-wrap generic-modal" id="modal-map" show="false">
     <div class="box-shadow-re-use content-wrapper">
-      <div map-content style="width: 100%;height: 500px;">
+      <div map-content style="width: 100%;height: 100%;">
         <div id="map2" class="generic-map"></div>
       </div>
       <div class="modal-bottom">
         <button modal-export-svg class="btn-primary">Export SVG</button>
         <button modal-export-webp class="btn-primary">Export WEBP</button>
         <button modal-close class="btn-secondary">Close</button>
+      </div>
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
       </div>
     </div>
   </div>

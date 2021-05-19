@@ -73,7 +73,7 @@ class MapPicker {
                     const lat = Number(coords[1]) || 0;
                     const lon = Number(coords[0]) || 0;
                     const locTxt = "Latitude: " + lat + " Longitude: " + lon;
-                    console.log(locTxt);
+                  
 
                     this.setPoint(lat, lon);
                 })
