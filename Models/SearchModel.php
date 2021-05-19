@@ -94,11 +94,10 @@ class SearchModel extends Model
             $sortBy = " ORDER BY $column";
         }
 
-        /** safely integrate the sort by value in the query (allow only known columns to slip by) */
-        
         if(isset($_GET['search']) && $_GET['search'] != "") {
-            if($conditionQuery == "") {
-                $conditionQuery = " AND ";
+            
+            if(trim($conditionQuery) != "") {
+                $conditionQuery .= " AND ";
             } 
             $search = $this->db->escape(strtoupper($_GET['search']));
             $conditionQuery .= " UPPER(Description) like '$search%' OR UPPER(ID) like '$search%' ";
@@ -108,14 +107,32 @@ class SearchModel extends Model
             $conditionQuery  = 1;
         }
 
+        $page = 1;
+        $perPage = 20;
+        if(isset($_GET['page']) && is_numeric($_GET['page'])) {
+            $page = intval($_GET['page']);
+        }
 
-        $query = "SELECT * FROM accidents WHERE $conditionQuery $sortBy LIMIT 20 OFFSET 0";
+        $offset = $perPage * ($page - 1);
+        $paginationQuery = " LIMIT $perPage OFFSET $offset";
+
+        $afterWhereQuery = "$conditionQuery $sortBy $paginationQuery";
+
+        $query = "SELECT * FROM accidents WHERE $afterWhereQuery";
         $results = Accident::resultsToInstances($this->db->select($query));
+
+        /** calculate pagination props */
+        $numOfResults = intval($this->db->select("SELECT COUNT(*) as numOfResults FROM accidents WHERE $conditionQuery")[0]['numOfResults']);
+        $pageMin = 1;
+        $pageMax = ceil($numOfResults / $perPage);
 
         return [
             'query' => $query,
-            'filters_applied' => $filters,
-            'results' => $results
+            'filterApplied' => $filters,
+            'results' => $results,
+            'numberOfResults' => $numOfResults,
+            'page' => $page,
+            'pageMax' => $pageMax
         ];
     }
 }

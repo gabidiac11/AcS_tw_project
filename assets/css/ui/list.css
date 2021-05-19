@@ -15,3 +15,35 @@
     margin: 10px;
     background: white;
 }
+
+[more-than-one-result="true"] [empty-indicator] {
+    display: none!important;
+}
+
+[more-than-one-result="false"] [empty-indicator] {
+    display: flex!important;
+}
+
+[more-than-one-result="true"] [pagination-content] {
+    display: flex!important;
+}
+
+[more-than-one-result="false"] [pagination-content] {
+    display: none!important;
+}
+.pagination-btn[selected="true"] {
+    background-color: wheat;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.list-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 126px);
+}

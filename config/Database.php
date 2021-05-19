@@ -46,7 +46,6 @@ class Database
      */
     public function select($sql)
     {
-        //TODO: sanitize query !!!!!!!!!!!!!!!!!!!!!
         $rows = [];
 
         $conn = $this->conn;

@@ -22,7 +22,11 @@ class Filter {
     this.className = props.className || "";
     this.title = props.title;
     this.availableOptions = props.availableOptions;
-    this.initialPropsValues = JSON.parse(
+    
+    this.stateBeforeOpen = JSON.parse(
+      JSON.stringify(props.availableOptions)
+    );
+    this.initialValues = JSON.parse(
       JSON.stringify(props.availableOptions)
     );
 
@@ -59,9 +63,16 @@ class Filter {
 
     this.render = () => {};
 
+    this.restoreToPrevious = () => {
+      this.availableOptions = JSON.parse(
+        JSON.stringify(this.stateBeforeOpen)
+      );
+      this.render();
+    };
+
     this.reset = () => {
       this.availableOptions = JSON.parse(
-        JSON.stringify(this.initialPropsValues)
+        JSON.stringify(this.initialValues)
       );
       this.render();
     };
@@ -84,7 +95,7 @@ class Filter {
 
     this.saveState = () => {
       this.updateState();
-      this.initialPropsValues = JSON.parse(
+      this.stateBeforeOpen = JSON.parse(
         JSON.stringify(this.availableOptions)
       );
     };
@@ -577,6 +588,145 @@ class SearchResult {
   }
 }
 
+class Pagination {
+  constructor(props) {
+    this.selectors = {
+      containerSelector: `[pagination-content]`,
+      containerInnerSelector: `[pagination-inner]`,
+      btnPrevSelector: `[pagination-prev]`,
+      btnNextSelector: `[pagination-next]`,
+      paginationNumberSelector: `[pagination-number]`
+    }
+
+    this.containerNode = props.parentNode.querySelector(this.selectors.containerSelector);
+    this.containerInnerNode = this.containerNode.querySelector(this.selectors.containerInnerSelector);
+    this.btnPrevNode = this.containerNode.querySelector(this.selectors.btnPrevSelector);
+    this.btnNextNode = this.containerNode.querySelector(this.selectors.btnNextSelector);
+    this.pageNodes = this.containerNode.querySelectorAll(this.selectors.paginationNumberSelector);
+
+    this.page = 1;
+    this.pageStart = 1;
+    this.sectionIndex = 1;
+
+    this.pageEnd = 1; 
+    this.visiblePages = 10; //10 - the limit of the interval of pages to show
+    this.showPrev = false;
+    this.showNext = false;
+
+
+    this.setPage = (page) => {
+      this.page = page;
+      props.fetchListCallback();
+    }
+
+    /**
+     * disable things while the list is loading
+     * @param {boolean} value 
+     */
+    this.setListFetching = (value) => {
+      for(let i = 0; i < this.pageNodes.length; i++) {
+        this.pageNodes[i].disabled = Boolean(value);
+      }
+
+      this.btnNextNode.disabled = Boolean(value);
+      this.btnPrevNode.disabled = Boolean(value);
+    }
+
+    for(let i = 0; i < this.pageNodes.length; i++) {
+      const node = this.pageNodes[i];
+      node.addEventListener("click", () => {
+
+        /** preselect for visuals */
+        for(let nodeIndex = this.pageStart; nodeIndex < this.pageNodes.length; nodeIndex++) {
+
+          if(nodeIndex === i) {
+            this.pageNodes[nodeIndex].setAttribute("selected", "true");
+          } else {
+            this.pageNodes[nodeIndex].setAttribute("selected", "false");
+          }
+        }
+
+        this.setPage(node.value);
+      });
+    }
+
+    this.render = () => {
+      /** select the current page and display the correct buttons */
+      let nodeIndex = 0;
+      for(let i = this.pageStart; i <= this.pageEnd; i++) {
+        this.pageNodes[nodeIndex].style.display = "";
+        this.pageNodes[nodeIndex].setAttribute("value", i);
+        this.pageNodes[nodeIndex].innerHTML = i;
+        
+        if(i === this.page) {
+          this.pageNodes[nodeIndex].setAttribute("selected", "true");
+        } else {
+          this.pageNodes[nodeIndex].setAttribute("selected", "false");
+        }
+
+        nodeIndex++;
+      }
+      for(let i = nodeIndex; i < this.pageNodes.length; i++) {
+        this.pageNodes[i].style.display = "none";
+      }
+
+      /** handle arrow buttons */
+      if(this.showNext) {
+        this.btnNextNode.style.visibility = "";
+      } else {
+        this.btnNextNode.style.visibility = "none";
+      }
+      if(this.showPrev) {
+        this.btnPrevNode.style.visibility = "";
+      } else {
+        this.btnPrevNode.style.visibility = "none";
+      }
+    }
+
+    this.onResultResponse = (data) => {
+      this.page = data.page;
+
+      for(let i = 10; i <= Math.ceil(data.pageMax / 10) * 10; i += 10) {
+        if(this.page > i - 10 && this.page <= i) {
+          this.pageStart = i-10 + 1;
+          if(this.pageEnd > data.pageMax) {
+            this.pageEnd = data.pageMax;
+          } else {
+            this.pageEnd = i;
+          }
+          break;
+        }
+      }
+
+      this.showPrev = this.pageStart > 10;
+      this.showNext = this.pageEnd < data.pageMax;
+
+      this.render();
+    }
+
+    this.btnPrevNode.addEventListener("click", () => {
+      this.setPage(this.page - 1);
+    });
+    this.btnNextNode.addEventListener("click", () => {
+      this.setPage(this.page + 1);
+    });
+
+    /**
+     * reset without render - meant to be called once a filter has been changed
+     */
+    this.reset = () => {
+      this.page = 1;
+      this.pageStart = 1;
+      this.sectionIndex = 1;
+  
+      this.pageEnd = 1; 
+      this.visiblePages = 10; //10 - the limit of the interval of pages to show
+      this.showPrev = false;
+      this.showNext = false;
+    }
+  }
+}
+
 class SearchContent {
   constructor(props) {
     this.searchInstance = props.searchInstance;
@@ -592,6 +742,7 @@ class SearchContent {
       sortSelector: "#sort-select"
     };
 
+    /** define relevant nodes */
     this.containerNode = document.querySelector(
       this.selectors.listContainerSelector
     );
@@ -604,17 +755,27 @@ class SearchContent {
     this.listContainerItemsNode = this.containerNode.querySelector(
       this.selectors.listContainerItemsSelector
     );
-
     this.emptyNode = this.containerNode.querySelector(this.selectors.emptyIndicatorSelector);
     this.sortSelectorNode = document.querySelector(this.selectors.sortSelector);
+    
+    
+    /** instantiate pagination */
+    this.paginationInstance = new Pagination({
+      fetchListCallback: () => {  
+        this.fetchList(props.getFilters()).then(() => {
+          window.scrollTo(0, document.body.clientHeight);
+        }); 
+      },
+      parentNode: this.containerNode
+    });
+
 
     this.setEmptyIndicatorVisible = (value) => {
-      
-      this.emptyNode.style.display = value ? "" : "none";
+      this.listContainerItemsNode.setAttribute("more-than-one-result", String(Boolean(value)));
     }
 
     this.setItems = (subjects) => {
-      this.setEmptyIndicatorVisible(subjects.length === 0);
+      this.setEmptyIndicatorVisible(subjects.length > 0);
 
       for (
         let i = 0;
@@ -670,13 +831,16 @@ class SearchContent {
      * @param {Filter[]} filters
      */
     this.fetchList = (filters) => {
+      
       const callKey = Date.now();
       this.fetchKey = callKey;
 
       this.setIsFetching(true);
 
       this.lastSearchValue = this.searchInstance.getValue();
-      fetch(`${window.BASE_URL}search/results?search=${encodeURIComponent(this.lastSearchValue)}&sortBy=${this.getSortValue()}`, {
+      this.paginationInstance.setListFetching(true);
+
+     return fetch(`${window.BASE_URL}search/results?search=${encodeURIComponent(this.lastSearchValue)}&sortBy=${this.getSortValue()}&page=${this.paginationInstance.page}`, {
         headers: new Headers(),
         method: "POST",
         body: JSON.stringify({
@@ -702,18 +866,21 @@ class SearchContent {
         .then((data) => {
           if (this.fetchKey === callKey) {
             this.setItems(data.results);
+            this.paginationInstance.onResultResponse(data);
+            this.paginationInstance.setListFetching(false);
           }
         })
         .catch((response) => {
           console.log("BAD REQUEST", response);
+          this.paginationInstance.setListFetching(false);
         })
         .finally(() => {
           if (callKey === this.fetchKey) {
             this.setIsFetching(false);
           }
+          return new Promise((resolve) => resolve());
         });
     };
-
 
   }
 }
@@ -754,10 +921,14 @@ class SearchPage {
 
     /** instance responsable with populating the list */
     this.searchContentInstance = new SearchContent({
-      searchInstance: this.searchInstance
+      searchInstance: this.searchInstance,
+      getFilters: () => {
+        return this.filters;
+      }
     });
 
     this.searchInstance.fetchListCallback = () => {
+      this.searchContentInstance.paginationInstance.reset();
       this.searchContentInstance.fetchList(this.filters);
     };
 
@@ -773,6 +944,9 @@ class SearchPage {
       LOCATION: "location",
     };
 
+    /**
+     * fetches filter json from api and instanciate objects and nodes, then fetch the list based on those filter objects created 
+     */
     this.initFilters = () => {
       this.setFiltersFetching(true);
 
@@ -828,6 +1002,8 @@ class SearchPage {
                 this.filters.push(filter);
                 filter.render();
               }
+
+              this.searchContentInstance.filters = this.filters;
             }
           );
         })
@@ -845,35 +1021,43 @@ class SearchPage {
     };
 
     this.initBottomPanel = () => {
+      /** APPLY FILTER BUTTON */
       this.cofirmButtonNode.addEventListener("click", (event) => {
         this.filters.forEach((item) => {
           item.saveState();
         });
 
         this.searchInstance.setFilterActive(false);
+        this.searchContentInstance.paginationInstance.reset();
         this.searchContentInstance.fetchList(this.filters);
       });
 
+      /** CANCEL FILTER BUTTON */
       this.cancelButtonNode.addEventListener("click", (event) => {
         this.searchInstance.setFilterActive(false);
         this.filters.forEach((filterItem) => {
-          filterItem.reset();
+          filterItem.restoreToPrevious();
         });
       });
     };
 
     this.initFilters();
     this.initBottomPanel();
+
+
+    /** SORT SELECT EVENT LISTENER */
     this.searchContentInstance.sortSelectorNode.addEventListener("change", () => {
+      this.searchContentInstance.paginationInstance.reset();
       this.searchContentInstance.fetchList(this.filters);
     });
 
-
+    /** CLEAR INPUT EVENT LISTENER */
     this.searchInstance.clearInputNode.addEventListener("click", (event) => {
       if(this.searchInstance.searchInputNode.value) {
         this.searchInstance.searchInputNode.value = "";
         
         if(this.searchContentInstance.lastSearchValue !== "") {
+          this.searchContentInstance.paginationInstance.reset();
           this.searchContentInstance.fetchList(this.filters)
         } else {
           this.searchInstance.searchInputNode.focus();

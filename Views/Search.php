@@ -61,17 +61,19 @@
       <div id="search-filters" class="filters-c">
         <div style="display: none;" class="filters-applied"></div>
         <div id="filter-edit-c" class="generic-box-shadow">
-          <div filters-append>
-          </div>
           <div class="flex-all" btn-bottom-panel>
             <button btn-cancel class="btn-secondary">Cancel</button>
             <button btn-confirm class="btn-primary">Apply</button>
           </div>
+
+          <div filters-append>
+          </div>
+          
         </div>
       </div>
 
       <div id="list-results" class="list-wrapper">
-        <div class="list-content" list-container style="display: none">
+        <div class="list-content" list-container style="display: none" more-than-one-result="false">
           <?php
           for ($index = 0; $index < 50; $index++) {
           ?>
@@ -119,16 +121,37 @@
           ?>
 
           <div empty-indicator>No items found.</div>
+          
+
         </div>
+
+
         
-        
-        <div list-loader class="flex-all loader" style="display: flex">
+        <div list-loader class="flex-all loader" style="display: flex; height: calc(100vh - 235px);">
           <img class="loader-img" />
         </div>
+
+        <div class="pagination" pagination-content>
+            <div class="pagination-inner"> 
+              <button disabled class="pagination-btn" pagination-prev> < </button>
+
+              <?php
+              for ($index = 0; $index < 10; $index++) {
+              ?>
+
+                <button disabled value="<?= $index + 1 ?>" class="pagination-btn" pagination-number> <?= $index + 1 ?> </button>
+
+              <?php
+              }
+              ?>
+
+              <button disabled class="pagination-btn" pagination-next> > </button>
+            </div>
+          </div> 
       </div>
 
       <?php
-      require_once __DIR__ . "/temp.php";
+//      require_once __DIR__ . "/temp.php";
       ?>
     </div>
   </main>
