@@ -595,7 +595,8 @@ class Pagination {
       containerInnerSelector: `[pagination-inner]`,
       btnPrevSelector: `[pagination-prev]`,
       btnNextSelector: `[pagination-next]`,
-      paginationNumberSelector: `[pagination-number]`
+      paginationNumberSelector: `[pagination-number]`,
+      perPageSelector: `[result-per-page]`
     }
 
     this.containerNode = props.parentNode.querySelector(this.selectors.containerSelector);
@@ -603,16 +604,17 @@ class Pagination {
     this.btnPrevNode = this.containerNode.querySelector(this.selectors.btnPrevSelector);
     this.btnNextNode = this.containerNode.querySelector(this.selectors.btnNextSelector);
     this.pageNodes = this.containerNode.querySelectorAll(this.selectors.paginationNumberSelector);
+    this.perPageSelectNode = this.containerNode.querySelector(this.selectors.perPageSelector);
 
     this.page = 1;
     this.pageStart = 1;
     this.sectionIndex = 1;
 
     this.pageEnd = 1; 
-    this.visiblePages = 10; //10 - the limit of the interval of pages to show
     this.showPrev = false;
     this.showNext = false;
 
+    this.perPage = 20;
 
     this.setPage = (page) => {
       this.page = page;
@@ -630,6 +632,7 @@ class Pagination {
 
       this.btnNextNode.disabled = Boolean(value);
       this.btnPrevNode.disabled = Boolean(value);
+      this.perPageSelectNode.disabled = Boolean(value);
     }
 
     for(let i = 0; i < this.pageNodes.length; i++) {
@@ -681,6 +684,8 @@ class Pagination {
       } else {
         this.btnPrevNode.style.visibility = "none";
       }
+
+      this.perPageSelectNode.value = this.perPage;
     }
 
     this.onResultResponse = (data) => {
@@ -700,6 +705,7 @@ class Pagination {
 
       this.showPrev = this.pageStart > 10;
       this.showNext = this.pageEnd < data.pageMax;
+      this.perPage = data.perPage;
 
       this.render();
     }
@@ -711,6 +717,11 @@ class Pagination {
       this.setPage(this.page + 1);
     });
 
+    this.perPageSelectNode.addEventListener("change", () => {
+      this.perPage = Number(this.perPageSelectNode.value) || 20;
+      props.fetchListCallback();
+    });
+
     /**
      * reset without render - meant to be called once a filter has been changed
      */
@@ -720,7 +731,6 @@ class Pagination {
       this.sectionIndex = 1;
   
       this.pageEnd = 1; 
-      this.visiblePages = 10; //10 - the limit of the interval of pages to show
       this.showPrev = false;
       this.showNext = false;
     }
@@ -840,7 +850,7 @@ class SearchContent {
       this.lastSearchValue = this.searchInstance.getValue();
       this.paginationInstance.setListFetching(true);
 
-     return fetch(`${window.BASE_URL}search/results?search=${encodeURIComponent(this.lastSearchValue)}&sortBy=${this.getSortValue()}&page=${this.paginationInstance.page}`, {
+     return fetch(`${window.BASE_URL}search/results?search=${encodeURIComponent(this.lastSearchValue)}&sortBy=${this.getSortValue()}&page=${this.paginationInstance.page}&perPage=${this.paginationInstance.perPage}`, {
         headers: new Headers(),
         method: "POST",
         body: JSON.stringify({

@@ -352,3 +352,7 @@ button.icon-c:disabled {
   margin: 30px;
   width: 40px;
 }
+
+*:disabled {
+  cursor: default;
+}

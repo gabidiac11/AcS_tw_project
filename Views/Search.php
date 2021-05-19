@@ -146,12 +146,25 @@
               ?>
 
               <button disabled class="pagination-btn" pagination-next> > </button>
+
+              <span class="pag-select-c">
+                <label for="select-per-page"> Per page </label>
+                <select id="select-per-page" result-per-page disabled>
+                  <option value="10" selected >10</option>
+                  <option value="20" >20</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+              </select>
+              </span>
             </div>
+
           </div> 
       </div>
-
+      
       <?php
-      require_once __DIR__ . "/temp.php";
+       if(!isset($_GET['no'])) {
+         require_once __DIR__ . "/temp.php";
+       }
       ?>
     </div>
   </main>

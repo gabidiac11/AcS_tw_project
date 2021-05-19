@@ -95,7 +95,6 @@ class SearchModel extends Model
         }
 
         if(isset($_GET['search']) && $_GET['search'] != "") {
-            
             if(trim($conditionQuery) != "") {
                 $conditionQuery .= " AND ";
             } 
@@ -108,9 +107,13 @@ class SearchModel extends Model
         }
 
         $page = 1;
-        $perPage = 20;
         if(isset($_GET['page']) && is_numeric($_GET['page'])) {
             $page = intval($_GET['page']);
+        }
+
+        $perPage = 20;
+        if(isset($_GET['perPage']) && is_numeric($_GET['perPage'])) {
+            $perPage = intval($_GET['perPage']);
         }
 
         $offset = $perPage * ($page - 1);
@@ -132,7 +135,8 @@ class SearchModel extends Model
             'results' => $results,
             'numberOfResults' => $numOfResults,
             'page' => $page,
-            'pageMax' => $pageMax
+            'pageMax' => $pageMax,
+            'perPage' => $perPage
         ];
     }
 }

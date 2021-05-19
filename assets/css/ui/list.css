@@ -40,6 +40,16 @@
     padding: 20px;
 }
 
+.pag-select-c select {
+    width: 40px;
+    margin-left: 10px;
+    display: inline;
+}
+.pag-select-c label {
+    padding: 0 2px 0px 10px;
+    color: #fff;
+}
+
 .list-wrapper {
     flex: 1;
     display: flex;
