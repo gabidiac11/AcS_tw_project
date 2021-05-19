@@ -1,4 +1,4 @@
-#modal {
+.generic-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,48 +10,48 @@
     height: 0;
 }
 
-#modal p {
+.generic-modal p {
     margin: 0;
     padding: 0;
     font-size: 24px;
 }
 
-#modal .modal-bottom {
+.generic-modal .modal-bottom {
     padding: 10px;
 }
 
-#modal .content-wrapper {
+.generic-modal .content-wrapper {
     width: 100vw;
     height: 90vh;
 }
 
-#modal[show="true"] {
+.generic-modal[show="true"] {
     width: 100vw;
     height: 100vh;
     overflow: auto;
 }
 
-#modal [map-content] {
+.generic-modal [map-content] {
     width: 0;
     height: 0;
     overflow: hidden;
 }
 
-#modal [map-content] .latitude-long-indicator {
+.generic-modal [map-content] .latitude-long-indicator {
     display: none;
 }
 
 
-#modal [map-content][show="true"] {
+.generic-modal [map-content][show="true"] {
     width: 100%;
     height: 100%;
 }
 
-#modal [map-content][show="true"] .latitude-long-indicator {
+.generic-modal [map-content][show="true"] .latitude-long-indicator {
     display: flex;
 }
 
-#modal[show="true"] .content-wrapper {
+.generic-modal[show="true"] .content-wrapper {
     width: 100%;
     max-width: 1400px;
     background-color: white;
@@ -66,18 +66,18 @@
 }
 
 
-#modal .content-wrapper [modal-content] {
+.generic-modal .content-wrapper [modal-content] {
     flex: 1;
     padding-top: 10px;
     position: relative;
 }
 
-#modal #map {
+.generic-modal .generic-map {
     width: 100%;
     height: 1000px;
     max-height: calc(100vh - 200px);
 }
-#modal .latitude-long-indicator {
+.generic-modal .latitude-long-indicator {
     padding: 10px;
     right: 0;
     bottom: 0;
@@ -86,7 +86,7 @@
     position: absolute;
 }
 
-#modal #map .ol-overlaycontainer-stopevent {
+.generic-modal .generic-map .ol-overlaycontainer-stopevent {
     position: absolute;
     z-index: 0;
     height: auto!important;
@@ -96,14 +96,14 @@
     display: flex!important;
     padding: 10px!important;
 }
-#modal #map .ol-overlaycontainer-stopevent [title="Attributions"] {
+.generic-modal .generic-map .ol-overlaycontainer-stopevent [title="Attributions"] {
     display: none!important;
 }
 
-#modal #map button {
+.generic-modal .generic-map button {
     border: 1px solid black;
 }
 
-#modal #map .ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
+.generic-modal .generic-map .ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
 
 }

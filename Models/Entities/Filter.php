@@ -374,7 +374,11 @@ class Filter
                 $query = $option->queryBuild();
                 if($query) {
                     if($string != "") {
-                        $string .= " AND ";
+                        if(in_array($this->filterKey, [Filter::$filterState, Filter::$filterSeverity]))  {
+                            $string .= " OR ";
+                        } else {
+                            $string .= " AND ";
+                        }
                     }
                     $string .= "$query ";
                 }
@@ -386,15 +390,16 @@ class Filter
             $lat = $this->availableOptions[0]->value;
             $long = $this->availableOptions[1]->value;
 
+            $locationRay = 150;
             if($lat !== "") {
-                $latMin = floatval($lat) - 1000;
-                $latMax = floatval($lat) + 1000;
+                $latMin = floatval($lat) - $locationRay;
+                $latMax = floatval($lat) + $locationRay;
                 $latQ = "Start_Lat >= $latMin AND Start_Lat <= $latMax";
             }
 
             if($long !== "") {
-                $longMin = floatval($long) - 100;
-                $longMax = floatval($long) + 100;
+                $longMin = floatval($long) - $locationRay;
+                $longMax = floatval($long) + $locationRay;
                 $lonQ = "Start_Lng >= $longMin AND Start_Lng <= $longMax";
             }
 

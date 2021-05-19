@@ -1,6 +1,6 @@
 
 class ConfirmationModal {
-    constructor(onConfirm, onCancel, title) {
+    constructor(onConfirm, onCancel) {
         this.SELECTORS = {
             MODAL_ROOT: "#modal",
             TITLE: "[modal-title]",
@@ -18,6 +18,8 @@ class ConfirmationModal {
         this.contentNode = this.modalNode.querySelector(this.SELECTORS.CONTENT);
         this.simpleContentNode = this.modalNode.querySelector(this.SELECTORS.simpleContentSelector);
         this.mapContainerNode = this.modalNode.querySelector(this.SELECTORS.mapContainerSelector);
+
+        this.title = "";
 
         this.hideModal = () => {
             if (this.modalNode) {
@@ -37,8 +39,8 @@ class ConfirmationModal {
 
         this.showModal = () => {
             const titleNode = document.querySelector(this.SELECTORS.TITLE);
-            if(titleNode && title) {
-                titleNode.innerHTML = title;
+            if(titleNode && this.title) {
+                titleNode.innerHTML = this.title;
             }
 
             this.modalNode.setAttribute("show", "true");
@@ -75,7 +77,6 @@ class ConfirmationModal {
             });
         }
 
-        console.log("picker")
         /** functions for displaying and providing results for the MAP content */
         this.mapPicker = new MapPicker({
             parentNode: this.contentNode,

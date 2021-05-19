@@ -1,0 +1,9 @@
+#modal-map.generic-modal #map2 {
+    width: 926px;
+    max-height: unset;
+}
+
+#modal-map.generic-modal [map-content] {
+    display: flex;
+    justify-content: center;
+}

@@ -12,6 +12,7 @@
   <link href="../../assets/css/ui/search-input.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/filter.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/modal.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/ui/modal-map-preview.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/list.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/search.css" media="all" rel="stylesheet" type="text/css" />
 </head>
@@ -52,9 +53,11 @@
           </select>
         </div>
         <button class="btn-primary" id="export-btn">
-          Export
+          Export CSV
         </button>
-
+        <button class="btn-primary" id="map-btn-preview">
+          MAP PREVIEW
+        </button>
       </div>
 
 
@@ -68,7 +71,7 @@
 
           <div filters-append>
           </div>
-          
+
         </div>
       </div>
 
@@ -121,82 +124,101 @@
           ?>
 
           <div empty-indicator>No items found.</div>
-          
+
 
         </div>
 
 
-        
+
         <div list-loader class="flex-all loader" style="display: flex; height: calc(100vh - 235px);">
           <img class="loader-img" />
         </div>
 
         <div class="pagination" pagination-content>
-            <div class="pagination-inner"> 
-              <button disabled class="pagination-btn" pagination-prev> < </button>
+          <div class="pagination-inner">
+            <button disabled class="pagination-btn" pagination-prev>
+              < </button>
 
-              <?php
-              for ($index = 0; $index < 10; $index++) {
-              ?>
+                <?php
+                for ($index = 0; $index < 10; $index++) {
+                ?>
 
-                <button disabled value="<?= $index + 1 ?>" class="pagination-btn" pagination-number> <?= $index + 1 ?> </button>
+                  <button disabled value="<?= $index + 1 ?>" class="pagination-btn" pagination-number> <?= $index + 1 ?> </button>
 
-              <?php
-              }
-              ?>
+                <?php
+                }
+                ?>
 
-              <button disabled class="pagination-btn" pagination-next> > </button>
+                <button disabled class="pagination-btn" pagination-next> > </button>
 
-              <span class="pag-select-c">
-                <label for="select-per-page"> Per page: </label>
-                <select id="select-per-page" result-per-page disabled>
-                  <option value="10" selected >10</option>
-                  <option value="20" >20</option>
-                  <option value="30">30</option>
-                  <option value="50">50</option>
-              </select>
-              </span>
-            </div>
+                <span class="pag-select-c">
+                  <label for="select-per-page"> Per page: </label>
+                  <select id="select-per-page" result-per-page disabled>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                  </select>
+                </span>
+          </div>
 
-          </div> 
+        </div>
       </div>
-      
+
       <?php
-       if(!isset($_GET['no'])) {
-         require_once __DIR__ . "/temp.php";
-       }
+      if (!isset($_GET['no'])) {
+        require_once __DIR__ . "/temp.php";
+      }
       ?>
     </div>
   </main>
-  <div class="flex-all flex-wrap" id="modal">
+  <!-- MODAL WITH THE CHECKBOXES AND THE MAP (where lat and long is pinned by mouse and can be used for filtering by location) -->
+  <div class="flex-all flex-wrap generic-modal" id="modal">
     <div class="box-shadow-re-use content-wrapper">
       <p modal-title> Title </p>
       <div modal-content>
-          <div map-content style="width: 100%;" show="false">
-                <div id="map"></div>
-                <div class="latitude-long-indicator">
-                    <input id="long-input" disabled value="Lat: ${this.lat}">
-                    <input id="lat-input" disabled value="Long: ${this.long}">
-                </div>
+        <div map-content style="width: 100%;" show="false">
+          <div id="map" class="generic-map"></div>
+          <div class="latitude-long-indicator">
+            <input id="long-input" disabled value="Lat: ${this.lat}">
+            <input id="lat-input" disabled value="Long: ${this.long}">
           </div>
-          <div general-content style="width:100%; flex: 1;" show="false">
-          </div>
+        </div>
+        <div general-content style="width:100%; flex: 1;" show="false">
+        </div>
       </div>
       <div class="modal-bottom">
         <button modal-confirm class="btn-primary">Apply</button>
         <button modal-cancel class="btn-secondary">Cancel</button>
       </div>
     </div>
-
   </div>
+  
+  <!-- MODAL with the all the locations pins from the filtered list -->
+  <div class="flex-all flex-wrap generic-modal" id="modal-map" show="false">
+    <div class="box-shadow-re-use content-wrapper">
+      <div map-content style="width: 100%;height: 500px;">
+        <div id="map2" class="generic-map"></div>
+      </div>
+      <div class="modal-bottom">
+        <button modal-export-svg class="btn-primary">Export SVG</button>
+        <button modal-export-webp class="btn-primary">Export WEBP</button>
+        <button modal-close class="btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script src="./../assets/js/index.js"></script>
   <script src="./../assets/js/ui/CheckBox.js"></script>
   <script src="./../assets/js/ui/RangeInput.js"></script>
   <script src="./../assets/js/ui/DateInput.js"></script>
   <script src="./../assets/js/ui/modal.js"></script>
   <script src="./../assets/packages/olmap/build/ol.js"></script>
+  <script src="./../assets/packages/canvas2svg/canvas2svg.js"></script>
   <script src="./../assets/js/ui/MapPicker.js"></script>
+  <script src="./../assets/js/ui/ModalMapPreview.js"></script>
   <script src="./../assets/js/search.js"></script>
+
 </body>
 
 </html>

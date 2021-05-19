@@ -17,6 +17,8 @@ const _modal = new ConfirmationModal(
   ""
 );  
 
+const mapPreviewInstance = new ModalMapPreview();
+
 class Filter {
   constructor(props) {
     this.className = props.className || "";
@@ -119,7 +121,7 @@ class FilterGenericExpandable extends Filter {
     };
 
     this.onConfirmModal = (modal) => {
-      console.log("h");
+      
       /* update selected options and re-render */
       const results = modal.getCheckBoxResults();
       this.availableOptions = this.availableOptions.map((item) => ({
@@ -348,7 +350,7 @@ class LocationFilter extends FilterGenericExpandable {
 
 
     this.onModalOpen = () => {
-      this.modal.title = "Choose location";
+      this.modal.title = "Pin a location around your results that you want to filter (by clicking the map)";
       this.modal.onConfirm = this.onConfirmModal;
       this.modal.onCancel = this.onCancel;
 
@@ -436,7 +438,6 @@ class SearchInput {
       this.selectors.exportBtnSelector
     );
 
-
     this.toggleOpen = false;
 
     this.setFilterActive = (value) => {
@@ -452,6 +453,7 @@ class SearchInput {
         String(Boolean(this.toggleOpen))
       );
     };
+
     this.setFilterActive(false);
 
     this.filterToggleNode.addEventListener("click", (event) => {
@@ -499,7 +501,9 @@ class SearchInput {
         .finally(() => {
           this.exportBtnNode.disabled = false;
         });
-    })
+    });
+
+
   }
 }
 
@@ -765,8 +769,9 @@ class SearchContent {
     this.listContainerItemsNode = this.containerNode.querySelector(
       this.selectors.listContainerItemsSelector
     );
-    this.emptyNode = this.containerNode.querySelector(this.selectors.emptyIndicatorSelector);
     this.sortSelectorNode = document.querySelector(this.selectors.sortSelector);
+
+    
     
     
     /** instantiate pagination */
@@ -876,6 +881,24 @@ class SearchContent {
         .then((data) => {
           if (this.fetchKey === callKey) {
             this.setItems(data.results);
+            mapPreviewInstance.setLayers(data.results.reduce((prev, cur, index) => {
+              return {
+                ...prev,
+                [`layerName-${Date.now()}-${index}`]: {
+                  img: (()=> {
+                   return {
+                     1: "red-dot-shade-1.svg",
+                     2: "red-dot-shade-2.svg",
+                     3: "red-dot-shade-3.svg",
+                     4: "red-dot-shade-4.svg"
+                   }[cur.severity] || "red-dot-shade-1.svg";
+                  })(),
+                  ...cur
+                }
+              }
+            }, {}));
+            mapPreviewInstance.render();
+
             this.paginationInstance.onResultResponse(data);
             this.paginationInstance.setListFetching(false);
           }
@@ -892,6 +915,7 @@ class SearchContent {
         });
     };
 
+    
   }
 }
 
@@ -910,6 +934,7 @@ class SearchPage {
       containerNode: `[filters-append]`,
       cancelBtnSelector: `[btn-bottom-panel] [btn-cancel]`,
       confirmBtnSelector: `[btn-bottom-panel] [btn-confirm]`,
+      mapPreviewSelector: `#map-btn-preview`
     };
 
     /** initialize nodes */
@@ -1075,6 +1100,10 @@ class SearchPage {
       }
     });
 
+    
+    document.querySelector(this.selectors.mapPreviewSelector).addEventListener("click", () => {
+      mapPreviewInstance.showModal();
+    });
   }
 }
 
