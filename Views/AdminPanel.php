@@ -17,21 +17,8 @@
 <?php
 require_once __DIR__ . '/Layout/Header.php';
 ?>
-<main id="admin-page">
-    <div class="login" style="margin-top: 150px;">
-        <h1>Admin Panel</h1>
-        <form id="login">
-            <p><input id="name" type="text" name="login" value="" placeholder="Username"></p>
-            <p><input id="pass" type="password" name="password" value="" placeholder="Password"></p>
-            <p class="remember_me">
-                <label>
-                    <input type="checkbox" name="remember_me" id="remember_me">
-                    Remember me
-                </label>
-            </p>
-            <p class="submit"><input type="submit" name="commit" value="Login" onclick="validate()"></p>
-        </form>
-    </div>
+<main id="admin-panel">
+
 </main>
 </body>
 
