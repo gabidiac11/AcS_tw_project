@@ -20,7 +20,7 @@ require_once __DIR__ . '/Layout/Header.php';
 <main id="admin-page">
     <div class="login" style="margin-top: 150px;">
         <h1>Admin Panel</h1>
-        <form id="login">
+        <form id="login" method="post">
             <p><input id="name" type="text" name="login" value="" placeholder="Username"></p>
             <p><input id="pass" type="password" name="password" value="" placeholder="Password"></p>
             <p class="remember_me">
