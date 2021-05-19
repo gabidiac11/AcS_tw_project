@@ -148,7 +148,7 @@
               <button disabled class="pagination-btn" pagination-next> > </button>
 
               <span class="pag-select-c">
-                <label for="select-per-page"> Per page </label>
+                <label for="select-per-page"> Per page: </label>
                 <select id="select-per-page" result-per-page disabled>
                   <option value="10" selected >10</option>
                   <option value="20" >20</option>
