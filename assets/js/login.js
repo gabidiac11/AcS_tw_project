@@ -14,7 +14,9 @@ function validate(){
     var password = document.getElementById("pass").value;
     if ( username == "test" && password == "test"){
         rememberMe();
-        window.open('/AdminPanel', '_blank')
+        sessionStorage.setItem("TokenAdminPanel", "123456");
+        window.history.pushState('Admin', 'Title', "/AdminPanel");
+        return false;
     }
 }
 function rememberMe(){
@@ -25,5 +27,7 @@ function rememberMe(){
         localStorage.setItem("AdminUser", username);
         localStorage.setItem("AdminPass", password);
         localStorage.setItem("Check", "1");
+    }else{
+        localStorage.setItem("Check", "0");
     }
 }

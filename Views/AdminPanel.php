@@ -6,14 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="icon" type="image/png" href="./../assets/favicon/logo.ico" />
 
-    <title> Admin - USA Accidents Smart Visualizer</title>
+    <title> AdminPanel - USA Accidents Smart Visualizer</title>
     <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/admin.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="../../assets/js/login.js"></script>
+    <script src="../../assets/js/loginpanel.js"></script>
 </head>
 
-<body onload="loadStorage()">
+<body onload="verificator()">
 <?php
 require_once __DIR__ . '/Layout/Header.php';
 ?>
