@@ -116,6 +116,7 @@ class ModalMapPreview {
       });
     };
 
+    /** creates a copy of the map canvas that suports exporting the layers (DOTS on the map) */
     this.exportMap = (callback) => {
       /**
        * https://openlayers.org/en/latest/examples/export-pdf.html
@@ -175,9 +176,12 @@ class ModalMapPreview {
       map.getView().setResolution(viewResolution / scaling);
     };
 
+    /** sets the resolution required by the export */
     this.exportMap(() => {});
 
     /**
+     * this function copies the map canvas context to a special "kind" of canvas where svg export is possible
+     * 
      * https://www.npmjs.com/package/canvas2svg
      */
     this.exportSvg = () => {
@@ -185,15 +189,9 @@ class ModalMapPreview {
         //Create a new mock canvas context. Pass in your desired width and height for your svg document.
         var ctx = new C2S(mapCanvas.width, mapCanvas.height);
         ctx.drawImage(mapCanvas, 0, 0);
-        
-        //If you really need to you can access the shadow inline SVG created by calling:
-        var svg = ctx.getSvg();
+        const mySerializedSVG = ctx.getSerializedSvg(); //true here, if you need to convert named to numbered entities.
 
-        var mySerializedSVG = ctx.getSerializedSvg(); //true here, if you need to convert named to numbered entities.
-
-
-        console.log(mySerializedSVG);
-        var a = document.createElement("a"); //Create <a>
+        const a = document.createElement("a"); //Create <a>
         a.href = 'data:image/svg+xml;utf8,' + mySerializedSVG; //Image Base64 Goes here
         a.download = "Image.svg"; //File name Here
         a.click(); //Downloaded file

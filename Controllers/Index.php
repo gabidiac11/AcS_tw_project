@@ -9,6 +9,6 @@ class Index extends Controller
     }
 
     public function index() {
-        $this->router->redirect('/home');
+        $this->router->redirect('/about');
     }
 }

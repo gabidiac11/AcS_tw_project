@@ -13,7 +13,6 @@
     min-width: 300px;    
     padding: 20px;
     margin: 10px;
-    background: white;
 }
 
 [more-than-one-result="true"] [empty-indicator] {

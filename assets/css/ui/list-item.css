@@ -1,0 +1,35 @@
+.list-item {
+    color: white;
+    background-color: #2B2E4A;
+    border: 10px;
+    border-color: #707070;
+}
+.list-item > div {
+    padding: 5px 0;
+}
+.box-seven {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;       
+}
+.box-seven > div {
+        background-color: green;
+        padding: 10px;
+        font-size: 13px;
+        margin: 5px;
+        color: white;
+        text-decoration: none;
+        
+        display: block;
+        border-radius: 8px;
+}
+.box-eight {
+    display: flex;
+    justify-content: flex-end;
+}
+.box-four {
+    padding: 10px 0;
+}

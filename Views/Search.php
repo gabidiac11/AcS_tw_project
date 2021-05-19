@@ -15,6 +15,7 @@
   <link href="../../assets/css/ui/modal-map-preview.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/list.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/search.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/ui/list-item.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -81,43 +82,45 @@
           for ($index = 0; $index < 50; $index++) {
           ?>
 
-            <div list-item style="display: none" class="list-item">
-              <!-- /** general info */ -->
-              <div>item-date: <span item-date> - </span> </div>
-              <div>item-severity: <span item-severity> - </span> </div>
-              <div>item-id: <span item-id> - </span> </div>
-              <div>item-city: <span item-city> - </span> </div>
-              <div>item-state: <span item-state> - </span> </div>
-              <div>item-description: <span item-description> - </span> </div>
-              <div>item-location: <span item-location> - </span> </div>
-
-              <!-- /** weather stats */ -->
-              <div>item-weather: <span item-weather-condition> - </span> </div>
-              <div>item-temperature: <span item-temperature> - </span> </div>
-              <div>item-humidity: <span item-humidity> - </span> </div>
-              <div>item-visibility: <span item-visibility> - </span> </div>
-              <div>item-wind: <span item-wind-direction> - </span> </div>
-              <div>item-wind: <span item-wind-speed> - </span> </div>
-              <div>item-wind: <span item-wind-windChill> - </span> </div>
-              <div>item-precipitation: <span item-precipitation> - </span> </div>
-              <div>item-pressure: <span item-pressure> - </span> </div>
-
-              <!-- /** circumstances */ -->
-              <span style="color: red;" item-amenity> item-amenity</span>
-              <span style="color: red;" item-bump> item-bump</span>
-              <span style="color: red;" item-crossing> item-crossing</span>
-              <span style="color: red;" item-giveAway> item-giveAway</span>
-              <span style="color: red;" item-Junction> item-Junction</span>
-              <span style="color: red;" item-No_Exit> item-No_Exit</span>
-              <span style="color: red;" item-Railway> item-Railway</span>
-              <span style="color: red;" item-Roundabout> item-Roundabout</span>
-              <span style="color: red;" item-Station> item-Station</span>
-              <span style="color: red;" item-Stop> item-Stop</span>
-              <span style="color: red;" item-Traffic_Calming> item-Traffic_Calming</span>
-              <span style="color: red;" item-Traffic_Signal> item-Traffic_Signal</span>
-              <span style="color: red;" item-Turning_Loop> item-Turning_Loop</span>
+            <div list-item style="display: none" class="list-item box-shadow-re-use">
+              <div class="box-one"><span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
+              <div class="box-two">Severity: <span item-severity> III</span></div> <!-- Severity -->
+              <div class="box-three">ID: <span item-id>A-1 </span> | City: <span item-city> Dayton</span> | State: <span item-state>OH</span></div> <!-- ID, City, State -->
+              <div class="box-four">Description: <br/><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
+              <div class="box-five">Location: <br/><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
+         
+              <!-- weather stats -->
+              <ul>
+                <li>Weather Condition: <span item-weather-condition>Ligh Rain</span>'</li>
+                <li>Temperature(F): <span item-temperature>36.9</span>;</li>
+                <li>Humidity(%): <span item-humidity>91</span>;</li>
+                <li>Visibility(mi): <span item-visibility>10</span>;</li>
+                <li>Wind Direction: <span item-wind-direction>Calm</span>;</li>
+                <li>Wind Speed(mph): <span item-wind-speed> - </span></li>
+                <li>Wind Chill: <span item-wind-windChill> - </span></li>
+                <li>Traffic Calming: <span item-Traffic_Calming> - </li>
+                <li>Precipitation(in): <span item-precipitation>-</span>;</li>
+                <li>Pressure: <span item-pressure> - </span></li>
+              </ul>
+              <hr>
+              <div class="box-seven">
+                <!-- Circumstances -->
+                <div item-amenity>Amenity</div>
+                <div item-bump>Bump</div>
+                <div item-crossing>Crossing</div>
+                <div item-giveAway>Give_Way</div>
+                <div item-Junction>Junction</div>
+                <div item-No_Exit>No_Exit</div>
+                <div item-Railway>Railway</div>
+                <div item-Roundabout>Roundabout</div>
+                <div item-Station>Station</div>
+                <div item-Stop>Stop</div>
+                <div itrm-Traffic_Calming>Traffic Calming</div>
+                <div item-Traffic_Signal>Traffic Signal</div>
+                <div item-Turning_Loop>Turning Loop</div>
+              </div>
+              <hr>
             </div>
-
 
           <?php
           }
@@ -164,12 +167,6 @@
 
         </div>
       </div>
-
-      <?php
-      if (!isset($_GET['no'])) {
-        require_once __DIR__ . "/temp.php";
-      }
-      ?>
     </div>
   </main>
   <!-- MODAL WITH THE CHECKBOXES AND THE MAP (where lat and long is pinned by mouse and can be used for filtering by location) -->
@@ -193,7 +190,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- MODAL with the all the locations pins from the filtered list -->
   <div class="flex-all flex-wrap generic-modal" id="modal-map" show="false">
     <div class="box-shadow-re-use content-wrapper">
