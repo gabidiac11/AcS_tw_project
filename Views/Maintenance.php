@@ -20,8 +20,8 @@
     <img src="../../assets/images/logo.png">
     <h1>We&rsquo;ll be back soon!</h1>
     <div>
-        <p>Sorry, but at this moment we do some maintenance work. If you have any problems you can <a href="mailto:contanct@localhost.con#">contact us</a>.</p>
-        <p>&mdash; The ACS Team</p>
+        <p id="text">Sorry, but at this moment we do some maintenance work. If you have any problems you can <a href="mailto:contanct@localhost.con#">contact us</a>.</p>
+        <p id="by">&mdash; The ACS Team</p>
     </div>
     </div>
 </article>

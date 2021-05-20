@@ -1,0 +1,52 @@
+body {
+    background-color: #8387d4;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+    width: 400px;
+    height: 100px;
+    font-family: Tahoma, sans-serif;
+    border: 3px solid #cccccc;
+    padding: 5px;
+    box-shadow: 1px 1px 1px #999;
+    display: block;
+    margin: auto;
+}
+
+label {
+    font-family: "Comic Sans MS";
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: inline-block;
+    width: 150px;
+}
+
+.button {
+    margin: 0 auto;
+    width: 144px;
+}
+
+#submitStatus {
+    display: block;
+    margin-top: 10px;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Comic Sans MS";
+}
