@@ -1,3 +1,8 @@
+/**
+ *
+ * https://openlayers.org/
+ */
+
 class ModalMapPreview {
   constructor() {
     this.SELECTORS = {
@@ -69,6 +74,8 @@ class ModalMapPreview {
         url: "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
       });
 
+      const coordStart = [-103.373401, 25.347717];
+
       this.map = new ol.Map({
         target: "map2",
         layers: [
@@ -78,7 +85,7 @@ class ModalMapPreview {
         ],
         overlays: [overlay],
         view: new ol.View({
-          center: ol.proj.fromLonLat([-103.373401, 25.347717]),
+          center: ol.proj.fromLonLat(coordStart),
           zoom: mapDefaultZoom,
         }),
       });
@@ -86,11 +93,24 @@ class ModalMapPreview {
       source.on("tileloadend", (event) => {
         if (!this.loaded) {
           this.loaded = true;
+
+          /**
+           * inform the user about the posibility of using the popup (just once)
+           */
+          if(!localStorage.getItem('dots-conf')) {
+            content.innerHTML = `<div> Click one of these dots to see details </div>`;
+            overlay.setPosition([-9338462.279539924, 4857411.025364466]);
+            
+            localStorage.setItem('dots-conf', "true");
+          }
+
           this.render();
         }
       });
 
-            /**
+
+
+      /**
        * Add a click handler to the map to render the popup.
        */
       this.map.on('singleclick', (evt) => {
@@ -106,8 +126,6 @@ class ModalMapPreview {
           content.innerHTML = `<div> <div>${item.date}<div> <div>${item.description}<div> </div>`
           overlay.setPosition(evt.coordinate);
         }
-
-
 
       });
     };

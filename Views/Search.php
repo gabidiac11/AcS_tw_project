@@ -83,11 +83,11 @@
           ?>
 
             <div list-item style="display: none" class="list-item box-shadow-re-use">
-              <div class="box-one"><span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
-              <div class="box-two">Severity: <span item-severity> III</span></div> <!-- Severity -->
-              <div class="box-three">ID: <span item-id>A-1 </span> | City: <span item-city> Dayton</span> | State: <span item-state>OH</span></div> <!-- ID, City, State -->
-              <div class="box-four">Description: <br /><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
-              <div class="box-five">Location: <br /><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
+              <div> <span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
+              <div> Severity: <span item-severity> III</span></div> <!-- Severity -->
+              <div> ID: <span item-id>A-1 </span> | City: <span item-city> Dayton</span> | State: <span item-state>OH</span></div> <!-- ID, City, State -->
+              <div class="description-item" >Description: <br /><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
+              <div> Location: <br /><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
 
               <!-- weather stats -->
               <ul>
@@ -103,21 +103,21 @@
                 <li>Pressure: <span item-pressure> - </span></li>
               </ul>
               <hr>
-              <div class="box-seven">
+              <div class="condtions-met">
                 <!-- Circumstances -->
-                <div item-amenity>Amenity</div>
-                <div item-bump>Bump</div>
-                <div item-crossing>Crossing</div>
-                <div item-giveAway>Give_Way</div>
-                <div item-Junction>Junction</div>
-                <div item-No_Exit>No_Exit</div>
-                <div item-Railway>Railway</div>
-                <div item-Roundabout>Roundabout</div>
-                <div item-Station>Station</div>
-                <div item-Stop>Stop</div>
-                <div itrm-Traffic_Calming>Traffic Calming</div>
-                <div item-Traffic_Signal>Traffic Signal</div>
-                <div item-Turning_Loop>Turning Loop</div>
+                <div item-amenity> <span><?= displaySvg("check") ?></span>Amenity</div>
+                <div item-bump> <span><?= displaySvg("check") ?></span>Bump</div>
+                <div item-crossing> <span><?= displaySvg("check") ?></span>Crossing</div>
+                <div item-giveAway> <span><?= displaySvg("check") ?></span>Give_Way</div>
+                <div item-Junction> <span><?= displaySvg("check") ?></span>Junction</div>
+                <div item-No_Exit> <span><?= displaySvg("check") ?></span>No_Exit</div>
+                <div item-Railway> <span><?= displaySvg("check") ?></span>Railway</div>
+                <div item-Roundabout> <span><?= displaySvg("check") ?></span>Roundabout</div>
+                <div item-Station> <span><?= displaySvg("check") ?></span>Station</div>
+                <div item-Stop> <span><?= displaySvg("check") ?></span>Stop</div>
+                <div itrm-Traffic_Calming> <span><?= displaySvg("check") ?></span>Traffic Calming</div>
+                <div item-Traffic_Signal> <span><?= displaySvg("check") ?></span>Traffic Signal</div>
+                <div item-Turning_Loop> <span><?= displaySvg("check") ?></span>Turning Loop</div>
               </div>
               <hr>
             </div>
