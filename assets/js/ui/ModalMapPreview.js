@@ -3,6 +3,10 @@
  * https://openlayers.org/
  */
 
+/**
+ * this class loads a modal with a simple map of the us where a dynamic group of locations are represented using a red dot 
+ * each red dot has a popup attached where information about the event is displayed on click
+ */
 class ModalMapPreview {
   constructor() {
     this.SELECTORS = {
@@ -34,6 +38,9 @@ class ModalMapPreview {
     this.previousLayers = {};
     this.loaded = false;
 
+    /**
+     * crates a Map instance
+     */
     this.startMap = () => {
       /**
        * https://openlayers.org/en/latest/examples/popup.html
