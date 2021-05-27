@@ -6,23 +6,17 @@ class Search extends Controller
      * @var SearchModel
      */
     private $searchModel;
-    private $searchMainModel;
 
     function __construct()
     {
         parent::__construct();
 
-        $this->searchMainModel = $this->loadModel("MaintenanceQuery");
         $this->searchModel = $this->loadModel("SearchModel");
     }
 
     public function index()
     {
-        if ($this->searchMainModel->verifyStatus() === 0) {
             $this->loadView("Search", []);
-        }else{
-            $this->loadView("Maintenance", []);
-        }
     }
 
     public function accidents() {
