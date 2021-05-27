@@ -379,7 +379,7 @@ class LocationFilter extends FilterGenericExpandable {
 
 
     this.onModalOpen = () => {
-      this.modal.title = "Pin a location around your results that you want to filter (by clicking the map)";
+      this.modal.title = "Pin a location around your results that you want to filter (by clicking the map). The points are colored based on serverity.";
       this.modal.onConfirm = this.onConfirmModal;
       this.modal.onCancel = this.onCancel;
 
@@ -514,23 +514,7 @@ class SearchInput {
       this.valuesAreFetching(value);
     }
 
-    this.exportBtnNode.addEventListener("click", () => {
-      this.exportBtnNode.disabled = true;
 
-      fetch(`${window.BASE_URL}search/exportCsv`)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw response;
-        })
-        .catch((response) => {
-          console.log("BAD REQUEST - export", response);
-        })
-        .finally(() => {
-          this.exportBtnNode.disabled = false;
-        });
-    });
 
 
   }
@@ -774,6 +758,9 @@ class SearchContent {
   constructor(props) {
     this.searchInstance = props.searchInstance;
 
+    /**
+     * @var {SearchResult[]}
+     */
     this.resultItems = [];
 
     this.selectors = {
@@ -1132,6 +1119,22 @@ class SearchPage {
     
     document.querySelector(this.selectors.mapPreviewSelector).addEventListener("click", () => {
       mapPreviewInstance.showModal();
+    });
+
+    /** export button event listener - export current results from the page*/
+    this.exportBtnNode = this.searchInstance.exportBtnNode;
+    this.exportBtnNode.addEventListener("click", () => {
+    
+
+      const link = `${window.BASE_URL}search/export?ids=${encodeURIComponent(this.searchContentInstance.resultItems.reduce((prev, cur) => {
+        const id = cur.subject.uniqueId;
+        if(prev) {
+          return `${prev}, ${id}`;
+        }
+        return id;
+      }, ""))}&limit=${this.searchContentInstance.paginationInstance.perPage}`;
+      console.log(link);
+      window.open(link, '_blank');
     });
   }
 }

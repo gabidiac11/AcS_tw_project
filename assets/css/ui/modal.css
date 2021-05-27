@@ -51,6 +51,16 @@
     display: flex;
 }
 
+.generic-modal .filter-group-line {
+    min-width: 121px;
+    padding-right: 10px;
+}
+
+.generic-modal [general-content] {
+    flex-wrap: wrap;
+    display: flex;
+}
+ 
 .generic-modal[show="true"] .content-wrapper {
     width: 100%;
     max-width: 1400px;

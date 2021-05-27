@@ -34,4 +34,8 @@ class Search extends Controller
             $this->loadView("NotFound", []);
         }
     }
+    
+    public function export() {
+        $this->loadModel("ExportModel")->exportCSVResults();
+    }
 }

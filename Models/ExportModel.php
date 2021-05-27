@@ -10,13 +10,11 @@ class ExportModel extends Model
         parent::__construct();
     }
 
-    public function exportCsv($postData) {
-        $listResults = $this->db->select("SELECT * FROM accidents LIMIT 20");
-
+    public function exportCsv($listResults) {
+        
         $keys = [
+        "accident_id",
         "ID",
-        "Source",
-        "TMC",
         "Severity",
         "Start_Time",
         "End_Time",
@@ -69,14 +67,16 @@ class ExportModel extends Model
         ];
 
         foreach($listResults as $obj) {
-            
+            $listItem = [];
             foreach($keys as $key) {
-
+                $listItem[] = $obj[$key];
             }    
+            
+            $list[] = $listItem;
         }
 
     
-        $filename = __DIR__."/exports/".uniqid(time())."-file.csv";
+        $filename = __DIR__."/".uniqid(time())."-file.csv";
 
         $fp = fopen($filename, 'w');
         
@@ -103,8 +103,39 @@ class ExportModel extends Model
 
             //Read the size of the file
             readfile($filename);
-        }
 
-       return $accidents;
+            unlink($filename);
+        }
+    }
+
+    /**
+     * make sure params from client that gets concatenated in SQL are not injections
+     * input must match a text like "{number},{number}"
+     */
+    public function idsInputOk($ids) {
+        $output_array = [];
+
+        // preg_match() returns 1 if the pattern matches given subject, 0 if it does not, or false if an error occurred.
+        return $ids !== "," && preg_match('/[^,\d\s]/', $ids, $output_array) !== 1;
+    }
+
+    public function exportCSVResults() {
+        if(isset($_GET['ids']) && $_GET['ids'] && 
+            $this->idsInputOk($_GET['ids']) && //validation
+            isset($_GET['limit']) && intval($_GET['limit'])) {
+             
+            $this->exportCsv($this->db->select(
+                "SELECT * FROM accidents where accident_id IN (".$_GET['ids'].") LIMIT ". intval($_GET['limit'])
+            ));
+
+            // // prepare and bind
+            // $stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+            // $stmt->bind_param("sss", $firstname, $lastname, $email);
+
+        } else {
+            $this->exportCsv($this->db->select(
+                "SELECT * FROM accidents LIMIT 10"
+            ));
+        }
     }
 }

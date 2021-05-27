@@ -23,6 +23,14 @@ class Accident
         "WEATHER_CONDITION" => "Weather_Condition"
     ];
 
+    /**
+     * @var int
+     */
+    public $uniqueId;
+
+    /**
+     * @var string
+     */
     public $id;
 
     /**
@@ -74,7 +82,8 @@ class Accident
 
     /**
      * Accident constructor.
-     * @param $id
+     * @param int $uniqueId
+     * @param string $id
      * @param int $severity
      * @param string $date
      * @param float $lat
@@ -85,8 +94,9 @@ class Accident
      * @param Weather $weather
      * @param AccidentCircumstance $accidentCircumstance
      */
-    public function __construct($id, int $severity, string $date, float $lat, float $long, float $distance, $description, Address $address, Weather $weather, AccidentCircumstance $accidentCircumstance)
+    public function __construct(int $uniqueId, string $id, int $severity, string $date, float $lat, float $long, float $distance, $description, Address $address, Weather $weather, AccidentCircumstance $accidentCircumstance)
     {
+        $this->uniqueId = $uniqueId;
         $this->id = $id;
         $this->severity = $severity;
         $this->time = strtotime($date);
@@ -119,6 +129,7 @@ class Accident
     public static function instanceFromAssocArray($row): Accident
     {
         return new Accident(
+            intval($row['accident_id']),
             $row['ID'],
             intval($row['Severity']),
             $row['Start_Time'],
