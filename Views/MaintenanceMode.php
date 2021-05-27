@@ -10,12 +10,14 @@
     <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/maintenancemode.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../assets/css/ui/button.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/ui/button.css" media="all" rel="stylesheet"
+          type="text/css"/>
     <script src="../../assets/js/loginpanel.js"></script>
+    <script src="../../assets/js/mmode.js"></script>
     <script src="../../assets/js/ui/button.js"></script>
 </head>
 
-<body onload="verificator()">
+<body onload="verificator(), loadMaintenance()">
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>
@@ -45,7 +47,7 @@ require_once __DIR__ . '/Layout/Admin.php';
         <input type="radio" name="radio">
         <span class="checkmark"></span>
     </label>
-        <button class="button">Send</button>
+    <button class="button">Send</button>
 
 </main>
 </body>
