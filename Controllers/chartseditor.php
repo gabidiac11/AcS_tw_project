@@ -1,6 +1,6 @@
 <?php
 
-class maintenancemode extends Controller
+class chartseditor extends Controller
 {
 
     function __construct()
@@ -10,6 +10,6 @@ class maintenancemode extends Controller
 
     public function index()
     {
-        $this->loadView("MaintenanceMode", []);
+        $this->loadView("ChartsEditor", []);
     }
 }

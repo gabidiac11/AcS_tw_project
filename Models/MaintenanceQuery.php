@@ -1,22 +1,22 @@
 <?php
 
-class MaintenanceUtil extends Model
+class MaintenanceQuery extends Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function verifyStatus(): array
+    public function verifyStatus(): int
     {
         $sql = "SELECT mode FROM maintenance WHERE id=1";
-        return $this->db->select(sql);
+        $query = $this->db->select($sql);
+        return $query[0]['mode'];
     }
 
-    public function updateStatus($value): array
+    public function updateStatus($value)
     {
         $sql = "UPDATE maintenance SET mode=" + $value + " WHERE id=1";
-        $this->db->update(sql);
+        $this->db->update($sql);
     }
-
 }
