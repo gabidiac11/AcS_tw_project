@@ -3,14 +3,17 @@
         <img src="./../../assets/svg/logo.svg">
         <div class="brand-title text-box-shadow-re-use">AcS</div>
     </a>
-
     <ul id="list-header" class="flex-all flex-end header-meniu-links">
-        <li> <a href="/maintenancemode" class="text-box-shadow-re-use"> Maintenance Mode </a> </li>
-        <li> <a href="/chartseditor" class="text-box-shadow-re-use"> Charts Editor</a> </li>
-        <li> <a href="/dbeditor" class="text-box-shadow-re-use"> Database Editor </a> </li>
-        <li> <a href="/admin" class="text-box-shadow-re-use"> Logout </a> </li>
+        <li><a href="/maintenancemode" class="text-box-shadow-re-use"> Maintenance Mode </a></li>
+        <li><a href="/chartseditor" class="text-box-shadow-re-use"> Charts Editor</a></li>
+        <li><a href="/dbeditor" class="text-box-shadow-re-use"> Database Editor </a></li>
+        <li><a href="/admin" onclick=removeSavedAccount() class="text-box-shadow-re-use"> Logout </a></li>
     </ul>
     <script>
+        function removeSavedAccount() {
+            localStorage.setItem("Check", "0");
+        }
+
         /**
          * highlight the current page
          */
