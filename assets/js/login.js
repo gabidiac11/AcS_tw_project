@@ -1,7 +1,7 @@
 function loadStorage() {
     if (localStorage.getItem("Check") !== null && localStorage.getItem("Check") === "1") {
-        var username = localStorage.getItem("AdminUser")
-        var value = localStorage.getItem("AdminToken")
+        var username = localStorage.getItem("AdminUser");
+        var value = localStorage.getItem("AdminToken");
         window.history.pushState('Admin', 'Title', "/AdminPanel");
         window.history.go();
         return false;

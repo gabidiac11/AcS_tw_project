@@ -22,8 +22,7 @@ class Admin
     public static function instanceFromAssocArray($array) {
         return new Admin(
             $array['Name'],
-            $array['Password'],
-            $array['Token']
+            $array['Password']
         );
     }
 }

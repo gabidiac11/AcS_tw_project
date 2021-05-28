@@ -16,7 +16,7 @@ class Search extends Controller
 
     public function index()
     {
-        $this->loadView("Search", []);
+            $this->loadView("Search", []);
     }
 
     public function accidents() {

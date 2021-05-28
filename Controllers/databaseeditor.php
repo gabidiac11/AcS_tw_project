@@ -1,7 +1,8 @@
 <?php
 
-class NotFound extends Controller
+class databaseeditor extends Controller
 {
+
     function __construct()
     {
         parent::__construct();
@@ -9,6 +10,6 @@ class NotFound extends Controller
 
     public function index()
     {
-            $this->loadView("NotFound", []);
+        $this->loadView("DatabaseEditor", []);
     }
 }

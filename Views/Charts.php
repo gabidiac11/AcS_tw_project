@@ -6,8 +6,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="icon" type="image/png" href="./../assets/favicon/logo.ico" />
 
-
-
   <title> Chart 1 - USA Accidents Smart Visualizer</title>
   <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css" />

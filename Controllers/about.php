@@ -2,7 +2,6 @@
 
 class about extends Controller
 {
-
     function __construct()
     {
         parent::__construct();
@@ -10,6 +9,7 @@ class about extends Controller
 
     public function index()
     {
-        $this->loadView("About", []);
+            $this->loadView("About", []);
+
     }
 }

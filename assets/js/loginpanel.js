@@ -1,8 +1,11 @@
 function verificator() {
-
+    var username = localStorage.getItem("AdminUser");
+    var value = localStorage.getItem("AdminToken");
     if (1> 0) {
 
     } else {
-        sessionStorage.removeItem("TokenAdminPanel");
+        sessionStorage.removeItem("AdminUser");
+        sessionStorage.removeItem("AdminToken");
+        window.history.pushState('Admin', 'Title', "/AdminPanel");
     }
 }

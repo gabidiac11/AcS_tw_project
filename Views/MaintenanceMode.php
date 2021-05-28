@@ -17,11 +17,12 @@
     <script src="../../assets/js/ui/button.js"></script>
 </head>
 
-<body onload="verificator(), loadMaintenance()">
+<body onload="loadMaintenance()">
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>
 <main class="main" id="admin-panel">
+    <div id="success"></div>
     <form action="/action_page.php">
         <label for="title">Title Text:</label>
         <textarea wrap="off" id="title" name="title">
@@ -39,15 +40,15 @@ require_once __DIR__ . '/Layout/Admin.php';
         <input class="button" id="SubmitMessage" type="submit" value="Submit">
     </form>
     <h2>Maintenance Mode Status</h2>
-    <label class="container">Enable
+    <label class="container">Enabled
         <input type="radio" checked="checked" name="radio">
         <span class="checkmark"></span>
     </label>
-    <label class="container">Disable
+    <label class="container">Disabled
         <input type="radio" name="radio">
         <span class="checkmark"></span>
     </label>
-    <button class="button">Send</button>
+    <button class="button">Submit</button>
 
 </main>
 </body>

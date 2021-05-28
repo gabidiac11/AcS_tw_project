@@ -1,1 +1,9 @@
 body{background-color: #8387d4;}
+
+#pict {
+    background-image: url("../../assets/images/mmode.png");
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+    object-position: bottom;
+}

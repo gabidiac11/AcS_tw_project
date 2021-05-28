@@ -10,6 +10,6 @@ class maintenancemode extends Controller
 
     public function index()
     {
-        $this->loadView("maintenancemode", []);
+        $this->loadView("MaintenanceMode", []);
     }
 }

@@ -8,7 +8,8 @@ class Index extends Controller
         parent::__construct();
     }
 
-    public function index() {
-        $this->router->redirect('/about');
+    public function index()
+    {
+            $this->router->redirect('/about');
     }
 }

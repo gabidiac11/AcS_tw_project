@@ -8,7 +8,8 @@ class Maintenance extends Controller
         parent::__construct();
     }
 
-    public function index() {
-        $this->loadView("maintenance", []);
+    public function index()
+    {
+            $this->loadView("maintenance", []);
     }
 }

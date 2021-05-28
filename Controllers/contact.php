@@ -2,7 +2,6 @@
 
 class contact extends Controller
 {
-
     function __construct()
     {
         parent::__construct();
@@ -10,6 +9,6 @@ class contact extends Controller
 
     public function index()
     {
-        $this->loadView("Contact", []);
+            $this->loadView("Contact", []);
     }
 }
