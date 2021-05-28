@@ -49,7 +49,9 @@ class ChartModel extends Model
         $borderColor = ModelConstants::$BORDER_COLORS;
 
         foreach ($items as $item) {
-            $charts[$item['label']] = new ChartEntity(
+            $key = isset(ModelConstants::$SMAP[$item['label']]) ? ModelConstants::$SMAP[$item['label']] : $item['label'];
+
+            $charts[$key] = new ChartEntity(
                 ChartEntity::$CHART_TYPE_PIE,
                 //data
                 new ChartDataEntity(
@@ -134,13 +136,16 @@ class ChartModel extends Model
            $year = $results[$i]['year'];
 
            if($currentYear != $year) {
+               $currentYear = $year;
+               
                $items[$year] = [0,0,0,0,0,0,0,0,0,0,0,0];
 
                for($ii = $i; $ii < count($results); $ii++) {
                    $resultItem = $results[$ii];
+
                    $monthIndex = intval($resultItem['monthIndex']) - 1;
 
-                   if(isset($items[$year][$monthIndex])) {
+                   if($resultItem['year'] === $year && isset($items[$year][$monthIndex])) {
                        $items[$year][$monthIndex] = intval($resultItem['value']);
                    }
                }
@@ -176,11 +181,61 @@ class ChartModel extends Model
 
     }
 
+    private function listToCsv($list) {
+        $filename = __DIR__."/".uniqid(time())."-chart-file.csv";
+        $fp = fopen($filename, 'w');
+
+        foreach ($list as $fields) {
+            fputcsv($fp, $fields);
+        }
+        fclose($fp);
+
+        //Check the file exists or not
+        if(file_exists($filename)) {
+
+            //Define header information
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header("Cache-Control: no-cache, must-revalidate");
+            header("Expires: 0");
+            header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+            header('Content-Length: ' . filesize($filename));
+            header('Pragma: public');
+
+            //Clear system output buffer
+            flush();
+
+            //Read the size of the file
+            readfile($filename);
+
+            unlink($filename);
+        }
+    }
+
+    /**
+     * @param ChartEntity $chart
+     */
+    public function chartsToCsv(ChartEntity $chart) {
+            $list = [
+                array_merge(['Value'], $chart->data->labels)
+            ];
+    
+            foreach($chart->data->datasets as $dataset) {
+                $list[] = array_merge([$dataset->label],  $dataset->data);
+            }
+
+            $this->listToCsv($list);
+    }
+
     function getCharts() {
         return [
             'severityPerState' => $this->getSeverityPerState(),
             'casesPerState' => $this->getCasesPerState(),
             'timelineOfCases' => $this->getTimelineOfCases()
         ];
+    }
+
+    function getStateOptions() {
+        return array_map(function($item) {return $item;}, ModelConstants::$SMAP);
     }
 }

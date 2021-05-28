@@ -24,6 +24,9 @@
 
 
   <main class="flex-all flex-wrap">
+    <?php
+    //die(json_encode($BLOCK)); 
+    ?>
     <section class="main-section">
       <article class="main-section-title">
         <header>
@@ -33,6 +36,44 @@
         </header>
         <section>
           <?= $BLOCK['description'] ?>
+
+          <!-- DRAW SELECT NODE if chart page has a selection ***********************************************************-->
+          <!-- PHP  -->
+          <?php
+
+          if (isset($BLOCK['selection'])) {
+          ?>
+            <!-- PHP  END -->
+            <label for="select-type"><?= $BLOCK['selection']['label'] ?></label>
+            <select id="select-type" value="<?= $BLOCK['selection']['value'] ?>">
+
+
+              <!-- PHP -->
+              <?php
+              foreach ($BLOCK['selection']['options'] as $key => $value) {
+              ?>
+                <!-- PHP  END -->
+
+                <option <?= ($BLOCK['selection']['value'] === $value ? "selected" : "") ?>>
+                  <?= $value ?>
+                </option>
+
+
+                <!-- PHP -->
+              <?php
+              }
+              ?>
+              <!-- PHP  END -->
+
+            </select>
+
+            <!-- PHP -->
+          <?php
+          }
+          ?>
+          <!-- PHP END -->
+          <!-- DRAW SELECT NODE ****END ***********************************************************-->
+
         </section>
       </article>
 
@@ -41,6 +82,9 @@
         <div loader class="flex-all loader">
           <img class="loader-img" />
         </div>
+
+
+
       </div>
 
       </article>
@@ -61,32 +105,81 @@
       <section export-section>
         <h1>Export</h1>
         <ul>
-          <li class="rectangle"> <button> Csv </button> </li>
-          <li class="rectangle"> <button> Webp </button> </li>
-          <li class="rectangle"> <button> Svg </button> </li>
+          <li class="rectangle"> <button chart-export-btn export-type="Csv"> Csv </button> </li>
+          <li class="rectangle"> <button chart-export-btn export-type="Webp"> Webp </button> </li>
+          <li class="rectangle"> <button chart-export-btn export-type="Svg"> Svg </button> </li>
         </ul>
       </section>
     </aside>
   </main>
 
+  <script src="./../assets/packages/canvas2svg/canvas2svg.js"></script>
   <script src="./../assets/js/index.js"></script>
   <script src="./../assets/js/ui/ChartPage.js"></script>
 
-  <script>
-    (() => {
-      const eventHandler = () => {
-        window.chartPage = new ChartPage({
-          page: "<?= $BLOCK['page'] ?>",
-          sourcePathname: "<?= $BLOCK['sourcePathname'] ?>"
-        });
-      };
-      if (document.readyState !== "loading") {
-        eventHandler();
-      } else {
-        document.addEventListener("DOMContentLoaded", eventHandler);
-      }
-    })();
-  </script>
+
+  <?php
+  /**
+   * CHOOSE TO USE chart with selection
+   */
+  if (isset($BLOCK['selection'])) {
+  ?>
+
+    <!-- HTML  -->
+    <script>
+      (() => {
+        const eventHandler = () => {
+          window.chartPage = new ChartPageSelection({
+              page: "<?= $BLOCK['page'] ?>",
+              sourcePathname: "<?= $BLOCK['sourcePathname'] ?>",
+              selectedKey: "<?= $BLOCK['selection']['value'] ?>",
+            });
+
+          window.chartPage.init();
+        };
+        if (document.readyState !== "loading") {
+          eventHandler();
+        } else {
+          document.addEventListener("DOMContentLoaded", eventHandler);
+        }
+      })();
+    </script>
+    <!-- HTML  END-->
+
+
+  <?php
+  } else {
+
+    /**
+     * LOAD GENERAL CHART
+     */
+  ?>
+
+    <!-- HTML  -->
+    <script>
+      (() => {
+        const eventHandler = () => {
+          window.chartPage = new ChartPage({
+              page: "<?= $BLOCK['page'] ?>",
+              sourcePathname: "<?= $BLOCK['sourcePathname'] ?>"
+            });
+          
+          window.chartPage.init();
+        };
+        if (document.readyState !== "loading") {
+          eventHandler();
+        } else {
+          document.addEventListener("DOMContentLoaded", eventHandler);
+        }
+      })();
+    </script>
+    <!-- HTML  END-->
+
+  <?php
+  }
+
+  ?>
+
 </body>
 
 </html>

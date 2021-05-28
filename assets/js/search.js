@@ -1133,7 +1133,6 @@ class SearchPage {
         }
         return id;
       }, ""))}&limit=${this.searchContentInstance.paginationInstance.perPage}`;
-      console.log(link);
       window.open(link, '_blank');
     });
   }

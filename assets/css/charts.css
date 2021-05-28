@@ -1,5 +1,9 @@
+/**
+  make sure index.css is imported before this
+*/
+
 body {
-  background:  #2B2E4A;
+  background-color: var(--primary-blue);
   color: white;
   font-family: Bahnschrift;
 }
@@ -119,6 +123,10 @@ aside section[export-section] ul {
 
 aside section[export-section] li {
   padding: 5px;
+}
+
+select {
+  width: auto;
 }
 
 @media only screen and (max-width: 700px) {
