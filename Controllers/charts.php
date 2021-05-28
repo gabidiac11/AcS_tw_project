@@ -55,7 +55,7 @@ class Charts extends Controller
             'sourcePathname' => '/charts/getSeverity', 
             'title' => $title, 
             'description' => "
-                <p> There are 4 scales of severity, starting from 1 to 5. </p>
+                <p> There are up to 4 units for the severity scale, starting from 1. </p>
                 <p> Use the select to choose to see the severity of cases overall or in a specific state you want to focus on. </p>
             ",
 
