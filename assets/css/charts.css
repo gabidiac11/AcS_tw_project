@@ -66,19 +66,19 @@ li {
   font-size: 30;
 }
 
-a:link{
+aside a:link{
   background-color: transparent;
   color:white;
   text-decoration: none;
   padding: 20px;
 }
-a:visited{
+aside a:visited{
   background-color: transparent;
   color: white;
   text-decoration: none;
 }
 
-a:hover{
+aside a:hover{
   background-color: transparent;
   
   text-decoration: underline;
