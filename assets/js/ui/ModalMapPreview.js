@@ -48,6 +48,7 @@ class ModalMapPreview {
       const container = document.getElementById('popup');
       const content = document.getElementById('popup-content');
       const closer = document.getElementById('popup-closer');
+      this.closer = closer;
 
       /**
        * Create an overlay to anchor the popup to the map.
@@ -64,7 +65,7 @@ class ModalMapPreview {
        * Add a click handler to hide the popup.
        * @return {boolean} Don't follow the href.
        */
-      closer.onclick = function () {
+      this.closer.onclick = function () {
         overlay.setPosition(undefined);
         closer.blur();
         return false;
@@ -130,7 +131,10 @@ class ModalMapPreview {
         if(name && this.layerObjectList[name]) {
           const item = this.layerObjectList[name];
 
-          content.innerHTML = `<div> <div>${item.date}<div> <div>${item.description}<div> </div>`
+          content.innerHTML = `<div> 
+                                <h5 style="margin:0;">${item.date} | ${item.address.city} | ${item.id} </h5> 
+                                <section style="font-size:14px; padding: 5px 0;" >${item.description}<section> 
+                               </div>`
           overlay.setPosition(evt.coordinate);
         }
 
@@ -281,6 +285,7 @@ class ModalMapPreview {
       .querySelector(this.SELECTORS.MODAL_CLOSE)
       .addEventListener("click", (event) => {
         this.hideModal();
+        this.closer && this.closer.click();
       });
 
     this.modalNode

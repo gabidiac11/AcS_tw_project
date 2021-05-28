@@ -70,7 +70,12 @@ class Charts extends Controller
 
     public function timeline()
     {
-        $this->loadView("Charts", ['page' => self::PAGE_TIMELINE, 'sourcePathname' => '/charts/getTimeline', 'title' => 'Cases', 'description' => 'Cases']);
+        $this->loadView("Charts", ['page' => self::PAGE_TIMELINE, 'sourcePathname' => '/charts/getTimeline', 
+        'title' => 'Timeline of cases per year', 
+        'description' => "
+            <p> Each line corresponds to an year. Hover on a desired month to see the number. Click on below rectangles to toggle the years. </p>
+        ",
+        ]);
     }
 
     public function getCases()

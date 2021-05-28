@@ -52,7 +52,7 @@
               ?>
                 <!-- PHP  END -->
 
-                <option <?= ($BLOCK['selection']['value'] === $value ? "selected" : "") ?>>
+                <option value="<?=($value)?>" <?= ($BLOCK['selection']['value'] === $value ? "selected" : "") ?>>
                   <?= $value ?>
                 </option>
 

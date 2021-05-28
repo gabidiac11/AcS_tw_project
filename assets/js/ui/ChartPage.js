@@ -76,7 +76,7 @@ class ChartPage {
     this.onResponse = (chartPayload) => {
       this.chartPayload = chartPayload;
       this.render();
-    }
+    };
 
     this.init = () => {
       this.setIsFetching(true);
@@ -101,27 +101,27 @@ class ChartPage {
     /**
      * give the body background color to the canvas
      * https://stackoverflow.com/questions/50104437/set-background-color-to-save-canvas-chart
-     * @param {*} canvas 
+     * @param {*} canvas
      */
     this.fillCanvasBackground = (canvas, color) => {
       // Get the 2D drawing context from the provided canvas.
-      const context = canvas.getContext('2d');
+      const context = canvas.getContext("2d");
       context.save();
-      context.globalCompositeOperation = 'destination-over';
-    
+      context.globalCompositeOperation = "destination-over";
+
       context.fillStyle = color;
       context.fillRect(0, 0, canvas.width, canvas.height);
 
       context.restore();
-    }
+    };
 
     this.prepareCanvasForExport = () => {
       this.fillCanvasBackground(this.canvasNode, "#2b2e4a");
-    }
+    };
 
     this.exportCsv = () => {
       const link = `${window.BASE_URL}charts/exportCsv?page=${this.page}`;
-      window.open(link, '_blank');
+      window.open(link, "_blank");
     };
 
     this.exportWebp = () => {
@@ -169,7 +169,7 @@ class ChartPage {
 }
 
 /**
- * chart data based on a select 
+ * chart data based on a select
  * when something is selected the url receives the value in GET and the page is refreshed to apply the selection
  */
 class ChartPageSelection extends ChartPage {
@@ -177,7 +177,7 @@ class ChartPageSelection extends ChartPage {
     super(props);
     this.selectedKey = props.selectedKey;
     this.selectorsChild = {
-       select: `#select-type`
+      select: `#select-type`,
     };
 
     this.selectNode = document.querySelector(this.selectorsChild.select);
@@ -191,26 +191,45 @@ class ChartPageSelection extends ChartPage {
       this.selectNode.style.display = "";
     };
 
-    this.onResponse = (chartPayload) => {
-      console.log(this.selectedKey)
-      if(chartPayload[this.selectedKey]) {
-        this.chartPayload = chartPayload[this.selectedKey];
-      } else {
-        this.selectedKey = 'Overall';
+    this.filterOutNodeOptions = (allResults) => {
+      Array.prototype.forEach.call(
+        this.selectNode.querySelectorAll("option"),
+        (optionNode) => {
+          if (
+            Object.entries(allResults).every(
+              ([key, value]) => key !== optionNode.getAttribute("value")
+            )
+          ) {
+            this.selectNode.removeChild(optionNode);
+          }
+        }
+      );
+    };
 
-        this.chartPayload = chartPayload['Overall'];
+    this.onResponse = (allResults) => {
+      if (allResults[this.selectedKey]) {
+        this.chartPayload = allResults[this.selectedKey];
+      } else {
+        this.selectedKey = "Overall";
+
+        this.chartPayload = allResults["Overall"];
       }
+
+      this.filterOutNodeOptions(allResults);
+
       this.render();
-    }
+    };
 
     this.exportCsv = () => {
       const link = `${window.BASE_URL}charts/exportCsv?page=${this.page}&s=${this.selectedKey}`;
-      window.open(link, '_blank');
+      window.open(link, "_blank");
     };
 
     this.selectNode.addEventListener("change", () => {
       this.selectedKey = this.selectNode.value;
-      window.location.replace(`${window.location.origin}${window.location.pathname}?s=${this.selectedKey}`);
+      window.location.replace(
+        `${window.location.origin}${window.location.pathname}?s=${this.selectedKey}`
+      );
     });
   }
 }

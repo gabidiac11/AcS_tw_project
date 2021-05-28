@@ -26,13 +26,17 @@
   ?>
   <main class="flex-all" page-width>
     <div class="page-wrapper page-content-search flex-all" style="align-items: flex-start; flex-wrap:wrap;">
+      
       <div class="flex-start top-search">
+        <!-- SEARCH INPUT AND BUTTONS -->
         <div id="search-results" class="search-bar-container">
           <button class="flex-all icon-c cursor-pointer search-icon-cont" search-btn><?= displaySvg("search-line") ?></button>
           <input disabled value="" placeholder="Search by description or id" />
           <button class="flex-all icon-c cursor-pointer filter-ic-cont" filter-btn active="true"><?= displaySvg("filter-line") ?></button>
           <button class="flex-all icon-c cursor-pointer x-ic-cont" delete-btn><?= displaySvg("close-line") ?></button>
         </div>
+
+        <!-- SORT SELECT -->
         <div class="flex-all sort-select">
           <select disabled id="sort-select">
             <option selected value="default">Sort By</option>
@@ -50,9 +54,10 @@
             <option value="PRECIPITATION"> PRECIPITATION </option>
             <option value="WIND_DIRECTION"> WIND DIRECTION </option>
             <option value="WEATHER_CONDITION"> WEATHER CONDITION </option>
-
           </select>
         </div>
+
+        <!-- RIGHT SIDE BUTTONS -->
         <button class="btn-primary" id="export-btn">
           Export CSV
         </button>
@@ -61,18 +66,19 @@
         </button>
       </div>
 
-
       <div id="search-filters" class="filters-c">
         <div style="display: none;" class="filters-applied"></div>
         <div id="filter-edit-c" class="generic-box-shadow">
+
+          <!-- FILTER BUTTONS APPLY/CANCEL -->
           <div class="flex-all" btn-bottom-panel>
             <button btn-cancel class="btn-secondary">Cancel</button>
             <button btn-confirm class="btn-primary">Apply</button>
           </div>
 
+          <!-- CONTAINER NODE FOR FILTERS - where filters are appended -->
           <div filters-append>
           </div>
-
         </div>
       </div>
 
@@ -80,8 +86,9 @@
         <div class="list-content" list-container style="display: none" more-than-one-result="false">
           <?php
           for ($index = 0; $index < 50; $index++) {
-          ?>
+            ?>
 
+            <!-- DRAW HIDDEN NODES OF A GENERIC RESULTS (these are to be populated based on a JS object) -->
             <div list-item style="display: none" class="list-item box-shadow-re-use">
               <div> <span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
               <div> Severity: <span item-severity> III</span></div> <!-- Severity -->
@@ -127,16 +134,14 @@
           ?>
 
           <div empty-indicator>No items found.</div>
-
-
         </div>
 
-
-
+        <!-- LIST LOADER -->
         <div list-loader class="flex-all loader" style="display: flex; height: calc(100vh - 235px);">
           <img class="loader-img" />
         </div>
 
+          <!-- PAGINATION -->
         <div class="pagination" pagination-content>
           <div class="pagination-inner">
             <button disabled class="pagination-btn" pagination-prev>
@@ -166,6 +171,7 @@
           </div>
 
         </div>
+        
       </div>
     </div>
   </main>
@@ -198,10 +204,13 @@
         <div id="map2" class="generic-map"></div>
       </div>
       <div class="modal-bottom">
+        <p>The dots represent the results from the page, and are colored based on severity. Click on a dot to see information about the accident.</p>
         <button modal-export-svg class="btn-primary">Export SVG</button>
         <button modal-export-webp class="btn-primary">Export WEBP</button>
         <button modal-close class="btn-secondary">Close</button>
       </div>
+      
+      <!-- POPUP THAT IS SHOWN AT A GIVEN DOT -->
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
         <div id="popup-content"></div>

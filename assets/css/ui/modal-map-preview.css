@@ -8,7 +8,10 @@
   justify-content: center;
 }
 
-
+#modal-map p {
+  font-size: 18px;
+  padding: 10px;
+}
 
 .ol-popup {
   position: absolute;
