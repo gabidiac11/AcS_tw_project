@@ -10,7 +10,7 @@ class Charts extends Controller
     /**
      * @var ChartModel
      */
-    private $chartModel;
+    private $chartModel;  
 
     function __construct()
     {
