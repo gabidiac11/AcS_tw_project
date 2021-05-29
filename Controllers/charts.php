@@ -109,7 +109,7 @@ class Charts extends Controller
             isset($chartPerState[$_GET['s']])
         ) {
             $value = $_GET['s'];
-        }
+        }   
 
         $this->chartModel->chartsToCsv($chartPerState[$value]);
     }
