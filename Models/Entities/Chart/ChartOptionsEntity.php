@@ -2,6 +2,11 @@
 
 require_once __DIR__ . "/ChartOptionScalesEntity.php";
 
+/**
+ * Class ChartOptionsEntity
+ *
+ * @OA\Schema(schema="ChartOptionsEntity")
+ */
 class ChartOptionsEntity
 {
     /**
@@ -10,6 +15,11 @@ class ChartOptionsEntity
     public $scales;
 
     /**
+     * @OA\Property(
+     *     description="ChartOptionScalesEntity (nullable)",
+     *     title="ChartOptionScalesEntity",
+     *     ref="#/components/schemas/ChartOptionScalesEntity"
+     * )
      * ChartOptionsEntity constructor.
      * @param ChartOptionScalesEntity|null $scales
      */

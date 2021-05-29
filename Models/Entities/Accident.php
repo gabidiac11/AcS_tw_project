@@ -3,6 +3,11 @@ require_once __DIR__ . '/Address.php';
 require_once __DIR__ . '/Weather.php';
 require_once __DIR__ . '/AccidentCircumstance.php';
 
+/**
+ * Class Accident
+ *
+ * @OA\Schema(schema="Accident")
+ */
 class Accident
 {
 
@@ -24,58 +29,121 @@ class Accident
     ];
 
     /**
+     * @OA\Property(
+     *     description="Unique identifier",
+     *     title="uniqueId",
+     *     format="int"
+     * )
      * @var int
      */
     public $uniqueId;
 
     /**
+     * @OA\Property(
+     *     description="Dataset Assigned ID",
+     *     title="id"
+     * )
      * @var string
      */
     public $id;
 
     /**
+     * @OA\Property(
+     *     description="There are up to 4 units for the severity scale, starting from 1.",
+     *     title="severity",
+     *     format="int"
+     * )
      * @var int
      */
     public $severity;
 
     /**
+     * @OA\Property(
+     *     description="Timestamp",
+     *     title="Time",
+     *     format="float"
+     * )
      * @var float
      */
     public $time;
 
     /**
+     * @OA\Property(
+     *     description="Date of the accident",
+     *     title="date"
+     * )
      * @var string
      */
     public $date;
 
     /**
+     * @OA\Property(
+     *     description="Latitude",
+     *     title="Latitude",
+     *     format="float"
+     * )
      * @var float
      */
     public $lat;
 
     /**
+     * @OA\Property(
+     *     description="Longitude",
+     *     title="Longitude",
+     *     format="float"
+     * )
      * @var float
      */
     public $long;
 
     /**
+     * @OA\Property(
+     *     description="Distance on which the car has drove while the accident was happening",
+     *     title="Distance",
+     *     format="float"
+     * )
      * @var float
      */
     public $distance;
 
+    /**
+     * @OA\Property(
+     *     description="A short description detailing the circumstances",
+     *     title="Description"
+     * )
+     * @var string
+     */
     public $description;
 
     /**
+     * @OA\Property(
+     *     description="address details",
+     *     title="address",
+     *     ref="#/components/schemas/Address"
+     * )
+     * 
      * @var Address
      */
     public $address;
 
     /**
+     * @OA\Property(
+     *     description="Weather details",
+     *     title="Weather",
+     *     ref="#/components/schemas/Weather"
+     * )
+     * 
      * @var Weather
      */
     public $weather;
 
     /**
+     * @OA\Property(
+     *     description="Accident Circumstance details",
+     *     title="Accident Circumstance",
+     *     ref="#/components/schemas/AccidentCircumstance"
+     * )
+     * 
      * @var AccidentCircumstance
      */
     public $accidentCircumstance;

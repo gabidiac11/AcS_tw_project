@@ -1,13 +1,28 @@
 <?php
 
+/**
+ * Class ChartOptionBoundary
+ *
+ * @OA\Schema(schema="ChartOptionBoundary")
+ */
 class ChartOptionBoundary
 {
     /**
+     * @OA\Property(
+     *     description="min",
+     *     title="min",
+     *     format="int"
+     * )
      * @var int
      */
     public $min;
 
     /**
+     * @OA\Property(
+     *     description="max",
+     *     title="max",
+     *     format="int"
+     * )
      * @var int
      */
     public $max;

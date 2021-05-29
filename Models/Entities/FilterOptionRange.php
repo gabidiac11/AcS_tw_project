@@ -3,14 +3,29 @@
 require_once __DIR__."/FilterOption.php";
 require_once __DIR__."/FilterOptionNumeric.php";
 
+/**
+ * Class FilterOptionRange
+ *
+ * @OA\Schema(schema="FilterOptionRange")
+ */
 class FilterOptionRange extends FilterOptionNumeric
 {
     /**
+     * @OA\Property(
+     *     description="min",
+     *     title="min",
+     *     format="float"
+     * )
      * @var float
      */
     public $min;
 
     /**
+     * @OA\Property(
+     *     description="min",
+     *     title="max",
+     *     format="float"
+     * )
      * @var float
      */
     public $max;

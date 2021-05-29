@@ -28,11 +28,12 @@ class Charts extends Controller
     public function cases()
     {
         $this->loadView("Charts", [
-            'page' => self::PAGE_CASES, 'sourcePathname' => '/charts/getCases', 'title' => 'Number of casses per state',
+            'page' => self::PAGE_CASES,
+            'title' => 'Number of casses per state',
 
             'description' => '
-            <p> Each slice represents a proportion of tracked data of casses that happened in a certain state. Hover to see have a better look.</p>
-            <p> Remove states from the calculation by clicking on of the rectancles.</p>
+                <p> Each slice represents a proportion of tracked data of casses that happened in a certain state. Hover to see have a better look.</p>
+                <p> Remove states from the calculation by clicking on of the rectancles.</p>
         '
         ]);
     }
@@ -45,15 +46,15 @@ class Charts extends Controller
         //first is always 'Overall'
         $title = "Severity overall";
         $value = $options['Overall'];
-        if(isset($_GET['s']) && in_array($_GET['s'], $options)) {
-            $title = "Severity in the state of ".$_GET['s'];
+        if (isset($_GET['s']) && in_array($_GET['s'], $options)) {
+            $title = "Severity in the state of " . $_GET['s'];
             $value = $_GET['s'];
         }
 
         $this->loadView("Charts", [
-            'page' =>  self::PAGE_SEVERITY, 
-            'sourcePathname' => '/charts/getSeverity', 
-            'title' => $title, 
+            'page' =>  self::PAGE_SEVERITY,
+
+            'title' => $title,
             'description' => "
                 <p> There are up to 4 units for the severity scale, starting from 1. </p>
                 <p> Use the select to choose to see the severity of cases overall or in a specific state you want to focus on. </p>
@@ -70,46 +71,80 @@ class Charts extends Controller
 
     public function timeline()
     {
-        $this->loadView("Charts", ['page' => self::PAGE_TIMELINE, 'sourcePathname' => '/charts/getTimeline', 
-        'title' => 'Timeline of cases per year', 
-        'description' => "
+        $this->loadView("Charts", [
+            'page' => self::PAGE_TIMELINE,
+            'title' => 'Timeline of cases per year',
+            'description' => "
             <p> Each line corresponds to an year. Hover on a desired month to see the number. Click on below rectangles to toggle the years. </p>
         ",
         ]);
     }
 
-    public function getCases()
+
+    /**
+     * @OA\Get(
+     *     path="/charts/getChart",
+     *     tags={"charts"},
+     *     summary="Get chart data",
+     *     description="Returns an object ready to be used for drawing a certain type of chart in the frontend",
+     *     operationId="getChart",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/ChartEntity")
+     *      ),
+     *      @OA\Parameter(
+     *       name="page",
+     *       description="The page key. Each type of map is displayed on a certain page",
+     *       required=true,
+     *       type="string",
+     *       in="query",
+     *       @OA\Examples(example="cases", value="cases", summary="Cases per state."),
+     *       @OA\Examples(example="timeline", value="timeline", summary="Timeline (a dataset foreach tracked year).")
+     *     )
+     * )
+     */
+    public function getChart()
     {
-        echo json_encode($this->chartModel->getCasesPerState());
+        if (!isset($_GET['page'])) {
+            $this->chartModel->badResponse(['message' => 'Bad request']);
+        }
+
+        switch ($_GET['page']) {
+            case self::PAGE_CASES:
+                echo json_encode($this->chartModel->getCasesPerState());
+                break;
+
+            case self::PAGE_SEVERITY:
+                echo json_encode($this->chartModel->getSeverityPerState());
+                break;
+
+            case self::PAGE_TIMELINE:
+                echo json_encode($this->chartModel->getTimelineOfCases());
+                break;
+
+            default:
+                $this->chartModel->badResponse(['message' => 'Bad request']);
+        }
     }
 
-    public function getSeverity()
+    /** EXPORT CSV FUNCTIONS */
+    private function getCasesCsv()
     {
-        echo json_encode($this->chartModel->getSeverityPerState());
-    }
-
-    public function getTimeline()
-    {
-        echo json_encode($this->chartModel->getTimelineOfCases());
-    }
-
-    
-    /** EXPORT SVG FUNCTIONS */
-    private function getCasesCsv() {
         $this->chartModel->chartsToCsv($this->chartModel->getCasesPerState());
     }
 
     public function getSeverityCsv()
     {
         $chartPerState = $this->chartModel->getSeverityPerState();
-        
+
         $value = 'Overall';
-        if(
-            isset($_GET['s']) && 
+        if (
+            isset($_GET['s']) &&
             isset($chartPerState[$_GET['s']])
         ) {
             $value = $_GET['s'];
-        }   
+        }
 
         $this->chartModel->chartsToCsv($chartPerState[$value]);
     }
@@ -119,7 +154,7 @@ class Charts extends Controller
         $this->chartModel->chartsToCsv($this->chartModel->getTimelineOfCases());
     }
 
-    /** api */
+
     public function exportCsv()
     {
         $page = isset($_GET['page']) ? $_GET['page'] : "";
@@ -134,7 +169,6 @@ class Charts extends Controller
 
             default:
                 $this->getCasesCsv();
-                
         }
     }
 }

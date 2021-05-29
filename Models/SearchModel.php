@@ -31,7 +31,7 @@ class SearchModel extends Model
      */
     private function validateFilterJson($jsonFilter) : array {
         if(!is_array($jsonFilter)) {
-            return ['message' => "Bad filter data: ".json_decode($jsonFilter)];
+            return ['message' => "Bad filter data: ".json_encode($jsonFilter), 'p' => $_POST];
         }
 
         foreach ($jsonFilter as $index => $item) {
@@ -89,6 +89,7 @@ class SearchModel extends Model
 
         /** safely integrate the sort by value in the query (allow only known columns to slip by) */
         $sortBy = "";
+        //avoid injections
         if(isset($_GET['sortBy']) && isset(Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']])) {
             $column = Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']];
             $sortBy = " ORDER BY $column";
@@ -98,7 +99,10 @@ class SearchModel extends Model
             if(trim($conditionQuery) != "") {
                 $conditionQuery .= " AND ";
             } 
+
+            //escape injection
             $search = $this->db->escape(strtoupper($_GET['search']));
+
             $conditionQuery .= " UPPER(Description) like '$search%' OR UPPER(ID) like '$search%' ";
         }
 
@@ -108,12 +112,12 @@ class SearchModel extends Model
 
         $page = 1;
         if(isset($_GET['page']) && is_numeric($_GET['page'])) {
-            $page = intval($_GET['page']);
+            $page = intval($_GET['page']); //avoid injection
         }
 
         $perPage = 20;
         if(isset($_GET['perPage']) && is_numeric($_GET['perPage'])) {
-            $perPage = intval($_GET['perPage']);
+            $perPage = intval($_GET['perPage']);//avoid injection
         }
 
         $offset = $perPage * ($page - 1);
@@ -126,12 +130,13 @@ class SearchModel extends Model
 
         /** calculate pagination props */
         $numOfResults = intval($this->db->select("SELECT COUNT(*) as numOfResults FROM accidents WHERE $conditionQuery")[0]['numOfResults']);
-        $pageMin = 1;
         $pageMax = ceil($numOfResults / $perPage);
 
         return [
+            //debug:
             'query' => $query,
-            'filterApplied' => $filters,
+            // 'filterApplied' => $filters,
+            
             'results' => $results,
             'numberOfResults' => $numOfResults,
             'page' => $page,

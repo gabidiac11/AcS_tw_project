@@ -1,24 +1,46 @@
 <?php
 
+/**
+ * Class FilterOption
+ *
+ * @OA\Schema(schema="FilterOption", required={"name"})
+ */
 class FilterOption
 {
+    
     /**
+     * @OA\Property(
+     *     description="label",
+     *     title="label"
+     * )
      * @var string
      */
     public $label;
+    
     /**
+     * @OA\Property(
+     *     description="value",
+     *     title="value"
+     * )
      * @var string
      */
     public $value;
+    
     /**
+     * @OA\Property(
+     *     description="key",
+     *     title="key"
+     * )
      * @var string
      */
     public $key;
 
+    
     /**
+     * the db column bind to this filter
      * @var string
      */
-    public $bind = "";
+    private $bind = "";
 
     /**
      * FilterOption constructor.

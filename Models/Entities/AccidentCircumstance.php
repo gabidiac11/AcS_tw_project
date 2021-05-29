@@ -1,55 +1,139 @@
 <?php
+
+/**
+ * Class AccidentCircumstance
+ *
+* @OA\Schema(schema="AccidentCircumstance", required={"name"})
+*/
 class AccidentCircumstance
 {
+    
     /**
+     * @OA\Property(
+     *     description="The feature of the accident site",
+     *     title="amenity",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $amenity;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a crush",
+     *     title="bump",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $bump;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a crossing",
+     *     title="crossing",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $crossing;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a giveAway",
+     *     title="giveAway",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $giveAway;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a junction",
+     *     title="junction",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $junction;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a noExit",
+     *     title="noExit",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $noExit;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a railWay",
+     *     title="railWay",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $railWay;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a roundAbout",
+     *     title="roundAbout",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $roundAbout;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a station",
+     *     title="station",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $station;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a stop",
+     *     title="stop",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $stop;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a trafficCalmin",
+     *     title="trafficCalmin",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $trafficCalming;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a trafficSignal",
+     *     title="trafficSignal",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $trafficSignal;
+    
     /**
+     * @OA\Property(
+     *     description="The accident implies a trafficLoop",
+     *     title="trafficLoop",
+     *     format="boolean"
+     * )
      * @var boolean
      */
     public $trafficLoop;

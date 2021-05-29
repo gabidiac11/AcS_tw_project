@@ -43,7 +43,6 @@ const defaultChartData = {
 class ChartPage {
   constructor(props) {
     this.page = props.page;
-    this.sourcePathname = props.sourcePathname;
 
     this.selectors = {
       container: `#chart-wrapper`,
@@ -81,7 +80,7 @@ class ChartPage {
     this.init = () => {
       this.setIsFetching(true);
 
-      return fetch(`${window.BASE_URL}${this.sourcePathname}`)
+      return fetch(`${window.BASE_URL}charts/getChart?page=${this.page}`)
         .then((response) => {
           if (response.ok) {
             return response.json();

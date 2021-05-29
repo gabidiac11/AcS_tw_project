@@ -2,9 +2,20 @@
 
 require_once __DIR__."/FilterOption.php";
 
+/**
+ * Class FilterOptionNumeric
+ *
+ * @OA\Schema(schema="FilterOptionNumeric")
+ */
 class FilterOptionNumeric extends FilterOption
 {
     /**
+     * @OA\Property(
+     *     description="value",
+     *     title="value",
+     *     format="float"
+     * )
+     * 
      * @var float
      */
     public $value;

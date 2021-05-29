@@ -2,9 +2,19 @@
 
 require_once __DIR__."/FilterOption.php";
 
+/**
+ * Class FilterOptionBoolean
+ *
+ * @OA\Schema(schema="FilterOptionBoolean")
+ */
 class FilterOptionBoolean extends FilterOption
 {
     /**
+     * @OA\Property(
+     *     description="value",
+     *     title="value",
+     *     format="boolean"
+     * )
      * @var bool
      */
     public $value;

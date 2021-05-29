@@ -13,7 +13,7 @@ class Controller extends App
     {
         parent::__construct();
 
-        $this->postData = json_decode(file_get_contents("php://input"), true);
+        $this->postData = count($_POST) > 0 ? $_POST : json_decode(file_get_contents("php://input"), true);
         $this->contModel = $this->loadModel('MaintenanceQuery');
     }
 

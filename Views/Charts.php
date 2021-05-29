@@ -129,7 +129,6 @@
         const eventHandler = () => {
           window.chartPage = new ChartPageSelection({
               page: "<?= $BLOCK['page'] ?>",
-              sourcePathname: "<?= $BLOCK['sourcePathname'] ?>",
               selectedKey: "<?= $BLOCK['selection']['value'] ?>",
             });
 
@@ -158,8 +157,7 @@
       (() => {
         const eventHandler = () => {
           window.chartPage = new ChartPage({
-              page: "<?= $BLOCK['page'] ?>",
-              sourcePathname: "<?= $BLOCK['sourcePathname'] ?>"
+              page: "<?= $BLOCK['page'] ?>"
             });
           
           window.chartPage.init();

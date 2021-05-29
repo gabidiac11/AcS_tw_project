@@ -6,6 +6,11 @@ require_once __DIR__ . "/FilterOptionNumeric.php";
 require_once __DIR__."/FilterOptionBoolean.php";
 require_once __DIR__."/FilterOptionBooleanColumn.php";
 
+/**
+ * Class Filter
+ *
+ * @OA\Schema(schema="Filter")
+ */
 class Filter
 {
     public static $filterSeverity = "SEVERITY";
@@ -30,6 +35,7 @@ class Filter
     private static $bindColumn = null;
     private static $db = null;
 
+    /** get the column to fetch values from (use: to make a list of unique values to be checked for a filter to work) */
     private static function getBindToColumn() : array {
         if(!Filter::$bindColumn) {
             Filter::$bindColumn = [
@@ -43,28 +49,10 @@ class Filter
         return Filter::$bindColumn;
     }
 
-    private static function getFilterKeys():array {
-        return [
-            Filter::$filterSeverity,
-            Filter::$filterTime,
-            Filter::$filterLocation,
-            Filter::$filterDistance,
-            Filter::$filterState,
-            Filter::$filterTemperature,
-            Filter::$filterWindChill,
-            Filter::$filterHumidity,
-            Filter::$filterPressure,
-            Filter::$filterVisibility,
-            Filter::$filterWindDirection,
-            Filter::$filterWindSpeed,
-            Filter::$filterPrecipitation,
-            Filter::$filterWeatherCondition,
-            Filter::$filterCircumstance,
-            Filter::$filterAstrologicalTwilight
-        ];
-    }
-
-
+    /**
+     * method for creating a filter instances, using prepared data
+     * some of the filters are further processed from their initial state (may need data from database) other are ready
+     */
     private static function getDefaultOptions() : array {
         if(Filter::$defaultFilters == null) {
             Filter::$defaultFilters = [
@@ -239,16 +227,31 @@ class Filter
     }
 
     /**
+     * @OA\Property(
+     *     description="filterKey",
+     *     title="filterKey",
+     *     enum={"STATE", "LOCATION", "SEVERITY", "TIME", "DISTANCE", "TEMPERATURE", "WIND_CHILL", "HUMIDITY", "PRESSURE", "VISIBILITY", "WIND_SPEED", "PRECIPITATION", "WIND_DIRECTION", "WEATHER_CONDITION", "CIRCUMSTANCE", "ASTRO-TWILIGHT"}
+     * )
      * @var string
      */
     public $filterKey;
 
     /**
+     * @OA\Property(
+     *     description="title",
+     *     title="title"
+     * )
      * @var string
      */
     public $title;
 
     /**
+     * @OA\Property(
+     *     description="Available options to get selected",
+     *     title="availableOptions",
+     *     type="array", 
+     *     @OA\Items(ref="#/components/schemas/FilterOption")
+     * )
      * @var FilterOption[]
      */
     public $availableOptions;
@@ -259,7 +262,13 @@ class Filter
     private $bind;
 
     /**
-     * @var string - relevant for the FRONTEND
+     * @OA\Property(
+     *     default="checkbox-list",
+     *     title="Selection Type",
+     *     description="Manner of how filters are to be selected",
+     *     enum={"date_range", "checkbox-list", "checkbox-button-list"}
+     * )
+     * @var string
      */
     public $selectionType;
 
@@ -277,10 +286,13 @@ class Filter
     }
 
     /**
+     * some filter types need to fetch data from database to work (checkboxes types)
      * @param $defaultOptions
      * @return array
      */
     private function setupAvailableOptions($defaultOptions) : array {
+
+        /** @returns - special type of filter: cirmstance has a checkbox item is bind to a column */
         if(Filter::$filterCircumstance === $this->filterKey) {
             return array_map(function($item) {
                 $filterOption = new FilterOptionBooleanColumn($item['label'], false, $this->filterKey);
@@ -303,6 +315,7 @@ class Filter
             ]);
         }
 
+        /** @returns - general checkbox filter: the filter itself is bind to a column; a checkbox is a unique value of the column  */
         $bindToColumn = Filter::getBindToColumn();
         if(isset($bindToColumn[$this->filterKey])) {
             $data = $bindToColumn[$this->filterKey];
@@ -321,6 +334,7 @@ class Filter
             ));
         }
 
+        /** compute other than above filters */
         foreach ($defaultOptions as $option) {
             $option->setBind($this->bind);
         }
@@ -330,9 +344,9 @@ class Filter
 
 
     /**
-     * matches a json filter from the client and applies its properties
-     * (this array must be validated before calling this method)
-     * @param $jsonFilters
+     * match and update Server generated filters with the client data
+     *  
+     * @param $jsonFilters - filter values from the client
      */
     public function searchAndApplyJson($jsonFilters) {
         $match = array_values(array_filter($jsonFilters, function($item) {
@@ -344,7 +358,9 @@ class Filter
            foreach ($this->availableOptions as $option) {
                foreach ($match['availableOptions'] as $optionJson) {
                    if($optionJson['key'] === $option->key) {
-                       $option->setValue($optionJson['value']);
+                       $option->setValue(
+                        //avoid injection   
+                        Filter::$db->escape($optionJson['value']));
                        break;
                    }
                }

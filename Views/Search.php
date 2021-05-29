@@ -98,7 +98,7 @@
 
               <!-- weather stats -->
               <ul>
-                <li>Weather Condition: <span item-weather-condition>Ligh Rain</span>'</li>
+                <li>Weather Condition: <span item-weather-condition>Ligh Rain</span></li>
                 <li>Temperature(F): <span item-temperature>36.9</span>;</li>
                 <li>Humidity(%): <span item-humidity>91</span>;</li>
                 <li>Visibility(mi): <span item-visibility>10</span>;</li>

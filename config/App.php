@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/router/Router.php';
 
+/**
+ * Class App
+ */
 class App
 {
     public $router;

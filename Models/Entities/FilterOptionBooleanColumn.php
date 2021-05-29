@@ -2,6 +2,11 @@
 
 require_once __DIR__."/FilterOption.php";
 
+/**
+ * Class FilterOptionBoolean
+ *
+ * @OA\Schema(schema="FilterOptionBoolean")
+ */
 class FilterOptionBooleanColumn extends FilterOptionBoolean
 {
     /**

@@ -1,5 +1,46 @@
 <?php
 
+/**
+ * @license Apache 2.0
+ */
+
+/**
+ * @OA\Info(
+ *     description="",
+ *     version="1.0.0",
+ *     title="Swagger USA Accidents Smart Visualizer",
+ *     termsOfService="http://swagger.io/terms/",
+ *     @OA\Contact(
+ *         email="apiteam@swagger.io"
+ *     ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
+ * )
+ */
+/**
+ * @OA\Tag(
+ *     name="search",
+ *     description="Search accidents",
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="/search"
+ *     )
+ * )
+ * 
+ * @OA\Tag(
+ *     name="charts",
+ *     description="Charts data by which the canvas it's drawned",
+ * @OA\ExternalDocumentation(
+ *         description="Find out more",
+ *         url="/charts"
+ *     )
+ * )
+ */
+
+
+
 define("DELOPMENT", "TRUE");
 
 if (DELOPMENT === "TRUE") {

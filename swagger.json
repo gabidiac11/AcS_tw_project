@@ -1,0 +1,768 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger USA Accidents Smart Visualizer",
+        "description": "",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/search/filters": {
+            "get": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Returns the available filters",
+                "description": "Returns the available filters that are modified by the frontend and sent back for filtered searching (a part of them)",
+                "operationId": "filters",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "filters": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Filter"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/results": {
+            "post": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Returns a filtered and sorted (optional) list of accidents",
+                "description": "Returns a array of accident entities",
+                "operationId": "results",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "A string value by which to filter the accident description and ID",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "int"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Results per page",
+                        "required": false,
+                        "type": "int"
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Field to sort by (ascendent) a one of the fields",
+                        "required": false,
+                        "enum": [
+                            "STATE",
+                            "LOCATION",
+                            "SEVERITY",
+                            "TIME",
+                            "DISTANCE",
+                            "TEMPERATURE",
+                            "WIND_CHILL",
+                            "HUMIDITY",
+                            "PRESSURE",
+                            "VISIBILITY",
+                            "WIND_SPEED",
+                            "PRECIPITATION",
+                            "WIND_DIRECTION",
+                            "WEATHER_CONDITION"
+                        ],
+                        "type": "string"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "filters": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Filter"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid filter data"
+                    }
+                }
+            }
+        },
+        "/charts/getChart": {
+            "get": {
+                "tags": [
+                    "charts"
+                ],
+                "summary": "Get chart data",
+                "description": "Returns an object ready to be used for drawing a certain type of chart in the frontend",
+                "operationId": "getChart",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page key. Each type of map is displayed on a certain page",
+                        "required": true,
+                        "examples": {
+                            "cases": {
+                                "summary": "Cases per state.",
+                                "value": "cases"
+                            },
+                            "timeline": {
+                                "summary": "Timeline (a dataset foreach tracked year).",
+                                "value": "timeline"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartEntity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResultsResponse": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "numberOfResults": {
+                                "type": "integer"
+                            },
+                            "page": {
+                                "type": "integer"
+                            },
+                            "pageMax": {
+                                "type": "integer"
+                            },
+                            "perPage": {
+                                "type": "integer"
+                            },
+                            "results": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Accident"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Accident": {
+                "description": "Class Accident",
+                "properties": {
+                    "uniqueId": {
+                        "title": "uniqueId",
+                        "description": "Unique identifier",
+                        "type": "integer",
+                        "format": "int"
+                    },
+                    "id": {
+                        "title": "id",
+                        "description": "Dataset Assigned ID",
+                        "type": "string"
+                    },
+                    "severity": {
+                        "title": "severity",
+                        "description": "There are up to 4 units for the severity scale, starting from 1.",
+                        "type": "integer",
+                        "format": "int"
+                    },
+                    "time": {
+                        "title": "Time",
+                        "description": "Timestamp",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "Date of the accident",
+                        "type": "string"
+                    },
+                    "lat": {
+                        "title": "Latitude",
+                        "description": "Latitude",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "long": {
+                        "title": "Longitude",
+                        "description": "Longitude",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "distance": {
+                        "title": "Distance",
+                        "description": "Distance on which the car has drove while the accident was happening",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "description": "A short description detailing the circumstances",
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "weather": {
+                        "$ref": "#/components/schemas/Weather"
+                    },
+                    "accidentCircumstance": {
+                        "$ref": "#/components/schemas/AccidentCircumstance"
+                    }
+                },
+                "type": "object"
+            },
+            "AccidentCircumstance": {
+                "description": "Class AccidentCircumstance",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "amenity": {
+                        "title": "amenity",
+                        "description": "The feature of the accident site",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "bump": {
+                        "title": "bump",
+                        "description": "The accident implies a crush",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "crossing": {
+                        "title": "crossing",
+                        "description": "The accident implies a crossing",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "giveAway": {
+                        "title": "giveAway",
+                        "description": "The accident implies a giveAway",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "junction": {
+                        "title": "junction",
+                        "description": "The accident implies a junction",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "noExit": {
+                        "title": "noExit",
+                        "description": "The accident implies a noExit",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "railWay": {
+                        "title": "railWay",
+                        "description": "The accident implies a railWay",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "roundAbout": {
+                        "title": "roundAbout",
+                        "description": "The accident implies a roundAbout",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "station": {
+                        "title": "station",
+                        "description": "The accident implies a station",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "stop": {
+                        "title": "stop",
+                        "description": "The accident implies a stop",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "trafficCalming": {
+                        "title": "trafficCalmin",
+                        "description": "The accident implies a trafficCalmin",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "trafficSignal": {
+                        "title": "trafficSignal",
+                        "description": "The accident implies a trafficSignal",
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "trafficLoop": {
+                        "title": "trafficLoop",
+                        "description": "The accident implies a trafficLoop",
+                        "type": "boolean",
+                        "format": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "Address": {
+                "description": "Class Address",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "street": {
+                        "title": "Street name",
+                        "description": "Street name",
+                        "type": "string",
+                        "format": "int32"
+                    },
+                    "number": {
+                        "title": "Street name",
+                        "description": "Street name",
+                        "type": "string",
+                        "format": "int32"
+                    },
+                    "city": {
+                        "title": "city",
+                        "description": "city",
+                        "type": "string"
+                    },
+                    "state": {
+                        "title": "state",
+                        "description": "state",
+                        "type": "string"
+                    },
+                    "zipCode": {
+                        "title": "zip code",
+                        "description": "zip code",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ChartDataEntity": {
+                "description": "Class ChartDataEntity",
+                "properties": {
+                    "labels": {
+                        "title": "labels",
+                        "description": "labels",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "datasets": {
+                        "title": "labels",
+                        "description": "labels",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ChartDatasetEntity"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ChartDatasetEntity": {
+                "description": "Each label and list of numbers - 'data' - matches the parent properties, labels and data, with respect to length and meaning)",
+                "properties": {
+                    "label": {
+                        "title": "label",
+                        "description": "label",
+                        "type": "string"
+                    },
+                    "data": {
+                        "title": "data",
+                        "description": "A set of numbers",
+                        "type": "array",
+                        "items": {
+                            "type": "int"
+                        }
+                    },
+                    "backgroundColor": {
+                        "title": "backgroundColor",
+                        "description": "A list of colors (hex or standard - white, black, etc). Defines the pallet of color that will be used in constructing the chart (FILLING). Any number of items bigger than 0 can be used.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "borderColor": {
+                        "title": "borderColor",
+                        "description": "A list of colors (hex or standard - white, black, etc). Defines the pallet of color that will be used in constructing the chart (BORDERS). Any number of items bigger than 0 can be used.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "borderWidth": {
+                        "title": "borderWidth",
+                        "description": "borderWidth",
+                        "type": "integer",
+                        "format": "int"
+                    }
+                },
+                "type": "object"
+            },
+            "ChartEntity": {
+                "description": "Class ChartEntity",
+                "properties": {
+                    "type": {
+                        "title": "chart type",
+                        "description": "The manner in which the chart is drawn",
+                        "type": "string",
+                        "default": "pie",
+                        "enum": [
+                            "pie",
+                            "doughnut",
+                            "line"
+                        ]
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ChartDataEntity"
+                    },
+                    "options": {
+                        "$ref": "#/components/schemas/ChartOptionsEntity"
+                    }
+                },
+                "type": "object"
+            },
+            "ChartOptionBoundary": {
+                "description": "Class ChartOptionBoundary",
+                "properties": {
+                    "min": {
+                        "title": "min",
+                        "description": "min",
+                        "type": "integer",
+                        "format": "int"
+                    },
+                    "max": {
+                        "title": "max",
+                        "description": "max",
+                        "type": "integer",
+                        "format": "int"
+                    }
+                },
+                "type": "object"
+            },
+            "ChartOptionScalesEntity": {
+                "description": "Left side ruller (optional)",
+                "properties": {
+                    "y": {
+                        "$ref": "#/components/schemas/ChartOptionBoundary"
+                    }
+                },
+                "type": "object"
+            },
+            "ChartOptionsEntity": {
+                "description": "Class ChartOptionsEntity",
+                "properties": {
+                    "": {
+                        "$ref": "#/components/schemas/ChartOptionScalesEntity"
+                    }
+                },
+                "type": "object"
+            },
+            "Filter": {
+                "description": "Class Filter",
+                "properties": {
+                    "filterKey": {
+                        "title": "filterKey",
+                        "description": "filterKey",
+                        "type": "string",
+                        "enum": [
+                            "STATE",
+                            "LOCATION",
+                            "SEVERITY",
+                            "TIME",
+                            "DISTANCE",
+                            "TEMPERATURE",
+                            "WIND_CHILL",
+                            "HUMIDITY",
+                            "PRESSURE",
+                            "VISIBILITY",
+                            "WIND_SPEED",
+                            "PRECIPITATION",
+                            "WIND_DIRECTION",
+                            "WEATHER_CONDITION",
+                            "CIRCUMSTANCE",
+                            "ASTRO-TWILIGHT"
+                        ]
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "title",
+                        "type": "string"
+                    },
+                    "availableOptions": {
+                        "title": "availableOptions",
+                        "description": "Available options to get selected",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FilterOption"
+                        }
+                    },
+                    "selectionType": {
+                        "title": "Selection Type",
+                        "description": "Manner of how filters are to be selected",
+                        "type": "string",
+                        "default": "checkbox-list",
+                        "enum": [
+                            "date_range",
+                            "checkbox-list",
+                            "checkbox-button-list"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "FilterOption": {
+                "description": "Class FilterOption",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "label": {
+                        "title": "label",
+                        "description": "label",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "value",
+                        "description": "value",
+                        "type": "string"
+                    },
+                    "key": {
+                        "title": "key",
+                        "description": "key",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "FilterOptionBoolean": {
+                "description": "Class FilterOptionBoolean",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/FilterOption"
+                    },
+                    {
+                        "properties": {
+                            "value": {
+                                "title": "value",
+                                "description": "value",
+                                "type": "boolean",
+                                "format": "boolean"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "FilterOptionNumeric": {
+                "description": "Class FilterOptionNumeric",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/FilterOption"
+                    },
+                    {
+                        "properties": {
+                            "value": {
+                                "title": "value",
+                                "description": "value",
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "FilterOptionRange": {
+                "description": "Class FilterOptionRange",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/FilterOption"
+                    },
+                    {
+                        "$ref": "#/components/schemas/FilterOptionNumeric"
+                    },
+                    {
+                        "properties": {
+                            "min": {
+                                "title": "min",
+                                "description": "min",
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "max": {
+                                "title": "max",
+                                "description": "min",
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Weather": {
+                "description": "Class Weather",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "temperature": {
+                        "title": "temperature",
+                        "description": "Temperature(F)",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "windChill": {
+                        "title": "windChill",
+                        "description": "wind coldness",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "humidity": {
+                        "title": "humidity",
+                        "description": "Humidity(%)",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "pressure": {
+                        "title": "pressure",
+                        "description": "pressure",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "visibility": {
+                        "title": "visibility",
+                        "description": "Visibility(mi)",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "windDirection": {
+                        "title": "windDirection",
+                        "description": "Wind direction",
+                        "type": "string",
+                        "enum": [
+                            "East",
+                            "SE",
+                            "nan",
+                            "West",
+                            "NNE",
+                            "CALM",
+                            "SSW",
+                            "NE",
+                            "W",
+                            "S",
+                            "ENE",
+                            "NW",
+                            "NNW",
+                            "WNW",
+                            "South",
+                            "E",
+                            "N",
+                            "SW",
+                            "North",
+                            "SSE",
+                            "ESE",
+                            "VAR",
+                            "WSW",
+                            "Variable"
+                        ]
+                    },
+                    "windSpeed": {
+                        "title": "windSpeed",
+                        "description": "Wind Speed(mph)",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "precipitation": {
+                        "title": "precipitation",
+                        "description": "Precipitation(in)",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "generalCondition": {
+                        "title": "generalCondition",
+                        "description": "A short description related to the weather (Ex. 'clear', 'cloudy', 'sunny') ",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {}
+    },
+    "tags": [
+        {
+            "name": "search",
+            "description": "Search accidents",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "/search"
+            }
+        },
+        {
+            "name": "charts",
+            "description": "Charts data by which the canvas it's drawned",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "/charts"
+            }
+        }
+    ]
+}
