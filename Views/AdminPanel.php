@@ -13,13 +13,26 @@
     <script src="../../assets/js/loginpanel.js"></script>
 </head>
 
-<body onload="verificator()">
+<body onload="verification()">
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
-?>
-    <div id="pict">
 
-    </div>
+?>
+
+<a class="parent" href="/maintenancemode">
+    <img id="mmode" src="../../assets/images/mmode.png" alt="Image not found!"/>
+</a>
+<p class="description">Maintenance Mode description</p>
+
+<a class="parent" href="/chartseditor">
+    <img id="ceditor" src="../../assets/images/ceditor.png" alt="Image not found!" />
+</a>
+<p class="description">Charts Editor Description</p>
+
+<a class="parent" href="/databaseeditor">
+    <img id="deditor" src="../../assets/images/deditor.png" alt="Image not found!" />
+</a>
+<p class="description">Database Editor Description</p>
 </body>
 
 </html>

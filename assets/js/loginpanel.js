@@ -6,6 +6,6 @@ function verificator() {
     } else {
         sessionStorage.removeItem("AdminUser");
         sessionStorage.removeItem("AdminToken");
-        window.history.pushState('Admin', 'Title', "/AdminPanel");
+        window.history.pushState('Admin', 'Title', "/Admin");
     }
 }
