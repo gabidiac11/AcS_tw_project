@@ -130,7 +130,10 @@
             <p style="color:red;">
                 different types of reader that the document is intended fo </br>
                 Suggest a sequence for reading the document, </br>
-                REMEMBER -> SCURTATURA CATRE SECTIUNE DE INTERES PT DEVELOPER</p>
+                REMEMBER -> SCURTATURA CATRE SECTIUNE DE INTERES PT DEVELOPER </br>
+                valideaza documentul </br>
+                vezi cu id-urile la fiecare sectiune </br>
+            </p>
 
         </section>
 
@@ -138,7 +141,7 @@
         <section id="hunk">
             <h3><span>1.3 </span>Product Scope</h3>
             <p>
-                Mai vedem.
+                The purpose of the app is to visualize, categorize, download specific information related to a large set of data in a efficient way. The system is based on a large dataset stored in a relational database. We have a data related to United States car accidents that span between 2016-2020. For each of the accident the user has access to important details related to weather (humidity, visibility, wind, etc.), traffic conditions (stop, roundabout, giveaways etc.), duration, distance, severity and a short description. Each accident can be observed cartographically and in a form of statistical charts with the possibility of exporting each of these in formats like CSV, WEBP, SVG.
             </p>
         </section>
 
@@ -200,6 +203,7 @@
                 <ul>
                     <li> completing missing information via imports </li>
                     <li> correcting information </li>
+                    <li> add information related to recent times </li>
                 </ul>
             </section>
 
@@ -215,23 +219,28 @@
 
                 <li> Executives. They are interested in making the app more useful for the above users, and they have a non-technical approach </li>
                 <li> Developers and collaborators. They may expand, add or integrate external feature into the app. They are interested in code access, readability, scalability, design patterns. </li>
+                <li> Administrators. They add new records, update existing records.</li>
             </ul>
         </section>
 
         <section id="overallDescription-OperatingEnvironment">
             <h3><span>2.4 </span>Operating Environment</h3>
-            <p> The app is hosted an a server based on Apache, MySql, PHP. The app is available in a optimal state in the Chrome Browser, on Windows and Android operating systems (current available versions for the time being - May 2021). </p>
+            <ul>
+                <li> Database service: MySql </li>
+                <li> Client/server system </li>
+                <li> Operating system: Windows </li>
+                <li> Platform: PHP</li>
         </section>
 
         <section id="overallDescription-DesignImplementation">
             <h3><span>2.5 </span>Design and Implementation Constraints</h3>
             <p> There are several constraints to be consider: </p>
             <ul>
-                <li> Browser compatibility. The app needs further integration with IOS, or lesser used or old version browsers. This issues are raised by Javascript unsupported implementations from our developers or from third party libraries. Further testing will have to be done. </li>
+                <li> Browser compatibility. The app needs further integration with IOS, and for lesser used or old version browsers. This issues are raised by Javascript unsupported implementations from our developers or from third party libraries. Further testing will have to be done. </li>
                 <li> The increase of the information volume may slow down the performance and have a greater need for network resources. </li>
                 <li> Difficult UX solutions for mobile users (easy navigation). </li>
                 <li> All images exports are based on the Canvas API so cross-origin use is to be considered while making migrations. </li>
-                <li> The project is not equipped to connect to multiple databases</li>
+                <li> Database schema. The projects relies on certain fields to be present in order for the filters and other implementations to work. The project is not equipped to connect to multiple databases</li>
             </ul>
         </section>
 
@@ -326,6 +335,305 @@
                 </dl>
             </section>
         </section>
+
+    </section>
+
+    <!-- EXTERNAL INTERFACE REQUIREMENTS -->
+    <section id="overallDescription">
+        <h2><span>3. </span>External Interface Requirements</h2>
+
+        <section id="overallDescription-ProductPerspective">
+            <h3><span>3.1 </span>User Interfaces</h3>
+            <p>
+                The product presents a common approach in dealing with a large set of data that needs to be visualized.
+            </p>
+
+            <!-- SEARCH-PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
+            <section id="overallDescription-AssumptionsDependencies">
+                <h3><span>3.1.1 </span> Search page</h3>
+                <p>
+                    [...purpose...]
+                </p>
+
+                <!-- SEARCH-PAGE ->>> RESULT ITEM TEMPLATE -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.1.1 </span> Result item template</h3>
+                    <p>
+                        [...image with legend..]
+                    </p>
+                    <ul>
+                        <li> 1. Title element:... </li>
+                        <li> other fields an meaning</li>
+                    </ul>
+                </section>
+
+                <!-- SEARCH-PAGE ->>> INPUT SECTION -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.1.1 </span> Search input</h3>
+                    <p>
+                        The goal of this section is to filter results using user input and access some other hidden section (the filter section that is hidden).
+                    </p>
+                    <p>
+                        The buttons and inputs are disabled while a search is in progress. Another indicator of a search being in progress is the loader present in place of the results.
+                    </p>
+                    <ul>
+                        <li> UI 1. Explanation </li>
+                        <li> UI 2. Explanation </li>
+                        <li> UI 3. Explanation </li>
+                    </ul>
+                </section>
+
+                <!-- SEARCH-PAGE ->>> FILTER SECTION -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.1.2 </span> Filter section</h3>
+                    <p>
+                        This section is hidden but can be toggled using the button described the previous section.
+                    </p>
+
+                    <p>
+                        decribe appling the filter, cancel button behavior, reseting the filters
+                    </p>
+
+                    <p> There are a variety of filters. </p>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.2.1 Checkbox types</span> </h3>
+                        <p>
+                            From a point of impact, some filters can display multiple options to be selected. Some of these filters are marked as "every", meaning that each item must satisfy all options selected simultaneously. Some are marked as "some", meaning that a result will be displayed if at least one options is satisfied. In both of these types if no options is chosen they are ignored completely.
+                        </p>
+
+                        <p>
+                            further describe and list them (state filter focus)
+                        </p>
+                    </section>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.2.2 Location</span> </h3>
+                        <p>
+                            describe and list them
+                        </p>
+                    </section>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.2.3 Date</span> </h3>
+                        <p>
+                            describe and list them
+                        </p>
+                    </section>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.2.4 Range</span> </h3>
+                        <p>
+                            describe and list them
+                        </p>
+                    </section>
+                </section>
+
+                <!-- SEARCH-PAGE ->>> PAGINATION SECTION -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.1.3 </span> Pagination </h3>
+                    <p>
+                        describe how many per page (3 options 10, 20, 50) </br>
+                        when filters are changing pagination resets
+                    </p>
+                </section>
+
+                <!-- SEARCH-PAGE ->>> EXPORT UI -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.1.4 </span> Export UI </h3>
+                    <p>
+                        describe that results from the page are exported (that are filtered)
+                    </p>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.4.1 </span> Export CSV </h3>
+                        <p>
+                            describe and show something
+                        </p>
+                    </section>
+
+                    <section id="overallDescription-AssumptionsDependencies">
+                        <h3><span>3.1.1.4.1 </span> Cartographic export and visualization </h3>
+                        <p>
+                            describe how can you see points on the map and on click it shows information
+                        </p>
+                        <p>[..show-images..]</p>
+
+                        <p> Explain that can be exported in webp and svg with those buttons </p>
+                    </section>
+
+                </section>
+
+            </section>
+
+            <!-- CHART-PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
+            <section id="overallDescription-AssumptionsDependencies">
+                <h3><span>3.1.2 </span> Chart page</h3>
+                <p>
+                    [...purpose...]
+                </p>
+
+                <!-- CHART-PAGE ->>> Chart 'Number of cases per state' -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.2.1 </span> Chart number of cases per state </h3>
+                    <p>
+                        image and describe interaction
+                    </p>
+                </section>
+
+
+                <!-- CHART-PAGE ->>> Chart severity -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.2.2 </span> Chart severity </h3>
+                    <p>
+                        image and describe (how can you see result OVERALL or PER STATE), describe interactions
+                    </p>
+                </section>
+
+                <!-- CHART-PAGE ->>> CHART Timeline -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.2.3 </span> Chart timeline </h3>
+                    <p>
+                        describe 4 curbes for each year (2016-2020)</br>
+
+                        describe interaction
+                    </p>
+                    <p>
+                </section>
+
+                <!-- CHART-PAGE ->>> EXPORT SECTION -->
+                <section id="overallDescription-AssumptionsDependencies">
+                    <h3><span>3.1.2.4 </span> Export chart</h3>
+                    <p>
+                        show image and say that can be exported...
+                    </p>
+                </section>
+            </section>
+            <!-- INSERT NEXT PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
+        </section>
+
+        <section id="overallDescription-ProductPerspective">
+            <h3><span>3.2 </span>Hardware interfaces</h3>
+            <p>
+                describe
+            </p>
+        </section>
+
+        <section id="overallDescription-ProductPerspective">
+            <h3><span>3.3 </span>Software interfaces</h3>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.1 </span>Operating system</h3>
+                <p> use this site for this section:
+                    </br> https://krazytech.com/projects/sample-software-requirements-specificationsrs-report-airline-database
+                </p>
+                <p>
+                    We choose Windows as the primary operating system because is widely available, reach audiences, is familiar, [insert other motivation] etc.
+                </p>
+            </section>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.2 </span>Database</h3>
+                <p>
+                    Sql, storing data, idk
+                </p>
+            </section>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.3 </span>Platform</h3>
+                <p>
+                    PHP, [insert motivation]
+                </p>
+            </section>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.4 </span>Open Layers</h3>
+                <p>
+                    maps javascript describe motivation
+                </p>
+            </section>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.4 </span>Chart JS</h3>
+                <p>
+                    javascript describe motivation
+                </p>
+            </section>
+
+            <section id="overallDescription-ProductPerspective">
+                <h3><span>3.3.5 </span>Other libraries JS</h3>
+                <p>
+                    describe
+                </p>
+            </section>
+        </section>
+
+        <section id="overallDescription-ProductPerspective">
+            <h3><span>3.4 </span>Communications interfaces</h3>
+            <p>Describe </p>
+        </section>
+    </section>
+
+
+    <!-- SYSTEM FEATURES -->
+    <section id="overallDescription">
+        <h2><span>4. System Features </span></h2>
+        <p>
+            insert sections with use cases for each interactions (search, export etc)
+        </p>
+    </section>
+
+    <!-- Other Nonfunctional Requirements -->
+    <section id="overallDescription">
+        <h2><span>5.Developer guide</span></h2>
+
+        <section id="overallDescription">
+            <h2><span>5.1 MVC Architecture </span></h2>
+            <p>
+                uml and other stuff
+            </p>
+        </section>
+
+        <section id="overallDescription">
+            <h2><span>5.2 Database entities </span></h2>
+            <p>
+                uml and other stuff
+            </p>
+        </section>
+
+        <section id="overallDescription">
+            <h2><span>5.3 INSERT YOUR stuff and umls, diagrams, etc </span></h2>
+            <p>
+                uml and other stuff
+            </p>
+        </section>
+    </section>
+
+    <!-- Other Assignments -->
+    <section id="overallDescription">
+        <h2><span>6.Work assignments</span></h2>
+
+        <section id="overallDescription">
+            <h2><span>6.1 Diac P. Gabriel </span></h2>
+            <ul>
+                <li>describe 1</li>
+            </ul>
+        </section>
+
+        <section id="overallDescription">
+            <h2><span>6.2 Gradinariu Marian-Florin </span></h2>
+            <ul>
+                <li>describe 1</li>
+            </ul>
+        </section>
+
+        <section id="overallDescription">
+            <h2><span>6.3 Vasilica Alex </span></h2>
+            <ul>
+                <li>describe 1</li>
+            </ul>
+        </section>
+    </section>
 
     </section>
 </body>
