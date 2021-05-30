@@ -220,7 +220,7 @@
 
         <section id="overallDescription-OperatingEnvironment">
             <h3><span>2.4 </span>Operating Environment</h3>
-            <p> The app is hosted an a server based on Apache, MySql, PHP. The app is available in a optimal state in the Chrome Browser, on Windows and Android operating systems, at the current available version for the time being (May 2021). </p>
+            <p> The app is hosted an a server based on Apache, MySql, PHP. The app is available in a optimal state in the Chrome Browser, on Windows and Android operating systems (current available versions for the time being - May 2021). </p>
         </section>
 
         <section id="overallDescription-DesignImplementation">
@@ -271,7 +271,7 @@
                     <li> the api endpoints (that relates to the dataset readyOnly functions) are open for anyone to use, and are not restricted by anything </li>
                     <li> the developers would not want to lower the version of PHP from v7.3.27 </li>
                     <li> the app is restrained to car accidents and the whole theme and features are linked together in this spirit </li>
-                    <li> this app works with a single dataset and it's heavily dependent on the existence of certain fields (like latitude, longitude) </li>
+                    <li> this app works with a single dataset and it's heavily dependent on the existence of certain fields (like latitude, longitude, etc) </li>
                     <li> this app works in the geographical context of the United State and requires a lot of work to a more broader spectrum </li>
                 </ul>
             </section>
