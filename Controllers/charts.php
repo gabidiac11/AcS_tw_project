@@ -52,7 +52,7 @@ class Charts extends Controller
         }
 
         $this->loadView("Charts", [
-            'page' =>  self::PAGE_SEVERITY, 
+            'page' =>  self::PAGE_SEVERITY,
 
             'title' => $title,
             'description' => "
