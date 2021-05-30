@@ -18,7 +18,7 @@
   ?>
   <main id="about-page">
     <div class="image-presentation">
-      <img class="box-shadow-re-use" src="./../assets/images/about-image.jpg" />
+      <img alt="about-img" class="box-shadow-re-use" src="./../assets/images/about-image.jpg" />
     </div>
     <div class="page-content">
       <h1> About our project!</h1>

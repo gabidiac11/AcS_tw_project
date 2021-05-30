@@ -22,7 +22,7 @@
     height: 100%;
 }
 
-.search-bar-container .icon-c[active="true"] path {
+.search-bar-container .icon-c.active-true path {
     fill: red;
 }
 

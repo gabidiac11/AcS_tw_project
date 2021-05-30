@@ -25,29 +25,29 @@
     height: 90vh;
 }
 
-.generic-modal[show="true"] {
+.generic-modal.show-modal {
     width: 100vw;
     height: 100vh;
     overflow: auto;
 }
 
-.generic-modal [map-content] {
+.generic-modal [itemprop="map-content"] {
     width: 0;
     height: 0;
     overflow: hidden;
 }
 
-.generic-modal [map-content] .latitude-long-indicator {
+.generic-modal [itemprop="map-content"] .latitude-long-indicator {
     display: none;
 }
 
 
-.generic-modal [map-content][show="true"] {
+.generic-modal [itemprop="map-content"].show-modal {
     width: 100%;
     height: 100%;
 }
 
-.generic-modal [map-content][show="true"] .latitude-long-indicator {
+.generic-modal [itemprop="map-content"].show-modal .latitude-long-indicator {
     display: flex;
 }
 
@@ -56,12 +56,12 @@
     padding-right: 10px;
 }
 
-.generic-modal [general-content] {
+.generic-modal [itemprop="general-content"] {
     flex-wrap: wrap;
     display: flex;
 }
  
-.generic-modal[show="true"] .content-wrapper {
+.generic-modal.show-modal .content-wrapper {
     width: 100%;
     max-width: 1400px;
     background-color: white;
@@ -76,7 +76,7 @@
 }
 
 
-.generic-modal .content-wrapper [modal-content] {
+.generic-modal .content-wrapper [itemprop="modal-content"] {
     flex: 1;
     padding-top: 10px;
     position: relative;

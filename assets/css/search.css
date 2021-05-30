@@ -31,6 +31,9 @@ body{
     margin: 0 10px;
     height: 40px;
 }
+.sort-select label {
+    color: white;
+}
 
 
 
@@ -45,7 +48,7 @@ body{
     justify-content: space-evenly;
 }
 
- [empty-indicator] {
+ [itemprop="empty-indicator"] {
     padding: 30px;
     color: wheat;
 }

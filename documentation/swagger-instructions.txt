@@ -1,3 +1,3 @@
 cd C:\xampp\htdocs\vendor\bin
 
-openapi C:\xampp\htdocs\vendor -o C:\xampp\htdocs\swagger.json
+openapi C:\xampp\htdocs -o C:\xampp\htdocs\swagger.json

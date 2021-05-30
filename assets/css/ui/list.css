@@ -15,22 +15,22 @@
     margin: 10px;
 }
 
-[more-than-one-result="true"] [empty-indicator] {
+.more-than-one-result-true [itemprop="empty-indicator"] {
     display: none!important;
 }
 
-[more-than-one-result="false"] [empty-indicator] {
+.more-than-one-result-false [itemprop="empty-indicator"] {
     display: flex!important;
 }
 
-[more-than-one-result="true"] [pagination-content] {
+.more-than-one-result-true [itemprop="pagination-content"] {
     display: flex!important;
 }
 
-[more-than-one-result="false"] [pagination-content] {
+.more-than-one-result-false [itemprop="pagination-content"] {
     display: none!important;
 }
-.pagination-btn[selected="true"] {
+.pagination-btn.selected-page {
     background-color: wheat;
 }
 .pagination {

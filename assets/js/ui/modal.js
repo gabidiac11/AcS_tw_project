@@ -2,13 +2,13 @@
 class ConfirmationModal {
     constructor(onConfirm, onCancel) {
         this.SELECTORS = {
-            MODAL_ROOT: "#modal",
-            TITLE: "[modal-title]",
-            CONTENT: "[modal-content]",
-            CONFIRM_BTN: "[modal-confirm]",
-            CANCEL_BTN: "[modal-cancel]",
-            simpleContentSelector: `[general-content]`,
-            mapContainerSelector: `[map-content]`,
+            MODAL_ROOT: `#modal`,
+            TITLE: `[itemprop="modal-title"]`,
+            CONTENT: `[itemprop="modal-content"]`,
+            CONFIRM_BTN: `[itemprop="modal-confirm"]`,
+            CANCEL_BTN: `[itemprop="modal-cancel"]`,
+            simpleContentSelector: `[itemprop="general-content"]`,
+            mapContainerSelector: `[itemprop="map-content"]`,
         }
 
         this.onConfirm = onConfirm;
@@ -23,14 +23,14 @@ class ConfirmationModal {
 
         this.hideModal = () => {
             if (this.modalNode) {
-                this.modalNode.setAttribute("show", "false");
+                this.modalNode.classList.remove("show-modal");
 
                 /** hide the map, but keep it alive in background */
-                this.mapContainerNode.setAttribute("show", "false");
+                this.mapContainerNode.classList.remove("show-modal");
             
                 /** hide the general content */
                 this.simpleContentNode.innerHTML = "";
-                this.simpleContentNode.setAttribute("show", "false");
+                this.simpleContentNode.classList.remove("show-modal");
             }
 
             document.body.style.overflow = "";
@@ -43,7 +43,7 @@ class ConfirmationModal {
                 titleNode.innerHTML = this.title;
             }
 
-            this.modalNode.setAttribute("show", "true");
+            this.modalNode.classList.add("show-modal");
 
             document.body.style.overflow = "hidden";
             document.body.style.height = "100vh";
@@ -53,11 +53,11 @@ class ConfirmationModal {
         this.checkBoxes = [];
         this.createCheckBoxGroups = (options) => {
             /** hide the map, but keep it alive in background */
-            this.mapContainerNode.setAttribute("show", "false");
+            this.mapContainerNode.classList.remove("show-modal");
         
             /** left to be shown: the general content */
             this.simpleContentNode.innerHTML = "";
-            this.simpleContentNode.setAttribute("show", "true");
+            this.simpleContentNode.classList.add("show-modal");
 
             this.checkBoxes = options.map(item => {
                 return new CheckBoxItem({
@@ -89,11 +89,11 @@ class ConfirmationModal {
             this.mapPicker.setCoordonates(lat, long);
 
             /** left to be shown: the map content */
-            this.mapContainerNode.setAttribute("show", "true");
+            this.mapContainerNode.classList.add("show-modal");
 
             /** hide the general content */
             this.simpleContentNode.innerHTML = "";
-            this.simpleContentNode.setAttribute("show", "false");
+            this.simpleContentNode.classList.remove("show-modal");
         }
 
         this.getMapResults = () => {

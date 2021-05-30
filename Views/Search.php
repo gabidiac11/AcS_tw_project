@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" itemscope>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
@@ -24,16 +24,16 @@
   require_once __DIR__ . '\Reusables\Button\Button.php';
   require_once __DIR__ . '\Reusables\Svg\LoadSvg.php';
   ?>
-  <main class="flex-all" page-width>
+  <main class="flex-all">
     <div class="page-wrapper page-content-search flex-all" style="align-items: flex-start; flex-wrap:wrap;">
-      
+
       <div class="flex-start top-search">
         <!-- SEARCH INPUT AND BUTTONS -->
         <div id="search-results" class="search-bar-container">
-          <button class="flex-all icon-c cursor-pointer search-icon-cont" search-btn><?= displaySvg("search-line") ?></button>
+          <button class="flex-all icon-c cursor-pointer search-icon-cont" itemprop="search-btn" disabled><?= displaySvg("search-line") ?></button>
           <input disabled value="" placeholder="Search by description or id" />
-          <button class="flex-all icon-c cursor-pointer filter-ic-cont" filter-btn active="true"><?= displaySvg("filter-line") ?></button>
-          <button class="flex-all icon-c cursor-pointer x-ic-cont" delete-btn><?= displaySvg("close-line") ?></button>
+          <button class="flex-all icon-c cursor-pointer filter-ic-cont" itemprop="filter-btn" disabled ><?= displaySvg("filter-line") ?></button>
+          <button class="flex-all icon-c cursor-pointer x-ic-cont" itemprop="delete-btn" disabled ><?= displaySvg("close-line") ?></button>
         </div>
 
         <!-- SORT SELECT -->
@@ -55,6 +55,10 @@
             <option value="WIND_DIRECTION"> WIND DIRECTION </option>
             <option value="WEATHER_CONDITION"> WEATHER CONDITION </option>
           </select>
+          <label for="sort-dir-check">
+            Desc
+            <input id="sort-dir-check" type="checkbox">
+          </label>
         </div>
 
         <!-- RIGHT SIDE BUTTONS -->
@@ -71,60 +75,60 @@
         <div id="filter-edit-c" class="generic-box-shadow">
 
           <!-- FILTER BUTTONS APPLY/CANCEL -->
-          <div class="flex-all" btn-bottom-panel>
-            <button btn-cancel class="btn-secondary">Cancel</button>
-            <button btn-confirm class="btn-primary">Apply</button>
+          <div class="flex-all" itemprop="btn-bottom-panel">
+            <button itemprop="btn-cancel" class="btn-secondary">Cancel</button>
+            <button itemprop="btn-confirm" class="btn-primary">Apply</button>
           </div>
 
           <!-- CONTAINER NODE FOR FILTERS - where filters are appended -->
-          <div filters-append>
+          <div itemprop="filters-append">
+            <p>Loading filters...</p>
           </div>
         </div>
       </div>
 
-      <div id="list-results" class="list-wrapper">
-        <div class="list-content" list-container style="display: none" more-than-one-result="false">
+      <div itemscope id="list-results" class="list-wrapper">
+        <div class="list-content more-than-one-result-false" itemprop="list-container" style="display: none">
           <?php
           for ($index = 0; $index < 50; $index++) {
-            ?>
+          ?>
 
             <!-- DRAW HIDDEN NODES OF A GENERIC RESULTS (these are to be populated based on a JS object) -->
-            <div list-item style="display: none" class="list-item box-shadow-re-use">
-              <div> <span item-date>8 February 2016, Night</span></div> <!-- Date, time of the day -->
-              <div> Severity: <span item-severity> III</span></div> <!-- Severity -->
-              <div> ID: <span item-id>A-1 </span> | City: <span item-city> Dayton</span> | State: <span item-state>OH</span></div> <!-- ID, City, State -->
-              <div class="description-item" >Description: <br /><span item-description>Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
-              <div> Location: <br /><span item-location>l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
+            <div itemscope itemprop="list-item" style="display: none" class="list-item box-shadow-re-use">
+              <div> <span itemprop="item-date">8 February 2016, Night</span></div> <!-- Date, time of the day -->
+              <div> Severity: <span itemprop="item-severity"> III</span></div> <!-- Severity -->
+              <div> ID: <span itemprop="item-id">A-1 </span> | City: <span itemprop="item-city"> Dayton</span> | State: <span itemprop="item-state">OH</span></div> <!-- ID, City, State -->
+              <div class="description-item">Description: <br /><span itemprop="item-description">Right lane blocked due to accident on l-70 Eastbound</span></div> <!-- Description -->
+              <div> Location: <br /><span itemprop="item-location">l-70 E, Dayton, OH, 45424, 39.865147, -84.05872</span></div> <!-- Location -->
 
               <!-- weather stats -->
               <ul>
-                <li>Weather Condition: <span item-weather-condition>Ligh Rain</span></li>
-                <li>Temperature(F): <span item-temperature>36.9</span>;</li>
-                <li>Humidity(%): <span item-humidity>91</span>;</li>
-                <li>Visibility(mi): <span item-visibility>10</span>;</li>
-                <li>Wind Direction: <span item-wind-direction>Calm</span>;</li>
-                <li>Wind Speed(mph): <span item-wind-speed> - </span></li>
-                <li>Wind Chill: <span item-wind-windChill> - </span></li>
-                <li>Traffic Calming: <span item-Traffic_Calming> - </li>
-                <li>Precipitation(in): <span item-precipitation>-</span>;</li>
-                <li>Pressure: <span item-pressure> - </span></li>
+                <li>Weather Condition: <span itemprop="item-weather-condition">Ligh Rain</span></li>
+                <li>Temperature(F): <span itemprop="item-temperature">36.9</span>;</li>
+                <li>Humidity(%): <span itemprop="item-humidity">91</span>;</li>
+                <li>Visibility(mi): <span itemprop="item-visibility">10</span>;</li>
+                <li>Wind Direction: <span itemprop="item-wind-direction">Calm</span>;</li>
+                <li>Wind Speed(mph): <span itemprop="item-wind-speed"> - </span></li>
+                <li>Wind Chill: <span itemprop="item-wind-windChill"> - </span></li>
+                <li>Precipitation(in): <span itemprop="item-precipitation">-</span>;</li>
+                <li>Pressure: <span itemprop="item-pressure"> - </span></li>
               </ul>
               <hr>
               <div class="condtions-met">
                 <!-- Circumstances -->
-                <div item-amenity> <span><?= displaySvg("check") ?></span>Amenity</div>
-                <div item-bump> <span><?= displaySvg("check") ?></span>Bump</div>
-                <div item-crossing> <span><?= displaySvg("check") ?></span>Crossing</div>
-                <div item-giveAway> <span><?= displaySvg("check") ?></span>Give_Way</div>
-                <div item-Junction> <span><?= displaySvg("check") ?></span>Junction</div>
-                <div item-No_Exit> <span><?= displaySvg("check") ?></span>No_Exit</div>
-                <div item-Railway> <span><?= displaySvg("check") ?></span>Railway</div>
-                <div item-Roundabout> <span><?= displaySvg("check") ?></span>Roundabout</div>
-                <div item-Station> <span><?= displaySvg("check") ?></span>Station</div>
-                <div item-Stop> <span><?= displaySvg("check") ?></span>Stop</div>
-                <div itrm-Traffic_Calming> <span><?= displaySvg("check") ?></span>Traffic Calming</div>
-                <div item-Traffic_Signal> <span><?= displaySvg("check") ?></span>Traffic Signal</div>
-                <div item-Turning_Loop> <span><?= displaySvg("check") ?></span>Turning Loop</div>
+                <div itemprop="item-amenity"> <span><?= displaySvg("check") ?></span>Amenity</div>
+                <div itemprop="item-bump"> <span><?= displaySvg("check") ?></span>Bump</div>
+                <div itemprop="item-crossing"> <span><?= displaySvg("check") ?></span>Crossing</div>
+                <div itemprop="item-giveAway"> <span><?= displaySvg("check") ?></span>Give_Way</div>
+                <div itemprop="item-Junction"> <span><?= displaySvg("check") ?></span>Junction</div>
+                <div itemprop="item-No_Exit"> <span><?= displaySvg("check") ?></span>No_Exit</div>
+                <div itemprop="item-Railway"> <span><?= displaySvg("check") ?></span>Railway</div>
+                <div itemprop="item-Roundabout"> <span><?= displaySvg("check") ?></span>Roundabout</div>
+                <div itemprop="item-Station"> <span><?= displaySvg("check") ?></span>Station</div>
+                <div itemprop="item-Stop"> <span><?= displaySvg("check") ?></span>Stop</div>
+                <div itemprop="item-Traffic_Calming"> <span><?= displaySvg("check") ?></span>Traffic Calming</div>
+                <div itemprop="item-Traffic_Signal"> <span><?= displaySvg("check") ?></span>Traffic Signal</div>
+                <div itemprop="item-Turning_Loop"> <span><?= displaySvg("check") ?></span>Turning Loop</div>
               </div>
               <hr>
             </div>
@@ -133,35 +137,35 @@
           }
           ?>
 
-          <div empty-indicator>No items found.</div>
+          <div itemprop="empty-indicator">No items found.</div>
         </div>
 
         <!-- LIST LOADER -->
-        <div list-loader class="flex-all loader" style="display: flex; height: calc(100vh - 235px);">
-          <img class="loader-img" />
+        <div itemprop="list-loader" class="flex-all loader" style="display: flex; height: calc(100vh - 235px);">
+          <img src="./../assets/images/loader.gif" alt="loader-gif" class="loader-img" />
         </div>
 
-          <!-- PAGINATION -->
-        <div class="pagination" pagination-content>
+        <!-- PAGINATION -->
+        <div class="pagination" itemprop="pagination-content">
           <div class="pagination-inner">
-            <button disabled class="pagination-btn" pagination-prev>
-              < </button>
+            <button disabled class="pagination-btn" itemprop="pagination-prev">
+            &lt; </button>
 
                 <?php
                 for ($index = 0; $index < 10; $index++) {
                 ?>
 
-                  <button disabled value="<?= $index + 1 ?>" class="pagination-btn" pagination-number> <?= $index + 1 ?> </button>
+                  <button disabled value="<?= $index + 1 ?>" class="pagination-btn" itemprop="pagination-number"> <?= $index + 1 ?> </button>
 
                 <?php
                 }
                 ?>
 
-                <button disabled class="pagination-btn" pagination-next> > </button>
+                <button disabled class="pagination-btn" itemprop="pagination-next"> > </button>
 
                 <span class="pag-select-c">
                   <label for="select-per-page"> Per page: </label>
-                  <select id="select-per-page" result-per-page disabled>
+                  <select id="select-per-page" itemprop="result-per-page" disabled>
                     <option value="10" selected>10</option>
                     <option value="20">20</option>
                     <option value="30">30</option>
@@ -171,45 +175,45 @@
           </div>
 
         </div>
-        
+
       </div>
     </div>
   </main>
   <!-- MODAL WITH THE CHECKBOXES AND THE MAP (where lat and long is pinned by mouse and can be used for filtering by location) -->
   <div class="flex-all flex-wrap generic-modal" id="modal">
     <div class="box-shadow-re-use content-wrapper">
-      <p modal-title> Title </p>
-      <div modal-content>
-        <div map-content style="width: 100%;" show="false">
+      <p itemprop="modal-title"> Title </p>
+      <div itemprop="modal-content">
+        <div itemprop="map-content" style="width: 100%;">
           <div id="map" class="generic-map"></div>
           <div class="latitude-long-indicator">
             <input id="long-input" disabled value="Lat: ${this.lat}">
             <input id="lat-input" disabled value="Long: ${this.long}">
           </div>
         </div>
-        <div general-content style="width:100%; flex: 1;" show="false">
+        <div itemprop="general-content" style="width:100%; flex: 1;">
         </div>
       </div>
       <div class="modal-bottom">
-        <button modal-confirm class="btn-primary">Apply</button>
-        <button modal-cancel class="btn-secondary">Cancel</button>
+        <button itemprop="modal-confirm" class="btn-primary">Apply</button>
+        <button itemprop="modal-cancel" class="btn-secondary">Cancel</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL with the all the locations pins from the filtered list -->
-  <div class="flex-all flex-wrap generic-modal" id="modal-map" show="false">
+  <div class="flex-all flex-wrap generic-modal" id="modal-map">
     <div class="box-shadow-re-use content-wrapper">
-      <div map-content style="width: 100%;height: 100%;">
+      <div itemprop="map-content" style="width: 100%;height: 100%;">
         <div id="map2" class="generic-map"></div>
       </div>
       <div class="modal-bottom">
         <p>The dots represent the results from the page, and are colored based on severity. Click on a dot to see information about the accident.</p>
-        <button modal-export-svg class="btn-primary">Export SVG</button>
-        <button modal-export-webp class="btn-primary">Export WEBP</button>
-        <button modal-close class="btn-secondary">Close</button>
+        <button itemprop="modal-export-svg" class="btn-primary">Export SVG</button>
+        <button itemprop="modal-export-webp" class="btn-primary">Export WEBP</button>
+        <button itemprop="modal-close" class="btn-secondary">Close</button>
       </div>
-      
+
       <!-- POPUP THAT IS SHOWN AT A GIVEN DOT -->
       <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>

@@ -47,9 +47,9 @@ class ChartPage {
     this.selectors = {
       container: `#chart-wrapper`,
       canvas: "canvas",
-      loader: "[loader]",
-      export: "[chart-export-btn]",
-      exportTypeAttr: "export-type",
+      loader: `#loader`,
+      export: `[itemprop="export-container"] button`,
+      exportTypeAttr: "name",
     };
 
     this.containerNode = document.querySelector(this.selectors.container);

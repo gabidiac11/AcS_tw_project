@@ -37,7 +37,7 @@ aside {
   align-items: center;
   justify-content: center;
 }
-aside > section h1 {
+aside > section .heading {
   text-align: center;
   margin: 20px 0px 11px 0px;
 
@@ -84,7 +84,7 @@ aside a:hover{
   text-decoration: underline;
 }
 
-.rectangle[selected] {
+.rectangle.selected-rectangle {
   background-color: var(--primary-red)!important;
 }
 
@@ -106,7 +106,7 @@ aside a:hover{
   left: 0;
 }
 
-aside section[export-section] button {
+aside section.export-section button {
   display: block;
   border: none;
   background-color: transparent;
@@ -115,13 +115,13 @@ aside section[export-section] button {
   margin-right: 5px;
 }
 
-aside section[export-section] ul {
+aside section.export-section ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-aside section[export-section] li {
+aside section.export-section li {
   padding: 5px;
 }
 

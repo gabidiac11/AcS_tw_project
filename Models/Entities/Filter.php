@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__."/Filter.php";
-require_once __DIR__."/FilterOptionRange.php";
+require_once __DIR__ . "/Filter.php";
+require_once __DIR__ . "/FilterOptionRange.php";
 require_once __DIR__ . "/FilterOptionNumeric.php";
-require_once __DIR__."/FilterOptionBoolean.php";
-require_once __DIR__."/FilterOptionBooleanColumn.php";
+require_once __DIR__ . "/FilterOptionBoolean.php";
+require_once __DIR__ . "/FilterOptionBooleanColumn.php";
 
 /**
  * Class Filter
@@ -32,14 +32,19 @@ class Filter
     public static $filterAstrologicalTwilight = "ASTRO-TWILIGHT"; // day/night
 
     private static $defaultFilters = null;
+    /**
+     * a would be array
+     */
     private static $bindColumn = null;
-    private static $db = null;
+
+    private static $locationRay = 150;
 
     /** get the column to fetch values from (use: to make a list of unique values to be checked for a filter to work) */
-    private static function getBindToColumn() : array {
-        if(!Filter::$bindColumn) {
+    private static function getBindToColumn(): array
+    {
+        if (!Filter::$bindColumn) {
             Filter::$bindColumn = [
-                Filter::$filterState => ['column' =>'State'],
+                Filter::$filterState => ['column' => 'State'],
                 Filter::$filterWindDirection => ['column' => 'Wind_Direction'],
                 Filter::$filterWeatherCondition => ['column' => 'Weather_Condition'],
                 Filter::$filterAstrologicalTwilight => ['column' => 'Astronomical_Twilight']
@@ -53,12 +58,13 @@ class Filter
      * method for creating a filter instances, using prepared data
      * some of the filters are further processed from their initial state (may need data from database) other are ready
      */
-    private static function getDefaultOptions() : array {
-        if(Filter::$defaultFilters == null) {
+    private static function getDefaultOptions(): array
+    {
+        if (Filter::$defaultFilters == null) {
             Filter::$defaultFilters = [
                 Filter::$filterState => [
                     "filterKey" => Filter::$filterState,
-                    "title" => "State",
+                    "title" => "States",
                     "selectionType" => "checkbox-button-list",
                     "bind" => "State",
                     "availableOptions" => []
@@ -66,7 +72,7 @@ class Filter
 
                 Filter::$filterLocation => [
                     "filterKey" => Filter::$filterLocation,
-                    "title" => "Location",
+                    "title" => "Location (Within " . self::$locationRay . " ray)",
                     "selectionType" => "location",
                     "bind" => "",
                     "availableOptions" => [
@@ -77,7 +83,7 @@ class Filter
 
                 Filter::$filterSeverity => [
                     "filterKey" => Filter::$filterSeverity,
-                    "title" => "Severity",
+                    "title" => "Within Severity (*some)",
                     "selectionType" => "checkbox-list",
                     "bind" => "Severity",
                     "availableOptions" => [
@@ -118,7 +124,7 @@ class Filter
                     "bind" => "Temperature",
                     "availableOptions" => [
                         new FilterOptionRange("Min", Filter::$filterTemperature, -80, 80, ">="),
-                        new FilterOptionRange("Max", Filter::$filterTemperature, -80, 80,"<=")
+                        new FilterOptionRange("Max", Filter::$filterTemperature, -80, 80, "<=")
                     ]
                 ],
 
@@ -190,7 +196,7 @@ class Filter
 
                 Filter::$filterWindDirection => [
                     "filterKey" => Filter::$filterWindDirection,
-                    "title" => "Wind Direction",
+                    "title" => "Wind Direction (*some)",
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -200,7 +206,7 @@ class Filter
 
                 Filter::$filterWeatherCondition => [
                     "filterKey" => Filter::$filterWeatherCondition,
-                    "title" => "Weather Condition",
+                    "title" => "Weather Condition (*some)",
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -208,15 +214,33 @@ class Filter
 
                 Filter::$filterCircumstance => [
                     "filterKey" => Filter::$filterCircumstance,
-                    "title" => "Circumstances",
+                    "title" => "Circumstance (*every)",
                     "selectionType" => "checkbox-list",
                     "bind" => "",
-                    "availableOptions" => []
+                    "availableOptions" => array_map(function ($item) {
+                        $filterOption = new FilterOptionBooleanColumn($item['label'], false, Filter::$filterCircumstance);
+                        $filterOption->setBind($item['column']);
+                        return $filterOption;
+                    }, [
+                        ['column' => 'Amenity', 'label' => 'Amenity'],
+                        ['column' => 'Bump', 'label' => 'Bump'],
+                        ['column' => 'Crossing', 'label' => 'Crossing'],
+                        ['column' => 'Give_Way', 'label' => 'Give Way'],
+                        ['column' => 'Junction', 'label' => 'Junction'],
+                        ['column' => 'No_Exit', 'label' => 'No Exit'],
+                        ['column' => 'Railway', 'label' => 'Railway'],
+                        ['column' => 'Roundabout', 'label' => 'Roundabout'],
+                        ['column' => 'Station', 'label' => 'Station'],
+                        ['column' => 'Stop', 'label' => 'Stop'],
+                        ['column' => 'Traffic_Calming', 'label' => 'Traffic Calming'],
+                        ['column' => 'Traffic_Signal', 'label' => 'Traffic Signal'],
+                        ['column' => 'Turning_Loop', 'label' => 'Turning Loop']
+                    ])
                 ],
 
                 Filter::$filterAstrologicalTwilight => [
                     "filterKey" => Filter::$filterAstrologicalTwilight,
-                    "title" => "Astrological twilight",
+                    "title" => "Astrological twilight (*some)",
                     "selectionType" => "checkbox-list",
                     "bind" => "Astronomical_Twilight",
                     "availableOptions" => []
@@ -259,7 +283,7 @@ class Filter
     /**
      * @var string
      */
-    private $bind;
+    protected $bind;
 
     /**
      * @OA\Property(
@@ -286,57 +310,16 @@ class Filter
     }
 
     /**
-     * some filter types need to fetch data from database to work (checkboxes types)
      * @param $defaultOptions
      * @return array
      */
-    private function setupAvailableOptions($defaultOptions) : array {
-
-        /** @returns - special type of filter: cirmstance has a checkbox item is bind to a column */
-        if(Filter::$filterCircumstance === $this->filterKey) {
-            return array_map(function($item) {
-                $filterOption = new FilterOptionBooleanColumn($item['label'], false, $this->filterKey);
-                $filterOption->setBind($item['column']);
-                return $filterOption;
-            }, [
-                ['column' => 'Amenity', 'label' => 'Amenity'],
-                ['column' => 'Bump', 'label' => 'Bump'],
-                ['column' => 'Crossing', 'label' => 'Crossing'],
-                ['column' => 'Give_Way', 'label' => 'Give Way'],
-                ['column' => 'Junction', 'label' => 'Junction'],
-                ['column' => 'No_Exit', 'label' => 'No Exit'],
-                ['column' => 'Railway', 'label' => 'Railway'],
-                ['column' => 'Roundabout', 'label' => 'Roundabout'],
-                ['column' => 'Station', 'label' => 'Station'],
-                ['column' => 'Stop', 'label' => 'Stop'],
-                ['column' => 'Traffic_Calming', 'label' => 'Traffic Calming'],
-                ['column' => 'Traffic_Signal', 'label' => 'Traffic Signal'],
-                ['column' => 'Turning_Loop', 'label' => 'Turning Loop']
-            ]);
-        }
-
-        /** @returns - general checkbox filter: the filter itself is bind to a column; a checkbox is a unique value of the column  */
-        $bindToColumn = Filter::getBindToColumn();
-        if(isset($bindToColumn[$this->filterKey])) {
-            $data = $bindToColumn[$this->filterKey];
-            $column = $data['column'];
-
-            return array_values(array_filter(
-                array_map(function($item) use($column) {
-                    $filterOption = new FilterOptionBoolean($item['label'], false, $this->filterKey);
-                    $filterOption->setBind($column);
-                    return $filterOption;
-                }, Filter::$db->select("SELECT DISTINCT($column) as label from accidents")),
-
-                function ($filterOption) {
-                    return $filterOption->label != "";
-                }
-            ));
-        }
-
-        /** compute other than above filters */
-        foreach ($defaultOptions as $option) {
-            $option->setBind($this->bind);
+    private function setupAvailableOptions($defaultOptions): array
+    {
+        /** attach the private member referring to the column targeted by the filter (if there is one or some filter may be related to multiple columns - in that case the bind is set prior in the options) */
+        if($this->bind) {
+            foreach ($defaultOptions as $option) {
+                $option->setBind($this->bind);
+            }
         }
 
         return $defaultOptions;
@@ -344,94 +327,160 @@ class Filter
 
 
     /**
+     * for certain filters a select of data may necessary (checkboxes, states) 
+     * @var Database
+     */
+    private function updateFilterWithDbData(Database $db)
+    {
+        /** @returns - general checkbox filter: the filter itself is bind to a column; a checkbox is a unique value of the column  */
+        $bindToColumn = Filter::getBindToColumn();
+        if (isset($bindToColumn[$this->filterKey])) {
+            $data = $bindToColumn[$this->filterKey];
+            $column = $data['column'];
+
+            $this->availableOptions = array_values(array_filter(
+                array_map(function ($item) use ($column) {
+                    $filterOption = new FilterOptionBoolean($item['label'], false, $this->filterKey);
+                    $filterOption->setBind($column);
+                    return $filterOption;
+                }, $db->select("SELECT DISTINCT($column) as label from accidents")),
+
+                function ($filterOption) {
+                    return $filterOption->label != "";
+                }
+            ));
+        }
+    }
+
+    /**
      * match and update Server generated filters with the client data
      *  
      * @param $jsonFilters - filter values from the client
      */
-    public function searchAndApplyJson($jsonFilters) {
-        $match = array_values(array_filter($jsonFilters, function($item) {
+    public function searchAndApplyJson($jsonFilters, $db)
+    {
+        $match = array_values(array_filter($jsonFilters, function ($item) {
             return $item['filterKey'] === $this->filterKey;
         }));
 
-        if(count($match) > 0) {
-           $match = $match[0];
-           foreach ($this->availableOptions as $option) {
-               foreach ($match['availableOptions'] as $optionJson) {
-                   if($optionJson['key'] === $option->key) {
-                       $option->setValue(
-                        //avoid injection   
-                        Filter::$db->escape($optionJson['value']));
-                       break;
-                   }
-               }
-           }
+        if (count($match) < 1) {
+            return;
+        }
+
+        $match = $match[0];
+
+        /**
+         * for filters of which the field available options is a list of VALUES of the column the filter is bind to
+         * update the filter with available option sent by the client - these will be used to filter the values of the column
+         * this approach makes sure the client doesn't know which column is about, doesn't know how database is constructed, and no interrogation of available values is needed
+         */
+        $bindToColumn = Filter::getBindToColumn();
+        if (isset($bindToColumn[$this->filterKey])) {
+            $data = $bindToColumn[$this->filterKey];
+            $column = $data['column'];
+
+            $this->availableOptions = array_values(array_filter(
+                array_map(function ($optionJson) use ($column) {
+                    $filterOption = new FilterOptionBoolean(
+                        $optionJson['label'],
+                        
+                        //prevent injection
+                        boolval($optionJson['value']),
+                        $this->filterKey
+                    );
+                    $filterOption->setBind($column);
+                    return $filterOption;
+                }, $match['availableOptions']),
+
+                function ($filterOption) {
+                    return $filterOption->label != "";
+                }
+            ));
+        } else {
+            /** 
+             * match each available options with the default ones using the key
+             * update ONLY the value sent by client
+             */
+            foreach ($this->availableOptions as $option) {
+                foreach ($match['availableOptions'] as $optionJson) {
+                    if ($optionJson['key'] === $option->key) {
+                        $option->setValue(
+                            //avoid injection   
+                            $db->escape($optionJson['value'])
+                        );
+                        break;
+                    }
+                }
+            }
         }
     }
 
     /**
      * @return string - a condition for a query or an empty string
      */
-    public function queryBuild() : string {
+    public function queryBuild(): string
+    {
         $string = "";
-        if(in_array($this->selectionType, ["date_range"])) {
-            if($this->availableOptions[0]->value != "") {
-                $string .= $this->bind." >= '". $this->availableOptions[0]->value ."' ";
+        if (in_array($this->selectionType, ["date_range"])) {
+            if ($this->availableOptions[0]->value != "") {
+                $string .= $this->bind . " >= '" . $this->availableOptions[0]->value . "' ";
             }
 
-            if($this->availableOptions[1]->value != "") {
-                if($string != "") {
+            if ($this->availableOptions[1]->value != "") {
+                if ($string != "") {
                     $string .= " AND ";
                 }
 
-                $string .= $this->bind." <= '". $this->availableOptions[0]->value ."' ";
+                $string .= $this->bind . " <= '" . $this->availableOptions[0]->value . "' ";
             }
-        } else if(in_array($this->selectionType, ["checkbox-list", "star", "checkbox-button-list"])) {
+        } else if (in_array($this->selectionType, ["checkbox-list", "star", "checkbox-button-list"])) {
             foreach ($this->availableOptions as $option) {
                 $query = $option->queryBuild();
-                if($query) {
-                    if($string != "") {
-                        if(in_array($this->filterKey, [Filter::$filterState, Filter::$filterSeverity]))  {
-                            $string .= " OR ";
-                        } else {
+                if ($query) {
+                    if ($string != "") {
+                        if (in_array($this->filterKey, [Filter::$filterCircumstance])) {
+                            /** each circumstance is bind to a column so AND is appropriate */
                             $string .= " AND ";
+                        } else {
+                            $string .= " OR ";
                         }
                     }
                     $string .= "$query ";
                 }
             }
-        } else if($this->selectionType === "location") {
+        } else if ($this->selectionType === "location") {
             $latQ = "";
             $lonQ = "";
 
             $lat = $this->availableOptions[0]->value;
             $long = $this->availableOptions[1]->value;
 
-            $locationRay = 150;
-            if($lat !== "") {
+            $locationRay = self::$locationRay;
+            if ($lat !== "") {
                 $latMin = floatval($lat) - $locationRay;
                 $latMax = floatval($lat) + $locationRay;
                 $latQ = "Start_Lat >= $latMin AND Start_Lat <= $latMax";
             }
 
-            if($long !== "") {
+            if ($long !== "") {
                 $longMin = floatval($long) - $locationRay;
                 $longMax = floatval($long) + $locationRay;
                 $lonQ = "Start_Lng >= $longMin AND Start_Lng <= $longMax";
             }
 
-            if($latQ !== "" && $lonQ !== "") {
+            if ($latQ !== "" && $lonQ !== "") {
                 $string = "$latQ AND $lonQ";
-            } else if($latQ !== "" || $lonQ !== "") {
+            } else if ($latQ !== "" || $lonQ !== "") {
                 $string = $latQ !== "" ? $latQ : $lonQ;
             }
-        } else if($this->selectionType === "numeric_range") {
+        } else if ($this->selectionType === "numeric_range") {
             $stringMin = $this->availableOptions[0]->queryBuild();
             $stringMax = $this->availableOptions[1]->queryBuild();
 
 
-            if($stringMin !== "" && $stringMax !== "") {
+            if ($stringMin !== "" && $stringMax !== "") {
                 $string = "$stringMin AND $stringMax";
-            } else if($stringMin !== "" || $stringMax !== "") {
+            } else if ($stringMin !== "" || $stringMax !== "") {
                 $string = $stringMin !== "" ? $stringMin : $stringMax;
             }
         }
@@ -443,13 +492,32 @@ class Filter
      * @param Database $db
      * @return Filter[]
      */
-    public static function createFilters(Database  $db) : array {
-        Filter::$db = $db;
+    public static function createFilters(Database  $db): array
+    {
+        $defaultOptions = Filter::getDefaultOptions();
+        $filters = [];
+        foreach ($defaultOptions as $optionDefault) {
+            $filter = new Filter($optionDefault);
+            $filters[] = $filter;
+
+            $filter->updateFilterWithDbData($db);
+        }
+
+        return $filters;
+    }
+
+    /**
+     * doesn't do any interrogation for available values 
+     * @return Filter[]
+     */
+    public static function createFiltersNoFetch(): array
+    {
 
         $defaultOptions = Filter::getDefaultOptions();
         $filters = [];
         foreach ($defaultOptions as $optionDefault) {
-            $filters[] = new Filter($optionDefault);
+            $filter = new Filter($optionDefault);
+            $filters[] = $filter;
         }
 
         return $filters;

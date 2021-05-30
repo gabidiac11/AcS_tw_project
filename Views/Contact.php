@@ -25,7 +25,7 @@
       <h1 class="width-100">Contact form</h1>
         <input class="inset-shadow-re-use" name="Name"id="Name" type="text" placeholder="Name">
         <input class="inset-shadow-re-use" name="Email"id="Email" type="text" placeholder="Email">
-        <textarea class="inset-shadow-re-use" name="message"id="message" type="text" placeholder="Message"></textarea>
+        <textarea class="inset-shadow-re-use" name="message"id="message" placeholder="Message"></textarea>
         <div class="flex-end">
           <input class="inset-shadow-re-use" id="send" type="submit" value="Send message">
         </div>

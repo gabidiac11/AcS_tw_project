@@ -29,11 +29,11 @@ class Charts extends Controller
     {
         $this->loadView("Charts", [
             'page' => self::PAGE_CASES,
-            'title' => 'Number of casses per state',
+            'title' => 'Number of cases per state',
 
             'description' => '
-                <p> Each slice represents a proportion of tracked data of casses that happened in a certain state. Hover to see have a better look.</p>
-                <p> Remove states from the calculation by clicking on of the rectancles.</p>
+                <p> Each slice represents a proportion of tracked data of cases that happened in a certain state. Hover to see have a better look.</p>
+                <p> Remove states from the calculation by clicking on of the rectangles.</p>
         '
         ]);
     }

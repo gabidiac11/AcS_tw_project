@@ -16,6 +16,7 @@ class SearchModel extends Model
     }
 
     /**
+     * get filters and its available values (implies several interrogations for some limited number of filters)
      * @return Filter[]
      */
     public function getFilters(): array
@@ -51,6 +52,10 @@ class SearchModel extends Model
     }
 
     /**
+     * the user can send any number of filters
+     * the filters that is actually sending are matched to the ones created in backend 
+     * this filter instances created in backend will get the values dictated by the client (safely - by escaping or parsing to numbers, boolean)
+     * 
      * @param $requestData
      * @return array
      */
@@ -67,9 +72,9 @@ class SearchModel extends Model
             /**
              * @var Filter
              */
-            $filter->searchAndApplyJson($jsonFilters);
+            $filter->searchAndApplyJson($jsonFilters, $this->db);
             return $filter;
-        }, $this->getFilters());
+        }, Filter::createFiltersNoFetch());
 
         $conditionQuery = array_reduce($filters, function($prev, $filter) {
             $condition = $filter->queryBuild();
@@ -89,10 +94,14 @@ class SearchModel extends Model
 
         /** safely integrate the sort by value in the query (allow only known columns to slip by) */
         $sortBy = "";
+        $dir = "";
+
         //avoid injections
         if(isset($_GET['sortBy']) && isset(Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']])) {
             $column = Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']];
             $sortBy = " ORDER BY $column";
+
+            $dir = isset($_GET['dir']) && $_GET['dir'] === "1" ? " DESC " : "";
         }
 
         if(isset($_GET['search']) && $_GET['search'] != "") {
@@ -123,7 +132,7 @@ class SearchModel extends Model
         $offset = $perPage * ($page - 1);
         $paginationQuery = " LIMIT $perPage OFFSET $offset";
 
-        $afterWhereQuery = "$conditionQuery $sortBy $paginationQuery";
+        $afterWhereQuery = "$conditionQuery $sortBy $dir $paginationQuery";
 
         $query = "SELECT * FROM accidents WHERE $afterWhereQuery";
         $results = Accident::resultsToInstances($this->db->select($query));

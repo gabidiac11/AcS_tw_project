@@ -40,7 +40,7 @@ class FilterOption
      * the db column bind to this filter
      * @var string
      */
-    private $bind = "";
+    protected $bind = "";
 
     /**
      * FilterOption constructor.

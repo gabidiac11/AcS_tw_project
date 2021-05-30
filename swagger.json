@@ -14,6 +14,47 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/charts/getChart": {
+            "get": {
+                "tags": [
+                    "charts"
+                ],
+                "summary": "Get chart data",
+                "description": "Returns an object ready to be used for drawing a certain type of chart in the frontend",
+                "operationId": "getChart",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page key. Each type of map is displayed on a certain page",
+                        "required": true,
+                        "examples": {
+                            "cases": {
+                                "summary": "Cases per state.",
+                                "value": "cases"
+                            },
+                            "timeline": {
+                                "summary": "Timeline (a dataset foreach tracked year).",
+                                "value": "timeline"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChartEntity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/search/filters": {
             "get": {
                 "tags": [
@@ -96,6 +137,17 @@
                             "WEATHER_CONDITION"
                         ],
                         "type": "string"
+                    },
+                    {
+                        "name": "dir",
+                        "in": "query",
+                        "description": "Direction of sorting - 1 - dec, 0 - asc.If sortBy is null this is ignored",
+                        "required": false,
+                        "enum": [
+                            "1",
+                            "0"
+                        ],
+                        "type": "string"
                     }
                 ],
                 "requestBody": {
@@ -128,47 +180,6 @@
                     },
                     "400": {
                         "description": "Invalid filter data"
-                    }
-                }
-            }
-        },
-        "/charts/getChart": {
-            "get": {
-                "tags": [
-                    "charts"
-                ],
-                "summary": "Get chart data",
-                "description": "Returns an object ready to be used for drawing a certain type of chart in the frontend",
-                "operationId": "getChart",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "The page key. Each type of map is displayed on a certain page",
-                        "required": true,
-                        "examples": {
-                            "cases": {
-                                "summary": "Cases per state.",
-                                "value": "cases"
-                            },
-                            "timeline": {
-                                "summary": "Timeline (a dataset foreach tracked year).",
-                                "value": "timeline"
-                            }
-                        },
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ChartEntity"
-                                }
-                            }
-                        }
                     }
                 }
             }

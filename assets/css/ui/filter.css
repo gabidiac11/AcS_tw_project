@@ -15,7 +15,7 @@
     background-color: #ffffff;
 }
 
-#filter-edit-c [filters-append] {
+#filter-edit-c [itemprop="filters-append"] {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -24,13 +24,13 @@
     padding: 0px 27px 27px 27px;
 }
 
-#filter-edit-c [btn-bottom-panel] {
+#filter-edit-c [itemprop="btn-bottom-panel"] {
     width: 100%;
     justify-content: flex-end;
     padding: 10px 0px;
 }
 
-#filter-edit-c [btn-bottom-panel] [btn-confirm] {
+#filter-edit-c [itemprop="btn-bottom-panel"] [itemprop="btn-confirm"] {
     margin: 0 10px;
 }
 
@@ -70,40 +70,40 @@
     fill: var(--primary-blue);
 }
 
-.filter-item [filter-sub-items] {
+.filter-item .filter-sub-items {
     margin-top: 10px;
     padding-right: 20px;
     position: relative;
 }
-.filter-item [filter-sub-items] button {
+.filter-item .filter-sub-items button {
     font-size: 12px;
     padding: 3px;
 
 }
 
-.filter-item [filter-sub-items] [filter-item-applied] {
+.filter-item .filter-sub-items.filter-item-applied {
     margin-right: 3px;
 }
 
-.filter-item [filter-sub-items] .filter-group-line {
+.filter-item .filter-sub-items .filter-group-line {
     display: flex;
 }
 
-.filter-item [filter-sub-items] .filter-group-line label{
+.filter-item .filter-sub-items .filter-group-line label{
     width: 50px;
 }
 
-.filter-item [filter-sub-items] .filter-group-line.checkbox-line label{
+.filter-item .filter-sub-items .filter-group-line.checkbox-line label{
     width: auto;
     padding-left: 2px;
 }
 .filter-item .filter-group-line label {
     cursor: pointer;
 }
-.filter-item [filter-sub-items] .range-group label{
+.filter-item .filter-sub-items .range-group label{
     width: 100px;
 }
-.filter-item [filter-sub-items] [reset-filter-btn] {
+.filter-item .filter-sub-items [itemprop="reset-filter-btn"] {
     position: absolute;
     right: 0;
     top: -40px;

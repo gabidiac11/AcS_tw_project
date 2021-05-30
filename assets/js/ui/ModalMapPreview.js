@@ -11,25 +11,25 @@ class ModalMapPreview {
   constructor() {
     this.SELECTORS = {
       MODAL_ROOT: "#modal-map",
-      MODAL_CLOSE: "[modal-close]",
-      exportWebpSelector: `[modal-export-webp]`,
-      exportSvgSelector: `[modal-export-svg]`,
+      MODAL_CLOSE: `[itemprop="modal-close"]`,
+      exportWebpSelector: `[itemprop="modal-export-webp"]`,
+      exportSvgSelector: `[itemprop="modal-export-svg"]`,
 
       /** popup on pin click */
-      popupSelector: `[popup]`,
-      popupContentSelector: `[popup-content]`,
+      popupSelector: `[itemprop="popup"]`,
+      popupContentSelector: `[itemprop="popup-content"]`,
     };
 
     this.modalNode = document.querySelector(this.SELECTORS.MODAL_ROOT);
 
     this.hideModal = () => {
-      this.modalNode.setAttribute("show", "false");
+      this.modalNode.classList.remove("show-modal");
       document.body.style.overflow = "";
       document.body.style.height = "";
     };
 
     this.showModal = () => {
-      this.modalNode.setAttribute("show", "true");
+      this.modalNode.classList.add("show-modal");
       document.body.style.overflow = "hidden";
       document.body.style.height = "100vh";
     };

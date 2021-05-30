@@ -122,7 +122,8 @@ class ExportModel extends Model
     public function exportCSVResults() {
         if(isset($_GET['ids']) && $_GET['ids'] && 
             $this->idsInputOk($_GET['ids']) && //validation
-            isset($_GET['limit']) && intval($_GET['limit'])) {
+            isset($_GET['limit']) && intval($_GET['limit'])
+        ) {
              
             $this->exportCsv($this->db->select(
                 "SELECT * FROM accidents where accident_id IN (".$_GET['ids'].") LIMIT ". intval($_GET['limit'])
@@ -133,9 +134,7 @@ class ExportModel extends Model
             // $stmt->bind_param("sss", $firstname, $lastname, $email);
 
         } else {
-            $this->exportCsv($this->db->select(
-                "SELECT * FROM accidents LIMIT 10"
-            ));
+            $this->exportCsv([]);
         }
     }
 }

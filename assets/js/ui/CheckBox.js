@@ -8,7 +8,7 @@ class CheckBoxItem {
 
         this.containerNode = null;
         this.inputNode = null;
-        this.idInput = `checkbox-${props.key}`;
+        this.idInput = `checkbox-${(String(props.key)).replace(/\s/g, "-")}`;
 
         this.unMount = () => {
             this.containerNode && this.containerNode.parentNode.removeChild(this.containerNode);
@@ -18,9 +18,10 @@ class CheckBoxItem {
             this.unMount();
             this.containerNode = stringToHTML(`
                 <div class="filter-group-line checkbox-line">
-                          <input class="checkbox-line-input" type="checkbox" value="" id="${this.idInput}">
+                          
                           <label class="checkbox-line-label" for="${this.idInput}">
-                              ${this.label}
+                            <input class="checkbox-line-input" type="checkbox" value="" id="${this.idInput}">
+                            ${this.label}
                           </label>
                 </div>
             `);

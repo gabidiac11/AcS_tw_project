@@ -17,7 +17,7 @@
 <body>
 
   <?php
-    require_once __DIR__ . '/Layout/Header.php';
+  require_once __DIR__ . '/Layout/Header.php';
   ?>
 
 
@@ -25,14 +25,14 @@
     <?php
     //die(json_encode($BLOCK)); 
     ?>
-    <section class="main-section">
+    <div class="main-section">
       <article class="main-section-title">
         <header>
           <h1>
             <?= $BLOCK['title'] ?>
           </h1>
         </header>
-        <section>
+        <div>
           <?= $BLOCK['description'] ?>
 
           <!-- DRAW SELECT NODE if chart page has a selection ***********************************************************-->
@@ -43,7 +43,7 @@
           ?>
             <!-- PHP  END -->
             <label for="select-type"><?= $BLOCK['selection']['label'] ?></label>
-            <select id="select-type" value="<?= $BLOCK['selection']['value'] ?>">
+            <select id="select-type">
 
 
               <!-- PHP -->
@@ -52,7 +52,7 @@
               ?>
                 <!-- PHP  END -->
 
-                <option value="<?=($value)?>" <?= ($BLOCK['selection']['value'] === $value ? "selected" : "") ?>>
+                <option value="<?= ($value) ?>" <?= ($BLOCK['selection']['value'] === $value ? "selected" : "") ?>>
                   <?= $value ?>
                 </option>
 
@@ -72,40 +72,35 @@
           <!-- PHP END -->
           <!-- DRAW SELECT NODE ****END ***********************************************************-->
 
-        </section>
+        </div>
       </article>
 
       <div class="chart-content" id="chart-wrapper">
         <canvas width="50px" height="50px"></canvas>
-        <div loader class="flex-all loader">
-          <img class="loader-img" />
+        <div id="loader" class="flex-all loader">
+          <img src="./../assets/images/loader.gif" alt="loader-img" class="loader-img" />
         </div>
-
-
-
       </div>
 
       </article>
+    </div>
 
-
-    </section>
-
-    <aside>
+    <aside itemscope>
       <section>
-        <h1>Charts to select</h1>
+        <h2 class="heading">Charts to select</h2>
         <ul>
-          <li class="rectangle" <?= ($BLOCK['page'] === 'cases' ? 'selected' : "") ?>><a href="/charts/cases">See number of casses per state</a></li>
-          <li class="rectangle" <?= ($BLOCK['page'] === 'severity' ? 'selected' : "") ?>><a href="/charts/severity">See the severity chart</a></li>
-          <li class="rectangle" <?= ($BLOCK['page'] === 'timeline' ? 'selected' : "") ?>><a href="/charts/timeline">See the timeline of accidents</a></li>
+          <li class="rectangle <?= ($BLOCK['page'] === 'cases' ? ' selected-rectangle' : "") ?>" ><a href="/charts/cases">See number of casses per state</a></li>
+          <li class="rectangle <?= ($BLOCK['page'] === 'severity' ? ' selected-rectangle' : "") ?>" ><a href="/charts/severity">See the severity chart</a></li>
+          <li class="rectangle <?= ($BLOCK['page'] === 'timeline' ? ' selected-rectangle' : "") ?>" ><a href="/charts/timeline">See the timeline of accidents</a></li>
         </ul>
       </section>
 
-      <section export-section>
-        <h1>Export</h1>
+      <section class="export-section" itemprop="export-container">
+        <h2 class="heading">Export</h2>
         <ul>
-          <li class="rectangle"> <button chart-export-btn export-type="Csv"> Csv </button> </li>
-          <li class="rectangle"> <button chart-export-btn export-type="Webp"> Webp </button> </li>
-          <li class="rectangle"> <button chart-export-btn export-type="Svg"> Svg </button> </li>
+          <li class="rectangle"> <button name="Csv"> Csv </button> </li>
+          <li class="rectangle"> <button name="Webp"> Webp </button> </li>
+          <li class="rectangle"> <button name="Svg"> Svg </button> </li>
         </ul>
       </section>
     </aside>
@@ -128,9 +123,9 @@
       (() => {
         const eventHandler = () => {
           window.chartPage = new ChartPageSelection({
-              page: "<?= $BLOCK['page'] ?>",
-              selectedKey: "<?= $BLOCK['selection']['value'] ?>",
-            });
+            page: "<?= $BLOCK['page'] ?>",
+            selectedKey: "<?= $BLOCK['selection']['value'] ?>",
+          });
 
           window.chartPage.init();
         };
@@ -157,9 +152,9 @@
       (() => {
         const eventHandler = () => {
           window.chartPage = new ChartPage({
-              page: "<?= $BLOCK['page'] ?>"
-            });
-          
+            page: "<?= $BLOCK['page'] ?>"
+          });
+
           window.chartPage.init();
         };
         if (document.readyState !== "loading") {

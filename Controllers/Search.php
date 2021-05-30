@@ -118,6 +118,14 @@ class Search extends Controller
     *       type="string",
     *       in="query"
     *     ),
+     *     @OA\Parameter(
+    *       name="dir",
+    *       enum={ "1", "0"},
+    *       description="Direction of sorting - 1 - dec, 0 - asc.If sortBy is null this is ignored",
+    *       required=false,
+    *       type="string",
+    *       in="query"
+    *     )
      * )
      */
     public function results()

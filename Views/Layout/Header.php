@@ -1,6 +1,6 @@
 <header class="flex-all flex-between header box-shadow-re-use">
     <a class="flex-all logo-container" href="/">
-        <img src="./../../assets/svg/logo.svg">
+        <img alt="logo" src="./../../assets/svg/logo.svg">
         <div class="brand-title text-box-shadow-re-use">AcS</div>
     </a>
 
