@@ -78,7 +78,7 @@ class Filter {
     };
 
     /**
-     * this is expected to be overwritten - (should have a abstract method responsability )
+     * this is expected to be overwritten - (should have a abstract method responsibility )
      */
     this.render = () => {};
 
@@ -100,8 +100,9 @@ class Filter {
     /** attaches the reset button to the node  */
     this.resetBtnSetup = () => {
       if (this.containerNode) {
-        const resetNode =
-          this.containerNode.querySelector(`[itemprop="reset-filter-btn"]`);
+        const resetNode = this.containerNode.querySelector(
+          `[itemprop="reset-filter-btn"]`
+        );
         if (resetNode) {
           resetNode.addEventListener("click", this.onResetClick);
         }
@@ -458,8 +459,12 @@ class SearchInput {
       } else {
         this.filterContainerNode.style.maxHeight = "0px";
       }
-      this.filterToggleNode.classList.add("active-"+String(Boolean(this.toggleOpen)));
-      this.filterToggleNode.classList.remove("active-"+String(!Boolean(this.toggleOpen)));
+      this.filterToggleNode.classList.add(
+        "active-" + String(Boolean(this.toggleOpen))
+      );
+      this.filterToggleNode.classList.remove(
+        "active-" + String(!Boolean(this.toggleOpen))
+      );
     };
 
     this.setFilterActive(false);
@@ -520,20 +525,44 @@ class SearchResult {
         selector: `[itemprop="item-weather-condition"]`,
         property: `weather.generalCondition`,
       },
-      { selector: `[itemprop="item-temperature"]`, property: `weather.temperature` },
+      {
+        selector: `[itemprop="item-temperature"]`,
+        property: `weather.temperature`,
+      },
       { selector: `[itemprop="item-humidity"]`, property: `weather.humidity` },
-      { selector: `[itemprop="item-visibility"]`, property: `weather.visibility` },
-      { selector: `[itemprop="item-wind-direction"]`, property: `weather.windDirection` },
-      { selector: `[itemprop="item-wind-speed"]`, property: `weather.windSpeed` },
-      { selector: `[itemprop="item-wind-windChill"]`, property: `weather.windChill` },
-      { selector: `[itemprop="item-precipitation"]`, property: `weather.precipitation` },
+      {
+        selector: `[itemprop="item-visibility"]`,
+        property: `weather.visibility`,
+      },
+      {
+        selector: `[itemprop="item-wind-direction"]`,
+        property: `weather.windDirection`,
+      },
+      {
+        selector: `[itemprop="item-wind-speed"]`,
+        property: `weather.windSpeed`,
+      },
+      {
+        selector: `[itemprop="item-wind-windChill"]`,
+        property: `weather.windChill`,
+      },
+      {
+        selector: `[itemprop="item-precipitation"]`,
+        property: `weather.precipitation`,
+      },
       { selector: `[itemprop="item-pressure"]`, property: `weather.pressure` },
     ];
 
     this.boolMapping = [
       /** circumstances */
-      { selector: `[itemprop="item-amenity"]`, property: `accidentCircumstance.amenity` },
-      { selector: `[itemprop="item-bump"]`, property: `accidentCircumstance.bump` },
+      {
+        selector: `[itemprop="item-amenity"]`,
+        property: `accidentCircumstance.amenity`,
+      },
+      {
+        selector: `[itemprop="item-bump"]`,
+        property: `accidentCircumstance.bump`,
+      },
       {
         selector: `[itemprop="item-crossing"]`,
         property: `accidentCircumstance.crossing`,
@@ -546,14 +575,26 @@ class SearchResult {
         selector: `[itemprop="item-Junction"]`,
         property: `accidentCircumstance.junction`,
       },
-      { selector: `[itemprop="item-No_Exit"]`, property: `accidentCircumstance.noExit` },
-      { selector: `[itemprop="item-Railway"]`, property: `accidentCircumstance.railWay` },
+      {
+        selector: `[itemprop="item-No_Exit"]`,
+        property: `accidentCircumstance.noExit`,
+      },
+      {
+        selector: `[itemprop="item-Railway"]`,
+        property: `accidentCircumstance.railWay`,
+      },
       {
         selector: `[itemprop="item-Roundabout"]`,
         property: `accidentCircumstance.roundAbout`,
       },
-      { selector: `[itemprop="item-Station"]`, property: `accidentCircumstance.station` },
-      { selector: `[itemprop="item-Stop"]`, property: `accidentCircumstance.stop` },
+      {
+        selector: `[itemprop="item-Station"]`,
+        property: `accidentCircumstance.station`,
+      },
+      {
+        selector: `[itemprop="item-Stop"]`,
+        property: `accidentCircumstance.stop`,
+      },
       {
         selector: `[itemprop="item-Traffic_Calming"]`,
         property: `accidentCircumstance.trafficCalming`,
@@ -569,7 +610,6 @@ class SearchResult {
     ];
 
     this.render = () => {
-     
       this.containerNode.style.display = ``;
 
       this.mapping.forEach(({ selector, property }) => {
@@ -776,7 +816,7 @@ class SearchContent {
       listLoaderSelector: `[itemprop="list-loader"]`,
       emptyIndicatorSelector: `[itemprop="empty-indicator"]`,
       sortSelector: "#sort-select",
-      sortDir: "#sort-dir-check" //checkbox
+      sortDir: "#sort-dir-check", //checkbox
     };
 
     /** define relevant nodes */
@@ -841,9 +881,6 @@ class SearchContent {
     this.isFetching = false;
 
     this.setIsFetching = (value) => {
-
-      
-
       if (value !== this.isFetching) {
         this.searchInstance.listIsFetching(value);
 
@@ -884,9 +921,11 @@ class SearchContent {
       return fetch(
         `${window.BASE_URL}search/results?search=${encodeURIComponent(
           this.lastSearchValue
-        )}&sortBy=${this.getSortValue()}&dir=${this.sortDirInputNode.checked ? "1" : "0"}&page=${
-          this.paginationInstance.page
-        }&perPage=${this.paginationInstance.perPage}`,
+        )}&sortBy=${this.getSortValue()}&dir=${
+          this.sortDirInputNode.checked ? "1" : "0"
+        }&page=${this.paginationInstance.page}&perPage=${
+          this.paginationInstance.perPage
+        }`,
         {
           headers: new Headers(),
           method: "POST",
@@ -969,7 +1008,8 @@ class SearchPage {
       containerNode: `[itemprop="filters-append"]`,
       cancelBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-cancel"]`,
       confirmBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-confirm"]`,
-      mapPreviewSelector: `#map-btn-preview`
+      mapPreviewSelector: `#map-btn-preview`,
+      exportDropdown: `#export-csv-wrapper`,
     };
 
     /** initialize nodes */
@@ -983,7 +1023,6 @@ class SearchPage {
     this.cancelButtonNode = this.parentNode.querySelector(
       this.selectors.cancelBtnSelector
     );
-
 
     /** create an instance responsable with input handling and filter toggle */
     this.searchInstance = new SearchInput({
@@ -1002,6 +1041,23 @@ class SearchPage {
       this.searchContentInstance.paginationInstance.reset();
       this.searchContentInstance.fetchList(this.filters);
     };
+
+    /** csv dropdown */
+    const csvExportOptions = [
+      { id: `export-csv-some`, label: "Export this page" },
+      { id: `export-csv-all`, label: "Export all" },
+    ];
+    
+    this.onClickCsvOption = (option) => {
+      console.log(option);
+    };
+
+    this.exportDropdown = new DropdownButton({
+      parentNode: document.querySelector(this.selectors.exportDropdown),
+      options: csvExportOptions,
+      label: "Export csv",
+      onClickOption: this.onClickCsvOption
+    });
 
     /** fetch and initialize filter instances */
     this.filters = [];
@@ -1032,7 +1088,6 @@ class SearchPage {
           throw response;
         })
         .then((json) => {
-          
           this.containerNode.innerHTML = "";
 
           json.forEach(
@@ -1086,7 +1141,6 @@ class SearchPage {
         })
         .finally(() => {
           this.setFiltersFetching(false);
-          
         });
     };
 

@@ -16,6 +16,7 @@
   <link href="../../assets/css/ui/list.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/search.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/list-item.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/ui/dropdown.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -68,6 +69,8 @@
         <button class="btn-primary" id="map-btn-preview">
           MAP PREVIEW
         </button>
+
+        <div id="export-csv-wrapper"></div>
       </div>
 
       <div id="search-filters" class="filters-c">
@@ -231,6 +234,7 @@
   <script src="./../assets/packages/canvas2svg/canvas2svg.js"></script>
   <script src="./../assets/js/ui/MapPicker.js"></script>
   <script src="./../assets/js/ui/ModalMapPreview.js"></script>
+  <script src="./../assets/js/ui/DropdownButton.js"></script>
   <script src="./../assets/js/search.js"></script>
 
 </body>
