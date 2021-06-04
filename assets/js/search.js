@@ -421,7 +421,7 @@ class SearchInput {
       searchInputSelector: `input`,
       filterToggleSelector: `[itemprop="filter-btn"]`,
       clearInputSelector: `[itemprop="delete-btn"]`,
-      searchBtnSelector: `[itemprop="search-btn"]`
+      searchBtnSelector: `[itemprop="search-btn"]`,
     };
 
     this.lastSearchValue = "";
@@ -883,10 +883,12 @@ class SearchContent {
           this.listLoaderNode.style.display = "";
           this.listContainerItemsNode.style.display = "none";
           this.sortSelectorNode.disabled = true;
+          this.sortDirInputNode.disabled = true;
         } else {
           this.listLoaderNode.style.display = "none";
           this.listContainerItemsNode.style.display = "";
           this.sortSelectorNode.disabled = false;
+          this.sortDirInputNode.disabled = false;
         }
 
         this.isFetching = value;
@@ -900,6 +902,16 @@ class SearchContent {
       return encodeURIComponent(this.sortSelectorNode.value);
     };
 
+    this.generateUrlQuerySearch = () => {
+      return `search=${encodeURIComponent(
+        this.searchInstance.getValue()
+      )}&sortBy=${this.getSortValue()}&dir=${
+        this.sortDirInputNode.checked ? "1" : "0"
+      }&page=${this.paginationInstance.page}&perPage=${
+        this.paginationInstance.perPage
+      }`;
+    };
+
     /**
      *
      * @param {Filter[]} filters
@@ -911,16 +923,12 @@ class SearchContent {
       this.setIsFetching(true);
 
       this.lastSearchValue = this.searchInstance.getValue();
+
+      /** indicates to the delete input button to do a new fetching if is pressed */
       this.paginationInstance.setListFetching(true);
 
       return fetch(
-        `${window.BASE_URL}search/results?search=${encodeURIComponent(
-          this.lastSearchValue
-        )}&sortBy=${this.getSortValue()}&dir=${
-          this.sortDirInputNode.checked ? "1" : "0"
-        }&page=${this.paginationInstance.page}&perPage=${
-          this.paginationInstance.perPage
-        }`,
+        `${window.BASE_URL}search/results?${this.generateUrlQuerySearch()}`,
         {
           headers: new Headers(),
           method: "POST",
@@ -1004,7 +1012,7 @@ class SearchPage {
       cancelBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-cancel"]`,
       confirmBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-confirm"]`,
       mapPreviewSelector: `#map-btn-preview`,
-      exportDropdown: `#export-csv-wrapper`
+      exportDropdown: `#export-csv-wrapper`,
     };
 
     /** initialize nodes */
@@ -1219,8 +1227,14 @@ class SearchPage {
         mapPreviewInstance.showModal();
       });
 
-    
-
+    this.searchContentInstance.sortDirInputNode.addEventListener(
+      "click",
+      () => {
+        if (!this.isFetching) {
+          this.searchContentInstance.fetchList(this.filters);
+        }
+      }
+    );
   }
 }
 
