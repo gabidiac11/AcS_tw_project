@@ -128,11 +128,23 @@ class ExportModel extends Model
             $this->exportCsv($this->db->select(
                 "SELECT * FROM accidents where accident_id IN (".$_GET['ids'].") LIMIT ". intval($_GET['limit'])
             ));
+        } else {
+            $this->exportCsv([]);
+        }
+    }
 
-            // // prepare and bind
-            // $stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-            // $stmt->bind_param("sss", $firstname, $lastname, $email);
+    public function exportCSVOfSession() {
+        session_start();
 
+        if(isset($_SESSION['last_search_query'])) {
+            try {
+                $this->exportCsv($this->db->select(
+                    $_SESSION['last_search_query'] . " LIMIT 100000"
+                ));
+            } catch(Exception $e) {
+                echo "Limit exceeded";
+            }
+            
         } else {
             $this->exportCsv([]);
         }

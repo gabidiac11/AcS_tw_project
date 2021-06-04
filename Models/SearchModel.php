@@ -60,6 +60,8 @@ class SearchModel extends Model
      * @return array
      */
     public function getResults($requestData): array {
+        session_start();
+
         $jsonFilters = $requestData['filters'] ?? null;
 
         $response = $this->validateFilterJson($jsonFilters);
@@ -140,6 +142,8 @@ class SearchModel extends Model
         /** calculate pagination props */
         $numOfResults = intval($this->db->select("SELECT COUNT(*) as numOfResults FROM accidents WHERE $conditionQuery")[0]['numOfResults']);
         $pageMax = ceil($numOfResults / $perPage);
+
+        $_SESSION['last_search_query'] =  "SELECT * FROM accidents WHERE $conditionQuery";
 
         return [
             //debug:

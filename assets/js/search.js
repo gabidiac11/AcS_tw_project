@@ -1061,16 +1061,21 @@ class SearchPage {
       window.open(link, "_blank");
     };
 
+    this.exportCsvAll = () => {
+      const link = `${window.BASE_URL}search/exportAll`;
+
+      window.open(link, "_blank");
+    };
+
     const csvExportOptions = [
       { id: `export-csv-some`, label: "Export this page", value: "some" },
-      { id: `export-csv-all`, label: "Export all", value: "all" },
+      { id: `export-csv-all`, label: "Export all (100k results limit)", value: "all" },
     ];
 
     this.onClickCsvOption = (option) => {
-      console.log(option);
-
       switch (option.value) {
         case "all":
+          this.exportCsvAll();
           break;
         default:
           this.exportCsvSome();

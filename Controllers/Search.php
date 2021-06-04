@@ -137,8 +137,19 @@ class Search extends Controller
         }
     }
 
+    /**
+     * export a set of ids results
+     */
     public function export()
     {
         $this->loadModel("ExportModel")->exportCSVResults();
+    }
+
+    /**
+     * export last search
+     */
+    public function exportAll()
+    {
+        $this->loadModel("ExportModel")->exportCSVOfSession();
     }
 }
