@@ -421,8 +421,7 @@ class SearchInput {
       searchInputSelector: `input`,
       filterToggleSelector: `[itemprop="filter-btn"]`,
       clearInputSelector: `[itemprop="delete-btn"]`,
-      searchBtnSelector: `[itemprop="search-btn"]`,
-      exportBtnSelector: `#export-btn`,
+      searchBtnSelector: `[itemprop="search-btn"]`
     };
 
     this.lastSearchValue = "";
@@ -443,10 +442,6 @@ class SearchInput {
     );
     this.searchBtnNode = this.containerNode.querySelector(
       this.selectors.searchBtnSelector
-    );
-
-    this.exportBtnNode = document.querySelector(
-      this.selectors.exportBtnSelector
     );
 
     this.toggleOpen = false;
@@ -1009,7 +1004,7 @@ class SearchPage {
       cancelBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-cancel"]`,
       confirmBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-confirm"]`,
       mapPreviewSelector: `#map-btn-preview`,
-      exportDropdown: `#export-csv-wrapper`,
+      exportDropdown: `#export-csv-wrapper`
     };
 
     /** initialize nodes */
@@ -1043,20 +1038,42 @@ class SearchPage {
     };
 
     /** csv dropdown */
+    /** export button event listener - export current results from the page - per page */
+    this.exportCsvSome = () => {
+      const link = `${window.BASE_URL}search/export?ids=${encodeURIComponent(
+        this.searchContentInstance.resultItems.reduce((prev, cur) => {
+          const id = cur.subject.uniqueId;
+          if (prev) {
+            return `${prev}, ${id}`;
+          }
+          return id;
+        }, "")
+      )}&limit=${this.searchContentInstance.paginationInstance.perPage}`;
+
+      window.open(link, "_blank");
+    };
+
     const csvExportOptions = [
-      { id: `export-csv-some`, label: "Export this page" },
-      { id: `export-csv-all`, label: "Export all" },
+      { id: `export-csv-some`, label: "Export this page", value: "some" },
+      { id: `export-csv-all`, label: "Export all", value: "all" },
     ];
-    
+
     this.onClickCsvOption = (option) => {
       console.log(option);
+
+      switch (option.value) {
+        case "all":
+          break;
+        default:
+          this.exportCsvSome();
+      }
     };
 
     this.exportDropdown = new DropdownButton({
       parentNode: document.querySelector(this.selectors.exportDropdown),
       options: csvExportOptions,
       label: "Export csv",
-      onClickOption: this.onClickCsvOption
+      onClickOption: this.onClickCsvOption,
     });
 
     /** fetch and initialize filter instances */
@@ -1202,20 +1219,8 @@ class SearchPage {
         mapPreviewInstance.showModal();
       });
 
-    /** export button event listener - export current results from the page*/
-    this.exportBtnNode = this.searchInstance.exportBtnNode;
-    this.exportBtnNode.addEventListener("click", () => {
-      const link = `${window.BASE_URL}search/export?ids=${encodeURIComponent(
-        this.searchContentInstance.resultItems.reduce((prev, cur) => {
-          const id = cur.subject.uniqueId;
-          if (prev) {
-            return `${prev}, ${id}`;
-          }
-          return id;
-        }, "")
-      )}&limit=${this.searchContentInstance.paginationInstance.perPage}`;
-      window.open(link, "_blank");
-    });
+    
+
   }
 }
 

@@ -63,14 +63,10 @@
         </div>
 
         <!-- RIGHT SIDE BUTTONS -->
-        <button class="btn-primary" id="export-btn">
-          Export CSV
-        </button>
+        <div class="btn-primary" id="export-csv-wrapper"></div>
         <button class="btn-primary" id="map-btn-preview">
           MAP PREVIEW
         </button>
-
-        <div id="export-csv-wrapper"></div>
       </div>
 
       <div id="search-filters" class="filters-c">
