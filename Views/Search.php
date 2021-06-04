@@ -63,7 +63,7 @@
         </div>
 
         <!-- RIGHT SIDE BUTTONS -->
-        <div class="btn-primary" id="export-csv-wrapper"></div>
+        <div id="export-csv-wrapper"></div>
         <button class="btn-primary" id="map-btn-preview">
           MAP PREVIEW
         </button>
