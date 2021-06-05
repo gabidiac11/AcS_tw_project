@@ -84,4 +84,8 @@ class Database
     public function escape($string) {
         return mysqli_real_escape_string($this->conn, $string);
     }
+
+    public function prepareStmt($sql) {
+        return $this->conn->prepare($sql);
+    }
 }

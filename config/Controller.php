@@ -24,7 +24,7 @@ class Controller extends App
         return new $modelName();
     }
 
-    public function loadView($view, $BLOCK)
+    public function loadView($view, $BLOCK = [])
     {
         if ($this->contModel->verifyStatus() === 0) {
             require_once __DIR__ . '/../Views/' . $view . '.php';

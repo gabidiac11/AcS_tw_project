@@ -13,6 +13,9 @@ require_once __DIR__ . "/FilterOptionBooleanColumn.php";
  */
 class Filter
 {
+    const SOME_INDICATOR_HTML = "<abbr title=\"The results that satisfy at least ONE of the items checked will be displayed.\"> (*some) </abbr>";
+    const EVERY_INDICATOR_HTML = "<abbr title=\"The results that satisfy ALL of the items checked will be displayed.\"> (*every) </abbr>";
+
     public static $filterSeverity = "SEVERITY";
     public static $filterTime = "TIME";
     public static $filterLocation = "LOCATION";
@@ -83,7 +86,7 @@ class Filter
 
                 Filter::$filterSeverity => [
                     "filterKey" => Filter::$filterSeverity,
-                    "title" => "Within Severity (*some)",
+                    "title" => "Within Severity ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Severity",
                     "availableOptions" => [
@@ -119,9 +122,9 @@ class Filter
 
                 Filter::$filterTemperature => [
                     "filterKey" => Filter::$filterTemperature,
-                    "title" => "Temperature",
+                    "title" => "Temperature (F)",
                     "selectionType" => "numeric_range",
-                    "bind" => "Temperature (F)",
+                    "bind" => "Temperature",
                     "availableOptions" => [
                         new FilterOptionRange("Min", Filter::$filterTemperature, -80, 80, ">="),
                         new FilterOptionRange("Max", Filter::$filterTemperature, -80, 80, "<=")
@@ -130,9 +133,9 @@ class Filter
 
                 Filter::$filterWindChill => [
                     "filterKey" => Filter::$filterWindChill,
-                    "title" => "Wind Chill",
+                    "title" => "Wind Chill (F)",
                     "selectionType" => "numeric_range",
-                    "bind" => "Wind_Chill (F)",
+                    "bind" => "Wind_Chill",
                     "availableOptions" => [
                         new FilterOptionRange("Min", Filter::$filterWindChill, 0, 100, ">="),
                         new FilterOptionRange("Max", Filter::$filterWindChill, 0, 100, "<=")
@@ -196,7 +199,7 @@ class Filter
 
                 Filter::$filterWindDirection => [
                     "filterKey" => Filter::$filterWindDirection,
-                    "title" => "Wind Direction (*some)",
+                    "title" => "Wind Direction ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -206,7 +209,7 @@ class Filter
 
                 Filter::$filterWeatherCondition => [
                     "filterKey" => Filter::$filterWeatherCondition,
-                    "title" => "Weather Condition (*some)",
+                    "title" => "Weather Condition ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -214,7 +217,7 @@ class Filter
 
                 Filter::$filterCircumstance => [
                     "filterKey" => Filter::$filterCircumstance,
-                    "title" => "Circumstance (*every)",
+                    "title" => "Circumstance ".self::EVERY_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "",
                     "availableOptions" => array_map(function ($item) {
@@ -240,7 +243,7 @@ class Filter
 
                 Filter::$filterAstrologicalTwilight => [
                     "filterKey" => Filter::$filterAstrologicalTwilight,
-                    "title" => "Astrological twilight (*some)",
+                    "title" => "Astrological twilight ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Astronomical_Twilight",
                     "availableOptions" => []

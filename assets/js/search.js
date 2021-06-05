@@ -918,6 +918,8 @@ class SearchContent {
      * @param {Filter[]} filters
      */
     this.fetchList = (filters) => {
+      props.notifyFetchStart();
+
       const callKey = Date.now();
       this.fetchKey = callKey;
 
@@ -1028,6 +1030,13 @@ class SearchPage {
       this.selectors.cancelBtnSelector
     );
 
+    this.onFetchListStart = () => {
+      /** alway hide filters when a fetch is triggered */
+      if(this.searchInstance && this.searchInstance.toggleOpen) {
+        this.cancelButtonNode.click();
+      }
+    };
+
     /** create an instance responsable with input handling and filter toggle */
     this.searchInstance = new SearchInput({
       filterContainerNode: this.parentNode,
@@ -1039,6 +1048,7 @@ class SearchPage {
       getFilters: () => {
         return this.filters;
       },
+      notifyFetchStart: this.onFetchListStart
     });
 
     this.searchInstance.fetchListCallback = () => {

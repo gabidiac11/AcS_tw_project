@@ -1,0 +1,28 @@
+figure > img {
+    max-width: 100%;
+}
+figure.report-centered-fig {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+figure {
+    font-size: 14px;
+    color: #616060;
+}
+div.inline-figures {
+    display: flex;
+    margin: 15px 0px;
+}
+div.inline-figures figure {
+    margin: 0px
+}
+
+div.inline-figures figure:first-child {
+    width: 70%;
+}
+
+div.inline-figures figure:nth-child(2) {
+    width: 29%;
+    margin-left: auto;
+}

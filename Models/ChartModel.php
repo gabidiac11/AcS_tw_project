@@ -3,6 +3,10 @@
 require_once __DIR__."/Entities/Chart/ChartEntity.php";
 require_once __DIR__ . "/helper/ModelConstants.php";
 
+/**
+ * view helpers: generates data for the map page, this may consist of page heading, or other data that indicates what ui to server-side rendered (the state selectors and other labels)
+ * GET endpoints for each chart type
+ */
 class ChartModel extends Model
 {
     
@@ -88,11 +92,9 @@ class ChartModel extends Model
 
         $backgroundColor = ModelConstants::$COLORS;
         $borderColor = ModelConstants::$BORDER_COLORS;
-
-
         $_SMAP = ModelConstants::$SMAP;
 
-
+        /** map state short name to the full name */
         return new ChartEntity(
             ChartEntity::$CHART_TYPE_DOUGHNUT,
             //data
@@ -117,6 +119,15 @@ class ChartModel extends Model
         );
     } 
 
+    /**
+     * a overview of accident frequency per month of each year side by side for comparing
+     * 
+     * gets chart data of 'LINE' type (this shows a line going up and down based on the progression of data) 
+     *  
+     * a line for each respective ear 
+     * this will results in a progression line with indicators for each month of targeted year 
+     * 
+    */
     public function getTimelineOfCases() {
        $results = $this->db->select(
         "SELECT 
