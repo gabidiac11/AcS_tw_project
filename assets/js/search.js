@@ -546,6 +546,7 @@ class SearchResult {
         property: `weather.precipitation`,
       },
       { selector: `[itemprop="item-pressure"]`, property: `weather.pressure` },
+      { selector: `[itemprop="item-distance"]`, property: `distance`}
     ];
 
     this.boolMapping = [
@@ -1069,7 +1070,7 @@ class SearchPage {
 
     const csvExportOptions = [
       { id: `export-csv-some`, label: "Export this page", value: "some" },
-      { id: `export-csv-all`, label: "Export all (100k results limit)", value: "all" },
+      { id: `export-csv-all`, label: "Export all (10k results limit)", value: "all" },
     ];
 
     this.onClickCsvOption = (option) => {

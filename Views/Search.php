@@ -108,9 +108,10 @@
                 <li>Visibility(mi): <span itemprop="item-visibility">10</span>;</li>
                 <li>Wind Direction: <span itemprop="item-wind-direction">Calm</span>;</li>
                 <li>Wind Speed(mph): <span itemprop="item-wind-speed"> - </span></li>
-                <li>Wind Chill: <span itemprop="item-wind-windChill"> - </span></li>
+                <li>Wind Chill(F): <span itemprop="item-wind-windChill"> - </span></li>
                 <li>Precipitation(in): <span itemprop="item-precipitation">-</span>;</li>
-                <li>Pressure: <span itemprop="item-pressure"> - </span></li>
+                <li>Pressure(in): <span itemprop="item-pressure"> - </span></li>
+                <li>Distance(mi): <span itemprop="item-distance"> - </span></li>
               </ul>
               <hr>
               <div class="condtions-met">

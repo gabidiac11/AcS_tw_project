@@ -148,7 +148,7 @@ class SearchModel extends Model
         return [
             //debug:
             'query' => $query,
-            // 'filterApplied' => $filters,
+            'filterApplied' => $filters,
             
             'results' => $results,
             'numberOfResults' => $numOfResults,

@@ -37,7 +37,7 @@ class Filter
      */
     private static $bindColumn = null;
 
-    private static $locationRay = 150;
+    private static $locationRay = 15;
 
     /** get the column to fetch values from (use: to make a list of unique values to be checked for a filter to work) */
     private static function getBindToColumn(): array
@@ -97,7 +97,7 @@ class Filter
 
                 Filter::$filterTime => [
                     "filterKey" => Filter::$filterTime,
-                    "title" => "Duration",
+                    "title" => "Period",
                     "selectionType" => "date_range",
                     "bind" => "Start_Time",
                     "availableOptions" => [
@@ -108,7 +108,7 @@ class Filter
 
                 Filter::$filterDistance => [
                     "filterKey" => Filter::$filterDistance,
-                    "title" => "Distance",
+                    "title" => "Distance (mi)",
                     "selectionType" => "numeric_range",
                     "bind" => "Distance",
                     "availableOptions" => [
@@ -121,7 +121,7 @@ class Filter
                     "filterKey" => Filter::$filterTemperature,
                     "title" => "Temperature",
                     "selectionType" => "numeric_range",
-                    "bind" => "Temperature",
+                    "bind" => "Temperature (F)",
                     "availableOptions" => [
                         new FilterOptionRange("Min", Filter::$filterTemperature, -80, 80, ">="),
                         new FilterOptionRange("Max", Filter::$filterTemperature, -80, 80, "<=")
@@ -132,7 +132,7 @@ class Filter
                     "filterKey" => Filter::$filterWindChill,
                     "title" => "Wind Chill",
                     "selectionType" => "numeric_range",
-                    "bind" => "Wind_Chill",
+                    "bind" => "Wind_Chill (F)",
                     "availableOptions" => [
                         new FilterOptionRange("Min", Filter::$filterWindChill, 0, 100, ">="),
                         new FilterOptionRange("Max", Filter::$filterWindChill, 0, 100, "<=")
@@ -431,7 +431,7 @@ class Filter
                     $string .= " AND ";
                 }
 
-                $string .= $this->bind . " <= '" . $this->availableOptions[0]->value . "' ";
+                $string .= $this->bind . " <= '" . $this->availableOptions[1]->value . "' ";
             }
         } else if (in_array($this->selectionType, ["checkbox-list", "star", "checkbox-button-list"])) {
             foreach ($this->availableOptions as $option) {

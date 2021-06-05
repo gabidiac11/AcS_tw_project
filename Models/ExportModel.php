@@ -133,13 +133,16 @@ class ExportModel extends Model
         }
     }
 
+    /**
+     * use last search query from the search page to fetch the last search of results
+     */
     public function exportCSVOfSession() {
         session_start();
 
         if(isset($_SESSION['last_search_query'])) {
             try {
                 $this->exportCsv($this->db->select(
-                    $_SESSION['last_search_query'] . " LIMIT 100000"
+                    $_SESSION['last_search_query'] . " LIMIT 10000"
                 ));
             } catch(Exception $e) {
                 echo "Limit exceeded";

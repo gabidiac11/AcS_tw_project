@@ -89,7 +89,7 @@ class DropdownButton {
       this.unMount();
 
       this.containerNode = stringToHTML(`            
-            <div class="dropdown-wrapper" ${props.id}>
+            <div class="dropdown-wrapper">
                   <button class="btn-primary dropdown-opener" > 
                     <span> ${this.label} </span>
                   </button>
@@ -110,5 +110,12 @@ class DropdownButton {
     };
 
     this.render();
+
+    /** close the dropdown if the user clicks outside */
+    window.addEventListener("click", (event) => {
+      if(this.containerNode.classList.contains("show") && event.target !== this.containerNode && !this.containerNode.contains(event.target)) {
+        this.toggleDropdownMenu();
+      }
+    });
   }
 }
