@@ -21,9 +21,9 @@
 
 <body>
   <?php
-  require_once __DIR__ . '\Layout\Header.php';
-  require_once __DIR__ . '\Reusables\Button\Button.php';
-  require_once __DIR__ . '\Reusables\Svg\LoadSvg.php';
+  require_once __DIR__ . '/Layout/Header.php';
+  require_once __DIR__ . '/Reusables/Button/Button.php';
+  require_once __DIR__ . '/Reusables/Svg/LoadSvg.php';
   ?>
   <main class="flex-all">
     <div class="page-wrapper page-content-search flex-all" style="align-items: flex-start; flex-wrap:wrap;">
