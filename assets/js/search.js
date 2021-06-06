@@ -968,6 +968,7 @@ class SearchContent {
                       return (
                         {
                           1: "red-dot-shade-1.svg",
+                          1: "red-dot-shade-1.svg",
                           2: "red-dot-shade-2.svg",
                           3: "red-dot-shade-3.svg",
                           4: "red-dot-shade-4.svg",
@@ -1014,8 +1015,9 @@ class SearchPage {
       containerNode: `[itemprop="filters-append"]`,
       cancelBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-cancel"]`,
       confirmBtnSelector: `[itemprop="btn-bottom-panel"] [itemprop="btn-confirm"]`,
+      resetAllBtn: `[itemprop="btn-bottom-panel"] [itemprop="btn-reset-all"]`,
       mapPreviewSelector: `#map-btn-preview`,
-      exportDropdown: `#export-csv-wrapper`,
+      exportDropdown: `#export-csv-wrapper`
     };
 
     /** initialize nodes */
@@ -1023,11 +1025,14 @@ class SearchPage {
     this.containerNode = this.parentNode.querySelector(
       this.selectors.containerNode
     );
-    this.cofirmButtonNode = this.parentNode.querySelector(
+    this.confirmButtonNode = this.parentNode.querySelector(
       this.selectors.confirmBtnSelector
     );
     this.cancelButtonNode = this.parentNode.querySelector(
       this.selectors.cancelBtnSelector
+    );
+    this.resetAllBtnNode = this.parentNode.querySelector(
+      this.selectors.resetAllBtn
     );
 
     this.onFetchListStart = () => {
@@ -1189,9 +1194,9 @@ class SearchPage {
       this.searchInstance.setFiltersFetching(value);
     };
 
-    this.initBottomPanel = () => {
+    this.initButtonPanel = () => {
       /** APPLY FILTER BUTTON */
-      this.cofirmButtonNode.addEventListener("click", (event) => {
+      this.confirmButtonNode.addEventListener("click", (event) => {
         this.filters.forEach((item) => {
           item.saveState();
         });
@@ -1208,10 +1213,16 @@ class SearchPage {
           filterItem.restoreToPrevious();
         });
       });
+
+      this.resetAllBtnNode.addEventListener("click", () => {
+        this.filters.forEach(filter => {
+          filter.reset();
+        });
+      });
     };
 
     this.initFilters();
-    this.initBottomPanel();
+    this.initButtonPanel();
     this.searchContentInstance.fetchList(this.filters);
 
     /** SORT SELECT EVENT LISTENER */

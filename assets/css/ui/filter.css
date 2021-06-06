@@ -30,8 +30,12 @@
     padding: 10px 0px;
 }
 
-#filter-edit-c [itemprop="btn-bottom-panel"] [itemprop="btn-confirm"] {
+#filter-edit-c [itemprop="btn-bottom-panel"] button {
     margin: 0 10px;
+}
+
+#filter-edit-c [itemprop="btn-bottom-panel"] button svg {
+    fill: white;
 }
 
 #filter-edit-c
@@ -112,4 +116,3 @@
 .filter-item .filter-group-line.range-group {
     display: block;
 }
-

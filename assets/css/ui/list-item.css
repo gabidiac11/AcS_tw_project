@@ -1,32 +1,31 @@
 .list-item {
-    color: white;
-    background-color: #2B2E4A;
-    border: 10px;
-    border-color: #707070;
+  color: white;
+  background-color: #2b2e4a;
+  border: 10px;
+  border-color: #707070;
 }
-.list-item > div {
-    padding: 5px 0;
+
+.conditions-met {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
 }
-.condtions-met {
-    margin: 10px auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 100%;       
-}
-.condtions-met > div {
-        background-color: green;
-        padding: 10px;
-        font-size: 13px;
-        margin: 5px;
-        color: white;
-        text-decoration: none;
-        
-        display: block;
-        border-radius: 8px;
+.conditions-met > li {
+  padding: 5px 0;
+  background-color: green;
+  padding: 10px;
+  font-size: 13px;
+  margin: 5px;
+  color: white;
+  text-decoration: none;
+
+  display: block;
+  border-radius: 8px;
 }
 
 .description-item {
-    padding: 10px 0;
+  padding: 10px 0;
 }

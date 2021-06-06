@@ -16,6 +16,11 @@ class ChartModel extends Model
         parent::__construct();
     }
 
+    /**
+     * gets chart entities grouped by state, that contains number of cases for each severity value 
+     * +
+     * get the same results, but overall (not grouped by state)
+     */
     public function getSeverityPerState() {
         $perState = $this->db->select(
         "SELECT 

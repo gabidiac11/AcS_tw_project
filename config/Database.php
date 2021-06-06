@@ -42,7 +42,9 @@ class Database
     }
 
     /**
-     * @param {string} 
+     * executes a sql select statement given as parameter 
+     * @param string $sql
+     * @return array - the sql results
      */
     public function select($sql)
     {
@@ -63,9 +65,14 @@ class Database
     }
 
     public function update($sql) {
-
+        //waiting to be used
     }
 
+    /**
+     * executes a sql insert statement given as parameter
+     * @var string $sql
+     * @return string - the inserted id, meaning the primary key of the inserted row
+     */
     public function insert($sql) {
         $conn = $this->conn;
         $conn->query($sql);

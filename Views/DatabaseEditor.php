@@ -19,7 +19,7 @@
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>
-<main class="main" id="admin-panel">
+<main class="flex-all flex-column main" id="admin-panel">
 
     <div class="topnav" id="myTopnav">
         <a id="add" onclick="displayAdd()">Add</a>

@@ -24,6 +24,10 @@ class Controller extends App
         return new $modelName();
     }
 
+    /**
+     * @param string $view
+     * @param array $BLOCK
+     */
     public function loadView($view, $BLOCK = [])
     {
         if ($this->contModel->verifyStatus() === 0) {
