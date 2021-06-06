@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "./ChartDatasetEntity.php";
+require_once __DIR__ . "/ChartDatasetEntity.php";
 
 /**
  * Class ChartDataEntity
