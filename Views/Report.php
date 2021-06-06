@@ -2,8 +2,8 @@
 <html lang="en" class=" vjvxerws idc0_330">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Report</title>
     <link rel="stylesheet" href="/assets/packages/scholarly/css/scholarly.min.css">
     <link rel="stylesheet" href="/assets/css/report.css">
@@ -35,59 +35,137 @@
 
             <li><a href="#introduction"><span>1. </span>Introduction</a>
                 <ol role="directory">
-                    <li><a href="#introduction"><span>1.1 </span>Purpose</a></li>
-                    <li><a href="#introduction"><span>1.2 </span>Intended Audience and Reading Suggestions</a></li>
-                    <li><a href="#introduction"><span>1.3 </span>Product scope</a></li>
-                    <li><a href="#introduction"><span>1.4 </span>References</a></li>
+                    <li><a href="#introduction-Purpose"><span>1.1 </span>Purpose</a></li>
+                    <li><a href="#introduction-Intended"><span>1.2 </span>Intended Audience and Reading Suggestions</a></li>
+                    <li><a href="#introductionProduct-scope"><span>1.3 </span>Product scope</a></li>
+                    <li><a href="#introductionReferences"><span>1.4 </span>References</a></li>
                 </ol>
             </li>
 
-            <li><a href="#introduction"><span>2. </span>Overall Description</a>
+            <li><a href="#overallDescription"><span>2. </span>Overall Description</a>
                 <ol role="directory">
-                    <li><a href="#introduction"><span>2.1 </span>Product Perspective</a></li>
+                    <li><a href="#overallDescriptionPP"><span>2.1 </span>Product Perspective</a></li>
 
-                    <li><a href="#contentinfo-semantics"><span>2.2. </span>Product Functions</a>
+                    <li><a href="#overallDescriptionProductF"><span>2.2. </span>Product Functions</a>
                         <ol role="directory">
-                            <li><a href="#authors"><span>2.2.1 </span>User perspective</a></li>
-                            <li><a href="#authors"><span>2.2.1 </span>Administration functions </a></li>
-                            <li><a href="#authors"><span>2.2.1 </span>User Classes and Characteristics </a></li>
-                            <li><a href="#authors"><span>2.2.1 </span> </a></li>
+                            <li><a href="#overallDescriptionUserP"><span>2.2.1 </span>User perspective</a></li>
+                            <li><a href="#overallDescriptionAdmF"><span>2.2.2 </span>Administration functions </a></li>
                         </ol>
                     </li>
 
-                    <li><a href="#introduction"><span>2.3 </span>Product scope</a></li>
-                    <li><a href="#introduction"><span>2.4 </span>References</a></li>
+                    <li><a href="#overallDescriptionUsrClCh"><span>2.3 </span>User Classes and Characteristics</a></li>
+                    <li><a href="#overallDescriptionOpEnv"><span>2.4 </span>Operating Environment</a></li>
+                    <li><a href="#overallDescriptionDesignIC"><span>2.5 </span>Design and Implementation Constraints</a></li>
+                    <li><a href="#overallDescriptionUDoc"><span>2.6 </span>User Documentation</a></li>
+
+                    <li><a href="#overallDescriptionAssumptionD"><span>2.7. </span>Assumptions and Dependencies</a>
+                        <ol role="directory">
+                            <li><a href="#overallDescriptionAssumptionGen"><span>2.7.1 </span>General assumptions</a></li>
+                            <li><a href="#overallDescriptionDepends"><span>2.7.2 </span>Dependencies </a></li>
+                        </ol>
+                    </li>
                 </ol>
             </li>
 
-            <li><a href="#semantics"><span>4. </span>Semantics Overlay</a>
+            <li><a href="#extIntReq"><span>3. </span>External Interface Requirements</a>
                 <ol role="directory">
-                    <li><a href="#person-org"><span>4.1 </span>Persons &amp; Organizations</a></li>
-                    <li><a href="#typing-sections"><span>4.2 </span>Typing Sections</a></li>
-                    <li><a href="#roles"><span>4.3 </span>Schema Roles</a></li>
-                    <li><a href="#actions"><span>4.4 </span>Actions</a></li>
-                    <li><a href="#article-title-semantics"><span>4.5 </span>Article and Title Semantics</a></li>
-                    <li><a href="#contentinfo-semantics"><span>4.6 </span>The <code>contentinfo</code> Region Semantics</a>
+                    <!-- USER INTERFACES -->
+                    <li><a href="#extIntReqUserInt"><span>3.1 </span>User Interfaces</a>
                         <ol role="directory">
-                            <li><a href="#authors"><span>4.6.1 </span>Authors &amp; Contributors</a></li>
-                            <li><a href="#affiliations"><span>4.6.2 </span>Affiliations</a></li>
-                            <li><a href="#abstract-etc"><span>4.6.3 </span>License, Copyright, Keywords, and Abstract</a></li>
-                            <li><a href="#meta-notes"><span>4.6.4 </span>Notes</a></li>
+                            <!-- SEARCH PAGE -->
+                            <li><a href="#extIntReqUISearchPage"><span>3.1.1 </span>Search page</a>
+                                <ol role="directory">
+                                    <li><a href="#extIntReqUISearchPageResult"><span>3.1.1.1 </span>Result item template</a></li>
+                                    <li><a href="#extIntReqUISearchPageSearch"><span>3.1.1.2 </span>Search input</a></li>
+                                    <li><a href="#extIntReqUISearchPageFilter"><span>3.1.1.3 </span>Filter section</a></li>
+                                    <li><a href="#extIntReqUISearchPageCheckbox"><span>3.1.1.4 </span>Checkbox types</a></li>
+                                    <li><a href="#extIntReqUISearchPageLocation"><span>3.1.1.5 </span>Location</a></li>
+                                </ol>
+                            </li>
                         </ol>
                     </li>
-                    <li><a href="#flavored-links"><span>4.7 </span>Flavored Links</a></li>
-                    <li><a href="#citations"><span>4.8 </span>Citations &amp; References</a></li>
-                    <li><a href="#footnotes"><span>4.9 </span>Footnotes &amp; Endnotes</a></li>
-                    <li><a href="#funding"><span>4.10 </span>Funding Information</a></li>
-                    <li><a href="#disclosures"><span>4.11 </span>Disclosures</a></li>
-                    <li><a href="#acknowledgements"><span>4.12 </span>Acknowledgements</a></li>
+
+                    <!-- 3. OTHER -->
+                    <li><a href="#extIntReqHardware"><span>3.2 </span>Hardware interfaces</a></li>
+                    <li><a href="#extIntReqSoftware"><span>3.3 </span>Software interfaces</a>
+                        <ol role="directory">
+                            <li><a href="#extIntReqOperatingSys"><span>3.3.1 </span>Operating system</a></li>
+                            <li><a href="#extIntReqDatabase"><span>3.3.2 </span>Database</a></li>
+                            <li><a href="#extIntReqPlatform"><span>3.3.3 </span>Platform</a></li>
+                            <li><a href="#extIntReqOpenLayers"><span>3.3.4 </span>Open Layers</a></li>
+                            <li><a href="#extIntReqChart"><span>3.3.5 </span>Chart Js</a></li>
+                            <li><a href="#extIntReqCanvas2Svg"><span>3.3.6 </span>Canvas2Svg Js</a></li>
+                        </ol>
+                    </li>
+
                 </ol>
             </li>
-            <li><a href="#scholarly-article"><span>5. </span>Scholarly Article Vocabulary</a></li>
-            <li><a href="#hypermedia"><span>6. </span>Hypermedia Controls</a></li>
-            <li><a href="#processing-model"><span>7. </span>Processing Model</a></li>
-            <li><a href="#acks"><span>8. </span>Acknowledgements</a></li>
-            <li><a href="#biblio-references"><span>9. </span>References</a></li>
+
+            <li><a href="#devGuide"><span>4. </span>Developer guide</a>
+                <ol role="directory">
+                    <!-- MVC ARCHITECTURE -->
+                    <li><a href="#devGuideMVC"><span>4.1 </span>MVC Architecture</a>
+                        <ol role="directory">
+                            <li><a href="#devGuideMVCApp"><span>4.1.1 </span>App</a></li>
+                            <li><a href="#devGuideMVCRouter"><span>4.1.2 </span>Router</a></li>
+                            <li><a href="#devGuideMVCDatabase"><span>4.1.3 </span>Database</a></li>
+                            <li><a href="#devGuideMVCController"><span>4.1.4 </span>Controller</a></li>
+                            <li><a href="#devGuideMVCModel"><span>4.1.5 </span>Model</a></li>
+                        </ol>
+                    </li>
+
+                    <!-- SEARCH PAGE SERVICE -->
+                    <li><a href="#devGuideSearchService"><span>4.2 </span>Search Page Service</a>
+                        <ol role="directory">
+                            <li><a href="#devGuideSearchServiceResults"><span>4.2.1 </span>Results</a></li>
+                            <li><a href="#devGuideSearchServiceFilters"><span>4.2.2 </span>Filters</a>
+                                <ol role="directory">
+                                    <li><a href="#devGuideSearchServiceFiltersRoles"><span>4.2.2.1 </span>Roles</a></li>
+                                    <li><a href="#devGuideSearchServiceFiltersMentions"><span>4.2.2.2 </span>Other mentions</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+
+
+                    <!-- CHART PAGE SERVICE -->
+                    <li><a href="#devGuideChartPageService"><span>4.3 </span>Chart Page Service</a></li>
+
+                    <!-- EXPORT SERVICE -->
+                    <li><a href="#devGuideExportService"><span>4.4 </span>Export Service</a></li>
+                </ol>
+            </li>
+
+            <!-- ASSIGNMENTS -->
+            <li><a href="#workAssignment"><span>5. </span>Work assignments</a>
+                <ol role="directory">
+                    <!-- DIAC P. GABRIEL -->
+                    <li><a href="#workAssignmentDiac"><span>5.1 </span>Diac P. Gabriel</a>
+                        <ol role="directory">
+                            <li><a href="#workAssignmentDiacBackend"><span>5.1.1 </span>Backend</a></li>
+                            <li><a href="#workAssignmentDiacFrontend"><span>5.1.2 </span>Frontend</a></li>
+                        </ol>
+                    </li>
+
+                    <!-- GRADINARIU MARIAN-FLORIN -->
+                    <li><a href="#workAssignmentGradinariu"><span>5.2 </span>Gradinariu Marian-Florin</a>
+                        <ol role="directory">
+                            <li><a href="#workAssignmentGradinariuBackend"><span>5.2.1 </span>Backend</a></li>
+                            <li><a href="#workAssignmentGradinariuFrontend"><span>5.2.2 </span>Frontend</a></li>
+                        </ol>
+                    </li>
+
+                    <!-- VASILICA ALEX -->
+                    <li><a href="#workAssignmentVasil"><span>5.3 </span>Vasilica Alex</a>
+                        <ol role="directory">
+                            <li><a href="#workAssignmentVasilBackend"><span>5.2.1 </span>Backend</a></li>
+                            <li><a href="#workAssignmentVasilFrontend"><span>5.2.2 </span>Frontend</a></li>
+                        </ol>
+                    </li>
+
+                </ol>
+            </li>
+
         </ol>
         <dl>
             <dt>Authors</dt>
@@ -112,7 +190,7 @@
         <p>
             AcS (USA Accidents Smart Visualizer) is an Web tool for flexible visualizing of data regarding the USA accidents between 2016 and 2020, using its own API REST service.
         </p>
-        <section id="Root">
+        <section id="introduction-Purpose">
             <h3><span>1.1 </span>Purpose</h3>
             <p>
                 The main purpose is the efficient visualizing of data by filtering, sorting and observing each instance in a meaningful way.
@@ -120,7 +198,7 @@
         </section>
 
 
-        <section id="article">
+        <section id="introduction-Intended">
             <h3><span>1.2 </span> Intended Audience and Reading Suggestions</h3>
             <p>
                 From a development standpoint this report includes general information regarding the code infrastructure and important details regarding the implementation. This may refer to code snippets, UML and other diagrams, external libraries, project structure and technologies used. From a project manager perspective, a number of sections are dedicated to explaining what was the main goals, focus and scalability in respect to our approach.
@@ -128,14 +206,14 @@
         </section>
 
 
-        <section id="hunk">
+        <section id="introductionProduct-scope">
             <h3><span>1.3 </span>Product Scope</h3>
             <p>
                 The purpose of the app is to visualize, categorize, download specific information related to a large set of data in a efficient way. The system is based on a large dataset stored in a relational database. We have a data related to United States car accidents that span between 2016-2020. For each of the accident the user has access to important details related to weather (humidity, visibility, wind, etc.), traffic conditions (stop, roundabout, giveaways etc.), duration, distance, severity and a short description. Each accident can be observed cartographically and in a form of statistical charts with the possibility of exporting each of these in formats like CSV, WEBP, SVG.
             </p>
         </section>
 
-        <section id="biblio-references">
+        <section id="introductionReferences">
             <h2><span>1.4. </span>References</h2>
             <dl>
                 <dt id="ref-ScholarlyArticle">Scholarly Article</dt>
@@ -158,7 +236,7 @@
     <section id="overallDescription">
         <h2><span>1. </span>Overall Description</h2>
 
-        <section id="overallDescription-ProductPerspective">
+        <section id="overallDescriptionPP">
             <h3><span>2.1 </span>Product Perspective</h3>
             <p>
                 The product presents a common approach in dealing with a large set of data that needs to be visualized.
@@ -168,10 +246,10 @@
             </p>
         </section>
 
-        <section id="overallDescription-Functions">
+        <section id="overallDescriptionProductF">
             <h3><span>2.2 </span>Product Functions</h3>
 
-            <section id="overallDescription-ProductPerspective-1">
+            <section id="overallDescriptionUserP">
                 <h3><span>2.2.1 </span>User perspective</h3>
                 <p>
                     The product's high-level functions are to:
@@ -185,7 +263,7 @@
                 </ul>
             </section>
 
-            <section id="overallDescription-ProductPerspective-2">
+            <section id="overallDescriptionAdmF">
                 <h3><span>2.2.1 </span>Administration functions</h3>
                 <p>
                     The product aims at:
@@ -199,7 +277,7 @@
 
         </section>
 
-        <section id="overallDescription-UserClasses">
+        <section id="overallDescriptionUsrClCh">
             <h3><span>2.3 </span>User Classes and Characteristics</h3>
             <p> There a different types of audiences that are targeted: </p>
             <ul>
@@ -213,16 +291,17 @@
             </ul>
         </section>
 
-        <section id="overallDescription-OperatingEnvironment">
+        <section id="overallDescriptionOpEnv">
             <h3><span>2.4 </span>Operating Environment</h3>
             <ul>
                 <li> Database service: MySql </li>
                 <li> Client/server system </li>
                 <li> Operating system: Windows </li>
                 <li> Platform: PHP</li>
+            </ul>
         </section>
 
-        <section id="overallDescription-DesignImplementation">
+        <section id="overallDescriptionDesignIC">
             <h3><span>2.5 </span>Design and Implementation Constraints</h3>
             <p> There are several constraints to be consider: </p>
             <ul>
@@ -235,7 +314,7 @@
             </ul>
         </section>
 
-        <section id="overallDescription-UserDocumentation">
+        <section id="overallDescriptionUDoc">
             <h3><span>2.6 </span>User Documentation</h3>
 
             <dl>
@@ -246,7 +325,7 @@
             </dl>
 
             <dl>
-                <dt id="ref-MVC-tutorial">Build your MVC Tutorial 1</dt>
+                <dt id="ref_MVC_tutorial_build">Build your MVC Tutorial 1</dt>
                 <dd property="schema:citation" typeof="schema:MVC-tutorial-1" resource="https://lancecourse.com/howto/how-to-start-your-own-php-mvc-framework-in-4-steps">
                     <cite property="schema:name"><a href="https://lancecourse.com/howto/how-to-start-your-own-php-mvc-framework-in-4-steps">How to start your own PHP MVC framework in 4 steps?
                         </a></cite>,
@@ -259,10 +338,10 @@
             </dl>
         </section>
 
-        <section id="overallDescription-AssumptionsDependencies">
+        <section id="overallDescriptionAssumptionD">
             <h3><span>2.7 </span>Assumptions and Dependencies</h3>
 
-            <section id="overallDescription-AssumptionsDependencies-1">
+            <section id="overallDescriptionAssumptionGen">
                 <h3><span>2.7.1 </span> General assumptions</h3>
 
                 <ul>
@@ -276,10 +355,10 @@
                 </ul>
             </section>
 
-            <section id="overallDescription-AssumptionsDependencies-2">
+            <section id="overallDescriptionDepends">
                 <h3><span>2.7.2 </span> Dependencies</h3>
                 <dl>
-                    <dt id="ref-MVC-tutorial-1">Canvas to SVG</dt>
+                    <dt id="ref_MVC_tutorial_1">Canvas to SVG</dt>
                     <dd property="schema:citation" typeof="schema:MVC-tutorial-1" resource="https://github.com/gliffy/canvas2svg">
                         <cite property="schema:name"><a href="https://github.com/gliffy/canvas2svg">Canvas 2 Svg v1.0.19</a></cite>,
                         by
@@ -290,7 +369,7 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt id="ref-MVC-tutorial-2">OpenLayers</dt>
+                    <dt id="ref-OpenLayers-tutorial">OpenLayers</dt>
                     <dd property="schema:citation" typeof="schema:MVC-tutorial-1" resource="https://openlayers.org/">
                         <cite property="schema:name"><a href="https://openlayers.org/">A high-performance, feature-packed library for all your mapping needs.</a></cite>,
                         by
@@ -302,7 +381,7 @@
                 </dl>
 
                 <dl>
-                    <dt id="ref-MVC-tutorial-3">Swagger UI</dt>
+                    <dt id="ref_MVC_tutorial_3">Swagger UI</dt>
                     <dd property="schema:citation" typeof="schema:MVC-tutorial-1" resource="https://github.com/swagger-api/swagger-ui">
                         <cite property="schema:name"><a href="https://github.com/swagger-api/swagger-ui"> Create a standard web UI from a swagger configuration file.</a></cite>,
                         by
@@ -314,7 +393,7 @@
                 </dl>
 
                 <dl>
-                    <dt id="ref-MVC-tutorial-chart-4">Charts</dt>
+                    <dt id="ref_MVC_tutorial_chart">Charts</dt>
                     <dd property="schema:citation" typeof="schema:MVC-tutorial-1" resource="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js">
                         <cite property="schema:name"><a href="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"> Chart.js v3.1.0.</a></cite>,
                         by
@@ -330,30 +409,30 @@
     </section>
 
     <!-- EXTERNAL INTERFACE REQUIREMENTS -->
-    <section id="overallDescription-1">
+    <section id="extIntReq">
         <h2><span>3. </span>External Interface Requirements</h2>
 
-        <section id="overallDescription-ProductPerspective-3">
+        <section id="extIntReqUserInt">
             <h3><span>3.1 </span>User Interfaces</h3>
             <p>
                 The product presents a common approach in dealing with a large set of data that needs to be visualized.
             </p>
 
             <!-- SEARCH-PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
-            <section id="overallDescription-AssumptionsDependencies-3">
+            <section id="extIntReqUISearchPage">
                 <h3><span>3.1.1 </span> Search page</h3>
                 <p>The main scope of the Search page is to offer users comprehensive insights regarding car accidents in the USA by helping them aggregate and visualize the data using filters, search and export capabilities.
                 </p>
 
                 <!-- SEARCH-PAGE ->>> RESULT ITEM TEMPLATE -->
-                <section id="overallDescription-AssumptionsDependencies-4">
+                <section id="extIntReqUISearchPageResult">
                     <h3><span>3.1.1.1 </span> Result item template</h3>
-                    <p>
+                    
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/accident-card.png" alt="">
                         <figcaption>Fig. 1 - Result item template</figcaption>
                     </figure>
-                    </p>
+                    
                     <ol>
                         <li><strong>Date and time of the accident,</strong> required not only for the chronological placement but also for creating meaningful and accurate forecasts, correlations with other events and factors that can affect the evolution of the number of the accidents.</li>
                         <li><strong>Severity</strong>, describes the severity of the accidents, starting with 0 for highly severe to 4 for the least severe</li>
@@ -368,15 +447,15 @@
                 </section>
 
                 <!-- SEARCH-PAGE ->>> INPUT SECTION -->
-                <section id="overallDescription-AssumptionsDependencies-5">
+                <section id="extIntReqUISearchPageSearch">
                     <h3><span>3.1.1.1 </span> Search input</h3>
-                    <p>
+                    
                         The goal of this section is to filter results using user input and access some other hidden section (the filter section that is hidden).
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/search-bar.png" alt="Search bar">
                         <figcaption>Fig. 2 - Search bar</figcaption>
                     </figure>
-                    </p>
+                    
                     <ol>
                         <li><strong>Search box</strong>. Offers users the possibility to search accidents by description or id.</li>
                         <li><strong>Search button</strong>. The users need to press the search button after they entered the text they wish to search in order to get the desired results.</li>
@@ -395,7 +474,7 @@
                 </section>
 
                 <!-- SEARCH-PAGE ->>> FILTER SECTION -->
-                <section id="overallDescription-AssumptionsDependencies-6">
+                <section id="extIntReqUISearchPageFilter">
                     <h3><span>3.1.1.2 </span> Filter section</h3>
                     <p>The filter area is hidden but can be toggled using the button from the search bar described in the previous section. The filter area is clustered into 16 different groups, and each of these has its own reset button. In this way, the user can revert a filtering criterion without affecting the others. For the results to reflect the changes after resetting a group, the user must press the Apply button or Cancel otherwise. If the user wants to exit the filter area, he can press the Cancel button or click in the area outside of it.
                     </p>
@@ -441,50 +520,13 @@
                         <li><strong>17. Circumstance (*every)</strong>, gets the accidents that happened under all the selected circumstances.</li>
                         <li><strong>18. Astrological twilight (*some)</strong>, enables the filtering of the accidents by time of the day.</li>
                     </ul>
-                    <p>
-                        decribe appling the filter, cancel button behavior, reseting the filters
-                    </p>
-
-                    <p> There are a variety of filters. </p>
-
-                    <section id="overallDescription-AssumptionsDependencies-7">
-                        <h3><span>3.1.1.2.1 Checkbox types</span> </h3>
-                        <p>
-                            From a point of impact, some filters can display multiple options to be selected. Some of these filters are marked as "every", meaning that each item must satisfy all options selected simultaneously. Some are marked as "some", meaning that a result will be displayed if at least one options is satisfied. In both of these types if no options is chosen they are ignored completely.
-                        </p>
-
-                        <p>
-                            further describe and list them (state filter focus)
-                        </p>
-                    </section>
-
-                    <section id="overallDescription-AssumptionsDependencies-8">
-                        <h3><span>3.1.1.2.2 Location</span> </h3>
-                        <p>
-                            describe and list them
-                        </p>
-                    </section>
-
-                    <section id="overallDescription-AssumptionsDependencies-9">
-                        <h3><span>3.1.1.2.3 Date</span> </h3>
-                        <p>
-                            describe and list them
-                        </p>
-                    </section>
-
-                    <section id="overallDescription-AssumptionsDependencies-10">
-                        <h3><span>3.1.1.2.4 Range</span> </h3>
-                        <p>
-                            describe and list them
-                        </p>
-                    </section>
                 </section>
 
                 <!-- SEARCH-PAGE ->>> PAGINATION SECTION -->
                 <section id="overallDescription-AssumptionsDependencies-11">
                     <h3><span>3.1.1.3 </span> Pagination </h3>
                     <p>
-                        describe how many per page (3 options 10, 20, 50) </br>
+                        describe how many per page (3 options 10, 20, 50) 
                         when filters are changing pagination resets
                     </p>
                 </section>
@@ -545,7 +587,7 @@
                 <section id="overallDescription-AssumptionsDependencies-18">
                     <h3><span>3.1.2.3 </span> Chart timeline </h3>
                     <p>
-                        describe 4 curbes for each year (2016-2020)</br>
+                        describe 4 curbes for each year (2016-2020)
 
                         describe interaction
                     </p>
@@ -563,83 +605,81 @@
             <!-- INSERT NEXT PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
         </section>
 
-        <section id="overallDescription-ProductPerspective-4">
+        <section id="extIntReqHardware">
             <h3><span>3.2 </span>Hardware interfaces</h3>
             <ul>
                 <li> A device that supports Windows 10, Internet connection and the latest version of Chrome browser.</li>
             </ul>
         </section>
 
-        <section id="overallDescription-ProductPerspective-5">
+        <section id="extIntReqSoftware">
             <h3><span>3.3 </span>Software interfaces</h3>
 
-            <section id="overallDescription-ProductPerspective-6">
+            <section id="extIntReqOperatingSys">
                 <h3><span>3.3.1 </span>Operating system</h3>
                 <p>
                     We've chosen <i>Windows</i> as the primary operating system because is widely available, and thus reaches a large pool of audiences. It's is also very familiar, and supports a lot of services.
                 </p>
             </section>
 
-            <section id="overallDescription-ProductPerspective-7">
+            <section id="extIntReqDatabase">
                 <h3><span>3.3.2 </span>Database</h3>
                 <p>
                     <i>MySql</i>
                 </p>
             </section>
 
-            <section id="overallDescription-ProductPerspective-8">
+            <section id="oextIntReqPlatform">
                 <h3><span>3.3.3 </span>Platform</h3>
                 <p>
                     PHP ^v7.3. PHP is easy to use and has a lot of build in functionalities.
                 </p>
             </section>
 
-            <section id="overallDescription-ProductPerspective-9">
+            <section id="extIntReqOpenLayers">
                 <h3><span>3.3.4 </span>Open Layers</h3>
                 <p>
                     Open Layers is a fast API, with a rich documentation, and a community behind.
                 </p>
             </section>
 
-            <section id="overallDescription-ProductPerspective-10">
+            <section id="extIntReqChart">
                 <h3><span>3.3.4 </span>Chart Js</h3>
                 <p>
                     Offers high quality, responsive drawings. Has a great approach in object abstraction, which makes for a easy going process of modeling the database rows into comprehensive drawings.
                 </p>
             </section>
 
-            <section id="overallDescription-ProductPerspective-11">
+            <section id="extIntReqCanvas2Svg">
                 <h3><span>3.3.5 </span>Canavs2Svg Js</h3>
             </section>
         </section>
     </section>
 
     <!-- Other Nonfunctional Requirements -->
-    <section id="overallDescription-3">
+    <section id="devGuide">
         <h2><span>5.Developer guide</span></h2>
 
         <!-- MVC ARCHITECTURE -->
-        <section id="overallDescription-4">
+        <section id="devGuideMVC">
             <h2><span>5.1 MVC Architecture </span></h2>
             <p>
                 The architecture rests on a hierarchy of classes provided in the <i> Fig. 5.1 </i>. The folder structure and naming convention are important for the this app to work.
             </p>
 
-            <p>
             <figure class="report-centered-fig">
                 <img src="/assets/images/report/uml/mvc-infrastructure.png" alt="mvc-architecture">
                 <figcaption>Fig. 5.1 - MVC Architecture UML</figcaption>
             </figure>
-            </p>
 
-            <section id="overallDescription-2">
+            <section id="devGuideMVCApp">
                 <h2><span>5.1.1 App </span></h2>
                 <p>
                     The class that is inherited by both Model and Controller classes. Its purpose is to provide access to the Router and Database singleton instances evenly.
                 </p>
             </section>
 
-            <section id="overallDescription-2">
+            <section id="devGuideMVCRouter">
                 <h2><span>5.1.2 Router </span></h2>
                 <p>
                     The class that is inherited by both Model and Controller classes. Its purpose is to provide access to the Router and Database singleton instances evenly.
@@ -654,7 +694,7 @@
                 </ul>
             </section>
 
-            <section id="overallDescription-2">
+            <section id="devGuideMVCDatabase">
                 <h2><span>5.1.3 Database </span></h2>
                 <p>
                     The class uses facade and singleton. The class is available for both Model and Controller classes.
@@ -672,18 +712,18 @@
                 </ul>
             </section>
 
-            <section id="overallDescription-2">
+            <section id="devGuideMVCController">
                 <h2><span>5.1.4 Controller </span></h2>
                 <p>
                     Represents the base class for all controllers.
                 </p>
                 <ul>
                     <li>
-                        Model loading. An important use of this class is the loading of models via <i>loadModel</i> method. All the logic is intended to get pass to the model instance. The controller is intended to call the needed methods and receive a response then print it on the screen.
+                        <strong>Model</strong> loading. An important use of this class is the loading of models via <i>loadModel</i> method. All the logic is intended to get pass to the model instance. The controller is intended to call the needed methods and receive a response then print it on the screen.
                     </li>
 
                     <li>
-                        View loading. Via <i>loadView</i> method a view file is imported. Any view has a PHP associative array named (<i>$BLOCK</i>), that can be used for server side rendering. The server side rendering is used for rendering certain ui (in limited amounts). A plain string from the server echoed in the view is not advised, as is harder to trace by the naked eye or by the IDE, easy to break and hard to extend. Data fetched via time consuming operations are left for javascript and Ajax requests, which are handling that more smoothly. The server rendering is used for avoiding repetitive code (see the search view) or other small UI elements (see charts view), with HTML and PHP separation.
+                        <strong>View loading</strong>. Via <i>loadView</i> method a view file is imported. Any view has a PHP associative array named (<i>$BLOCK</i>), that can be used for server side rendering. The server side rendering is used for rendering certain ui (in limited amounts). A plain string from the server echoed in the view is not advised, as is harder to trace by the naked eye or by the IDE, easy to break and hard to extend. Data fetched via time consuming operations are left for javascript and Ajax requests, which are handling that more smoothly. The server rendering is used for avoiding repetitive code (see the search view) or other small UI elements (see charts view), with HTML and PHP separation.
                     </li>
 
                     <li>
@@ -696,7 +736,7 @@
                 </ul>
             </section>
 
-            <section id="overallDescription-2">
+            <section id="devGuideMVCModel">
                 <h2><span>5.1.5 Model </span></h2>
                 <p>
                     Processes the actual request of an API endpoint.
@@ -720,19 +760,19 @@
         </section>
 
         <!-- SEARCH PAGE SERVICE -->
-        <section id="overallDescription-5">
+        <section id="devGuideSearchService">
             <h2><span>5.2 Search Page Service </span></h2>
             <p>
                 This section explains the <a href="/search" target="_blank"> search page </a> and its related API.The functionality is concentrating around the <i>SearchModel</i>.
             </p>
-            <p>
+           
             <figure class="report-centered-fig">
                 <img src="/assets/images/report/uml/search-model-uml.png" alt="search-model-uml">
                 <figcaption>Fig. 5.2 - SearchModel UML</figcaption>
             </figure>
-            </p>
+            
 
-            <section id="overallDescription-6">
+            <section id="devGuideSearchServiceResults">
                 <h2><span>5.2.1 Results </span></h2>
                 <p>
                     This /search endpoint is explained in great details in the <a href="/swagger#/search/results" target="_blank">swagger</a>.
@@ -748,10 +788,10 @@
                     <img src="/assets/images/report/uml/accident-entity-uml.png" alt="search-model-uml">
                     <figcaption>Fig. 5.2 - Accident entity UML</figcaption>
                 </figure>
-                </p>
+                
             </section>
 
-            <section id="overallDescription-6">
+            <section id="devGuideSearchServiceFilters">
                 <h2><span>5.2.2 Filters </span></h2>
                 <p>
                     This /filters endpoint is explained in great details in the <a href="/swagger#/search/filters" target="_blank">swagger</a>.
@@ -759,14 +799,12 @@
 
                 <p> The <i> Filter </i> entity is the base for search feature and has a large spectrum of abstraction. Each filter starts from a default configuration, consisting of options with empty value fields. Some filters need to consult the database information to fetch its options. </p>
 
-                <p>
                 <figure class="report-centered-fig">
                     <img src="/assets/images/report/uml/accident-entity-uml.png" alt="search-model-uml">
                     <figcaption>Fig. 5.3 - Filter entity UML</figcaption>
                 </figure>
-                </p>
 
-                <section id="overallDescription-6">
+                <section id="devGuideSearchServiceFiltersRoles">
                     <h2><span>5.2.2.1 Roles </span></h2>
                     <ul>
                         <li>
@@ -779,11 +817,11 @@
                     </ul>
                 </section>
 
-                <section id="overallDescription-6">
+                <section id="devGuideSearchServiceFiltersMentions">
                     <h2><span>5.2.2.2 Other mentions </span></h2>
                     <ul>
                         <li>
-                            the result item (<a href="#overallDescription-AssumptionsDependencies-4"></<i>Fig. 1</i><a>) is generated using service side rendering. When rendering results, the frontend associates an instance of a class to a html node with a generic structure, that permits updates of inner elements using an attribute scheme for matching. In the php file a N-list of such nodes are rendered (hidden) in a for loop, keeping PHP and HTML code separated. These nodes are then ready on page load and are to be attached to Js instances, filled with information and showed.
+                            the result item (<i>Fig. 1</i>) is generated using service side rendering. When rendering results, the frontend associates an instance of a class to a html node with a generic structure, that permits updates of inner elements using an attribute scheme for matching. In the php file a N-list of such nodes are rendered (hidden) in a for loop, keeping PHP and HTML code separated. These nodes are then ready on page load and are to be attached to Js instances, filled with information and showed.
                         </li>
 
                         <li>
@@ -795,27 +833,27 @@
         </section>
 
         <!-- CHAR PAGE SERVICE -->
-        <section id="overallDescription-5">
+        <section id="devGuideChartPageService">
             <h2><span>5.3 Chart Page Service </span></h2>
             <p>
                 This section explains the <a href="/charts" target="_blank"> charts page </a> and its related API.The functionality is concentrating around the <i>ChartModel</i>.
             </p>
-            <p>
+
             <figure class="report-centered-fig">
                 <img src="/assets/images/report/uml/chart-model-uml.png" alt="chart-model-uml">
                 <figcaption>Fig. 5.5 - ChartModel UML</figcaption>
             </figure>
-            </p>
+
 
             <p>
-                The main entity, <i>ChartEntity</i>, is modeled exactly after the parameters accepted by the <a href="#ref-MVC-tutorial-chart-4"><i>ChartJs</i></a> library. To better understand how to use this entity, please consult the <a href="https://www.chartjs.org/docs/latest/" target="_blank">library documentation</a>.
+                The main entity, <i>ChartEntity</i>, is modeled exactly after the parameters accepted by the <a href="#ref_MVC_tutorial_chart"><i>ChartJs</i></a> library. To better understand how to use this entity, please consult the <a href="https://www.chartjs.org/docs/latest/" target="_blank">library documentation</a>.
             </p>
-            <p>
+
             <figure class="report-centered-fig">
                 <img src="/assets/images/report/uml/chart-entity-uml.png" alt="chart-entity-uml">
                 <figcaption>Fig. 5.6 - CharEntity UML</figcaption>
             </figure>
-            </p>
+
 
             <p>
                 Chart related endpoints are explained in great details in the <a href="/swagger#/charts" target="_blank">swagger</a>.
@@ -827,14 +865,14 @@
         </section>
 
         <!-- CHAR PAGE SERVICE -->
-        <section id="overallDescription-5">
+        <section id="devGuideExportService">
             <h2><span>5.4 Export </span></h2>
             <p>
                 This section gives a general overview of export functionality.
             </p>
             <p>
 
-            <p> The exports are used in various part of the app (see the above <a href="#overallDescription-1">section</a>). There are several types of export formats:</p>
+            <p> The exports are used in various part of the app (see the above <a href="#overallDescription">section</a>). There are several types of export formats:</p>
             <ul>
                 <li>
                     CSV. This format is done server side and uses default PHP functions that can be consulted in the manual.
@@ -845,7 +883,7 @@
                 </li>
 
                 <li>
-                    SVG. This format uses the same Js features as the Webp option, but is decorated by a third-party library, <a href="#ref-MVC-tutorial-1">Canvas2Svg</a>.
+                    SVG. This format uses the same Js features as the Webp option, but is decorated by a third-party library, <a href="#ref_MVC_tutorial_1">Canvas2Svg</a>.
                 </li>
             </ul>
         </section>
@@ -853,13 +891,13 @@
     </section>
 
     <!-- Other Assignments -->
-    <section id="overallDescription-7">
+    <section id="workAssignment">
         <h2><span>6.Work assignments</span></h2>
 
-        <section id="overallDescription-8">
+        <section id="workAssignmentDiac">
             <h2><span>6.1 Diac P. Gabriel </span></h2>
             <h2><span>6.1.2 Backend </span></h2>
-            <section id="DiacPGabriel-assign-backend">
+            <section id="workAssignmentDiacBackend">
                 <ul>
                     <li> MVC infrastructure </li>
                     <li> Swagger installation </li>
@@ -869,7 +907,7 @@
                 </ul>
             </section>
 
-            <section id="DiacPGabriel-assign-frontend">
+            <section id="workAssignmentDiacFrontend">
                 <h2><span>6.1.3 Frontend </span></h2>
                 <ul>
                     <li>Search page - algorithm and UX design, javascript code related to filtering results, pagination, loading results, cartographic representations, most of the UI elements that interact with the user (search, clear, filter toggle, apply/clear/cancel filters controls, pagination controls, export dropdown, sort and sort by selectors) </li>
@@ -879,21 +917,37 @@
             </section>
         </section>
 
-        <section id="overallDescription-9">
+        <section id="workAssignmentGradinariu">
             <h2><span>6.2 Gradinariu Marian-Florin </span></h2>
-            <ul>
-                <li>describe 1</li>
-            </ul>
+            <section id="workAssignmentGradinariuBackend">
+                <ul>
+                    <li> - </li>
+                </ul>
+            </section>
+
+            <section id="workAssignmentGradinariuFrontend">
+                <h2><span>6.1.3 Frontend </span></h2>
+                <ul>
+                    <li>-</li>
+                </ul>
+            </section>
         </section>
 
-        <section id="overallDescription-10">
+        <section id="workAssignmentVasil">
             <h2><span>6.3 Vasilica Alex </span></h2>
-            <ul>
-                <li>describe 1</li>
-            </ul>
-        </section>
-    </section>
+            <section id="workAssignmentVasilBackend">
+                <ul>
+                    <li> - </li>
+                </ul>
+            </section>
 
+            <section id="workAssignmentVasilFrontend">
+                <h2><span>6.1.3 Frontend </span></h2>
+                <ul>
+                    <li>-</li>
+                </ul>
+            </section>
+        </section>
     </section>
 </body>
 
