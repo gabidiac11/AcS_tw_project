@@ -41,7 +41,7 @@ require_once __DIR__ . '/Layout/Admin.php';
     <div id="importDiv">
         <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
-            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
+            <button class="file-upload-btn" type="button" onclick="document.querySelector('.file-upload-input').click();">Add
                 File
             </button>
 

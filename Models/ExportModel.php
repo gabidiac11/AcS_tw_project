@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__."./Entities/Accident.php";
-require_once __DIR__."./Entities/Filter.php";
+require_once __DIR__."/Entities/Accident.php";
+require_once __DIR__."/Entities/Filter.php";
 
 class ExportModel extends Model
 {
