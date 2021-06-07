@@ -90,7 +90,6 @@ class Filter
                     "selectionType" => "checkbox-list",
                     "bind" => "Severity",
                     "availableOptions" => [
-                        new FilterOptionBoolean("0", false, Filter::$filterTime),
                         new FilterOptionBoolean("1", false, Filter::$filterTime),
                         new FilterOptionBoolean("2", false, Filter::$filterTime),
                         new FilterOptionBoolean("3", false, Filter::$filterTime),

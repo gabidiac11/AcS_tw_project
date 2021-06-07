@@ -132,7 +132,7 @@ class ModalMapPreview {
           const item = this.layerObjectList[name];
 
           content.innerHTML = `<div> 
-                                <h5 style="margin:0;">${item.date} | ${item.address.city} | ${item.id} </h5> 
+                                <h5 style="margin:0;">${item.date} | ${item.address.city} | ${item.uniqueId} | S${item.severity}</h5> 
                                 <section style="font-size:14px; padding: 5px 0;" >${item.description}<section> 
                                </div>`
           overlay.setPosition(evt.coordinate);

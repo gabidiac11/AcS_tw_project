@@ -509,7 +509,7 @@ class SearchResult {
       /** general info */
       { selector: `[itemprop="item-date"]`, property: `date` },
       { selector: `[itemprop="item-severity"]`, property: `severity` },
-      { selector: `[itemprop="item-id"]`, property: `id` },
+      { selector: `[itemprop="item-id"]`, property: `uniqueId` },
       { selector: `[itemprop="item-city"]`, property: `address.city` },
       { selector: `[itemprop="item-state"]`, property: `address.state` },
       { selector: `[itemprop="item-description"]`, property: `description` },
@@ -968,11 +968,10 @@ class SearchContent {
                       return (
                         {
                           1: "red-dot-shade-1.svg",
-                          1: "red-dot-shade-1.svg",
                           2: "red-dot-shade-2.svg",
                           3: "red-dot-shade-3.svg",
                           4: "red-dot-shade-4.svg",
-                        }[cur.severity] || "red-dot-shade-1.svg"
+                        }[cur.severity] || "red-dot-shade-4.svg"
                       );
                     })(),
                     ...cur,

@@ -66,6 +66,7 @@ class ExportModel extends Model
             $keys
         ];
 
+        //assign the first row, consisting of column labels
         foreach($listResults as $obj) {
             $listItem = [];
             foreach($keys as $key) {

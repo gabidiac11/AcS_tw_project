@@ -54,8 +54,8 @@ class ChartModel extends Model
          */
         $charts = [];
 
-        $backgroundColor = ModelConstants::$COLORS;
-        $borderColor = ModelConstants::$BORDER_COLORS;
+        $backgroundColor = ['rgba(214, 2, 2, 0.5)', 'rgba(255, 166, 0, 0.5)', 'rgba(255, 125, 195, 0.5)', 'rgba(255, 241, 41, 0.5)'];
+        $borderColor = ['rgba(214, 2, 2, 1)', 'rgba(255, 166, 0, 1)', 'rgba(255, 125, 195, 1)', 'rgba(255, 241, 41, 1)'];
 
         foreach ($items as $item) {
             $key = isset(ModelConstants::$SMAP[$item['label']]) ? ModelConstants::$SMAP[$item['label']] : $item['label'];
@@ -87,6 +87,22 @@ class ChartModel extends Model
         return $charts;
     } 
 
+    private function generateColors($count) {
+        $colors = [];
+        for($i = 0; $i < $count; $i++) {
+            $colors[] = [rand(0, 255), rand(0, 255), rand(0, 255)];
+        }
+
+        return [
+            'backgroundColor' => array_map(function($item) {
+                return "rgba(".$item[0].",".$item[1].", ".$item[2].", 0.4)";
+            }, $colors),
+            'borderColor' => array_map(function($item) {
+                return "rgba(".$item[0].",".$item[1].", ".$item[2].", 1)";
+            }, $colors)
+        ];
+    }
+
     public function getCasesPerState() {
         $items = $this->db->select(
             "SELECT 
@@ -95,8 +111,11 @@ class ChartModel extends Model
             FROM accidents GROUP BY State"
         );
 
-        $backgroundColor = ModelConstants::$COLORS;
-        $borderColor = ModelConstants::$BORDER_COLORS;
+        $colorSample = $this->generateColors(49);
+
+        $backgroundColor = ModelConstants::$LARGE_SET_COLORS;
+        $borderColor = ModelConstants::$LARGE_BORDER_COLORS;
+
         $_SMAP = ModelConstants::$SMAP;
 
         /** map state short name to the full name */
