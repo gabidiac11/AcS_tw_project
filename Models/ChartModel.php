@@ -54,8 +54,8 @@ class ChartModel extends Model
          */
         $charts = [];
 
-        $backgroundColor = ['rgba(214, 2, 2, 0.5)', 'rgba(255, 166, 0, 0.5)', 'rgba(255, 125, 195, 0.5)', 'rgba(255, 241, 41, 0.5)'];
-        $borderColor = ['rgba(214, 2, 2, 1)', 'rgba(255, 166, 0, 1)', 'rgba(255, 125, 195, 1)', 'rgba(255, 241, 41, 1)'];
+        $backgroundColor = ['rgba(162, 2, 2, 0.5)', 'rgba(255, 45, 2, 0.5)', 'rgba(255, 95, 3, 0.5)', 'rgba(255, 242, 3, 0.66)'];
+        $borderColor = ['rgba(162, 2, 2, 0.6)', 'rgba(255, 45, 2, 0.6)', 'rgba(255, 95, 3, 0.6)', 'rgba(255, 242, 3, 0.7)'];
 
         foreach ($items as $item) {
             $key = isset(ModelConstants::$SMAP[$item['label']]) ? ModelConstants::$SMAP[$item['label']] : $item['label'];
