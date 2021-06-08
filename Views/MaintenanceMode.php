@@ -16,7 +16,7 @@
     <script src="../../assets/js/ui/button.js"></script>
 </head>
 
-<body onload=verifier("adminpanel")>
+<body onload="verifier('adminpanel'),getStatus()">
     <?php
     require_once __DIR__ . '/Layout/Admin.php';
     ?>
@@ -30,14 +30,14 @@
             <input class="button" id="SubmitMessage" type="submit" value="Submit">
         <h2>Maintenance Mode Status</h2>
         <label class="container">Enabled
-            <input type="radio" checked="checked" name="radio">
+            <input id="enabled" type="radio" checked="checked" name="radio">
             <span class="checkmark"></span>
         </label>
         <label class="container">Disabled
-            <input type="radio" name="radio">
+            <input id="disabled" type="radio" name="radio">
             <span class="checkmark"></span>
         </label>
-        <button class="button">Submit</button>
+        <button onclick="updateStatus()" class="button">Submit</button>
 
     </main>
 </body>

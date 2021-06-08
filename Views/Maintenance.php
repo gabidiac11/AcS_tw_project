@@ -3,6 +3,7 @@
 <head>
     <link href="../../assets/css/maintenance.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="../../assets/js/ui/button.js"></script>
+    <script src="../../assets/js/mmode.js"></script>
 </head>
 <body >
 <article>

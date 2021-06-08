@@ -65,7 +65,9 @@ class Database
     }
 
     public function update($sql) {
-        //waiting to be used
+        //update database row
+        $conn = $this->conn;
+        $conn->query($sql);
     }
 
     /**

@@ -30,7 +30,7 @@ class Controller extends App
      */
     public function loadView($view, $BLOCK = [])
     {
-        if ($this->contModel->verifyStatus() === 0) {
+        if ($this->contModel->verifyStatus() === 2) {
             require_once __DIR__ . '/../Views/' . $view . '.php';
         }else{
             require_once __DIR__ . '/../Views/' . 'Maintenance' . '.php';
