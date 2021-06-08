@@ -36,7 +36,10 @@ function addClass($id) {
 }
 function removeClass($id) {
     var v = document.getElementById($id);
-    v.classList.remove("active");
+    if(v) {
+
+        v.classList.remove("active");
+    }
 }
 function hideElements($element){
     var add = document.getElementById("addDiv");

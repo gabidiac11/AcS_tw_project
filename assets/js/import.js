@@ -1,15 +1,18 @@
-function addFile() {
+function addFile(button) {
+  button.disabled= true;
   const file = document.getElementById("input-upload").files[0];
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("myFile", file);
 
   fetch(`${window.BASE_URL}/import/csv`, {
     method: "POST",
     headers: new Headers(),
-    body: formdata
+    body: formData
   })
     .then((succes) => console.log(succes))
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error)).finally(() => {
+      button.disabled= false;
+    })
 }
 
 function readURL(input) {
@@ -19,10 +22,8 @@ function readURL(input) {
     reader.onload = function (e) {
       document.querySelector(".image-upload-wrap").style.display = "none";
 
-      document
-        .querySelector(".file-upload-image")
-        .setAttribute("src", e.target.result);
-      document.querySelector(".file-upload-content").style.display = "";
+    
+      document.querySelector(".file-upload-content").style.display = "flex";
 
       document.querySelector(".image-title").innerHTML = input.files[0].name;
     };
