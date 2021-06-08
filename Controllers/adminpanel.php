@@ -3,6 +3,7 @@
 class adminpanel extends Controller
 {
     private $accountManager;
+
     function __construct()
     {
         parent::__construct();
@@ -13,7 +14,13 @@ class adminpanel extends Controller
     {
         $this->loadView("adminpanel", []);
     }
-    public function verifyUser(){
-        $this->accountManager->verifyAccount("test","test");
+
+    public function verify()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            echo json_encode($this->accountManager->verifySession($this->postData));
+        }else{
+            $this->loadView("admin", []);
+        }
     }
 }

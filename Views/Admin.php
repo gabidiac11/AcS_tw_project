@@ -13,7 +13,7 @@
     <script src="../../assets/js/login.js"></script>
 </head>
 
-<body>
+<body onload="loadStorage()">
 <?php
 require_once __DIR__ . '/Layout/Header.php';
 ?>
@@ -31,13 +31,14 @@ require_once __DIR__ . '/Layout/Header.php';
         <form id="login" method="POST" action="/admin/send">
             <input id="name" type="text" name="user" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
+            <input type="hidden" name="token" id="tkn">
             <p class="remember_me">
                 <label>
-                    <input type="checkbox" name="remember_me" id="remember_me">
+                    <input onclick="rememberMe()" type="checkbox" name="remember_me" id="remember_me">
                     Remember me
                 </label>
             </p>
-            <p class="submit"><input type="submit" value="Login"></p>
+            <p class="submit"><input type="submit" onclick="setToken()" value="Login"></p>
         </form>
     </div>
 </main>

@@ -17,7 +17,10 @@ class admin extends Controller
         if($_SERVER['REQUEST_METHOD'] === "POST") {
             $this->loadView('admin', $this->loadModel('AdminQuery')->verifyAccount($_POST));
         } else {
-            $this->loadView('NotFound');
+            $this->loadView('admin');
         }
+    }
+    public function addToken(){
+
     }
 }
