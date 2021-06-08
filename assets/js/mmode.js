@@ -48,6 +48,7 @@ function getText() {
         })
         .then(function (json) {
             document.getElementById("message").value = json[0]['description'];
+            document.getElementById("message").innerHTML = json[0]['description'];
         });
 }
 
@@ -57,7 +58,7 @@ function updateText() {
         description: value,
     };
     fetch(
-        `/MaintenanceMode/updateMaintenance`,
+        `/MaintenanceMode/updateText`,
         {
             headers: new Headers(),
             method: "POST",

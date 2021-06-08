@@ -24,8 +24,12 @@ class MaintenanceQuery extends Model
         $this->db->update($sql);
         return ['success' => true];
     }
-    public function updateDescription($value)
+    public function updateDescription($data)
     {
+        if ($this->fieldsNotPresent($data, ['description'])) {
+            return ['success' => false];
+        }
+        $value = $data['description'];
         $sql = "UPDATE maintenance SET description='$value' WHERE id=1";
         $this->db->update($sql);
     }

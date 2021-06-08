@@ -21,16 +21,15 @@
     require_once __DIR__ . '/Layout/Admin.php';
     ?>
     <main class="flex-all flex-column main" id="admin-panel">
-        <div id="success"></div>
             <label for="message">Message Text:</label>
             <textarea wrap="off" id="message" name="message">
 
   </textarea>
             <br><br>
-            <input class="button" id="SubmitMessage" type="submit" value="Submit">
+            <input onclick="updateText()" class="button" type="submit" value="Submit">
         <h2>Maintenance Mode Status</h2>
         <label class="container">Enabled
-            <input id="enabled" type="radio" checked="checked" name="radio">
+            <input id="enabled" type="radio" name="radio">
             <span class="checkmark"></span>
         </label>
         <label class="container">Disabled

@@ -5,13 +5,13 @@
     <script src="../../assets/js/ui/button.js"></script>
     <script src="../../assets/js/mmode.js"></script>
 </head>
-<body >
+<body onload="getText()">
 <article>
     <div class="top">
     <img src="../../assets/images/logo.png">
     <h1 id="title">We&rsquo;ll be back soon!</h1>
     <div>
-        <p id="text">Sorry, but at this moment we do some maintenance work. If you have any problems you can <a href="mailto:contanct@localhost.con#">contact us</a>.</p>
+        <p id="message"></p>
         <p>&mdash; The ACS Team</p>
     </div>
     </div>

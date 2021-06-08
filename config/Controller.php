@@ -32,8 +32,12 @@ class Controller extends App
     {
         if ($this->contModel->verifyStatus() === 2) {
             require_once __DIR__ . '/../Views/' . $view . '.php';
-        }else{
-            require_once __DIR__ . '/../Views/' . 'Maintenance' . '.php';
+        } else {
+            if ($view === 'admin' || $view === 'adminpanel' || $view === 'MaintenanceMode' || $view === 'DatabaseEditor' || $view === 'AdminManager') {
+                require_once __DIR__ . '/../Views/' . $view . '.php';
+            } else {
+                require_once __DIR__ . '/../Views/' . 'Maintenance' . '.php';
+            }
         }
 
     }
