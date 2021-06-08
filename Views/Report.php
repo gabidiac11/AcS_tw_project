@@ -2,8 +2,8 @@
 <html lang="en" class=" vjvxerws idc0_330">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, minimal-ui" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Report</title>
     <link rel="stylesheet" href="/assets/packages/scholarly/css/scholarly.min.css">
     <link rel="stylesheet" href="/assets/css/report.css">
@@ -78,10 +78,28 @@
                                     <li><a href="#extIntReqUISearchPageResult"><span>3.1.1.1 </span>Result item template</a></li>
                                     <li><a href="#extIntReqUISearchPageSearch"><span>3.1.1.2 </span>Search input</a></li>
                                     <li><a href="#extIntReqUISearchPageFilter"><span>3.1.1.3 </span>Filter section</a></li>
-                                    <li><a href="#extIntReqUISearchPageCheckbox"><span>3.1.1.4 </span>Checkbox types</a></li>
-                                    <li><a href="#extIntReqUISearchPageLocation"><span>3.1.1.5 </span>Location</a></li>
+                                    <li><a href="#extIntReqUISearchPageFilterPagination"><span>3.1.1.4 </span>Pagination</a></li>
+                                    
+                                    <li><a href="#extIntReqUISearchPageExportUI"><span>3.1.1.5 </span>Export UI types</a>
+                                        <ol role="directory">
+                                            <li><a href="#extIntReqUISearchPageExportUICsv"><span>3.1.1.5.1 </span>Export CSV</a></li>
+                                            <li><a href="#extIntReqUISearchPageExportUIMap"><span>3.1.1.5.2 </span> Cartographic export and visualization </a></li>
+                                        </ol>
+                                    </li>
                                 </ol>
                             </li>
+
+                            <!-- CHART PAGE -->
+                            <li><a href="#extIntReqUIChartPage"><span>3.1.2 </span>Chart page</a>
+                                <ol role="directory">
+                                    <li><a href="#extIntReqUIChartPageChartPerState"><span>3.1.2.1 </span>Chart 1: Number of cases per state</a></li>
+                                    <li><a href="#extIntReqUIChartPageChartSeverity"><span>3.1.2.2 </span>Chart 2: Number of cases grouped by severity overall and per state</a></li>
+                                    <li><a href="#extIntReqUIChartPageTimeline"><span>3.1.2.3 </span>Chart 3: Timeline of cases per year</a></li>
+                                    <li><a href="#extIntReqUIChartPageExport"><span>3.1.2.4 </span>Export UI types</a>
+                                    </li>
+                                </ol>
+                            </li>
+
                         </ol>
                     </li>
 
@@ -427,12 +445,12 @@
                 <!-- SEARCH-PAGE ->>> RESULT ITEM TEMPLATE -->
                 <section id="extIntReqUISearchPageResult">
                     <h3><span>3.1.1.1 </span> Result item template</h3>
-                    
+
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/accident-card.png" alt="Result item template">
                         <figcaption>Fig. 1 - Result item template</figcaption>
                     </figure>
-                    
+
                     <ol>
                         <li><strong>Date and time of the accident,</strong> required not only for the chronological placement but also for creating meaningful and accurate forecasts, correlations with other events and factors that can affect the evolution of the number of the accidents.</li>
                         <li><strong>Severity</strong>, describes the severity of the accidents, starting with 1 for highly severe to 4 for the least severe.</li>
@@ -448,14 +466,14 @@
 
                 <!-- SEARCH-PAGE ->>> INPUT SECTION -->
                 <section id="extIntReqUISearchPageSearch">
-                    <h3><span>3.1.1.1 </span> Search input</h3>
-                    
-                        The goal of this section is to filter results using user input and access some other hidden section (e.g. the hidden filter area).
+                    <h3><span>3.1.1.2 </span> Search input</h3>
+
+                    The goal of this section is to filter results using user input and access some other hidden section (e.g. the hidden filter area).
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/search-bar.png" alt="Search bar">
                         <figcaption>Fig. 2 - Search bar</figcaption>
                     </figure>
-                    
+
                     <ol>
                         <li><strong>Search box</strong>, offers users the possibility to search accidents by description or id.</li>
                         <li><strong>Search button</strong>, the users need to press the it after they entered the text they wish to search in order to get the desired results.</li>
@@ -475,8 +493,8 @@
 
                 <!-- SEARCH-PAGE ->>> FILTER SECTION -->
                 <section id="extIntReqUISearchPageFilter">
-                    <h3><span>3.1.1.2 </span> Filter section</h3>
-                    <p>The filter area is hidden but can be toggled using the button from the search bar described in the previous section.</p> 
+                    <h3><span>3.1.1.3 </span> Filter section</h3>
+                    <p>The filter area is hidden but can be toggled using the button from the search bar described in the previous section.</p>
                     <p>The filter area is clustered into 16 different groups, and each of these has its own reset button. In this way, the user can revert a filtering criterion without affecting the others. For the results to reflect the changes after resetting a group, the user must press the Apply button or Cancel otherwise.</p>
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/filter-section.png" alt="Filter section">
@@ -524,8 +542,8 @@
                 </section>
 
                 <!-- SEARCH-PAGE ->>> PAGINATION SECTION -->
-                <section id="overallDescription-AssumptionsDependencies-11">
-                    <h3><span>3.1.1.3 </span> Pagination </h3>
+                <section id="extIntReqUISearchPageFilterPagination">
+                    <h3><span>3.1.1.4 </span> Pagination </h3>
                     <p>Because we take into account the different needs and behaviour characteristics of the site visitors, we offer them the possibility to change the number of accidents card boxes that are displayed on each page. By default, on a page are displayed 20 card boxes, but the users can choose to have on a page either 10, 20, 30 or 50 card boxes, as shown in Fig. 8.</p>
                     <p>As we work with large data sets, the user has the ability to navigate backwards and forwards using the arrow buttons or the numbered buttons (within ten pages, prior or after the current page). The current page number is coloured in wheat yellow for the user to know where he is in the search results.</p>
                     <figure class="report-centered-fig">
@@ -535,12 +553,12 @@
                 </section>
 
                 <!-- SEARCH-PAGE ->>> EXPORT UI -->
-                <section id="overallDescription-AssumptionsDependencies-12">
-                    <h3><span>3.1.1.4 </span> Export UI </h3>
-                    
+                <section id="extIntReqUISearchPageExportUI">
+                    <h3><span>3.1.1.5 </span> Export UI </h3>
 
-                    <section id="overallDescription-AssumptionsDependencies-13">
-                        <h3><span>3.1.1.4.1 </span> Export CSV </h3>
+
+                    <section id="extIntReqUISearchPageExportUICsv">
+                        <h3><span>3.1.1.5.1 </span> Export CSV </h3>
                         <p>The user has the ability to export the wanted data in CSV format for further analysis and processing by being easily imported in more advanced data visualization or analytics tools.</p>
                         <p>After the user got the desired results by using the search and filtering options, he has to chose from two alternatives (Fig. 9):</p>
                         <figure class="report-centered-fig">
@@ -553,8 +571,8 @@
                         </ol>
                     </section>
 
-                    <section id="overallDescription-AssumptionsDependencies-14">
-                        <h3><span>3.1.1.4.1 </span> Cartographic export and visualization </h3>
+                    <section id="extIntReqUISearchPageExportUIMap">
+                        <h3><span>3.1.1.5.2 </span> Cartographic export and visualization </h3>
 
                         <p>For an accessible overview of the data, the site offers users the possibility to preview the data on the map by clicking the <strong>"MAP PREVIEW"</strong> left to the export button. In the map are shown only the accidents from the current search page.</p>
 
@@ -575,19 +593,20 @@
             </section>
 
             <!-- CHART-PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
-            <section id="overallDescription-AssumptionsDependencies-15">
+            <section id="extIntReqUIChartPage">
                 <h3><span>3.1.2 </span> Chart page</h3>
 
                 <p>Being able to visualize data in charts and graphs is especially useful when working with large data sets, as it's the case here. When the data is represented in a visual context, it is easier for human users to interpret it, identify trends and patterns, and reach conclusions.</p>
                 <p>To help users achieve this goal, the site offers the possibility of visualizing data in three different charts described below.</p>
 
                 <!-- CHART-PAGE ->>> Chart 'Number of cases per state' -->
-                <section id="overallDescription-AssumptionsDependencies-16">
+                <section id="extIntReqUIChartPageChartPerState">
                     <h3><span>3.1.2.1 </span> Chart 1: Number of cases per state </h3>
+
                     <p>This doughnut chart gives a comparative overview of the number of accidents for each state by putting them in contrast with each other.</p>
                     <p>By hovering over each chart slice, a tooltip with the state name and accidents number will appear to provide more insights.</p>
                     <p>The legend is situated in the top part of the chart and contains the states name and the associated colour. From here the user can also interact with the chart excluding/including different states from/in this visualization by clicking on the state name or colour. When an item is excluded from the chart, it will be marked with a strikethrough.</p>
-                    
+
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/chart-number-of-cases-per-state.png" alt="Chart 1: Number of cases per state">
                         <figcaption>Fig. 10 - Chart 1: Number of cases per state</figcaption>
@@ -597,10 +616,10 @@
 
 
                 <!-- CHART-PAGE ->>> Chart severity -->
-                <section id="overallDescription-AssumptionsDependencies-17">
+                <section id="extIntReqUIChartPageChartSeverity">
                     <h3><span>3.1.2.2 </span> Chart 2: Number of cases grouped by severity overall and per state</h3>
                     <p>In this pie chart is highlighted the distribution of accidents by severity. Here, the users are able to visualise this distribution per total or at the state level by selecting this from the drop-down list in the top left of the chart.</p>
-                    <p>As was the case for the previous chart, when the user hovers its mouse over a chart slice, it will appear a tooltip with the severity type and the number of accidents.</p> 
+                    <p>As was the case for the previous chart, when the user hovers its mouse over a chart slice, it will appear a tooltip with the severity type and the number of accidents.</p>
                     <p>The legend is situated at the top of the chart and depicts the severity types and the associated colours. By clicking the name or the colour of an element, it will be excluded from the chart and marked with a strikethrough.</p>
                     <div class="inline-figures">
                         <figure style="width: 49.3%;">
@@ -615,8 +634,9 @@
                 </section>
 
                 <!-- CHART-PAGE ->>> CHART Timeline -->
-                <section id="overallDescription-AssumptionsDependencies-18">
+                <section id="extIntReqUIChartPageTimeline">
                     <h3><span>3.1.2.3 </span> Chart 3: Timeline of cases per year </h3>
+
                     <p>This line chart offers a comparative visualization of the monthly evolution of the number of accidents for each year.</p>
                     <p>The horizontal axis depicts the time progression in months, and on the vertical one, the number of accidents.</p>
                     <p>When the users hover over the month points on the lines, will appear a tooltip with the name of the year and the number of accidents for the selected month.</p>
@@ -628,7 +648,7 @@
                 </section>
 
                 <!-- CHART-PAGE ->>> EXPORT SECTION -->
-                <section id="overallDescription-AssumptionsDependencies-19">
+                <section id="extIntReqUIChartPageExport">
                     <h3><span>3.1.2.4 </span> Export chart</h3>
                     <p>If the user wants to store the chart for future use, he has the ability to export the image in WEBP or SVG format. Also, the chart data can be exported in CSV format for further processing. All third options can be accessed in the right section of the charts, in the export section.</p>
                     <figure class="report-centered-fig">
@@ -800,12 +820,12 @@
             <p>
                 This section explains the <a href="/search" target="_blank"> search page </a> and its related API.The functionality is concentrating around the <i>SearchModel</i>.
             </p>
-           
+
             <figure class="report-centered-fig">
                 <img src="/assets/images/report/uml/search-model-uml.png" alt="search-model-uml">
                 <figcaption>Fig. 5.2 - SearchModel UML</figcaption>
             </figure>
-            
+
 
             <section id="devGuideSearchServiceResults">
                 <h2><span>5.2.1 Results </span></h2>
@@ -823,7 +843,7 @@
                     <img src="/assets/images/report/uml/accident-entity-uml.png" alt="search-model-uml">
                     <figcaption>Fig. 5.2 - Accident entity UML</figcaption>
                 </figure>
-                
+
             </section>
 
             <section id="devGuideSearchServiceFilters">
