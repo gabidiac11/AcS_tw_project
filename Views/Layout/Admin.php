@@ -5,7 +5,7 @@
     </a>
     <ul id="list-header" class="flex-all flex-end header-meniu-links">
         <li><a href="/maintenancemode" class="text-box-shadow-re-use"> Maintenance Mode </a></li>
-        <li><a href="/amanager" class="text-box-shadow-re-use"> Accounts Manager</a></li>
+        <li><a href="/adminmanager" class="text-box-shadow-re-use"> Accounts Manager</a></li>
         <li><a href="/databaseeditor" class="text-box-shadow-re-use"> Database Editor </a></li>
         <li><a href="/admin" onclick=removeSavedAccount() class="text-box-shadow-re-use"> Logout </a></li>
     </ul>
