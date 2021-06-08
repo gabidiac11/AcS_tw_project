@@ -11,4 +11,15 @@ class contact extends Controller
     {
             $this->loadView("Contact", []);
     }
+
+    /**
+     * send a contact message using the contact form
+     */
+    public function send() {
+        if($_SERVER['REQUEST_METHOD'] === "POST") {
+            $this->loadView('Contact', $this->loadModel('ContactModel')->send($_POST));
+        } else {
+            $this->loadView('NotFound');
+        }
+    }
 }

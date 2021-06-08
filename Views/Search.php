@@ -16,13 +16,14 @@
   <link href="../../assets/css/ui/list.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/search.css" media="all" rel="stylesheet" type="text/css" />
   <link href="../../assets/css/ui/list-item.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="../../assets/css/ui/dropdown.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <?php
-  require_once __DIR__ . '\Layout\Header.php';
-  require_once __DIR__ . '\Reusables\Button\Button.php';
-  require_once __DIR__ . '\Reusables\Svg\LoadSvg.php';
+  require_once __DIR__ . '/Layout/Header.php';
+  require_once __DIR__ . '/Reusables/Button/Button.php';
+  require_once __DIR__ . '/Reusables/Svg/LoadSvg.php';
   ?>
   <main class="flex-all">
     <div class="page-wrapper page-content-search flex-all" style="align-items: flex-start; flex-wrap:wrap;">
@@ -32,8 +33,8 @@
         <div id="search-results" class="search-bar-container">
           <button class="flex-all icon-c cursor-pointer search-icon-cont" itemprop="search-btn" disabled><?= displaySvg("search-line") ?></button>
           <input disabled value="" placeholder="Search by description or id" />
-          <button class="flex-all icon-c cursor-pointer filter-ic-cont" itemprop="filter-btn" disabled ><?= displaySvg("filter-line") ?></button>
-          <button class="flex-all icon-c cursor-pointer x-ic-cont" itemprop="delete-btn" disabled ><?= displaySvg("close-line") ?></button>
+          <button class="flex-all icon-c cursor-pointer filter-ic-cont" itemprop="filter-btn" disabled><?= displaySvg("filter-line") ?></button>
+          <button class="flex-all icon-c cursor-pointer x-ic-cont" itemprop="delete-btn" disabled><?= displaySvg("close-line") ?></button>
         </div>
 
         <!-- SORT SELECT -->
@@ -62,9 +63,7 @@
         </div>
 
         <!-- RIGHT SIDE BUTTONS -->
-        <button class="btn-primary" id="export-btn">
-          Export CSV
-        </button>
+        <div id="export-csv-wrapper"></div>
         <button class="btn-primary" id="map-btn-preview">
           MAP PREVIEW
         </button>
@@ -79,6 +78,7 @@
 
           <!-- FILTER BUTTONS APPLY/CANCEL -->
           <div class="flex-all" itemprop="btn-bottom-panel">
+            <button itemprop="btn-reset-all" class="btn-secondary"> <span> Reset </span> <?= displaySvg('reset') ?></button>
             <button itemprop="btn-cancel" class="btn-secondary">Cancel</button>
             <button itemprop="btn-confirm" class="btn-primary">Apply</button>
           </div>
@@ -112,27 +112,28 @@
                 <li>Visibility(mi): <span itemprop="item-visibility">10</span>;</li>
                 <li>Wind Direction: <span itemprop="item-wind-direction">Calm</span>;</li>
                 <li>Wind Speed(mph): <span itemprop="item-wind-speed"> - </span></li>
-                <li>Wind Chill: <span itemprop="item-wind-windChill"> - </span></li>
+                <li>Wind Chill(F): <span itemprop="item-wind-windChill"> - </span></li>
                 <li>Precipitation(in): <span itemprop="item-precipitation">-</span>;</li>
-                <li>Pressure: <span itemprop="item-pressure"> - </span></li>
+                <li>Pressure(in): <span itemprop="item-pressure"> - </span></li>
+                <li>Distance(mi): <span itemprop="item-distance"> - </span></li>
               </ul>
               <hr>
-              <div class="condtions-met">
+              <ul class="conditions-met">
                 <!-- Circumstances -->
-                <div itemprop="item-amenity"> <span><?= displaySvg("check") ?></span>Amenity</div>
-                <div itemprop="item-bump"> <span><?= displaySvg("check") ?></span>Bump</div>
-                <div itemprop="item-crossing"> <span><?= displaySvg("check") ?></span>Crossing</div>
-                <div itemprop="item-giveAway"> <span><?= displaySvg("check") ?></span>Give_Way</div>
-                <div itemprop="item-Junction"> <span><?= displaySvg("check") ?></span>Junction</div>
-                <div itemprop="item-No_Exit"> <span><?= displaySvg("check") ?></span>No_Exit</div>
-                <div itemprop="item-Railway"> <span><?= displaySvg("check") ?></span>Railway</div>
-                <div itemprop="item-Roundabout"> <span><?= displaySvg("check") ?></span>Roundabout</div>
-                <div itemprop="item-Station"> <span><?= displaySvg("check") ?></span>Station</div>
-                <div itemprop="item-Stop"> <span><?= displaySvg("check") ?></span>Stop</div>
-                <div itemprop="item-Traffic_Calming"> <span><?= displaySvg("check") ?></span>Traffic Calming</div>
-                <div itemprop="item-Traffic_Signal"> <span><?= displaySvg("check") ?></span>Traffic Signal</div>
-                <div itemprop="item-Turning_Loop"> <span><?= displaySvg("check") ?></span>Turning Loop</div>
-              </div>
+                <li itemprop="item-amenity"> <span><?= displaySvg("check") ?></span>Amenity</li>
+                <li itemprop="item-bump"> <span><?= displaySvg("check") ?></span>Bump</li>
+                <li itemprop="item-crossing"> <span><?= displaySvg("check") ?></span>Crossing</li>
+                <li itemprop="item-giveAway"> <span><?= displaySvg("check") ?></span>Give_Way</li>
+                <li itemprop="item-Junction"> <span><?= displaySvg("check") ?></span>Junction</li>
+                <li itemprop="item-No_Exit"> <span><?= displaySvg("check") ?></span>No_Exit</li>
+                <li itemprop="item-Railway"> <span><?= displaySvg("check") ?></span>Railway</li>
+                <li itemprop="item-Roundabout"> <span><?= displaySvg("check") ?></span>Roundabout</li>
+                <li itemprop="item-Station"> <span><?= displaySvg("check") ?></span>Station</li>
+                <li itemprop="item-Stop"> <span><?= displaySvg("check") ?></span>Stop</li>
+                <li itemprop="item-Traffic_Calming"> <span><?= displaySvg("check") ?></span>Traffic Calming</li>
+                <li itemprop="item-Traffic_Signal"> <span><?= displaySvg("check") ?></span>Traffic Signal</li>
+                <li itemprop="item-Turning_Loop"> <span><?= displaySvg("check") ?></span>Turning Loop</li>
+              </ul>
               <hr>
             </div>
 
@@ -152,29 +153,29 @@
         <div class="pagination" itemprop="pagination-content">
           <div class="pagination-inner">
             <button disabled class="pagination-btn" itemprop="pagination-prev">
-            &lt; </button>
+              &lt; </button>
 
-                <?php
-                for ($index = 0; $index < 10; $index++) {
-                ?>
+            <?php
+            for ($index = 0; $index < 10; $index++) {
+            ?>
 
-                  <button disabled value="<?= $index + 1 ?>" class="pagination-btn" itemprop="pagination-number"> <?= $index + 1 ?> </button>
+              <button disabled value="<?= $index + 1 ?>" class="pagination-btn" itemprop="pagination-number"> <?= $index + 1 ?> </button>
 
-                <?php
-                }
-                ?>
+            <?php
+            }
+            ?>
 
-                <button disabled class="pagination-btn" itemprop="pagination-next"> > </button>
+            <button disabled class="pagination-btn" itemprop="pagination-next"> > </button>
 
-                <span class="pag-select-c">
-                  <label for="select-per-page"> Per page: </label>
-                  <select id="select-per-page" itemprop="result-per-page" disabled>
-                    <option value="10" selected>10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="50">50</option>
-                  </select>
-                </span>
+            <span class="pag-select-c">
+              <label for="select-per-page"> Per page: </label>
+              <select id="select-per-page" itemprop="result-per-page" disabled>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+              </select>
+            </span>
           </div>
 
         </div>
@@ -234,6 +235,7 @@
   <script src="./../assets/packages/canvas2svg/canvas2svg.js"></script>
   <script src="./../assets/js/ui/MapPicker.js"></script>
   <script src="./../assets/js/ui/ModalMapPreview.js"></script>
+  <script src="./../assets/js/ui/DropdownButton.js"></script>
   <script src="./../assets/js/search.js"></script>
 
 </body>

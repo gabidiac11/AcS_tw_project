@@ -7,7 +7,7 @@ class AdminQuery extends Model
         parent::__construct();
     }
 
-    public function verifyAccount($name, $password): boolean
+    public function verifyAccount($name, $password): bool
     {
         $sql = "SELECT name FROM admin WHERE name=" + $name + " AND password=" + $password;
         $query = $this->db->select($sql);
@@ -18,7 +18,7 @@ class AdminQuery extends Model
         }
     }
 
-    public function verifySession($name, $token): boolean
+    public function verifySession($name, $token): bool
     {
         $sql = 'SELECT token from session s LEFT JOIN admin a ON s.name=a.name WHERE s.name=' + $name + ' AND s.password=a.password AND s.token=' + $token;
         if ($sql[0]['token'] !== '') {

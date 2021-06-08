@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__."./Entities/Accident.php";
-require_once __DIR__."./Entities/Filter.php";
+require_once __DIR__."/Entities/Accident.php";
+require_once __DIR__."/Entities/Filter.php";
 
 class SearchModel extends Model
 {
@@ -60,6 +60,8 @@ class SearchModel extends Model
      * @return array
      */
     public function getResults($requestData): array {
+        session_start();
+
         $jsonFilters = $requestData['filters'] ?? null;
 
         $response = $this->validateFilterJson($jsonFilters);
@@ -76,6 +78,7 @@ class SearchModel extends Model
             return $filter;
         }, Filter::createFiltersNoFetch());
 
+        /** join each filter's non-empty sql query generated, within AND operator */
         $conditionQuery = array_reduce($filters, function($prev, $filter) {
             $condition = $filter->queryBuild();
 
@@ -95,7 +98,7 @@ class SearchModel extends Model
         /** safely integrate the sort by value in the query (allow only known columns to slip by) */
         $sortBy = "";
         $dir = "";
-
+        
         //avoid injections
         if(isset($_GET['sortBy']) && isset(Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']])) {
             $column = Accident::$SORT_COLUMN_MAPPING[$_GET['sortBy']];
@@ -129,9 +132,11 @@ class SearchModel extends Model
             $perPage = intval($_GET['perPage']);//avoid injection
         }
 
+        /** compute pagination query part */
         $offset = $perPage * ($page - 1);
         $paginationQuery = " LIMIT $perPage OFFSET $offset";
 
+        /** conditional query cumulated from filters */
         $afterWhereQuery = "$conditionQuery $sortBy $dir $paginationQuery";
 
         $query = "SELECT * FROM accidents WHERE $afterWhereQuery";
@@ -141,9 +146,11 @@ class SearchModel extends Model
         $numOfResults = intval($this->db->select("SELECT COUNT(*) as numOfResults FROM accidents WHERE $conditionQuery")[0]['numOfResults']);
         $pageMax = ceil($numOfResults / $perPage);
 
+        $_SESSION['last_search_query'] =  "SELECT * FROM accidents WHERE $conditionQuery";
+
         return [
-            //debug:
-            'query' => $query,
+            //debug data:
+            // 'query' => $query,
             // 'filterApplied' => $filters,
             
             'results' => $results,

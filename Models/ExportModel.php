@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__."./Entities/Accident.php";
-require_once __DIR__."./Entities/Filter.php";
+require_once __DIR__."/Entities/Accident.php";
+require_once __DIR__."/Entities/Filter.php";
 
 class ExportModel extends Model
 {
@@ -66,6 +66,7 @@ class ExportModel extends Model
             $keys
         ];
 
+        //assign the first row, consisting of column labels
         foreach($listResults as $obj) {
             $listItem = [];
             foreach($keys as $key) {
@@ -128,11 +129,26 @@ class ExportModel extends Model
             $this->exportCsv($this->db->select(
                 "SELECT * FROM accidents where accident_id IN (".$_GET['ids'].") LIMIT ". intval($_GET['limit'])
             ));
+        } else {
+            $this->exportCsv([]);
+        }
+    }
 
-            // // prepare and bind
-            // $stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-            // $stmt->bind_param("sss", $firstname, $lastname, $email);
+    /**
+     * use last search query from the search page to fetch the last search of results
+     */
+    public function exportCSVOfSession() {
+        session_start();
 
+        if(isset($_SESSION['last_search_query'])) {
+            try {
+                $this->exportCsv($this->db->select(
+                    $_SESSION['last_search_query'] . " LIMIT 10000"
+                ));
+            } catch(Exception $e) {
+                echo "Limit exceeded";
+            }
+            
         } else {
             $this->exportCsv([]);
         }

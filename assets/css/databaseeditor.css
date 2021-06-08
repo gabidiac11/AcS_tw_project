@@ -144,3 +144,59 @@ body {
     border: 0;
     transition: all .2s ease;
 }
+#acct{
+    text-align: center;
+}
+#address{
+    text-align: center;
+}
+#weather{
+    text-align: center;
+}
+#circumstances{
+    text-align: center;
+    margin-top: 6%;
+}
+.principalDetails{
+    margin-left: 6%;
+    margin-right: 3%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 30%);
+    gap: 10px;
+}
+.item{
+    width: 80%;
+}
+.description{
+width: 296%;
+}
+
+.address{
+    margin-left: 6%;
+    margin-right: 3%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 30%);
+    gap: 10px;
+}
+.circumstances{
+    margin-left: 6%;
+    margin-right: 3%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 30%);
+    gap: 10px;
+}
+#sub{
+    margin-top: 4%;
+    margin-bottom: 2%;
+    margin-left: 41%
+}
+label.checkbox {
+    vertical-align: top;
+    line-height: 24px;
+    margin: 2px 0;
+    display: block;
+    height: 24px;
+}

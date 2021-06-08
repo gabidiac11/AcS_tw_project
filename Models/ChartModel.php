@@ -3,6 +3,10 @@
 require_once __DIR__."/Entities/Chart/ChartEntity.php";
 require_once __DIR__ . "/helper/ModelConstants.php";
 
+/**
+ * view helpers: generates data for the map page, this may consist of page heading, or other data that indicates what ui to server-side rendered (the state selectors and other labels)
+ * GET endpoints for each chart type
+ */
 class ChartModel extends Model
 {
     
@@ -12,6 +16,11 @@ class ChartModel extends Model
         parent::__construct();
     }
 
+    /**
+     * gets chart entities grouped by state, that contains number of cases for each severity value 
+     * +
+     * get the same results, but overall (not grouped by state)
+     */
     public function getSeverityPerState() {
         $perState = $this->db->select(
         "SELECT 
@@ -45,8 +54,8 @@ class ChartModel extends Model
          */
         $charts = [];
 
-        $backgroundColor = ModelConstants::$COLORS;
-        $borderColor = ModelConstants::$BORDER_COLORS;
+        $backgroundColor = ['rgba(162, 2, 2, 0.5)', 'rgba(255, 45, 2, 0.5)', 'rgba(255, 95, 3, 0.5)', 'rgba(255, 242, 3, 0.66)'];
+        $borderColor = ['rgba(162, 2, 2, 0.6)', 'rgba(255, 45, 2, 0.6)', 'rgba(255, 95, 3, 0.6)', 'rgba(255, 242, 3, 0.7)'];
 
         foreach ($items as $item) {
             $key = isset(ModelConstants::$SMAP[$item['label']]) ? ModelConstants::$SMAP[$item['label']] : $item['label'];
@@ -78,6 +87,22 @@ class ChartModel extends Model
         return $charts;
     } 
 
+    private function generateColors($count) {
+        $colors = [];
+        for($i = 0; $i < $count; $i++) {
+            $colors[] = [rand(0, 255), rand(0, 255), rand(0, 255)];
+        }
+
+        return [
+            'backgroundColor' => array_map(function($item) {
+                return "rgba(".$item[0].",".$item[1].", ".$item[2].", 0.4)";
+            }, $colors),
+            'borderColor' => array_map(function($item) {
+                return "rgba(".$item[0].",".$item[1].", ".$item[2].", 1)";
+            }, $colors)
+        ];
+    }
+
     public function getCasesPerState() {
         $items = $this->db->select(
             "SELECT 
@@ -86,13 +111,14 @@ class ChartModel extends Model
             FROM accidents GROUP BY State"
         );
 
-        $backgroundColor = ModelConstants::$COLORS;
-        $borderColor = ModelConstants::$BORDER_COLORS;
+        $colorSample = $this->generateColors(49);
 
+        $backgroundColor = ModelConstants::$LARGE_SET_COLORS;
+        $borderColor = ModelConstants::$LARGE_BORDER_COLORS;
 
         $_SMAP = ModelConstants::$SMAP;
 
-
+        /** map state short name to the full name */
         return new ChartEntity(
             ChartEntity::$CHART_TYPE_DOUGHNUT,
             //data
@@ -117,6 +143,15 @@ class ChartModel extends Model
         );
     } 
 
+    /**
+     * a overview of accident frequency per month of each year side by side for comparing
+     * 
+     * gets chart data of 'LINE' type (this shows a line going up and down based on the progression of data) 
+     *  
+     * a line for each respective ear 
+     * this will results in a progression line with indicators for each month of targeted year 
+     * 
+    */
     public function getTimelineOfCases() {
        $results = $this->db->select(
         "SELECT 

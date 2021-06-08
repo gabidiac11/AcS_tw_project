@@ -20,7 +20,7 @@
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>
-<main class="main" id="admin-panel">
+<main class="flex-all flex-column main" id="admin-panel">
 
     <div class="topnav" id="myTopnav">
         <a id="add" onclick="displayAdd()">Add</a>
@@ -31,18 +31,70 @@ require_once __DIR__ . '/Layout/Admin.php';
         </a>
     </div>
     <div id="addDiv">
-        <p>test</p>
+        <h2 id="acct">Accident Details</h2>
+        <div class="principalDetails">
+            <input class="item" type="text" placeholder="Id" id="idDb" >
+            <input class="item" type="number" placeholder="Severity" id="severityDb">
+            <input class="item" type="text" placeholder="Time" id="timeDb">
+            <input class="item" type="datetime-local" placeholder="Date" id="dateDb">
+            <input class="item" type="number" placeholder="Latitude" id="latitudeDb">
+            <input class="item" type="number" placeholder="Longitude" id="longitudeDb">
+            <input class="item" type="number" placeholder="Distance" id="distanceDb">
+            <input class="description" type="text" placeholder="Description" id="descriptionDb">
+        </div>
+        <h2 id="address">Address</h2>
+        <div class="address">
+            <input class="item2" type="text" placeholder="Street" id="streetDb" >
+            <input class="item2" type="text" placeholder="Number" id="numberDb">
+            <input class="item2" type="text" placeholder="City" id="cityDb">
+            <input class="item2" type="text" placeholder="State" id="stateDb">
+            <input class="item2" type="text" placeholder="Zip Code" id="zipCodeDb">
+        </div>
+        <h2 id="weather">Weather</h2>
+        <div class="address">
+            <input class="item2" type="number" placeholder="Temperature" id="temperatureDb" >
+            <input class="item2" type="number" placeholder="Wind Chill" id="windChillDb">
+            <input class="item2" type="number" placeholder="Humidity" id="humidityDb">
+            <input class="item2" type="number" placeholder="Pressure" id="pressureDb">
+            <input class="item2" type="number" placeholder="Visibility" id="visibilityDb">
+            <input class="item2" type="text" placeholder="Wind Direction" id="windDirectionDb">
+            <input class="item2" type="number" placeholder="Wind Speed" id="windSpeedDb">
+            <input class="item2" type="number" placeholder="Precipitation" id="precipitationDb">
+            <input class="item2" type="text" placeholder="General Condition" id="generalConditionDb">
+        </div>
+        <h2 id="circumstances">Accident Circumstances</h2>
+        <div class="circumstances">
+            <label class="checkbox"><input type="checkbox" id="amenityDb" >Amenity</label>
+            <label class="checkbox"><input type="checkbox" id="bumpDb" >Bump</label>
+            <label class="checkbox"><input type="checkbox" id="crossingDb" >Crossing</label>
+            <label class="checkbox"><input type="checkbox" id="giveAwayDb" >GiveAway</label>
+            <label class="checkbox"><input type="checkbox" id="JunctionDb" >Junction</label>
+            <label class="checkbox"><input type="checkbox" id="noExitDb" >No Exit</label>
+            <label class="checkbox"><input type="checkbox" id="railwayDb" >Railway</label>
+            <label class="checkbox"><input type="checkbox" id="roundAboutDb" >Round About</label>
+            <label class="checkbox"><input type="checkbox" id="stationDb" >Station</label>
+            <label class="checkbox"><input type="checkbox" id="stopDb" >Stop</label>
+            <label class="checkbox"><input type="checkbox" id="trafficCalmingDb" >Traffic Calming</label>
+            <label class="checkbox"><input type="checkbox" id="trafficSignalDb" >Traffic Signal</label>
+            <label class="checkbox"><input type="checkbox" id="trafficLoopDb" >Traffic Loop</label>
+        </div>
+        <input id = "sub" type="submit" value="Submit">
+    </div>
     </div>
     <div id="removeDiv">
         <p>test1</p>
     </div>
     <div id="editDiv">
-        <p>test2</p>
+        <div class="circumstances">
+            </div>
     </div>
     <div id="importDiv">
-        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
+<<<<<<< HEAD
             <button id="input-upload" class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
+=======
+            <button class="file-upload-btn" type="button" onclick="document.querySelector('.file-upload-input').click()">Add
+>>>>>>> 4a7259eb9a5284c11d66a2d199b8f92a3069fb45
                 File
             </button>
 

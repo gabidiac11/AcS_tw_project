@@ -1,0 +1,46 @@
+.dropdown-wrapper {
+    position: relative;
+    min-width: 30px;
+}
+
+.dropdown-wrapper .dropdown-menu {
+    min-width: 100%;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background-color: black;
+    border-radius: 2px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.15s ease, background-color 0.15s ease;
+}
+
+.dropdown-wrapper.show .dropdown-menu{
+    max-height: 1000px;
+}
+
+.dropdown-wrapper .dropdown-menu .dropdown-option {
+    max-width: unset;
+    white-space: nowrap;
+    border-radius: 0;
+    margin: 1px;
+}
+
+.dropdown-wrapper .dropdown-opener {
+    padding-right: 20px;
+}
+
+.dropdown-wrapper .dropdown-opener::after {
+    content: url("./../../svg/down-arrow.svg");
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    fill: white;
+    right: 5px;
+    top: calc(calc(100% - 12px) / 2);
+}
+
+.dropdown-wrapper.show .dropdown-opener::after {
+    transform: scaleY(-1);
+}
+

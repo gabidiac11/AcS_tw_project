@@ -100,7 +100,7 @@ class MapPicker {
                             anchor: [0.5, 0.5],
                             anchorXUnits: "fraction",
                             anchorYUnits: "fraction",
-                            src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
+                            src: `${window.BASE_URL}assets/svg/pin-location.svg`
                         })
                     }),
                     name: this.layerName

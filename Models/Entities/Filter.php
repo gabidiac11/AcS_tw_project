@@ -13,6 +13,9 @@ require_once __DIR__ . "/FilterOptionBooleanColumn.php";
  */
 class Filter
 {
+    const SOME_INDICATOR_HTML = "<abbr title=\"The results that satisfy at least ONE of the items checked will be displayed.\"> (*some) </abbr>";
+    const EVERY_INDICATOR_HTML = "<abbr title=\"The results that satisfy ALL of the items checked will be displayed.\"> (*every) </abbr>";
+
     public static $filterSeverity = "SEVERITY";
     public static $filterTime = "TIME";
     public static $filterLocation = "LOCATION";
@@ -37,7 +40,7 @@ class Filter
      */
     private static $bindColumn = null;
 
-    private static $locationRay = 150;
+    private static $locationRay = 15;
 
     /** get the column to fetch values from (use: to make a list of unique values to be checked for a filter to work) */
     private static function getBindToColumn(): array
@@ -83,11 +86,10 @@ class Filter
 
                 Filter::$filterSeverity => [
                     "filterKey" => Filter::$filterSeverity,
-                    "title" => "Within Severity (*some)",
+                    "title" => "Within Severity ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Severity",
                     "availableOptions" => [
-                        new FilterOptionBoolean("0", false, Filter::$filterTime),
                         new FilterOptionBoolean("1", false, Filter::$filterTime),
                         new FilterOptionBoolean("2", false, Filter::$filterTime),
                         new FilterOptionBoolean("3", false, Filter::$filterTime),
@@ -97,7 +99,7 @@ class Filter
 
                 Filter::$filterTime => [
                     "filterKey" => Filter::$filterTime,
-                    "title" => "Duration",
+                    "title" => "Period",
                     "selectionType" => "date_range",
                     "bind" => "Start_Time",
                     "availableOptions" => [
@@ -108,7 +110,7 @@ class Filter
 
                 Filter::$filterDistance => [
                     "filterKey" => Filter::$filterDistance,
-                    "title" => "Distance",
+                    "title" => "Distance (mi)",
                     "selectionType" => "numeric_range",
                     "bind" => "Distance",
                     "availableOptions" => [
@@ -119,7 +121,7 @@ class Filter
 
                 Filter::$filterTemperature => [
                     "filterKey" => Filter::$filterTemperature,
-                    "title" => "Temperature",
+                    "title" => "Temperature (F)",
                     "selectionType" => "numeric_range",
                     "bind" => "Temperature",
                     "availableOptions" => [
@@ -130,7 +132,7 @@ class Filter
 
                 Filter::$filterWindChill => [
                     "filterKey" => Filter::$filterWindChill,
-                    "title" => "Wind Chill",
+                    "title" => "Wind Chill (F)",
                     "selectionType" => "numeric_range",
                     "bind" => "Wind_Chill",
                     "availableOptions" => [
@@ -196,7 +198,7 @@ class Filter
 
                 Filter::$filterWindDirection => [
                     "filterKey" => Filter::$filterWindDirection,
-                    "title" => "Wind Direction (*some)",
+                    "title" => "Wind Direction ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -206,7 +208,7 @@ class Filter
 
                 Filter::$filterWeatherCondition => [
                     "filterKey" => Filter::$filterWeatherCondition,
-                    "title" => "Weather Condition (*some)",
+                    "title" => "Weather Condition ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Weather_Condition",
                     "availableOptions" => []
@@ -214,7 +216,7 @@ class Filter
 
                 Filter::$filterCircumstance => [
                     "filterKey" => Filter::$filterCircumstance,
-                    "title" => "Circumstance (*every)",
+                    "title" => "Circumstance ".self::EVERY_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "",
                     "availableOptions" => array_map(function ($item) {
@@ -240,7 +242,7 @@ class Filter
 
                 Filter::$filterAstrologicalTwilight => [
                     "filterKey" => Filter::$filterAstrologicalTwilight,
-                    "title" => "Astrological twilight (*some)",
+                    "title" => "Astrological twilight ".self::SOME_INDICATOR_HTML,
                     "selectionType" => "checkbox-list",
                     "bind" => "Astronomical_Twilight",
                     "availableOptions" => []
@@ -431,7 +433,7 @@ class Filter
                     $string .= " AND ";
                 }
 
-                $string .= $this->bind . " <= '" . $this->availableOptions[0]->value . "' ";
+                $string .= $this->bind . " <= '" . $this->availableOptions[1]->value . "' ";
             }
         } else if (in_array($this->selectionType, ["checkbox-list", "star", "checkbox-button-list"])) {
             foreach ($this->availableOptions as $option) {
