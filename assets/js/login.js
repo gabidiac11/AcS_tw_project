@@ -65,3 +65,9 @@ function rememberMe() {
         localStorage.setItem("Check", "0");
     }
 }
+function removeLogin() {
+    sessionStorage.removeItem("AdminUser");
+    sessionStorage.removeItem("AdminToken");
+    window.history.pushState('Admin', 'Title', "/Admin");
+    window.history.go();
+}

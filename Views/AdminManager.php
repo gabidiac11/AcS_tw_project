@@ -17,7 +17,7 @@
     <script src="../../assets/js/ui/button.js"></script>
 </head>
 
-<body onload="verificator(), loadMaintenance()">
+<body onload=verifier("adminpanel")>
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>

@@ -16,7 +16,7 @@
     <script src="../../assets/js/import.js"></script>
 </head>
 
-<body onload="loadPage()">
+<body onload=verifier("adminpanel")>
     <?php
     require_once __DIR__ . '/Layout/Admin.php';
     ?>
