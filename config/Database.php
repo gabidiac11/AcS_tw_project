@@ -73,6 +73,11 @@ class Database
         return $conn->insert_id;
     }
 
+    public function prepare($sql) {
+        $conn = $this->conn;
+        return $conn->prepare($sql);
+    }
+
     public static function getInstance()
     {
         if (is_null(self::$instance)) {

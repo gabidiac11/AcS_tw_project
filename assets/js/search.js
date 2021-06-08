@@ -1023,7 +1023,7 @@ class SearchPage {
 
       fetch(`${window.BASE_URL}search/filters`, {
         headers: new Headers(),
-        method: "POST",
+        method: "GET",
       })
         .then((response) => {
           if (response.ok) {

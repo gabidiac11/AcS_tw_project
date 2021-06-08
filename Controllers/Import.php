@@ -11,6 +11,16 @@ class Import extends Controller
 
     public function index()
     {
-        $this->loadModel("DatabaseUtl")->phpCsvToDb();
+        // $this->loadModel("DatabaseUtl")->phpCsvToDb();
+    }
+
+    public function csv() {
+        //verify if an admin is logged, otherwise deny action 
+        if($this->loadModel('MaintenanceQuery')->verifyStatus() == 1) {
+            $this->loadModel("DatabaseUtl")->importFromCsvFile();
+        } else {
+            header($_SERVER["SERVER_PROTOCOL"]." 401 Unauthorized");
+            die("");
+        }
     }
 }

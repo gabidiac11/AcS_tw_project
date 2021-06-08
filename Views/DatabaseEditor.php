@@ -12,6 +12,7 @@
     <link href="../../assets/css/databaseeditor.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="../../assets/js/loginpanel.js"></script>
     <script src="../../assets/js/databaseeditor.js"></script>
+    <script src="../../assets/js/index.js"></script>
     <script src="../../assets/js/import.js"></script>
 </head>
 
@@ -41,7 +42,7 @@ require_once __DIR__ . '/Layout/Admin.php';
     <div id="importDiv">
         <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
-            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
+            <button id="input-upload" class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
                 File
             </button>
 
