@@ -67,9 +67,6 @@
         <button class="btn-primary" id="map-btn-preview">
           MAP PREVIEW
         </button>
-        <button class="btn-primary" id="import-btn">
-          Import CSV
-        </button>
       </div>
 
       <div id="search-filters" class="filters-c">
