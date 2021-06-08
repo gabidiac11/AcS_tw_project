@@ -1,6 +1,6 @@
 <?php
 
-class chartseditor extends Controller
+class adminmanager extends Controller
 {
 
     function __construct()
@@ -10,6 +10,6 @@ class chartseditor extends Controller
 
     public function index()
     {
-        $this->loadView("ChartsEditor", []);
+        $this->loadView("AdminManager", []);
     }
 }

@@ -22,22 +22,12 @@
     ?>
     <main class="flex-all flex-column main" id="admin-panel">
         <div id="success"></div>
-        <form class="flex-all flex-column" action="/action_page.php">
-            <label for="title">Title Text:</label>
-            <textarea wrap="off" id="title" name="title">
-
-  </textarea>
-            <br><br>
-            <input class="button" id="SubmitTitle" type="submit" value="Submit">
-        </form>
-        <form class="flex-all flex-column" action="/action_page.php">
             <label for="message">Message Text:</label>
             <textarea wrap="off" id="message" name="message">
 
   </textarea>
             <br><br>
             <input class="button" id="SubmitMessage" type="submit" value="Submit">
-        </form>
         <h2>Maintenance Mode Status</h2>
         <label class="container">Enabled
             <input type="radio" checked="checked" name="radio">
