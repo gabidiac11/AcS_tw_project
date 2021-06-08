@@ -713,11 +713,11 @@
 
     <!-- Other Nonfunctional Requirements -->
     <section id="devGuide">
-        <h2><span>5.Developer guide</span></h2>
+        <h2><span>4.Developer guide</span></h2>
 
         <!-- MVC ARCHITECTURE -->
         <section id="devGuideMVC">
-            <h2><span>5.1 MVC Architecture </span></h2>
+            <h2><span>4.1 MVC Architecture </span></h2>
             <p>
                 The architecture rests on a hierarchy of classes provided in the <i> Fig. 5.1 </i>. The folder structure and naming convention are important for the this app to work.
             </p>
@@ -728,14 +728,14 @@
             </figure>
 
             <section id="devGuideMVCApp">
-                <h2><span>5.1.1 App </span></h2>
+                <h2><span>4.1.1 App </span></h2>
                 <p>
                     The class that is inherited by both Model and Controller classes. Its purpose is to provide access to the Router and Database singleton instances evenly.
                 </p>
             </section>
 
             <section id="devGuideMVCRouter">
-                <h2><span>5.1.2 Router </span></h2>
+                <h2><span>4.1.2 Router </span></h2>
                 <p>
                     The class that is inherited by both Model and Controller classes. Its purpose is to provide access to the Router and Database singleton instances evenly.
                 </p>
@@ -750,7 +750,7 @@
             </section>
 
             <section id="devGuideMVCDatabase">
-                <h2><span>5.1.3 Database </span></h2>
+                <h2><span>4.1.3 Database </span></h2>
                 <p>
                     The class uses facade and singleton. The class is available for both Model and Controller classes.
                 </p>
@@ -768,7 +768,7 @@
             </section>
 
             <section id="devGuideMVCController">
-                <h2><span>5.1.4 Controller </span></h2>
+                <h2><span>4.1.4 Controller </span></h2>
                 <p>
                     Represents the base class for all controllers.
                 </p>
@@ -792,7 +792,7 @@
             </section>
 
             <section id="devGuideMVCModel">
-                <h2><span>5.1.5 Model </span></h2>
+                <h2><span>4.1.5 Model </span></h2>
                 <p>
                     Processes the actual request of an API endpoint.
                 </p>
@@ -816,7 +816,7 @@
 
         <!-- SEARCH PAGE SERVICE -->
         <section id="devGuideSearchService">
-            <h2><span>5.2 Search Page Service </span></h2>
+            <h2><span>4.2 Search Page Service </span></h2>
             <p>
                 This section explains the <a href="/search" target="_blank"> search page </a> and its related API.The functionality is concentrating around the <i>SearchModel</i>.
             </p>
@@ -828,7 +828,7 @@
 
 
             <section id="devGuideSearchServiceResults">
-                <h2><span>5.2.1 Results </span></h2>
+                <h2><span>4.2.1 Results </span></h2>
                 <p>
                     This /search endpoint is explained in great details in the <a href="/swagger#/search/results" target="_blank">swagger</a>.
                 </p>
@@ -847,7 +847,7 @@
             </section>
 
             <section id="devGuideSearchServiceFilters">
-                <h2><span>5.2.2 Filters </span></h2>
+                <h2><span>4.2.2 Filters </span></h2>
                 <p>
                     This /filters endpoint is explained in great details in the <a href="/swagger#/search/filters" target="_blank">swagger</a>.
                 </p>
@@ -860,7 +860,7 @@
                 </figure>
 
                 <section id="devGuideSearchServiceFiltersRoles">
-                    <h2><span>5.2.2.1 Roles </span></h2>
+                    <h2><span>4.2.2.1 Roles </span></h2>
                     <ul>
                         <li>
                             Provides the frontend with recognized entities. The frontend knows to paint each filter by instantiating its own entities, that are rendering themselves. This gives to the backend enough freedom to add a lot of new filters without anything new being implemented in the frontend.
@@ -873,7 +873,7 @@
                 </section>
 
                 <section id="devGuideSearchServiceFiltersMentions">
-                    <h2><span>5.2.2.2 Other mentions </span></h2>
+                    <h2><span>4.2.2.2 Other mentions </span></h2>
                     <ul>
                         <li>
                             the result item (<i>Fig. 1</i>) is generated using service side rendering. When rendering results, the frontend associates an instance of a class to a html node with a generic structure, that permits updates of inner elements using an attribute scheme for matching. In the php file a N-list of such nodes are rendered (hidden) in a for loop, keeping PHP and HTML code separated. These nodes are then ready on page load and are to be attached to Js instances, filled with information and showed.
@@ -889,7 +889,7 @@
 
         <!-- CHAR PAGE SERVICE -->
         <section id="devGuideChartPageService">
-            <h2><span>5.3 Chart Page Service </span></h2>
+            <h2><span>4.3 Chart Page Service </span></h2>
             <p>
                 This section explains the <a href="/charts" target="_blank"> charts page </a> and its related API.The functionality is concentrating around the <i>ChartModel</i>.
             </p>
@@ -919,9 +919,9 @@
             </p>
         </section>
 
-        <!-- CHAR PAGE SERVICE -->
+        <!-- EXPORT PAGE SERVICE -->
         <section id="devGuideExportService">
-            <h2><span>5.4 Export </span></h2>
+            <h2><span>4.4 Export </span></h2>
             <p>
                 This section gives a general overview of export functionality.
             </p>
@@ -947,12 +947,12 @@
 
     <!-- Other Assignments -->
     <section id="workAssignment">
-        <h2><span>6.Work assignments</span></h2>
+        <h2><span>5.Work assignments</span></h2>
 
         <section id="workAssignmentDiac">
-            <h2><span>6.1 Diac P. Gabriel </span></h2>
+            <h2><span>5.1 Diac P. Gabriel </span></h2>
             <section id="workAssignmentDiacBackend">
-                <h2><span>6.1.1 Backend </span></h2>
+                <h2><span>5.1.1 Backend </span></h2>
                 <ul>
                     <li> MVC infrastructure </li>
                     <li> Swagger installation </li>
@@ -963,7 +963,7 @@
             </section>
 
             <section id="workAssignmentDiacFrontend">
-                <h2><span>6.1.2 Frontend </span></h2>
+                <h2><span>5.1.2 Frontend </span></h2>
                 <ul>
                     <li>Search page - algorithm and UX design, javascript code related to filtering results, pagination, loading results, cartographic representations, most of the UI elements that interact with the user (search, clear, filter toggle, apply/clear/cancel filters controls, pagination controls, export dropdown, sort and sort by selectors) </li>
 
@@ -973,16 +973,16 @@
         </section>
 
         <section id="workAssignmentGradinariu">
-            <h2><span>6.2 Gradinariu Marian-Florin </span></h2>
+            <h2><span>5.2 Gradinariu Marian-Florin </span></h2>
             <section id="workAssignmentGradinariuBackend">
-                <h2><span>6.2.1 Backend </span></h2>
+                <h2><span>5.2.1 Backend </span></h2>
                 <ul>
                     <li> - </li>
                 </ul>
             </section>
 
             <section id="workAssignmentGradinariuFrontend">
-                <h2><span>6.2.2 Frontend </span></h2>
+                <h2><span>5.2.2 Frontend </span></h2>
                 <ul>
                     <li>-</li>
                 </ul>
