@@ -19,7 +19,7 @@ function getStatus() {
 
 function updateStatus() {
     if (document.getElementById("disabled").checked) {
-        var value = 0;
+        var value = 2;
     } else {
         var value = 1;
     }
