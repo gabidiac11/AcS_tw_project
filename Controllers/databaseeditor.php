@@ -12,4 +12,7 @@ class databaseeditor extends Controller
     {
         $this->loadView("DatabaseEditor", []);
     }
+    public function addElem(){
+
+    }
 }

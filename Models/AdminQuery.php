@@ -9,14 +9,16 @@ class AdminQuery extends Model
 
     public function verifyAccount($data)
     {
-        if ($this->fieldsNotPresent($data, ['user', 'password'])) {
+        if ($this->fieldsNotPresent($data, ['user', 'password', 'token'])) {
             return ['success' => false, 'message' => 'Ups! You have a missing fields.'];
         }
         $name = $data['user'];
         $password = $data['password'];
+        $token = $data['token'];
         $query = $this->db->select("SELECT name FROM admin WHERE name='$name' AND password='$password'");
 
         if ($query != NULL) {
+                $this -> addTokenInside($data);
             return ['success' => true];
         }
 
@@ -24,14 +26,26 @@ class AdminQuery extends Model
 
     }
 
-    public function verifySession($name, $token): bool
+    public function verifySession($data)
     {
-        $sql = 'SELECT token from session s LEFT JOIN admin a ON s.name=a.name WHERE s.name=' + $name + ' AND s.password=a.password AND s.token=' + $token;
-        if ($sql[0]['token'] !== '') {
-            return true;
-        } else {
-            return false;
+        if ($this->fieldsNotPresent($data, ['user', 'token'])) {
+            return ['success' => false];
         }
+        $name = $data['user'];
+        $token = $data['token'];
+        $sql = $this->db->select("SELECT token from session s LEFT JOIN admin a ON s.name=a.name WHERE s.name='$name' AND s.password=a.password AND s.token='$token'");
+        if ($sql != NULL) {
+            return ['success' => true];
+        }
+
+        return ['success' => false];
+    }
+
+    function addTokenInside($data){
+        $name = $data['user'];
+        $password = $data['password'];
+        $token = $data['token'];
+        $this->db->insert("INSERT INTO session (name, token, password) VALUES ('$name', '$token', '$password')");
     }
 
     public function getAccidents(): array
