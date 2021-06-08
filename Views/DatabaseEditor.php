@@ -90,11 +90,7 @@ require_once __DIR__ . '/Layout/Admin.php';
     </div>
     <div id="importDiv">
         <div class="file-upload">
-<<<<<<< HEAD
-            <button id="input-upload" class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
-=======
             <button class="file-upload-btn" type="button" onclick="document.querySelector('.file-upload-input').click()">Add
->>>>>>> 4a7259eb9a5284c11d66a2d199b8f92a3069fb45
                 File
             </button>
 
