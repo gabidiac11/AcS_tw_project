@@ -1,4 +1,4 @@
-function verificator() {
+function verifier() {
     var username = localStorage.getItem("AdminUser");
     var value = localStorage.getItem("AdminToken");
     if (1> 0) {

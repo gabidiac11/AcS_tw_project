@@ -7,15 +7,21 @@ class AdminQuery extends Model
         parent::__construct();
     }
 
-    public function verifyAccount($name, $password): bool
+    public function verifyAccount($data)
     {
-        $sql = "SELECT name FROM admin WHERE name=" + $name + " AND password=" + $password;
-        $query = $this->db->select($sql);
-        if ($query[0]['name'] !== '') {
-            return true;
-        } else {
-            return false;
+        if ($this->fieldsNotPresent($data, ['user', 'password'])) {
+            return ['success' => false, 'message' => 'Ups! You have a missing fields.'];
         }
+        $name = $data['user'];
+        $password = $data['password'];
+        $query = $this->db->select("SELECT name FROM admin WHERE name='$name' AND password='$password'");
+
+        if ($query != NULL) {
+            return ['success' => true];
+        }
+
+        return ['success' => false];
+
     }
 
     public function verifySession($name, $token): bool
@@ -26,5 +32,10 @@ class AdminQuery extends Model
         } else {
             return false;
         }
+    }
+
+    public function getAccidents(): array
+    {
+        return Accident::resultsToInstances($this->db->select("SELECT * FROM accidents LIMIT 10"));
     }
 }

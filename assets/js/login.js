@@ -1,23 +1,21 @@
 function loadStorage() {
     if (localStorage.getItem("Check") !== null && localStorage.getItem("Check") === "1") {
-        var username = localStorage.getItem("AdminUser");
-        var value = localStorage.getItem("AdminToken");
+        let username = localStorage.getItem("AdminUser");
+        let value = localStorage.getItem("AdminToken");
         window.history.pushState('Admin', 'Title', "/AdminPanel");
         window.history.go();
         return false;
     }
 }
 
-function validate() {
-    var username = document.getElementById("name").value;
-    var password = document.getElementById("pass").value;
-    var check = document.getElementById("remember_me");
-    if (username == "test" && password == "test") {
-        if (check.checked) {
-            rememberMe();
+function validate($data) {
+    if ($data === 1) {
+        let check = document.getElementById("remember_me");
+        if (localStorage.getItem("Check") !== null && localStorage.getItem("Check") === "1") {
+            rememberMeAfter();
         }
         window.history.pushState('Admin', 'Title', "/AdminPanel");
-        return false;
+        window.history.go();
     }
 }
 
@@ -28,11 +26,17 @@ function randomiser() {
 function createToken() {
     return randomiser() + randomiser();
 };
-
-function rememberMe() {
-    var check = document.getElementById("remember_me");
-    var username = document.getElementById("name").value;
+function rememberMe(){
+    let check = document.getElementById("remember_me");
+    if(check.checked){
+        localStorage.setItem("Check", "1");
+    }else{
+        localStorage.setItem("Check", "0");
+    }
+}
+function rememberMeAfter() {
+    let username = document.getElementById("name").value;
+    let token = createToken();
     localStorage.setItem("AdminUser", username);
-    localStorage.setItem("AdminToken", createToken());
-    localStorage.setItem("Check", "1");
+    localStorage.setItem("AdminToken", token);
 }

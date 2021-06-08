@@ -19,4 +19,9 @@ class MaintenanceQuery extends Model
         $sql = "UPDATE maintenance SET mode=" + $value + " WHERE id=1";
         $this->db->update($sql);
     }
+    public function updateMessage($value)
+    {
+        $sql = "UPDATE maintenance SET description=$value WHERE id=1";
+        $this->db->update($sql);
+    }
 }
