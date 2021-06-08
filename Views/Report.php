@@ -79,7 +79,7 @@
                                     <li><a href="#extIntReqUISearchPageSearch"><span>3.1.1.2 </span>Search input</a></li>
                                     <li><a href="#extIntReqUISearchPageFilter"><span>3.1.1.3 </span>Filter section</a></li>
                                     <li><a href="#extIntReqUISearchPageFilterPagination"><span>3.1.1.4 </span>Pagination</a></li>
-                                    
+
                                     <li><a href="#extIntReqUISearchPageExportUI"><span>3.1.1.5 </span>Export UI types</a>
                                         <ol role="directory">
                                             <li><a href="#extIntReqUISearchPageExportUICsv"><span>3.1.1.5.1 </span>Export CSV</a></li>
@@ -951,8 +951,8 @@
 
         <section id="workAssignmentDiac">
             <h2><span>6.1 Diac P. Gabriel </span></h2>
-            <h2><span>6.1.2 Backend </span></h2>
             <section id="workAssignmentDiacBackend">
+                <h2><span>6.1.1 Backend </span></h2>
                 <ul>
                     <li> MVC infrastructure </li>
                     <li> Swagger installation </li>
@@ -963,7 +963,7 @@
             </section>
 
             <section id="workAssignmentDiacFrontend">
-                <h2><span>6.1.3 Frontend </span></h2>
+                <h2><span>6.1.2 Frontend </span></h2>
                 <ul>
                     <li>Search page - algorithm and UX design, javascript code related to filtering results, pagination, loading results, cartographic representations, most of the UI elements that interact with the user (search, clear, filter toggle, apply/clear/cancel filters controls, pagination controls, export dropdown, sort and sort by selectors) </li>
 
@@ -975,13 +975,14 @@
         <section id="workAssignmentGradinariu">
             <h2><span>6.2 Gradinariu Marian-Florin </span></h2>
             <section id="workAssignmentGradinariuBackend">
+                <h2><span>6.2.1 Backend </span></h2>
                 <ul>
                     <li> - </li>
                 </ul>
             </section>
 
             <section id="workAssignmentGradinariuFrontend">
-                <h2><span>6.1.3 Frontend </span></h2>
+                <h2><span>6.2.2 Frontend </span></h2>
                 <ul>
                     <li>-</li>
                 </ul>
@@ -989,15 +990,16 @@
         </section>
 
         <section id="workAssignmentVasil">
-            <h2><span>6.3 Vasilica Alex </span></h2>
+            <h2><span>6.3 Vasulica Alex </span></h2>
             <section id="workAssignmentVasilBackend">
+                <h2><span>6.3.1 Backend </span></h2>
                 <ul>
-                    <li> - </li>
+                    <li>-</li>
                 </ul>
             </section>
 
             <section id="workAssignmentVasilFrontend">
-                <h2><span>6.1.3 Frontend </span></h2>
+                <h2><span>6.3.2 Frontend </span></h2>
                 <ul>
                     <li>-</li>
                 </ul>
