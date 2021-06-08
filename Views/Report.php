@@ -429,13 +429,13 @@
                     <h3><span>3.1.1.1 </span> Result item template</h3>
                     
                     <figure class="report-centered-fig">
-                        <img src="/assets/images/report/accident-card.png" alt="">
+                        <img src="/assets/images/report/accident-card.png" alt="Result item template">
                         <figcaption>Fig. 1 - Result item template</figcaption>
                     </figure>
                     
                     <ol>
                         <li><strong>Date and time of the accident,</strong> required not only for the chronological placement but also for creating meaningful and accurate forecasts, correlations with other events and factors that can affect the evolution of the number of the accidents.</li>
-                        <li><strong>Severity</strong>, describes the severity of the accidents, starting with 0 for highly severe to 4 for the least severe</li>
+                        <li><strong>Severity</strong>, describes the severity of the accidents, starting with 1 for highly severe to 4 for the least severe.</li>
                         <li><strong>ID</strong>, it is a number that helps users and other systems uniquely identify each accident.</li>
                         <li><strong>City </strong>and <strong>State </strong>where the accident happened, the state name is abbreviated for clarity reasons.</li>
                         <li><strong>Description</strong>, is a brief explanation of the location, cause or other significant details regarding the accident with the scope of providing the reader with a better understanding of the situation.</li>
@@ -450,19 +450,19 @@
                 <section id="extIntReqUISearchPageSearch">
                     <h3><span>3.1.1.1 </span> Search input</h3>
                     
-                        The goal of this section is to filter results using user input and access some other hidden section (the filter section that is hidden).
+                        The goal of this section is to filter results using user input and access some other hidden section (e.g. the hidden filter area).
                     <figure class="report-centered-fig">
                         <img src="/assets/images/report/search-bar.png" alt="Search bar">
                         <figcaption>Fig. 2 - Search bar</figcaption>
                     </figure>
                     
                     <ol>
-                        <li><strong>Search box</strong>. Offers users the possibility to search accidents by description or id.</li>
-                        <li><strong>Search button</strong>. The users need to press the search button after they entered the text they wish to search in order to get the desired results.</li>
-                        <li><strong>Revert search button</strong>. This button is used for reverting the search results to the standard, unfiltered status. It will not change the &quot;Sort by&quot; button status therefore the order of the results will not change.</li>
-                        <li><strong>Filter button</strong>. Used for displaying the filter section that helps the advanced users to retrieve more accurate and specific data.</li>
-                        <li><strong>Sort button</strong>. When accessed, this button displays a list of 14 characteristics (e.g. State, Location, Severity) that can be used for sorting the results. Once the user selects one of these options, the system starts the search and then displays the results sorted by it. For reverting it, the user must select the Sort by option from the list.</li>
-                        <li><strong>Descending order checkbox</strong>. By checking this, the results will be ordered descending and ascending if it is unchecked. The changes will be immediately visible after checking/unchecking it therefore the user does not need to press the search button again.</li>
+                        <li><strong>Search box</strong>, offers users the possibility to search accidents by description or id.</li>
+                        <li><strong>Search button</strong>, the users need to press the it after they entered the text they wish to search in order to get the desired results.</li>
+                        <li><strong>Revert search button</strong>, used for reverting the search results to the standard, unfiltered status. It will not change the &quot;Sort by&quot; button status therefore the order of the results will not change.</li>
+                        <li><strong>Filter button</strong>, used for displaying the filter section that helps the advanced users to retrieve more accurate and specific data.</li>
+                        <li><strong>Sort button</strong>, when accessed, this button displays a list of 14 characteristics (e.g. State, Location, Severity) that can be used for sorting the results. Once the user selects one of these options, the system starts the search and then displays the results sorted by it. For reverting it, the user must select the "Sort by" option from the list.</li>
+                        <li><strong>Descending order checkbox</strong>, by checking this, the results will be ordered descending or ascending if it is unchecked. The changes will be immediately visible after checking/unchecking it therefore the user does not need to press the search button again.</li>
                     </ol>
                     <p>
                         The buttons and inputs are disabled while a search is in progress. Another indicator of a search being in progress is the loader present in place of the results.
@@ -476,83 +476,98 @@
                 <!-- SEARCH-PAGE ->>> FILTER SECTION -->
                 <section id="extIntReqUISearchPageFilter">
                     <h3><span>3.1.1.2 </span> Filter section</h3>
-                    <p>The filter area is hidden but can be toggled using the button from the search bar described in the previous section. The filter area is clustered into 16 different groups, and each of these has its own reset button. In this way, the user can revert a filtering criterion without affecting the others. For the results to reflect the changes after resetting a group, the user must press the Apply button or Cancel otherwise. If the user wants to exit the filter area, he can press the Cancel button or click in the area outside of it.
-                    </p>
+                    <p>The filter area is hidden but can be toggled using the button from the search bar described in the previous section.</p> 
+                    <p>The filter area is clustered into 16 different groups, and each of these has its own reset button. In this way, the user can revert a filtering criterion without affecting the others. For the results to reflect the changes after resetting a group, the user must press the Apply button or Cancel otherwise.</p>
                     <figure class="report-centered-fig">
-                        <img src="/assets/images/report/filter-section.png" alt="Search in progress">
+                        <img src="/assets/images/report/filter-section.png" alt="Filter section">
                         <figcaption>Fig. 4 - Filter section</figcaption>
                     </figure>
                     <ul>
                         <li><strong>1. Filter toggle button</strong>, used for displaying the filter section.</li>
-                        <li><strong>2. Cancel and Apply buttons</strong>, used for applying or canceling the filtering criteria entered by the user. </li>
+                        <li><strong>2. Reset button</strong>, has almost the same behaviour as the individual group reset button, with the difference that this resets the values for all filtering groups.</li>
+                        <li><strong>3. Cancel and Apply buttons</strong>, used for applying or canceling the filtering criteria entered by the user. </li>
                         <li>
-                            <strong>3. State</strong>, enables users to get the accidents only from some specific states. For this, users must press the arrow button that will pop out a window with the 49 states of the US to select the desired states (Fig. 5). After checking them, the user must press the Apply or Cancel in order for the settings to appear or not. When the Apply button is selected, the states will be shown as in Fig. 6. From this view, if the user changes their mind, he can press the x button after the state name, and it will be excluded from the filter. If the user wants to add more states, he can click the arrow button again and repeat the process.
+                            <strong>4. State</strong>, enables users to get the accidents only from some specific states. For this, users must press the arrow button that will pop out a window with the 49 states of the US to select the desired states (Fig. 5). After checking them, the user must press the Apply or Cancel in order for the settings to appear or not. When the Apply button is selected, the states will be shown as in Fig. 6. From this view, if the user changes their mind, he can press the x button after the state name, and it will be excluded from the filter. If the user wants to add more states, he can click the arrow button again and repeat the process.
                             <div class="inline-figures">
                                 <figure>
-                                    <img src="/assets/images/report/states-pop-up.png" alt="Search in progress">
+                                    <img src="/assets/images/report/states-pop-up.png" alt="Pop up with the state list">
                                     <figcaption>Fig. 5 - Pop up with the state list</figcaption>
                                 </figure>
                                 <figure>
-                                    <img src="/assets/images/report/selected-states.png" alt="Search in progress">
+                                    <img src="/assets/images/report/selected-states.png" alt="View of the selected states">
                                     <figcaption>Fig. 5 - View of the selected states</figcaption>
                                 </figure>
                             </div>
                         </li>
                         <li>
-                            <strong>4. Location (Within 15 ray)</strong>, enables users to retrieve the accidents that are located within a 15 ray of the location selected by them on the map (Fig. 6) that will pop out after clicking the arrow button from this section. In the map pop up, the user can select a location by clicking it on the map then the selected coordinates will appear in the right bottom corner. For an accurate localization, the users can zoom in or out using the mouse wheel or the "+" or "-" buttons on the left top corner. The users can visualise the different areas of the map using drag and drop movements. In the end, the user should press the Apply button if he wants to keep the settings, otherwise the Cancel button. After the selection is made, the coordinates will be shown as in Fig. 7.
+                            <strong>5. Location (Within 15 ray)</strong>, enables users to retrieve the accidents that are located within a 15 ray of the location selected by them on the map (Fig. 6) that will pop out after clicking the arrow button from this section. In the map pop up, the user can select a location by clicking it on the map then the selected coordinates will appear in the right bottom corner. For an accurate localization, the users can zoom in or out using the mouse wheel or the "+" or "-" buttons on the left top corner. The users can visualize the different areas of the map using drag and drop movements. In the end, the user should press the Apply button if he wants to keep the settings, otherwise the Cancel button. After the selection is made, the coordinates will be shown as in Fig. 7.
                             <div class="inline-figures">
                                 <figure>
-                                    <img src="/assets/images/report/map-pop-up.png" alt="Map pop up">
+                                    <img src="/assets/images/report/map-pop-up.png" alt="Pop up with the map">
                                     <figcaption>Fig. 6 - Pop up with the map</figcaption>
                                 </figure>
                                 <figure>
-                                    <img src="/assets/images/report/selected-coordinates.png" alt="Selected coordinates">
+                                    <img src="/assets/images/report/selected-coordinates.png" alt="View of the selected coordinates">
                                     <figcaption>Fig. 7 - View of the selected coordinates</figcaption>
                                 </figure>
                             </div>
                         </li>
-                        <li><strong>5. Within Severity (*some)</strong>, allows users to retrieve only the accidents that have one of the selected severities. The users can select multiple options.</li>
-                        <li><strong>6. Period</strong>, allows users to retrieve accidents that happened at specific periods of time. If both start and end date are completed, the users will get all the accidents that occurred between these dates. However, the users are not required to complete both. They can enter only the start date, and so they will get all accidents from the start date till the present moment, or only the end date if they want the accidents till a specified date.</li>
-                        <li><strong>7. Distance (mi)</strong>, allows users to get the accidents that have the distance (from the crash spot to the place where the car stops) between a minimum and maximum value. The users is not required to enter both values because if only the minimum value is specified the maximum will be implicitely the highest value in the database and vice versa.</li>
-                        <li><strong>8 - 14: Temperature (F), Wind Chill (F), Humidity (%), Pressure(in), Visibility(mi), Wind speed(mph), Precipitation(in)</strong>, allows the accidents filtering by the minimum and/or maximum values of the prior named wheather characteristics. The units of measurement are specified in parentheses.</li>
-                        <li><strong>15. Wind Direction (*some)</strong>, fetches the accidents that happened when the wind dirrection was at least like one of the checked values.</li>
-                        <li><strong>16. Weather Condition (*some)</strong>, helps the users fetch only the accidents that happened when the weather had at least one of the selected characteristics.</li>
-                        <li><strong>17. Circumstance (*every)</strong>, gets the accidents that happened under all the selected circumstances.</li>
-                        <li><strong>18. Astrological twilight (*some)</strong>, enables the filtering of the accidents by time of the day.</li>
+                        <li><strong>6. Within Severity (*some)</strong>, allows users to retrieve only the accidents that have one of the selected severities. The users can select multiple options.</li>
+                        <li><strong>7. Period</strong>, allows users to retrieve accidents that happened at specific periods of time. If both start and end date are completed, the users will get all the accidents that occurred between these dates. However, the users are not required to complete both. They can enter only the start date, and so they will get all accidents from the start date till the present moment, or only the end date if they want the accidents till a specified date.</li>
+                        <li><strong>8. Distance (mi)</strong>, allows users to get the accidents that have the distance (from the crash spot to the place where the car stops) between a minimum and maximum value. The users are not required to enter both values because if only the minimum value is specified, the maximum will be implicitely the highest value in the database and vice versa.</li>
+                        <li><strong>9 - 15: Temperature (F), Wind Chill (F), Humidity (%), Pressure(in), Visibility(mi), Wind speed(mph), Precipitation(in)</strong>, allows the accidents filtering by the minimum and/or maximum values of the prior named weather characteristics. The units of measurement are specified in parentheses.</li>
+                        <li><strong>16. Wind Direction (*some)</strong>, fetches the accidents that happened when the wind direction was at least like one of the checked values.</li>
+                        <li><strong>17. Weather Condition (*some)</strong>, helps the users fetch only the accidents that happened when the weather had at least one of the selected characteristics.</li>
+                        <li><strong>18. Circumstance (*every)</strong>, gets the accidents that happened under all the selected circumstances.</li>
+                        <li><strong>19. Astrological twilight (*some)</strong>, enables the filtering of the accidents by time of the day.</li>
                     </ul>
                 </section>
 
                 <!-- SEARCH-PAGE ->>> PAGINATION SECTION -->
                 <section id="overallDescription-AssumptionsDependencies-11">
                     <h3><span>3.1.1.3 </span> Pagination </h3>
-                    <p>
-                        describe how many per page (3 options 10, 20, 50) 
-                        when filters are changing pagination resets
-                    </p>
+                    <p>Because we take into account the different needs and behaviour characteristics of the site visitors, we offer them the possibility to change the number of accidents card boxes that are displayed on each page. By default, on a page are displayed 20 card boxes, but the users can choose to have on a page either 10, 20, 30 or 50 card boxes, as shown in Fig. 8.</p>
+                    <p>As we work with large data sets, the user has the ability to navigate backwards and forwards using the arrow buttons or the numbered buttons (within ten pages, prior or after the current page). The current page number is coloured in wheat yellow for the user to know where he is in the search results.</p>
+                    <figure class="report-centered-fig">
+                        <img src="/assets/images/report/cardboxes-per-page.png" alt="Search page navigation">
+                        <figcaption>Fig. 8 - Search page navigation with the option to change the elements displayed on a page</figcaption>
+                    </figure>
                 </section>
 
                 <!-- SEARCH-PAGE ->>> EXPORT UI -->
                 <section id="overallDescription-AssumptionsDependencies-12">
                     <h3><span>3.1.1.4 </span> Export UI </h3>
-                    <p>
-                        describe that results from the page are exported (that are filtered)
-                    </p>
+                    
 
                     <section id="overallDescription-AssumptionsDependencies-13">
                         <h3><span>3.1.1.4.1 </span> Export CSV </h3>
-                        <p>
-                            describe and show something
-                        </p>
+                        <p>The user has the ability to export the wanted data in CSV format for further analysis and processing by being easily imported in more advanced data visualization or analytics tools.</p>
+                        <p>After the user got the desired results by using the search and filtering options, he has to chose from two alternatives (Fig. 9):</p>
+                        <figure class="report-centered-fig">
+                            <img src="/assets/images/report/export-options.png" alt="Export options">
+                            <figcaption>Fig. 9 - Export options</figcaption>
+                        </figure>
+                        <ol>
+                            <li><strong>Export this page</strong>.</li>
+                            <li><strong>Export all (10k results limit)</strong>, by selecting this option, the user will get a CSV file with all the search and filtering results. Due to server-side performance constraints and the extensive volume of data, we had to limit the export capabilities up to 10000 results.</li>
+                        </ol>
                     </section>
 
                     <section id="overallDescription-AssumptionsDependencies-14">
                         <h3><span>3.1.1.4.1 </span> Cartographic export and visualization </h3>
-                        <p>
-                            describe how can you see points on the map and on click it shows information
-                        </p>
-                        <p>[..show-images..]</p>
 
-                        <p> Explain that can be exported in webp and svg with those buttons </p>
+                        <p>For an accessible overview of the data, the site offers users the possibility to preview the data on the map by clicking the <strong>"MAP PREVIEW"</strong> left to the export button. In the map are shown only the accidents from the current search page.</p>
+
+                        <figure class="report-centered-fig">
+                            <img src="/assets/images/report/map-preview-window.png" alt="Map preview window">
+                            <figcaption>Fig. 9 - Map preview window</figcaption>
+                        </figure>
+
+                        <p>Each accident is represented on the map as a coloured circle at the point where the accident happened. The circle is coloured according to the accident severity, starting with dark red for the most severe accidents and lowering in intensity till it reaches pale pink for the least severe ones.</p>
+
+                        <p>By clicking on a circle on the map, a pop-up window with more information about the accident will appear. In this pop-up are included the accident date, city, id and a short description. The pop-up can be closed by pressing the <strong>"x"</strong> button.</p>
+                        <p>The users can zoom in or out using the mouse wheel or the "+" or "-" buttons on the left top corner, and can visualize the different areas of the map using drag and drop movements.</p>
+                        <p>The user has the ability to export the map as an SVG or WEBP file using the buttons <strong>"Export SVG"</strong> and <strong>"Export WEBP"</strong> if he wants to store and use the map later.</p>
                     </section>
 
                 </section>
@@ -562,44 +577,64 @@
             <!-- CHART-PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
             <section id="overallDescription-AssumptionsDependencies-15">
                 <h3><span>3.1.2 </span> Chart page</h3>
-                <p>
-                    [...purpose...]
-                </p>
+
+                <p>Being able to visualize data in charts and graphs is especially useful when working with large data sets, as it's the case here. When the data is represented in a visual context, it is easier for human users to interpret it, identify trends and patterns, and reach conclusions.</p>
+                <p>To help users achieve this goal, the site offers the possibility of visualizing data in three different charts described below.</p>
 
                 <!-- CHART-PAGE ->>> Chart 'Number of cases per state' -->
                 <section id="overallDescription-AssumptionsDependencies-16">
-                    <h3><span>3.1.2.1 </span> Chart number of cases per state </h3>
-                    <p>
-                        image and describe interaction
-                    </p>
+                    <h3><span>3.1.2.1 </span> Chart 1: Number of cases per state </h3>
+                    <p>This doughnut chart gives a comparative overview of the number of accidents for each state by putting them in contrast with each other.</p>
+                    <p>By hovering over each chart slice, a tooltip with the state name and accidents number will appear to provide more insights.</p>
+                    <p>The legend is situated in the top part of the chart and contains the states name and the associated colour. From here the user can also interact with the chart excluding/including different states from/in this visualization by clicking on the state name or colour. When an item is excluded from the chart, it will be marked with a strikethrough.</p>
+                    
+                    <figure class="report-centered-fig">
+                        <img src="/assets/images/report/chart-number-of-cases-per-state.png" alt="Chart 1: Number of cases per state">
+                        <figcaption>Fig. 10 - Chart 1: Number of cases per state</figcaption>
+                    </figure>
+
                 </section>
 
 
                 <!-- CHART-PAGE ->>> Chart severity -->
                 <section id="overallDescription-AssumptionsDependencies-17">
-                    <h3><span>3.1.2.2 </span> Chart severity </h3>
-                    <p>
-                        image and describe (how can you see result OVERALL or PER STATE), describe interactions
-                    </p>
+                    <h3><span>3.1.2.2 </span> Chart 2: Number of cases grouped by severity overall and per state</h3>
+                    <p>In this pie chart is highlighted the distribution of accidents by severity. Here, the users are able to visualise this distribution per total or at the state level by selecting this from the drop-down list in the top left of the chart.</p>
+                    <p>As was the case for the previous chart, when the user hovers its mouse over a chart slice, it will appear a tooltip with the severity type and the number of accidents.</p> 
+                    <p>The legend is situated at the top of the chart and depicts the severity types and the associated colours. By clicking the name or the colour of an element, it will be excluded from the chart and marked with a strikethrough.</p>
+                    <div class="inline-figures">
+                        <figure style="width: 49.3%;">
+                            <img src="/assets/images/report/chart-number-of-cases-by-severity-overall.png" alt="Chart 2: Overall number of cases grouped by severity">
+                            <figcaption>Fig. 11 - Chart 2: Overall number of cases grouped by severity</figcaption>
+                        </figure>
+                        <figure style="width: 49.3%;">
+                            <img src="/assets/images/report/chart-number-of-cases-by-severity-north-carolina.png" alt="Chart 2: Number of cases grouped by severity for North Carolina with the severity one excluded">
+                            <figcaption>Fig. 12 - Chart 2: Number of cases grouped by severity for North Carolina with the severity one excluded</figcaption>
+                        </figure>
+                    </div>
                 </section>
 
                 <!-- CHART-PAGE ->>> CHART Timeline -->
                 <section id="overallDescription-AssumptionsDependencies-18">
-                    <h3><span>3.1.2.3 </span> Chart timeline </h3>
-                    <p>
-                        describe 4 curbes for each year (2016-2020)
-
-                        describe interaction
-                    </p>
-                    <p>
+                    <h3><span>3.1.2.3 </span> Chart 3: Timeline of cases per year </h3>
+                    <p>This line chart offers a comparative visualization of the monthly evolution of the number of accidents for each year.</p>
+                    <p>The horizontal axis depicts the time progression in months, and on the vertical one, the number of accidents.</p>
+                    <p>When the users hover over the month points on the lines, will appear a tooltip with the name of the year and the number of accidents for the selected month.</p>
+                    <p>At the top of the chart is the legend with the years and their colour. By clicking a legend element, this will be excluded/included from/in the chart. The excluded items are marked with a strikethrough.</p>
+                    <figure class="report-centered-fig">
+                        <img src="/assets/images/report/chart-timeline-of-cases-per-year.png" alt="Chart 1: Number of cases per state">
+                        <figcaption>Fig. 13 - Chart 3: Timeline of accidents per year</figcaption>
+                    </figure>
                 </section>
 
                 <!-- CHART-PAGE ->>> EXPORT SECTION -->
                 <section id="overallDescription-AssumptionsDependencies-19">
                     <h3><span>3.1.2.4 </span> Export chart</h3>
-                    <p>
-                        show image and say that can be exported...
-                    </p>
+                    <p>If the user wants to store the chart for future use, he has the ability to export the image in WEBP or SVG format. Also, the chart data can be exported in CSV format for further processing. All third options can be accessed in the right section of the charts, in the export section.</p>
+                    <figure class="report-centered-fig">
+                        <img src="/assets/images/report/chart-page.png" alt="The export section from chart page">
+                        <figcaption>Fig. 14 - The export section from chart page</figcaption>
+                    </figure>
                 </section>
             </section>
             <!-- INSERT NEXT PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
