@@ -24,12 +24,12 @@ class MaintenanceQuery extends Model
         $this->db->update($sql);
         return ['success' => true];
     }
-    public function updateMessage($value)
+    public function updateDescription($value)
     {
-        $sql = "UPDATE maintenance SET description=$value WHERE id=1";
+        $sql = "UPDATE maintenance SET description='$value' WHERE id=1";
         $this->db->update($sql);
     }
-    public function getMessage()
+    public function getDescription()
     {
         $sql = "SELECT description FROM maintenance";
         return $this->db->select($sql);

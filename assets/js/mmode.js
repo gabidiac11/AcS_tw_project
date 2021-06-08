@@ -39,8 +39,31 @@ function updateStatus() {
 }
 
 function getText() {
-
+    fetch(`/MaintenanceMode/getText`)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (json) {
+            document.getElementById("message").value = json[0]['description'];
+        });
 }
 
 function updateText() {
+    var value = document.getElementById("message").value;
+    var payload = {
+        description: value,
+    };
+    fetch(
+        `/MaintenanceMode/updateMaintenance`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    ).catch((response) => {
+        console.log("BAD REQUEST", response);
+    });
 }
