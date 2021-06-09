@@ -69,6 +69,11 @@ class Database
         $conn = $this->conn;
         $conn->query($sql);
     }
+    public function remove($sql) {
+        //remove elements
+        $conn = $this->conn;
+        $conn->query($sql);
+    }
 
     /**
      * executes a sql insert statement given as parameter

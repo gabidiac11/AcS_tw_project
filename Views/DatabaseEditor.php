@@ -85,7 +85,19 @@
         </div>
         </div>
         <div id="removeDiv">
-            <p>test1</p>
+            <div class="id">
+                <h2 id="title">ID Remover</h2>
+                <input class="rem" type="number" placeholder="ID to remove" id="rem">
+                <input onclick="removeElementfromDatabase()" id="sub" type="submit" value="Submit">
+                <p id="result1"></p>
+            </div>
+            <div class="range">
+                <h2>Range ID Elements Remover</h2>
+                <input class="rem2" type="number" placeholder="Start Value Range" id="rem1">
+                <input class="rem2" type="number" placeholder="End Value Range" id="rem2">
+                <input onclick="removeElementRangeFromDatabase()" id="sub2" type="submit" value="Submit">
+                <p id="result2"></p>
+            </div>
         </div>
         <div id="editDiv">
             <div class="circumstances">

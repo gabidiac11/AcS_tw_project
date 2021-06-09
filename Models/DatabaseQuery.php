@@ -42,21 +42,21 @@ class DatabaseQuery extends Model
             $winddirection = $data['winddirection'];
             $precipitation = $data['precipitation'];
             $generalcondition = $data['generalcondition'];
-            $amenity = boolval($data['amenity'])? 'True' : 'False';    ;
-            $bump = boolval($data['bump'])? 'True' : 'False';    ;
-            $crossing = boolval($data['crossing'])? 'True' : 'False';    ;
-            $giveaway = boolval($data['giveaway'])? 'True' : 'False';    ;
-            $junction = boolval($data['junction'])? 'True' : 'False';    ;
-            $noexit = boolval($data['noexit'])? 'True' : 'False';    ;
-            $railway = boolval($data['railway'])? 'True' : 'False';    ;
-            $roundabout = boolval($data['roundabout'])? 'True' : 'False';    ;
-            $station = boolval($data['station'])? 'True' : 'False';    ;
-            $stop = boolval($data['stop'])? 'True' : 'False';    ;
-            $trafficcalming = boolval($data['trafficcalming'])? 'True' : 'False';    ;
-            $trafficsignal = boolval($data['trafficsignal'])? 'True' : 'False';    ;
-            $trafficloop = boolval($data['trafficloop'])? 'True' : 'False';
+            $amenity = boolval($data['amenity']) ? 'True' : 'False';
+            $bump = boolval($data['bump']) ? 'True' : 'False';
+            $crossing = boolval($data['crossing']) ? 'True' : 'False';
+            $giveaway = boolval($data['giveaway']) ? 'True' : 'False';
+            $junction = boolval($data['junction']) ? 'True' : 'False';
+            $noexit = boolval($data['noexit']) ? 'True' : 'False';
+            $railway = boolval($data['railway']) ? 'True' : 'False';
+            $roundabout = boolval($data['roundabout']) ? 'True' : 'False';
+            $station = boolval($data['station']) ? 'True' : 'False';
+            $stop = boolval($data['stop']) ? 'True' : 'False';
+            $trafficcalming = boolval($data['trafficcalming']) ? 'True' : 'False';
+            $trafficsignal = boolval($data['trafficsignal']) ? 'True' : 'False';
+            $trafficloop = boolval($data['trafficloop']) ? 'True' : 'False';
 
-            $this->db->insert( "INSERT INTO accidents(ID, Severity, Start_Time, End_Time, Start_Lat, Start_Lng, End_Lat, End_Lng, Distance, Description, Number, Street, City,
+            $this->db->insert("INSERT INTO accidents(ID, Severity, Start_Time, End_Time, Start_Lat, Start_Lng, End_Lat, End_Lng, Distance, Description, Number, Street, City,
                       State, Zipcode, Temperature, Wind_Chill, Humidity, Pressure, Visibility, Wind_Direction, Precipitation, Weather_Condition,Amenity, Bump, Crossing, Give_Way, Junction,
                       No_Exit, Railway, Roundabout, Station, Stop,Traffic_Calming, Traffic_Signal, Turning_Loop) 
             VALUES ('$ids', '$severity', '$timestart', '$timeend', '$latstart', '$longstart', '$latend', '$longend',', $distance',
@@ -68,21 +68,52 @@ class DatabaseQuery extends Model
         }
     }
 
-      public function removeId($data) {
-          if ($this->fieldsNotPresent($data, ['user', 'token', 'id'])) {
-              return ['success' => false];
-          }
-          $token = $data['token'];
-          $user = $data['user'];
-          $result = $this->verifySession($user, $token)['success'];
-          if ($result === true) {
+    public function removeID($data)
+    {
+        if ($this->fieldsNotPresent($data, ['user', 'token', 'id'])) {
+            return ['success' => false];
+        }
+        $token = $data['token'];
+        $user = $data['user'];
+        $id = $data['id'];
+        $result = $this->verifySession($user, $token)['success'];
+        if ($result === true) {
+            $newres = $this->db->select("SELECT ID FROM accidents WHERE accident_id='$id'");
+            if (!empty ($newres)) {
+                $this->db->remove("DELETE FROM accidents WHERE accident_id='$id'");
+                return ['success' => true];
+            } else {
+                return ['success' => false];
+            }
+        }
+        return ['success' => false];
 
-          }else{
-              return ['success' => false];
-          }
+
+    }
+    public function removeRangeID($data)
+    {
+        if ($this->fieldsNotPresent($data, ['user', 'token', 'id1', 'id2'])) {
+            return ['success' => false];
+        }
+        $token = $data['token'];
+        $user = $data['user'];
+        $id1 = $data['id1'];
+        $id2 = $data['id2'];
+        $result = $this->verifySession($user, $token)['success'];
+        if ($result === true) {
+            $newres = $this->db->select("SELECT ID FROM accidents WHERE accident_id BETWEEN '$id1' AND '$id2'");
+            if (!empty ($newres)) {
+                $this->db->remove("DELETE FROM accidents WHERE accident_id BETWEEN '$id1' AND '$id2'");
+                return ['success' => true];
+            } else {
+                return ['success' => false];
+            }
+        }
+        return ['success' => false];
 
 
-      }
+    }
+
     public function getAccidents(): array
     {
         return Accident::resultsToInstances($this->db->select("SELECT * FROM accidents LIMIT 10"));

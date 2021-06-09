@@ -21,4 +21,18 @@ class databaseeditor extends Controller
             $this->loadView("databaseeditor", []);
         }
     }
+    public function removeElem(){
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            echo json_encode($this->databaseManager->removeID($this->postData));
+        }else{
+            $this->loadView("databaseeditor", []);
+        }
+    }
+    public function removeRangeElem(){
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            echo json_encode($this->databaseManager->removeRangeID($this->postData));
+        }else{
+            $this->loadView("databaseeditor", []);
+        }
+    }
 }

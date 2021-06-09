@@ -1,72 +1,80 @@
-function loadPage(){
+function loadPage() {
     displayAdd();
 }
-function displayAdd(){
+
+function displayAdd() {
     addClass("add");
     removeClass("edit");
     removeClass("remove");
     removeClass("import");
     hideElements("addDiv");
 }
-function displayEdit(){
+
+function displayEdit() {
     removeClass("add");
     addClass("edit");
     removeClass("remove");
     removeClass("import");
     hideElements("editDiv");
 }
-function displayRemove(){
+
+function displayRemove() {
     removeClass("add");
     removeClass("edit");
     addClass("remove");
     removeClass("import");
     hideElements("removeDiv");
 }
-function displayImport(){
+
+function displayImport() {
     removeClass("add");
     removeClass("edit");
     removeClass("remove");
     addClass("import");
     hideElements("importDiv");
 }
+
 function addClass($id) {
     var v = document.getElementById($id);
     v.classList.add("active");
 }
+
 function removeClass($id) {
     var v = document.getElementById($id);
-    if(v) {
+    if (v) {
 
         v.classList.remove("active");
     }
 }
-function hideElements($element){
+
+function hideElements($element) {
     var add = document.getElementById("addDiv");
     var edit = document.getElementById("editDiv");
     var remove = document.getElementById("removeDiv");
     var imp = document.getElementById("importDiv");
-    if($element === "addDiv"){
+    if ($element === "addDiv") {
         add.style.display = "block";
-    }else{
+    } else {
         add.style.display = "none";
     }
-    if($element === "editDiv"){
+    if ($element === "editDiv") {
         edit.style.display = "block";
-    }else{
+    } else {
         edit.style.display = "none";
     }
-    if($element === "removeDiv"){
+    if ($element === "removeDiv") {
         remove.style.display = "block";
-    }else{
+    } else {
         remove.style.display = "none";
     }
-    if($element === "importDiv"){
+    if ($element === "importDiv") {
         imp.style.display = "block";
-    }else{
+    } else {
         imp.style.display = "none";
     }
 }
-function addElementInDatabase(){
+
+function addElementInDatabase() {
     var user = localStorage.getItem("AdminUser");
     var token = localStorage.getItem("AdminToken");
     var payload = {
@@ -126,9 +134,79 @@ function addElementInDatabase(){
         .then(function (json) {
             console.log(json);
             if (json['success'] != true) {
-                document.getElementById("result").innerHTML="Element not added! Please review your submission!";
-            }else{
-                document.getElementById("result").innerHTML="Added";
+                document.getElementById("result").innerHTML = "Element not added! Please review your submission!";
+            } else {
+                document.getElementById("result").innerHTML = "Added";
+            }
+        })
+        .catch((response) => {
+            console.log("BAD REQUEST", response);
+        });
+}
+
+function removeElementfromDatabase() {
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
+    var payload = {
+        user: user,
+        token: token,
+        id: document.getElementById("rem").value,
+    };
+    fetch(
+        `/databaseeditor/removeElem`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (json) {
+            console.log(json);
+            if (json['success'] != true) {
+                document.getElementById("result1").innerHTML = "ID not found!!";
+            } else {
+                document.getElementById("result1").innerHTML = "Element removed!";
+            }
+        })
+        .catch((response) => {
+            console.log("BAD REQUEST", response);
+        });
+}
+function removeElementRangeFromDatabase(){
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
+    var payload = {
+        user: user,
+        token: token,
+        id1: document.getElementById("rem1").value,
+        id2: document.getElementById("rem2").value,
+    };
+    fetch(
+        `/databaseeditor/removeRangeElem`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (json) {
+            console.log(json);
+            if (json['success'] != true) {
+                document.getElementById("result2").innerHTML = "Can't find any elements between these values!";
+            } else {
+                document.getElementById("result2").innerHTML = "Elements removed!";
             }
         })
         .catch((response) => {
