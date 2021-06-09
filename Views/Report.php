@@ -1094,18 +1094,20 @@
         </section>
 
         <section id="workAssignmentVasil">
-            <h2><span>6.3 Vasilica Alex </span></h2>
+        <h2><span>6.3 Vasilica Alex </span></h2>
             <section id="workAssignmentVasilBackend">
                 <h2><span>6.3.1 Backend </span></h2>
                 <ul>
-                    <li>-</li>
+                    <li>Import CSV to the database</li>
+                    <li>Export model</li>
                 </ul>
             </section>
 
             <section id="workAssignmentVasilFrontend">
                 <h2><span>6.3.2 Frontend </span></h2>
                 <ul>
-                    <li>-</li>
+                    <li>General design for the website</li>
+                    <li>Search page - Reusable cards for accidents Info</li>
                 </ul>
             </section>
         </section>
