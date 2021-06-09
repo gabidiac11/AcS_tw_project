@@ -151,6 +151,9 @@
 
                     <!-- EXPORT SERVICE -->
                     <li><a href="#devGuideExportService"><span>4.4 </span>Export Service</a></li>
+
+                    <!-- DATABASE CONFIGURATION -->
+                    <li><a href="#devGuideDatabaseConfiguration"><span>4.5 </span>Database Configuration</a></li>
                 </ol>
             </li>
 
@@ -941,6 +944,17 @@
                     SVG. This format uses the same Js features as the Webp option, but is decorated by a third-party library, <a href="#ref_MVC_tutorial_1">Canvas2Svg</a>.
                 </li>
             </ul>
+        </section>
+
+        <!-- DATABASE CONFIGURATION -->
+        <section id="devGuideDatabaseConfiguration">
+            <h2><span>4.5 Database Configuration </span></h2>
+            <p>
+                The database can be imported using the file provided at <strong><i>documentation/Setup/acs_tw.sql.gz</i></strong>.
+            </p>
+            <p>
+                The import contains only 200 thousands records, subset of the whole dataset. If you want to use the whole dataset, is available in csv format at <a href="https://www.kaggle.com/sobhanmoosavi/us-accidents">https://www.kaggle.com/sobhanmoosavi/us-accidents</a>. A import script is implemented at <i>DatabaseUtl.phpCsvToDb()</i>.
+            </p>
         </section>
 
     </section>
