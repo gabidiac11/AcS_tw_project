@@ -80,7 +80,7 @@
                 <label class="checkbox"><input type="checkbox" id="trafficSignalDb">Traffic Signal</label>
                 <label class="checkbox"><input type="checkbox" id="trafficLoopDb">Traffic Loop</label>
             </div>
-            <input onclick="addElementInDatabase()" id="sub" type="submit" value="Submit">
+            <input onclick="addElementInDatabase()" id="subr" type="submit" value="Submit">
             <p id="result"></p>
         </div>
         </div>

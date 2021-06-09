@@ -184,8 +184,8 @@ function removeElementRangeFromDatabase(){
     var payload = {
         user: user,
         token: token,
-        id1: document.getElementById("rem1").value,
-        id2: document.getElementById("rem2").value,
+        id1: document.getElementById("addName").value,
+        id2: document.getElementById("addPassword").value,
     };
     fetch(
         `/databaseeditor/removeRangeElem`,

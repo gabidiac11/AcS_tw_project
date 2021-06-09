@@ -9,21 +9,32 @@
     <title> Database Editor - USA Accidents Smart Visualizer</title>
     <link href="../../assets/css/index.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/css/account.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/maintenancemode.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../assets/css/ui/button.css" media="all" rel="stylesheet"
-          type="text/css"/>
     <script src="../../assets/js/loginpanel.js"></script>
-    <script src="../../assets/js/mmode.js"></script>
-    <script src="../../assets/js/ui/button.js"></script>
+    <script src="../../assets/js/account.js"></script>
 </head>
 
-<body onload=verifier("adminpanel")>
+<body onload="verifier('adminpanel'), addToArray()">
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 ?>
 <main class="flex-all flex-column main" id="admin-panel">
+    <h2>Add account</h2>
+    <input type="text" id="addName" placeholder="Username">
+    <input type="text" id="addPassword" placeholder="Password">
+    <input onclick="addAccount()" id="sub" type="submit" value="Submit">
+    <h2>Edit Account</h2>
+    <select class="drop" name="Names" id="editNames">
+    </select>
+    <input type="text" id="editName" placeholder="New password">
+    <input onclick="editAccount()" id="sub2" type="submit" value="Submit">
+    <h2>Remove Account</h2>
+    <select class="drop" name="Names" id="accNames">
+    </select>
+    <input onclick="removeAccount()" id="sub3" type="submit" value="Submit">
 
-
+    <p id="message"></p>
 </main>
 </body>
 
