@@ -13,7 +13,7 @@ class ContactModel extends Model
     public function send($data)
     {
         if ($this->fieldsNotPresent($data, ['name', 'email', 'message'])) {
-            return ['success' => false, 'message' => 'Ups! You have a missing fields.'];
+            return ['success' => false, 'message' => 'Ups! You have a missing field.'];
         }
 
         $name = $data['name'];

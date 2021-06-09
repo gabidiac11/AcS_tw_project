@@ -16,22 +16,37 @@ class MaintenanceQuery extends Model
 
     public function updateStatus($data)
     {
-        if ($this->fieldsNotPresent($data, ['mode'])) {
+        if ($this->fieldsNotPresent($data, ['token','user','mode'])) {
             return ['success' => false];
         }
         $value = $data['mode'];
-        $sql = "UPDATE maintenance SET mode='$value' WHERE id=1";
-        $this->db->update($sql);
-        return ['success' => true];
+        $token = $data['token'];
+        $user = $data['user'];
+        $result = $this->verifySession($user, $token)['success'];
+        if($result === true) {
+            $sql = "UPDATE maintenance SET mode='$value' WHERE id=1";
+            $this->db->update($sql);
+            return ['success' => true];
+        }else{
+            return ['success' => false];
+        }
     }
     public function updateDescription($data)
     {
-        if ($this->fieldsNotPresent($data, ['description'])) {
+        if ($this->fieldsNotPresent($data, ['token','user','description'])) {
             return ['success' => false];
         }
         $value = $data['description'];
-        $sql = "UPDATE maintenance SET description='$value' WHERE id=1";
-        $this->db->update($sql);
+        $token = $data['token'];
+        $user = $data['user'];
+        $result = $this->verifySession($user, $token)['success'];
+        if($result === true) {
+            $sql = "UPDATE maintenance SET description='$value' WHERE id=1";
+            $this->db->update($sql);
+            return ['success' => true];
+        }else{
+            return ['success' => false];
+        }
     }
     public function getDescription()
     {
@@ -42,5 +57,14 @@ class MaintenanceQuery extends Model
     {
         $sql = "SELECT mode FROM maintenance";
         return $this->db->select($sql);
+    }
+    public function verifySession($name, $token)
+    {
+        $sql = $this->db->select("SELECT token from session s LEFT JOIN admin a ON s.name=a.name WHERE s.name='$name' AND s.password=a.password AND s.token='$token'");
+        if ($sql != NULL) {
+            return ['success' => true];
+        }
+
+        return ['success' => false];
     }
 }

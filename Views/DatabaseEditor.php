@@ -16,7 +16,7 @@
     <script src="../../assets/js/import.js"></script>
 </head>
 
-<body onload=verifier("adminpanel")>
+<body onload="verifier('adminpanel'), loadPage()">
     <?php
     require_once __DIR__ . '/Layout/Admin.php';
     ?>
@@ -25,7 +25,7 @@
         <div class="topnav" id="myTopnav">
             <a id="add" onclick="displayAdd()">Add</a>
             <a id="remove" onclick="displayRemove()"">Remove</a>
-        <a id=" edit" onclick="displayEdit()">Edit</a>
+            <a id="edit" onclick="displayEdit()">Edit</a>
             <a id="import" onclick="displayImport()">CSV Import</a>
             <i class="fa fa-bars"></i>
             </a>
@@ -35,10 +35,12 @@
             <div class="principalDetails">
                 <input class="item" type="text" placeholder="Id" id="idDb">
                 <input class="item" type="number" placeholder="Severity" id="severityDb">
-                <input class="item" type="text" placeholder="Time" id="timeDb">
-                <input class="item" type="datetime-local" placeholder="Date" id="dateDb">
-                <input class="item" type="number" placeholder="Latitude" id="latitudeDb">
-                <input class="item" type="number" placeholder="Longitude" id="longitudeDb">
+                <input class="item" type="Date" placeholder="TimeStart" id="timeStartDb">
+                <input class="item" type="Date" placeholder="TimeEnd" id="timeEndDb">
+                <input class="item" type="number" placeholder="Latitude Start" id="latitudeStartDb">
+                <input class="item" type="number" placeholder="Latitude End" id="latitudeEndDb">
+                <input class="item" type="number" placeholder="Longitude Start" id="longitudeStartDb">
+                <input class="item" type="number" placeholder="Longitude End" id="longitudeEndDb">
                 <input class="item" type="number" placeholder="Distance" id="distanceDb">
                 <input class="description" type="text" placeholder="Description" id="descriptionDb">
             </div>
@@ -68,7 +70,7 @@
                 <label class="checkbox"><input type="checkbox" id="bumpDb">Bump</label>
                 <label class="checkbox"><input type="checkbox" id="crossingDb">Crossing</label>
                 <label class="checkbox"><input type="checkbox" id="giveAwayDb">GiveAway</label>
-                <label class="checkbox"><input type="checkbox" id="JunctionDb">Junction</label>
+                <label class="checkbox"><input type="checkbox" id="junctionDb">Junction</label>
                 <label class="checkbox"><input type="checkbox" id="noExitDb">No Exit</label>
                 <label class="checkbox"><input type="checkbox" id="railwayDb">Railway</label>
                 <label class="checkbox"><input type="checkbox" id="roundAboutDb">Round About</label>
@@ -78,7 +80,8 @@
                 <label class="checkbox"><input type="checkbox" id="trafficSignalDb">Traffic Signal</label>
                 <label class="checkbox"><input type="checkbox" id="trafficLoopDb">Traffic Loop</label>
             </div>
-            <input id="sub" type="submit" value="Submit">
+            <input onclick="addElementInDatabase()" id="sub" type="submit" value="Submit">
+            <p id="result"></p>
         </div>
         </div>
         <div id="removeDiv">

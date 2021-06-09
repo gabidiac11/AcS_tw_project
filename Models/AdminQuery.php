@@ -14,9 +14,7 @@ class AdminQuery extends Model
         }
         $name = $data['user'];
         $password = $data['password'];
-        $token = $data['token'];
         $query = $this->db->select("SELECT name FROM admin WHERE name='$name' AND password='$password'");
-
         if ($query != NULL) {
                 $this -> addTokenInside($data);
             return ['success' => true];
@@ -48,8 +46,4 @@ class AdminQuery extends Model
         $this->db->insert("INSERT INTO session (name, token, password) VALUES ('$name', '$token', '$password')");
     }
 
-    public function getAccidents(): array
-    {
-        return Accident::resultsToInstances($this->db->select("SELECT * FROM accidents LIMIT 10"));
-    }
 }

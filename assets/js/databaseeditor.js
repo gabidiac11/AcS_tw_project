@@ -1,6 +1,5 @@
 function loadPage(){
-    addClass("add");
-    hideElements("addDiv");
+    displayAdd();
 }
 function displayAdd(){
     addClass("add");
@@ -66,4 +65,73 @@ function hideElements($element){
     }else{
         imp.style.display = "none";
     }
+}
+function addElementInDatabase(){
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
+    var payload = {
+        user: user,
+        token: token,
+        ids: document.getElementById("idDb").value,
+        severity: document.getElementById("severityDb").value,
+        timestart: document.getElementById("timeStartDb").value,
+        timeend: document.getElementById("timeEndDb").value,
+        latstart: document.getElementById("latitudeStartDb").value,
+        latend: document.getElementById("latitudeStartDb").value,
+        longstart: document.getElementById("longitudeStartDb").value,
+        longend: document.getElementById("longitudeEndDb").value,
+        distance: document.getElementById("distanceDb").value,
+        description: document.getElementById("descriptionDb").value,
+        street: document.getElementById("streetDb").value,
+        number: document.getElementById("numberDb").value,
+        city: document.getElementById("cityDb").value,
+        state: document.getElementById("stateDb").value,
+        zipcode: document.getElementById("zipCodeDb").value,
+        temperature: document.getElementById("temperatureDb").value,
+        windchill: document.getElementById("windChillDb").value,
+        humidity: document.getElementById("humidityDb").value,
+        pressure: document.getElementById("pressureDb").value,
+        visibility: document.getElementById("visibilityDb").value,
+        winddirection: document.getElementById("windDirectionDb").value,
+        precipitation: document.getElementById("precipitationDb").value,
+        generalcondition: document.getElementById("generalConditionDb").value,
+        amenity: document.getElementById("amenityDb").checked,
+        bump: document.getElementById("bumpDb").checked,
+        crossing: document.getElementById("crossingDb").checked,
+        giveaway: document.getElementById("giveAwayDb").checked,
+        junction: document.getElementById("junctionDb").checked,
+        noexit: document.getElementById("noExitDb").checked,
+        railway: document.getElementById("railwayDb").checked,
+        roundabout: document.getElementById("roundAboutDb").checked,
+        station: document.getElementById("stationDb").checked,
+        stop: document.getElementById("stopDb").checked,
+        trafficcalming: document.getElementById("trafficCalmingDb").checked,
+        trafficsignal: document.getElementById("trafficSignalDb").checked,
+        trafficloop: document.getElementById("trafficLoopDb").checked,
+    };
+    fetch(
+        `/databaseeditor/addElem`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (json) {
+            console.log(json);
+            if (json['success'] != true) {
+                document.getElementById("result").innerHTML="Element not added! Please review your submission!";
+            }else{
+                document.getElementById("result").innerHTML="Added";
+            }
+        })
+        .catch((response) => {
+            console.log("BAD REQUEST", response);
+        });
 }

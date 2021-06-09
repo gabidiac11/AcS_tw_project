@@ -23,8 +23,12 @@ function updateStatus() {
     } else {
         var value = 1;
     }
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
     var payload = {
         mode: value,
+        token: token,
+        user: user,
     };
     fetch(
         `/MaintenanceMode/updateMaintenance`,
@@ -54,8 +58,12 @@ function getText() {
 
 function updateText() {
     var value = document.getElementById("message").value;
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
     var payload = {
         description: value,
+        token: token,
+        user: user,
     };
     fetch(
         `/MaintenanceMode/updateText`,
