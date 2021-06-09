@@ -102,6 +102,22 @@
 
                         </ol>
                     </li>
+                    <!-- LOGIN PAGE -->
+                    <li><a href="#adminLoginPanel"><span>3.1.3 </span>Login Page</a>
+                    </li>
+                    <!-- LOGIN MAIN PAGE -->
+                    <li><a href="#LoginPageMainPage"><span>3.1.4 </span>Login Main Page</a>
+                    </li>
+                    <!-- MAINTENANCE MODE PAGE -->
+                    <li><a href="#LoginMaintenanceMode"><span>3.1.5 </span>Maintenance Mode Page</a>
+                    </li>
+                    <!-- Database Editor PAGE -->
+                    <li><a href="#LoginDatabaseEditor"><span>3.1.6 </span>Database Editor Page</a>
+                    </li>
+                    <!-- Account Manager PAGE -->
+                    <li><a href="#LoginAccountsManager"><span>3.1.7 </span>Accounts Manager Page</a>
+                    </li>
+            </li>
 
                     <!-- 3. OTHER -->
                     <li><a href="#extIntReqHardware"><span>3.2 </span>Hardware interfaces</a></li>
@@ -705,6 +721,15 @@
                     your token.</p>
                 <img src="/assets/images/report/admin-database-add.png" height="75%" width="75%"
                      alt="Admin Panel Main Page">
+                <p>With editor mode, you put the row's ID and you will get into the editor menu. It's a usefull function in case
+                you added something wrong.</p>
+                <img src="/assets/images/report/admin-edit.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+                <p>With ID Remover you can remove any ID existent in the database. With Range ID function you can select a minimum, and
+                a maximum and all values between that will get added.</p>
+                <img src="/assets/images/report/admin-remove.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+
             </section>
             <section id="LoginAccountsManager">
                 <h3><span>3.1.6 </span> Accounts Manager Page</h3>
