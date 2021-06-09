@@ -10,6 +10,7 @@ class ExportModel extends Model
         parent::__construct();
     }
 
+    //functia primeste rezultatul unei interogari SQL, sub forma unei liste si executa 
     public function exportCsv($listResults) {
         
         $keys = [
