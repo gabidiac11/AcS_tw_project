@@ -1094,7 +1094,7 @@
         </section>
 
         <section id="workAssignmentVasil">
-            <h2><span>6.3 Vasulica Alex </span></h2>
+            <h2><span>6.3 Vasilica Alex </span></h2>
             <section id="workAssignmentVasilBackend">
                 <h2><span>6.3.1 Backend </span></h2>
                 <ul>
