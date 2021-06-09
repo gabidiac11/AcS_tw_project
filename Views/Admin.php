@@ -11,6 +11,7 @@
     <link href="../../assets/css/header.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../assets/css/admin.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="../../assets/js/login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 </head>
 
 <body onload="loadStorage()">

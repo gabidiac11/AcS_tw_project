@@ -660,6 +660,61 @@
                     </figure>
                 </section>
             </section>
+            <section id="adminLoginPanel">
+                <h3><span>3.1.3 </span> Admin Login page</h3>
+                <p>For an Administrator this page can be one of the most important between him and his tasks. The design of this
+                    page it's simple and easy to use. This interface consists in two text boxes, 1 check box and 1 button. Selecting "remember me" in the
+                    back-end the page will save your details (Token, User and Check) for next time to pass the login page until you press logout. The main function
+                    of this page is to generate a token who will help you to remain connected in the interface using the end-points. In case you select
+                    to remain connected, the token will be saved after. In other case at every login a new token will be created.</p>
+                <img src="/assets/images/report/admin-login.png"
+                     alt="Login Page">
+            </section>
+            <section id="LoginPageMainPage">
+                <h3><span>3.1.4 </span> Admin Panel Main Page</h3>
+
+                <p>This page it's just a simple bridge between login and the interface for the Administrator. Here you can
+                    find a small preview what can do each page of the admin panal. The main part of this page it, the token
+                    verification what happen every time page is reloaded or when someone enter trough link. Pictures in this page
+                    are clickable and they send you directly into the page you selected.</p>
+                <img src="/assets/images/report/admin-adminpanel.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+            </section>
+            <section id="LoginMaintenanceMode">
+                <h3><span>3.1.5 </span> Maintenance Mode Page</h3>
+
+                <p>The Maintenance Mode page we can say it's one of the important features of this website. In case any problems
+                    appear we can easily turn on this mode selecting enable check box and pressing submit. This page works with
+                    the help of the database and with the end-points. When you get into the page first thing that will happen will
+                    be the message with the description of the maintenance mode will load, and the check boxes will get selected accordingly
+                    with the status of the system. One main feature is this system doesn't affect the administration pages and you can still
+                    work on your database when the users can't access the interfaces. Every operation executed trough this page will verify
+                    your token.</p>
+                <img src="/assets/images/report/admin-maintenancemode.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+            </section>
+            <section id="LoginDatabaseEditor">
+                <h3><span>3.1.6 </span> Database Editor Page</h3>
+
+                <p>The Maintenance Mode page we can say it's one of the important features of this website. In case any problems
+                    appear we can easily turn on this mode selecting enable check box and pressing submit. This page works with
+                    the help of the database and with the end-points. When you get into the page first thing that will happen will
+                    be the message with the description of the maintenance mode will load, and the check boxes will get selected accordingly
+                    with the status of the system. One main feature is this system doesn't affect the administration pages and you can still
+                    work on your database when the users can't access the interfaces. Every operation executed trough this page will verify
+                    your token.</p>
+                <img src="/assets/images/report/admin-database-add.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+            </section>
+            <section id="LoginAccountsManager">
+                <h3><span>3.1.6 </span> Accounts Manager Page</h3>
+
+                <p>The Accounts Manager page it's used to add new admin accounts, remove them or edit the password of them.
+                    This function it's efficient in case it's a security breach or in case another admin forget about it's own password.</p>
+                <img src="/assets/images/report/admin-accounts.png" height="75%" width="75%"
+                     alt="Admin Panel Main Page">
+            </section>
+        </section>
             <!-- INSERT NEXT PAGE ->>> >>> >>>->>> >>> >>>->>> >>> >>>->>> >>> >>> -->
         </section>
 
@@ -991,14 +1046,24 @@
             <section id="workAssignmentGradinariuBackend">
                 <h2><span>5.2.1 Backend </span></h2>
                 <ul>
-                    <li> - </li>
+                    <li> MVC infrastructure - Controllers</li>
+                    <li> Account Manager - Page Design, object modeling, UI elements, token end-point</li>
+                    <li> Login Page - Design, object modeling, UI elements, login and token end-point</li>
+                    <li> DatabaseEditor Page - Algorithms and token, edit, remove, add end-points.</li>
+                    <li> MaintenanceMode Page - Algorithms, data transfer and database manipulation with end-points to modify text and activate maintenance mode.</li>
+                    <li> AdminPage - Algorithms and token end-points</li>
                 </ul>
             </section>
 
             <section id="workAssignmentGradinariuFrontend">
                 <h2><span>5.2.2 Frontend </span></h2>
                 <ul>
-                    <li>-</li>
+                    <li> Charts Page - Design</li>
+                    <li> Account Manager - Design, UI and JavaScript</li>
+                    <li> Login Page - Design, UI and JavaScript</li>
+                    <li> Database Editor Page - Design, UI and JavaScript</li>
+                    <li> MaintenanceMode Page - Design, UI and JavaScript</li>
+                    <li> Admin Page - Design, UI and css files</li>
                 </ul>
             </section>
         </section>

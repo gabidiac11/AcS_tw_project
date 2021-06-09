@@ -13,6 +13,7 @@
     <link href="../../assets/css/maintenancemode.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="../../assets/js/loginpanel.js"></script>
     <script src="../../assets/js/account.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 </head>
 
 <body onload="verifier('adminpanel'), addToArray()">

@@ -100,8 +100,9 @@
             </div>
         </div>
         <div id="editDiv">
-            <div class="circumstances">
-            </div>
+            <h2>Id Editor</h2>
+            <input class="rem" type="number" placeholder="Type the ID to edit" id="idss">
+            <input onclick="" id="sub" type="submit" value="Submit">
         </div>
         <div id="importDiv">
             <div class="file-upload">

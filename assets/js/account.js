@@ -35,15 +35,15 @@ function addToArray() {
 }
 
 function addAccount() {
-    //<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-    //<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    //var encrypted = CryptoJS.SHA256(document.getElementById('addPassword').value);
+    //console.log(encrypted.value);
     var user = localStorage.getItem("AdminUser");
     var token = localStorage.getItem("AdminToken");
     var payload = {
         user: user,
         token: token,
         name: document.getElementById('addName').value,
-        pass: document.getElementById('addPassword').value,
+        pass: document.getElementById('addPassword'),
     };
     fetch(
         `/adminmanager/addAccount`,
@@ -73,45 +73,78 @@ function addAccount() {
 }
 
 function editAccount() {
-
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
+    var e = document.getElementById("accNames");
+    var strUser = e.options[e.selectedIndex].value;
+    var payload = {
+        user: user,
+        token: token,
+        name: document.getElementById('addName').value,
+        pass: strUser,
+    };
+    fetch(
+        `/adminmanager/addAccount`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (json) {
+            if (json['success'] != true) {
+                document.getElementById("message").innerHTML = "Password not changed";
+            } else {
+                document.getElementById("message").innerHTML = "Password changed!";
+            }
+        })
+        .catch((response) => {
+            console.log("BAD REQUEST", response);
+        });
+    addToArray();
     addToArray()
 }
 
 function removeAccount() {
-        //<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        //<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        var e = document.getElementById("accNames");
-        var strUser = e.options[e.selectedIndex].value;
-        var user = localStorage.getItem("AdminUser");
-        var token = localStorage.getItem("AdminToken");
-        var payload = {
-            user: user,
-            token: token,
-            name: strUser,
-        };
-        fetch(
-            `/adminmanager/removeAccount`,
-            {
-                headers: new Headers(),
-                method: "POST",
-                body: JSON.stringify(payload),
+
+    var e = document.getElementById("accNames");
+    var strUser = e.options[e.selectedIndex].value;
+    var user = localStorage.getItem("AdminUser");
+    var token = localStorage.getItem("AdminToken");
+    var payload = {
+        user: user,
+        token: token,
+        name: strUser,
+    };
+    fetch(
+        `/adminmanager/removeAccount`,
+        {
+            headers: new Headers(),
+            method: "POST",
+            body: JSON.stringify(payload),
+        }
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
             }
-        )
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw response;
-            })
-            .then(function (json) {
-                if (json['success'] != true) {
-                    document.getElementById("message").innerHTML = "Account not found!";
-                } else {
-                    document.getElementById("message").innerHTML = "Account removed!";
-                }
-            })
-            .catch((response) => {
-                console.log("BAD REQUEST", response);
-            });
-        addToArray();
+            throw response;
+        })
+        .then(function (json) {
+            if (json['success'] != true) {
+                document.getElementById("message").innerHTML = "Account not found!";
+            } else {
+                document.getElementById("message").innerHTML = "Account removed!";
+            }
+        })
+        .catch((response) => {
+            console.log("BAD REQUEST", response);
+        });
+    addToArray();
 }
