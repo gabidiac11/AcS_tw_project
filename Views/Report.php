@@ -687,7 +687,7 @@
                 </p>
             </section>
 
-            <section id="oextIntReqPlatform">
+            <section id="extIntReqPlatform">
                 <h3><span>3.3.3 </span>Platform</h3>
                 <p>
                     PHP ^v7.3. PHP is easy to use and has a lot of build in functionalities.
