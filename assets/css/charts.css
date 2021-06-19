@@ -135,3 +135,22 @@ select {
     padding-top: 15px;
   }
 }
+
+#btn-filter {
+  color: black;
+  background-color: var(--primary-light-blue);
+  border-color: var(--primary-light-blue);
+}
+
+#btn-filter:hover {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.filter-container {
+ 
+}
+
+.chart-filter {
+
+}

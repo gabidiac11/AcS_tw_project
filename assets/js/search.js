@@ -92,7 +92,7 @@ class Filter {
       this.availableOptions = JSON.parse(JSON.stringify(this.initialValues));
       this.render();
     };
-
+    
     this.onResetClick = () => {
       this.reset();
     };

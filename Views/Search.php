@@ -68,7 +68,7 @@
           MAP PREVIEW
         </button>
       </div>
-
+  
       <div id="search-filters" class="filters-c">
         <div style="display: none;" class="filters-applied"></div>
         <div id="filter-edit-c" class="generic-box-shadow">

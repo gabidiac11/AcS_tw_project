@@ -356,3 +356,19 @@ button.icon-c:disabled {
 *:disabled {
   cursor: default;
 }
+
+.states-container {
+  display: block;
+}
+
+#distance{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.minmax{
+  width: 200px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}

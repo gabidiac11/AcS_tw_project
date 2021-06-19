@@ -1,0 +1,27 @@
+#btn-filter {  
+    border-radius: 0.42rem; 
+    display:flex;
+    justify-content: center;
+    color: #ffffff;
+    background-color: var(--primary-light-blue);
+    border-color: var(--primary-light-blue);
+  }
+
+#btn-filter:hover {
+    background-color: black;
+    border-color: black;
+  }
+
+.chart-filter {
+    top:50px;
+    width: 500px;
+}
+
+.filter-container {
+    display: none;
+  }
+
+
+
+
+

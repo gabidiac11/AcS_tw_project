@@ -13,7 +13,7 @@
     <script src="../../assets/js/loginpanel.js"></script>
 </head>
 
-<body onload=verifier("adminpanel")>
+<body onload=verifier ("adminpanel")>
 <?php
 require_once __DIR__ . '/Layout/Admin.php';
 

@@ -102,7 +102,7 @@ class ChartModel extends Model
             }, $colors)
         ];
     }
-
+    
     public function getCasesPerState() {
         $items = $this->db->select(
             "SELECT 
