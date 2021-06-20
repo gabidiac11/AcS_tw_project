@@ -236,15 +236,4 @@ class ChartPageSelection extends ChartPage {
  * Show/hide button 
  */
 
- const toggleBtn = document.querySelector('#btn-filter');
- const filterItems = document.querySelector('.filter-container');
-
- toggleBtn.addEventListener('click', () => {
-   if (filterItems.style.display === 'none') {
-     filterItems.style.display = 'block';
-     toggleBtn.innerHTML = 'Hide filters';
-   } else {
-     filterItems.style.display = 'none';
-     toggleBtn.innerHTML = 'Show filters';
-   }
- });
+ 

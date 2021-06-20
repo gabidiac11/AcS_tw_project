@@ -234,26 +234,26 @@ head {
 
 .overwrite-achor,
 .overwrite-achor * {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 .overwrite-achor:link,
 .overwrite-achor:link * {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .overwrite-achor:visited,
 .overwrite-achor:visited * {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .overwrite-achor:hover,
 .overwrite-achor:hover * {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .overwrite-achor:active,
 .overwrite-achor:active * {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .page-wrapper {
@@ -277,7 +277,9 @@ button {
   border-radius: 0.42rem;
   text-align: center;
   cursor: pointer;
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease,
+    -webkit-box-shadow 0.15s ease;
 }
 
 .btn-primary {
@@ -298,13 +300,13 @@ svg {
 
 .btn-secondary {
   color: #ffffff;
-  background-color: rgba(0,0,0,0.8);
-  border-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0.8);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(0,0,0,1);
-  border-color: rgba(0,0,0,1);
+  background-color: rgba(0, 0, 0, 1);
+  border-color: rgba(0, 0, 0, 1);
 }
 button.-delete {
   padding-right: 30px;
@@ -344,7 +346,7 @@ button.icon-c {
 
 button.icon-c:disabled {
   opacity: 0.4;
-  cursor: default!important;
+  cursor: default !important;
 }
 
 .loader-img {
@@ -361,14 +363,36 @@ button.icon-c:disabled {
   display: block;
 }
 
-#distance{
+#distance {
   display: flex;
   flex-wrap: wrap;
 }
 
-.minmax{
-  width: 200px;
+#states-btn {
+  color: yellow;
+}
+
+#severity-btn {
+  color: yellow;
+  text-decoration: none;
+}
+
+.minmax {
+  max-width: 500px;
+  /* display: flex;
+  flex-wrap: wrap; */
+
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-gap: 50px;
+}
+
+.minmax a {
+  color: yellow;
+  text-decoration: none;
+}
+
+.minmax-item {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
+  flex-direction: column;
 }
