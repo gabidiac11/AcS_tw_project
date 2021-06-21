@@ -392,6 +392,21 @@ button.icon-c:disabled {
   text-decoration: none;
 }
 
+.wind-condition a {
+  color: yellow;
+  text-decoration: none;
+}
+
+.circumstance a{
+  color: yellow;
+  text-decoration: none;
+}
+
+.astrologicalTwilight a{
+  color: yellow;
+  text-decoration: none;
+}
+
 .minmax-item {
   display: flex;
   flex-direction: column;
